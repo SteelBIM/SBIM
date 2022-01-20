@@ -39,6 +39,17 @@ namespace YT.WallVerticalRebar
         [TSP.StructuresField("R_Spacing")] public double R_Spacing;//간격
 
         [TSP.StructuresField("R_ExcludeType")] public string R_ExcludeType;// 철근제외
+
+        [TSP.StructuresField("R_SpliceType")] public string R_SpliceType;// 이음 타입
+
+        [TSP.StructuresField("R_Splice1")] public double R_Splice1;// 이음
+        [TSP.StructuresField("R_Splice2")] public double R_Splice2;// 이음
+
+        [TSP.StructuresField("R_Bent")] public double R_Bent;// 이음
+
+        [TSP.StructuresField("R_HookCorver")] public double R_HookCorver;// 후크피복
+        [TSP.StructuresField("R_HookLength")] public double R_HookLength;// 후크길이
+        [TSP.StructuresField("R_HookInOut")] public string R_HookInOut;// 후크내/외
         #endregion
 
         #region Left Rebar
@@ -58,6 +69,19 @@ namespace YT.WallVerticalRebar
         [TSP.StructuresField("L_Spacing")] public double L_Spacing;//간격
 
         [TSP.StructuresField("L_ExcludeType")] public string L_ExcludeType;// 철근제외
+
+        [TSP.StructuresField("L_SpliceType")] public string L_SpliceType;// 이음 타입
+
+        [TSP.StructuresField("L_Splice1")] public double L_Splice1;// 이음
+        [TSP.StructuresField("L_Splice2")] public double L_Splice2;// 이음
+
+        [TSP.StructuresField("L_Bent")] public double L_Bent;// 이음
+
+        [TSP.StructuresField("L_HookCorver")] public double L_HookCorver;// 후크피복
+        [TSP.StructuresField("L_HookLength")] public double L_HookLength;// 후크길이
+        [TSP.StructuresField("L_HookInOut")] public string L_HookInOut;// 후크내/외
+
+
         #endregion
     }
 }

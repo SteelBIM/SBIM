@@ -24,7 +24,7 @@ namespace YT.COM
         public double Length { get; set; }
         public double Spacing { get; set; }
 
-        public  ArrayList SetSpacing(double length, double spacing)
+        public ArrayList SetSpacing(double length, double spacing)
         {
 
             var spac = new Spacings();
@@ -39,9 +39,8 @@ namespace YT.COM
             {
                 list.Add(spacing);
             }
-    
-            list.Add(length - (spacing * (ea))-25);
-            list.Add(25);
+
+            list.Add(length - (spacing * (ea)));
             return list;
         }
 

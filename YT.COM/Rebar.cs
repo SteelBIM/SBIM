@@ -49,15 +49,15 @@ namespace YT.COM
 
         // 시작 후크
         public TSM.RebarHookData.RebarHookShapeEnum StartHookShape { get; set; } = TSM.RebarHookData.RebarHookShapeEnum.NO_HOOK;
-        public double StartHookAngle { get; set; } = 0;
-        public double StartHookRadius { get; set; } = 0;
-        public double StartHookLength { get; set; } = 0;
+        public double StartHookAngle { get; set; } 
+        public double StartHookRadius { get; set; } 
+        public double StartHookLength { get; set; } 
 
         // 끝 후크
         public TSM.RebarHookData.RebarHookShapeEnum EndHookShape { get; set; } = TSM.RebarHookData.RebarHookShapeEnum.NO_HOOK;
-        public double EndHookAngle { get; set; } = 0;
-        public double EndHookRadius { get; set; } = 0;
-        public double EndHookLength { get; set; } = 0;
+        public double EndHookAngle { get; set; } 
+        public double EndHookRadius { get; set; } 
+        public double EndHookLength { get; set; }
 
         // 피복 두께
         public double OnPlan { get; set; } = 0;
@@ -110,7 +110,7 @@ namespace YT.COM
 
             // 끝 후크
             bar.EndHook.Shape = EndHookShape;
-            bar.EndHook.Angle = StartHookAngle;
+            bar.EndHook.Angle = EndHookAngle;
             bar.EndHook.Length = EndHookLength;
             bar.EndHook.Radius = EndHookRadius;
 
