@@ -124,12 +124,9 @@ namespace YT.WallVerticalRebar
             // IFC Read
             var buildingSt = string.Empty;
             var building = beam.GetUserProperty("IFC_BUILDING", ref buildingSt);
-            //D.W_BUILDING = buildingSt;
-
 
             var buildingStoreySt = string.Empty;
             var buildingStorey = beam.GetUserProperty("IFC_BUILDING_STOREY", ref buildingStoreySt);
-            //D.W_BUILDING_STOREY = buildingStoreySt;
 
             #region 양단부 범위 설정
 
@@ -355,11 +352,7 @@ namespace YT.WallVerticalRebar
                     break;
             }
 
-
-
             barR.Insert();
-
-
 
             #endregion
 
@@ -531,11 +524,7 @@ namespace YT.WallVerticalRebar
 
             barL.Insert();
 
-
             #endregion
-
-
-
 
         }
     }
