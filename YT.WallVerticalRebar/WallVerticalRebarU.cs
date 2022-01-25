@@ -24,6 +24,8 @@ namespace YT.WallVerticalRebar
 {
     public partial class WallVerticalRebarU : TSD.PluginFormBase
     {
+        public WallVerticalRebarD D { get; set; }
+
         public WallVerticalRebarU()
         {
             InitializeComponent();
@@ -47,12 +49,16 @@ namespace YT.WallVerticalRebar
             reinforcementCatalogL.SelectionDone += ReinforcementCatalogL_SelectionDone;
             #endregion
 
+            #region Event : 연결
             R_SpliceType.TextChanged += R_SpliceType_TextChanged;
 
             L_SpliceType.TextChanged += L_SpliceType_TextChanged1;
+            #endregion
+
+            W_UDA.TextChanged += W_UDA_TextChanged;
         }
 
-     
+      
 
 
         #region UI 화면 표시
@@ -61,6 +67,10 @@ namespace YT.WallVerticalRebar
         {
             // UI 화면에 표시되는 값 과 모델 실제값
             this.SetAttributeValue(this.W_Coordination, "StartEnd");
+            this.SetAttributeValue(this.W_UDA, "부재 UDA 정보 사용");
+            this.SetAttributeValue(this.W_Building, "");
+            this.SetAttributeValue(this.W_Building_Storey, "");
+
             //ExcludeType
             this.SetAttributeValue(this.R_Name, "W_V");
             this.SetAttributeValue(this.R_Grade, "SD500");
@@ -81,7 +91,6 @@ namespace YT.WallVerticalRebar
             this.SetAttributeValue(this.R_HookCorver, 50.0);
             this.SetAttributeValue(this.R_HookLength, 100.0);
             this.SetAttributeValue(this.R_HookInOut, "내");
-
 
             this.SetAttributeValue(this.L_Name, "W_V");
             this.SetAttributeValue(this.L_Grade, "SD500");
@@ -171,6 +180,7 @@ namespace YT.WallVerticalRebar
         }
         #endregion
 
+        #region Event : 연결
         private void R_SpliceType_TextChanged(object sender, EventArgs e)
         {
             switch (R_SpliceType.Text)
@@ -234,6 +244,22 @@ namespace YT.WallVerticalRebar
                     break;
             }
         }
+        #endregion
 
+        private void W_UDA_TextChanged(object sender, EventArgs e)
+        {
+            switch (W_UDA.Text)
+            {
+                case "부재 UDA 정보 사용":
+                    W_Building.Enabled = false;
+                    W_Building_Storey.Enabled = false;
+                    break;
+
+                case "사용자 지정":
+                    W_Building.Enabled = true;
+                    W_Building_Storey.Enabled = true;
+                    break;
+            }
+        }
     }
 }

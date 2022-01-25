@@ -71,6 +71,8 @@ namespace YT.WallVerticalRebar
             var endPoint2 = (TSG.Point)(Input[4]).GetInput();
 
 
+
+
             // 좌표 변경
             var lcs = wall.GetCoordinateSystem();
 
@@ -118,6 +120,16 @@ namespace YT.WallVerticalRebar
         private void CreatWallRebar(TSM.Beam beam, TSG.Point point1, TSG.Point point2, TSG.Point point3, TSG.Point point4)
         {
             var m = new TSM.Model();
+
+            // IFC Read
+            var buildingSt = string.Empty;
+            var building = beam.GetUserProperty("IFC_BUILDING", ref buildingSt);
+            //D.W_BUILDING = buildingSt;
+
+
+            var buildingStoreySt = string.Empty;
+            var buildingStorey = beam.GetUserProperty("IFC_BUILDING_STOREY", ref buildingStoreySt);
+            //D.W_BUILDING_STOREY = buildingStoreySt;
 
             #region 양단부 범위 설정
 
@@ -170,6 +182,8 @@ namespace YT.WallVerticalRebar
             var minZ = beam.GetSolid().MinimumPoint.Z;
 
             #endregion
+
+
 
             #region 우측철근
 
@@ -243,7 +257,7 @@ namespace YT.WallVerticalRebar
                     }
 
                     barR.EndHookRadius = barR.Radius;
-                    barR.EndHookLength = D.R_HookLength-barR.Radius-KS.GetDiameter(Convert.ToDouble(barR.Size));
+                    barR.EndHookLength = D.R_HookLength - barR.Radius - KS.GetDiameter(Convert.ToDouble(barR.Size));
 
                 }
 
@@ -329,7 +343,23 @@ namespace YT.WallVerticalRebar
                     break;
             }
 
+            switch (D.W_UDA)
+            {
+                case "부재 UDA 정보 사용":
+                    barR.Building = buildingSt;
+                    barR.BuildingStorey = buildingStoreySt;
+                    break;
+                case "사용자 지정":
+                    barR.Building = D.W_Building;
+                    barR.BuildingStorey = D.W_Building_Storey;
+                    break;
+            }
+
+
+
             barR.Insert();
+
+
 
             #endregion
 
@@ -428,8 +458,8 @@ namespace YT.WallVerticalRebar
                     double y = 6 * x;
 
                     shapeL.Points.Add(new TSG.Point(endleftCrossPoint.X + leftMoveXS + leftKsXS, startleftCrossPoint.Y, minZ));
-                    shapeL.Points.Add(new TSG.Point(endleftCrossPoint.X + leftMoveXS + leftKsXS, startleftCrossPoint.Y, maxZ-y));
-                    shapeL.Points.Add(new TSG.Point(endleftCrossPoint.X + leftMoveXS + leftKsXS, startleftCrossPoint.Y-x, maxZ ));
+                    shapeL.Points.Add(new TSG.Point(endleftCrossPoint.X + leftMoveXS + leftKsXS, startleftCrossPoint.Y, maxZ - y));
+                    shapeL.Points.Add(new TSG.Point(endleftCrossPoint.X + leftMoveXS + leftKsXS, startleftCrossPoint.Y - x, maxZ));
                     shapeL.Points.Add(new TSG.Point(endleftCrossPoint.X + leftMoveXS + leftKsXS, startleftCrossPoint.Y - x, maxZ + D.L_Splice1 + D.L_Splice2));
 
                 }
@@ -487,9 +517,26 @@ namespace YT.WallVerticalRebar
                     break;
             }
 
+            switch (D.W_UDA)
+            {
+                case "부재 UDA 정보 사용":
+                    barL.Building = buildingSt;
+                    barL.BuildingStorey = buildingStoreySt;
+                    break;
+                case "사용자 지정":
+                    barL.Building = D.W_Building;
+                    barL.BuildingStorey = D.W_Building_Storey;
+                    break;
+            }
+
             barL.Insert();
 
+
             #endregion
+
+
+
+
         }
     }
 }

@@ -41,8 +41,119 @@ namespace YT.COM
             }
 
             list.Add(length - (spacing * (ea)));
+
             return list;
         }
 
+        public ArrayList SetSpacing2(double length, double spacing, string size)
+        {
+
+            var spac = new Spacings();
+            spac.Length = length;
+            spac.Spacing = spacing;
+
+            double move = KS.GetDiameter(Convert.ToDouble(size));
+
+            ArrayList list = new ArrayList();
+
+            var ea = Math.Truncate(length / spacing);
+
+            double te = length - (spacing * ea);
+
+
+            for (int i = 0; i < ea - 1; i++)
+            {
+                list.Add(spacing);
+            }
+
+            if (te < move + 25)
+            {
+                list.Add(te + move +25);
+                list.Add( move + 25);
+            }
+            else
+            {
+                list.Add(spacing);
+                list.Add(te);
+            }
+
+
+            return list;
+
+        }
+
+        public ArrayList RightSpacing(double length, double spacing, string size)
+        {
+            var spac = new Spacings();
+            spac.Length = length;
+            spac.Spacing = spacing;
+
+            var ea = Math.Truncate(length / spacing);
+
+            double move = KS.GetDiameter(Convert.ToDouble(size));
+
+            ArrayList list = new ArrayList();
+
+            TSG.Point ls = new TSG.Point();
+            TSG.Point le = new TSG.Point();
+
+            TSG.Point rs = new TSG.Point();
+            TSG.Point re = new TSG.Point();
+
+            /*
+            ls.X == rs.X && le.X == re.X
+            ls.X == rs.X && le.X < re.X
+            ls.X == rs.X && le.X > re.X
+
+            ls.X < rs.X && le.X == re.X
+            ls.X < rs.X && le.X < re.X
+            ls.X < rs.X && le.X > re.X
+
+            ls.X > rs.X && le.X == re.X
+            ls.X > rs.X && le.X < re.X
+            ls.X > rs.X && le.X > re.X
+             */
+            if (ls.X == rs.X && le.X == re.X)
+            {
+
+            }
+            else if (ls.X == rs.X && le.X < re.X)
+            {
+
+            }
+            else if (ls.X == rs.X && le.X > re.X)
+            {
+
+            }
+
+            else if (ls.X < rs.X && le.X == re.X)
+            {
+
+            }
+            else if (ls.X < rs.X && le.X < re.X)
+            {
+
+            }
+            else if (ls.X < rs.X && le.X > re.X)
+            {
+
+            }
+
+
+            else if (ls.X > rs.X && le.X == re.X)
+            {
+
+            }
+            else if (ls.X > rs.X && le.X < re.X)
+            {
+
+            }
+            else if (ls.X > rs.X && le.X > re.X)
+            {
+
+            }
+
+            return list;
+        }
     }
 }

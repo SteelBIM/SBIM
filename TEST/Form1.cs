@@ -33,7 +33,9 @@ namespace TEST
             TransformationPlane.Click += TransformationPlane_Click;
             button5.Click += Button5_Click;
             button6.Click += Button6_Click;
+            ReadIFC.Click += ReadIFC_Click;
         }
+
 
 
         private void Button1_Click(object sender, EventArgs e)
@@ -267,7 +269,7 @@ namespace TEST
             bar.SpacingType = TSM.RebarGroup.RebarGroupSpacingTypeEnum.SPACING_TYPE_EXACT_SPACINGS;
 
             var rightspacing = new Spacings();
-            bar.Spacings = rightspacing.SetSpacing(length, 200);
+            bar.Spacings = rightspacing.SetSpacing2(length, 200, "19");
 
             // 생성
             bar.ExcludeType = TSM.RebarGroup.ExcludeTypeEnum.EXCLUDE_TYPE_NONE;
@@ -398,14 +400,14 @@ namespace TEST
             bar.StartPoint = part.StartPoint;
             bar.EndPoint = part.EndPoint;
 
-   
+
             var poly = new TSM.Polygon();
             poly.Points.Add(new TSG.Point(minX, minY, minZ));
             poly.Points.Add(new TSG.Point(minX, minY, maxZ));
 
             bar.Polygon.Add(poly);
 
-            bar.Size = "10";
+            bar.Size = "19";
             bar.Grade = "SD400";
             bar.Radius = 10;
             bar.Class = 2;
@@ -417,11 +419,26 @@ namespace TEST
 
             var spcing = new Spacings();
 
-            bar.Spacing = spcing.SetSpacing(lineseg, sp);
+            bar.Spacing = spcing.SetSpacing2(lineseg, sp, bar.Size);
 
             bar.Insert();
             m.CommitChanges();
 
+        }
+
+        private void ReadIFC_Click(object sender, EventArgs e)
+        {
+            //var beam = new TSM.UI.Picker().PickObject(TSM.UI.Picker.PickObjectEnum.PICK_ONE_OBJECT) as TSM.Beam;
+
+            //var ifcnamestring = string.Empty;
+            //var ifcname = beam.GetUserProperty("IFC_BUILDING", ref ifcnamestring); // IFC_BUILDING_STOREY
+
+            //var ifcfloorstring = string.Empty;
+            //var ifcfloor = beam.GetUserProperty("IFC_BUILDING_STOREY", ref ifcfloorstring); // IFC_BUILDING_STOREY
+
+            var bar = new TSM.UI.Picker().PickObject(TSM.UI.Picker.PickObjectEnum.PICK_ONE_OBJECT) as TSM.RebarGroup;
+
+            bar.SetUserProperty("USER_FIELD_1", "123");
         }
 
     }

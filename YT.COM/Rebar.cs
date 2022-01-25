@@ -37,26 +37,26 @@ namespace YT.COM
         public TSM.Beam Father { get; set; }
 
         // 일반
-        public string Name { get; set; } 
-        public string Grade { get; set; } 
-        public string Size { get; set; } 
-        public double Radius { get; set; } 
-        public int Class { get; set; } 
+        public string Name { get; set; }
+        public string Grade { get; set; }
+        public string Size { get; set; }
+        public double Radius { get; set; }
+        public int Class { get; set; }
 
         // 넘버
-        public string Prefix { get; set; } 
-        public int StartNumber { get; set; } 
+        public string Prefix { get; set; }
+        public int StartNumber { get; set; }
 
         // 시작 후크
         public TSM.RebarHookData.RebarHookShapeEnum StartHookShape { get; set; } = TSM.RebarHookData.RebarHookShapeEnum.NO_HOOK;
-        public double StartHookAngle { get; set; } 
-        public double StartHookRadius { get; set; } 
-        public double StartHookLength { get; set; } 
+        public double StartHookAngle { get; set; }
+        public double StartHookRadius { get; set; }
+        public double StartHookLength { get; set; }
 
         // 끝 후크
         public TSM.RebarHookData.RebarHookShapeEnum EndHookShape { get; set; } = TSM.RebarHookData.RebarHookShapeEnum.NO_HOOK;
-        public double EndHookAngle { get; set; } 
-        public double EndHookRadius { get; set; } 
+        public double EndHookAngle { get; set; }
+        public double EndHookRadius { get; set; }
         public double EndHookLength { get; set; }
 
         // 피복 두께
@@ -74,6 +74,10 @@ namespace YT.COM
 
         // 생성
         public TSM.BaseRebarGroup.ExcludeTypeEnum ExcludeType { get; set; } = TSM.BaseRebarGroup.ExcludeTypeEnum.EXCLUDE_TYPE_NONE;
+
+        //
+        public string Building { get; set; }
+        public string BuildingStorey { get; set; }
 
         #endregion
 
@@ -130,8 +134,22 @@ namespace YT.COM
             // 생성
             bar.ExcludeType = ExcludeType;
 
+            //Insert
             bar.Insert();
             m.CommitChanges();
+
+            //UDA
+            //var a = string.Empty;
+            //var b = Father.GetUserProperty("IFC_BUILDING", ref a);
+
+            //var c = string.Empty;
+            //var d = Father.GetUserProperty("IFC_BUILDING_STOREY", ref c);
+
+            //Building = a;
+            //BuildingStorey = c;
+
+            bar.SetUserProperty("USER_FIELD_1", Building);
+            bar.SetUserProperty("USER_FIELD_2", BuildingStorey);
 
         }
     }

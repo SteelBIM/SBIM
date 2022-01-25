@@ -36,6 +36,7 @@ namespace TEST
             this.TransformationPlane = new System.Windows.Forms.Button();
             this.button5 = new System.Windows.Forms.Button();
             this.button6 = new System.Windows.Forms.Button();
+            this.ReadIFC = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // button1
@@ -58,7 +59,7 @@ namespace TEST
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(12, 129);
+            this.button3.Location = new System.Drawing.Point(32, 129);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(77, 23);
             this.button3.TabIndex = 2;
@@ -105,11 +106,21 @@ namespace TEST
             this.button6.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             this.button6.UseVisualStyleBackColor = true;
             // 
+            // ReadIFC
+            // 
+            this.ReadIFC.Location = new System.Drawing.Point(12, 374);
+            this.ReadIFC.Name = "ReadIFC";
+            this.ReadIFC.Size = new System.Drawing.Size(77, 23);
+            this.ReadIFC.TabIndex = 7;
+            this.ReadIFC.Text = "ReadIFC";
+            this.ReadIFC.UseVisualStyleBackColor = true;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.ReadIFC);
             this.Controls.Add(this.button6);
             this.Controls.Add(this.button5);
             this.Controls.Add(this.TransformationPlane);
@@ -132,6 +143,7 @@ namespace TEST
         private System.Windows.Forms.Button TransformationPlane;
         private System.Windows.Forms.Button button5;
         private System.Windows.Forms.Button button6;
+        private System.Windows.Forms.Button ReadIFC;
     }
 }
 
