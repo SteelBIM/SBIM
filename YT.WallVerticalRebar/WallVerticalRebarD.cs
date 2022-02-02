@@ -13,6 +13,7 @@ using TSG = Tekla.Structures.Geometry3d;
 using TSC = Tekla.Structures.Catalogs;
 using TSP = Tekla.Structures.Plugins;
 using TST = Tekla.Structures.Datatype;
+using System.Collections;
 
 namespace YT.WallVerticalRebar
 {
@@ -42,8 +43,6 @@ namespace YT.WallVerticalRebar
         [TSP.StructuresField("R_MoveXE")] public double R_MoveXE;//시작평면
         [TSP.StructuresField("R_MoveY")] public double R_MoveY;//평면
 
-        [TSP.StructuresField("R_Spacing")] public double R_Spacing;//간격
-
         [TSP.StructuresField("R_ExcludeType")] public string R_ExcludeType;// 철근제외
 
         [TSP.StructuresField("R_SpliceType")] public string R_SpliceType;// 이음 타입
@@ -56,6 +55,12 @@ namespace YT.WallVerticalRebar
         [TSP.StructuresField("R_HookCorver")] public double R_HookCorver;// 후크피복
         [TSP.StructuresField("R_HookLength")] public double R_HookLength;// 후크길이
         [TSP.StructuresField("R_HookInOut")] public string R_HookInOut;// 후크내/외
+
+        [TSP.StructuresField("R_SpacingType")] public string R_SpacingType;// 철근 간격 타입
+        [TSP.StructuresField("R_UserSpacing")] public string R_UserSpacing;// 사용자 지정 철근 간격
+        [TSP.StructuresField("R_Spacing")] public double R_Spacing;// 자동 철근 간격
+
+
         #endregion
 
         #region Left Rebar
@@ -72,8 +77,6 @@ namespace YT.WallVerticalRebar
         [TSP.StructuresField("L_MoveXE")] public double L_MoveXE;//시작평면
         [TSP.StructuresField("L_MoveY")] public double L_MoveY;//평면
 
-        [TSP.StructuresField("L_Spacing")] public double L_Spacing;//간격
-
         [TSP.StructuresField("L_ExcludeType")] public string L_ExcludeType;// 철근제외
 
         [TSP.StructuresField("L_SpliceType")] public string L_SpliceType;// 이음 타입
@@ -86,6 +89,10 @@ namespace YT.WallVerticalRebar
         [TSP.StructuresField("L_HookCorver")] public double L_HookCorver;// 후크피복
         [TSP.StructuresField("L_HookLength")] public double L_HookLength;// 후크길이
         [TSP.StructuresField("L_HookInOut")] public string L_HookInOut;// 후크내/외
+
+        [TSP.StructuresField("L_SpacingType")] public string L_SpacingType;// 철근 간격 타입
+        [TSP.StructuresField("L_UserSpacing")] public string L_UserSpacing;// 사용자 지정 철근 간격
+        [TSP.StructuresField("L_Spacing")] public double L_Spacing;//자동 철근 간격
 
 
         #endregion

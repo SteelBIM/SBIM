@@ -115,6 +115,13 @@
       <Project>{1e6449a1-6bb2-4fcc-abf3-6a4d6b202f5c}</Project>
       <Name>YT.COM</Name>
     </ProjectReference>
+    <ProjectReference Include="..\YT.WallVerticalRebar\YT.WallVerticalRebar.csproj">
+      <Project>{d0fdc5fc-30a7-4c88-a83f-5c6341a3f85e}</Project>
+      <Name>YT.WallVerticalRebar</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

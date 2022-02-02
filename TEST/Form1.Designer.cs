@@ -37,6 +37,7 @@ namespace TEST
             this.button5 = new System.Windows.Forms.Button();
             this.button6 = new System.Windows.Forms.Button();
             this.ReadIFC = new System.Windows.Forms.Button();
+            this.point = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // button1
@@ -88,7 +89,7 @@ namespace TEST
             // 
             // button5
             // 
-            this.button5.Location = new System.Drawing.Point(12, 286);
+            this.button5.Location = new System.Drawing.Point(213, 278);
             this.button5.Name = "button5";
             this.button5.Size = new System.Drawing.Size(77, 23);
             this.button5.TabIndex = 5;
@@ -115,11 +116,22 @@ namespace TEST
             this.ReadIFC.Text = "ReadIFC";
             this.ReadIFC.UseVisualStyleBackColor = true;
             // 
+            // point
+            // 
+            this.point.Location = new System.Drawing.Point(222, 374);
+            this.point.Name = "point";
+            this.point.Size = new System.Drawing.Size(77, 23);
+            this.point.TabIndex = 8;
+            this.point.Text = "point";
+            this.point.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.point.UseVisualStyleBackColor = true;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.point);
             this.Controls.Add(this.ReadIFC);
             this.Controls.Add(this.button6);
             this.Controls.Add(this.button5);
@@ -130,6 +142,7 @@ namespace TEST
             this.Controls.Add(this.button1);
             this.Name = "Form1";
             this.Text = "Form1";
+            this.TopMost = true;
             this.ResumeLayout(false);
 
         }
@@ -144,6 +157,7 @@ namespace TEST
         private System.Windows.Forms.Button button5;
         private System.Windows.Forms.Button button6;
         private System.Windows.Forms.Button ReadIFC;
+        private System.Windows.Forms.Button point;
     }
 }
 

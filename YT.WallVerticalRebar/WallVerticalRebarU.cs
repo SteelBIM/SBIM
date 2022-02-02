@@ -55,10 +55,20 @@ namespace YT.WallVerticalRebar
             L_SpliceType.TextChanged += L_SpliceType_TextChanged1;
             #endregion
 
+            #region Event : UDA
             W_UDA.TextChanged += W_UDA_TextChanged;
+            #endregion
+
+            R_SpacingType.TextChanged += R_SpacingType_TextChanged;
+            L_SpacingType.TextChanged += L_SpacingType_TextChanged;
+            
         }
 
-      
+        
+
+
+
+
 
 
         #region UI 화면 표시
@@ -82,7 +92,7 @@ namespace YT.WallVerticalRebar
             this.SetAttributeValue(this.R_MoveXS, 20.0);
             this.SetAttributeValue(this.R_MoveXE, 20.0);
             this.SetAttributeValue(this.R_MoveY, 50.0);
-            this.SetAttributeValue(this.R_Spacing, 200.0);
+            this.SetAttributeValue(this.R_Spacing, 150.0);
             this.SetAttributeValue(this.R_ExcludeType, "없음");
             this.SetAttributeValue(this.R_Splice1, 300.00);
             this.SetAttributeValue(this.R_Splice2, 100.00);
@@ -91,6 +101,8 @@ namespace YT.WallVerticalRebar
             this.SetAttributeValue(this.R_HookCorver, 50.0);
             this.SetAttributeValue(this.R_HookLength, 100.0);
             this.SetAttributeValue(this.R_HookInOut, "내");
+            this.SetAttributeValue(this.R_SpacingType, "자동간격");
+            
 
             this.SetAttributeValue(this.L_Name, "W_V");
             this.SetAttributeValue(this.L_Grade, "SD500");
@@ -102,7 +114,7 @@ namespace YT.WallVerticalRebar
             this.SetAttributeValue(this.L_MoveXS, 20.0);
             this.SetAttributeValue(this.L_MoveXE, 20.0);
             this.SetAttributeValue(this.L_MoveY, 50.0);
-            this.SetAttributeValue(this.L_Spacing, 200.0);
+            this.SetAttributeValue(this.L_Spacing, 150.0);
             this.SetAttributeValue(this.L_ExcludeType, "없음");
             this.SetAttributeValue(this.L_Splice1, 300.00);
             this.SetAttributeValue(this.L_Splice2, 100.00);
@@ -111,6 +123,9 @@ namespace YT.WallVerticalRebar
             this.SetAttributeValue(this.L_HookCorver, 50.0);
             this.SetAttributeValue(this.L_HookLength, 100.0);
             this.SetAttributeValue(this.L_HookInOut, "내");
+            this.SetAttributeValue(this.L_SpacingType, "자동간격");
+
+
 
             string result = base.LoadValuesPath(fileName);
             this.Apply();
@@ -246,6 +261,7 @@ namespace YT.WallVerticalRebar
         }
         #endregion
 
+        #region Event : UDA
         private void W_UDA_TextChanged(object sender, EventArgs e)
         {
             switch (W_UDA.Text)
@@ -258,6 +274,40 @@ namespace YT.WallVerticalRebar
                 case "사용자 지정":
                     W_Building.Enabled = true;
                     W_Building_Storey.Enabled = true;
+                    break;
+            }
+        }
+        #endregion
+
+
+        private void R_SpacingType_TextChanged(object sender, EventArgs e)
+        {
+            switch (R_SpacingType.Text)
+            {
+                case "사용자 지정":
+                    R_Spacing.Enabled = false;
+                    R_UserSpacing.Enabled = true;
+
+                    break;
+                case "자동간격":
+                    R_Spacing.Enabled = true;
+                    R_UserSpacing.Enabled = false;
+                    break;
+            }
+        }
+
+        private void L_SpacingType_TextChanged(object sender, EventArgs e)
+        {
+            switch (L_SpacingType.Text)
+            {
+                case "사용자 지정":
+                    L_Spacing.Enabled = false;
+                    L_UserSpacing.Enabled = true;
+
+                    break;
+                case "자동간격":
+                    L_Spacing.Enabled = true;
+                    L_UserSpacing.Enabled = false;
                     break;
             }
         }
