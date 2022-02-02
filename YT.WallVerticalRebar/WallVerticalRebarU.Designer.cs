@@ -77,6 +77,9 @@ namespace YT.WallVerticalRebar
             this.label14 = new System.Windows.Forms.Label();
             this.label18 = new System.Windows.Forms.Label();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
+            this.checkBox37 = new System.Windows.Forms.CheckBox();
+            this.label42 = new System.Windows.Forms.Label();
+            this.L_UserSpacing = new System.Windows.Forms.TextBox();
             this.L_Spacing = new System.Windows.Forms.TextBox();
             this.checkBox21 = new System.Windows.Forms.CheckBox();
             this.label21 = new System.Windows.Forms.Label();
@@ -127,6 +130,9 @@ namespace YT.WallVerticalRebar
             this.checkBox29 = new System.Windows.Forms.CheckBox();
             this.R_HookCorver = new System.Windows.Forms.TextBox();
             this.groupBox12 = new System.Windows.Forms.GroupBox();
+            this.checkBox36 = new System.Windows.Forms.CheckBox();
+            this.label43 = new System.Windows.Forms.Label();
+            this.R_UserSpacing = new System.Windows.Forms.TextBox();
             this.R_Spacing = new System.Windows.Forms.TextBox();
             this.checkBox20 = new System.Windows.Forms.CheckBox();
             this.label19 = new System.Windows.Forms.Label();
@@ -171,12 +177,6 @@ namespace YT.WallVerticalRebar
             this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.W_Coordination = new System.Windows.Forms.ComboBox();
             this.tabPage3 = new System.Windows.Forms.TabPage();
-            this.L_UserSpacing = new System.Windows.Forms.TextBox();
-            this.label42 = new System.Windows.Forms.Label();
-            this.label43 = new System.Windows.Forms.Label();
-            this.R_UserSpacing = new System.Windows.Forms.TextBox();
-            this.checkBox36 = new System.Windows.Forms.CheckBox();
-            this.checkBox37 = new System.Windows.Forms.CheckBox();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.groupBox14.SuspendLayout();
@@ -203,7 +203,7 @@ namespace YT.WallVerticalRebar
             this.okApplyModifyGetOnOffCancel1.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.okApplyModifyGetOnOffCancel1.Location = new System.Drawing.Point(0, 816);
             this.okApplyModifyGetOnOffCancel1.Name = "okApplyModifyGetOnOffCancel1";
-            this.okApplyModifyGetOnOffCancel1.Size = new System.Drawing.Size(708, 35);
+            this.okApplyModifyGetOnOffCancel1.Size = new System.Drawing.Size(709, 35);
             this.okApplyModifyGetOnOffCancel1.TabIndex = 0;
             // 
             // saveLoad1
@@ -220,7 +220,7 @@ namespace YT.WallVerticalRebar
             this.saveLoad1.Location = new System.Drawing.Point(0, 0);
             this.saveLoad1.Name = "saveLoad1";
             this.saveLoad1.SaveAsText = "";
-            this.saveLoad1.Size = new System.Drawing.Size(708, 43);
+            this.saveLoad1.Size = new System.Drawing.Size(709, 43);
             this.saveLoad1.TabIndex = 0;
             this.saveLoad1.UserDefinedHelpFilePath = null;
             // 
@@ -235,7 +235,7 @@ namespace YT.WallVerticalRebar
             this.tabControl1.Location = new System.Drawing.Point(0, 43);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(708, 773);
+            this.tabControl1.Size = new System.Drawing.Size(709, 773);
             this.tabControl1.TabIndex = 1;
             // 
             // tabPage1
@@ -250,7 +250,7 @@ namespace YT.WallVerticalRebar
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(700, 747);
+            this.tabPage1.Size = new System.Drawing.Size(701, 747);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "외벽 수직근 속성";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -388,7 +388,7 @@ namespace YT.WallVerticalRebar
             this.groupBox3.Controls.Add(this.groupBox4);
             this.groupBox3.Location = new System.Drawing.Point(6, 92);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(687, 310);
+            this.groupBox3.Size = new System.Drawing.Size(685, 310);
             this.groupBox3.TabIndex = 19;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "좌측 수직근";
@@ -417,7 +417,7 @@ namespace YT.WallVerticalRebar
             this.groupBox8.Controls.Add(this.checkBox33);
             this.groupBox8.Controls.Add(this.checkBox32);
             this.groupBox8.Controls.Add(this.L_HookCorver);
-            this.groupBox8.Location = new System.Drawing.Point(11, 237);
+            this.groupBox8.Location = new System.Drawing.Point(11, 161);
             this.groupBox8.Name = "groupBox8";
             this.groupBox8.Size = new System.Drawing.Size(663, 65);
             this.groupBox8.TabIndex = 76;
@@ -671,7 +671,7 @@ namespace YT.WallVerticalRebar
             this.structuresExtender.SetBindPropertyName(this.groupBox7, null);
             this.groupBox7.Controls.Add(this.label24);
             this.groupBox7.Controls.Add(this.L_ExcludeType);
-            this.groupBox7.Location = new System.Drawing.Point(538, 166);
+            this.groupBox7.Location = new System.Drawing.Point(538, 90);
             this.groupBox7.Name = "groupBox7";
             this.groupBox7.Size = new System.Drawing.Size(136, 65);
             this.groupBox7.TabIndex = 75;
@@ -720,7 +720,7 @@ namespace YT.WallVerticalRebar
             this.groupBox6.Controls.Add(this.checkBox23);
             this.groupBox6.Controls.Add(this.label14);
             this.groupBox6.Controls.Add(this.label18);
-            this.groupBox6.Location = new System.Drawing.Point(11, 91);
+            this.groupBox6.Location = new System.Drawing.Point(11, 232);
             this.groupBox6.Name = "groupBox6";
             this.groupBox6.Size = new System.Drawing.Size(251, 65);
             this.groupBox6.TabIndex = 74;
@@ -839,19 +839,56 @@ namespace YT.WallVerticalRebar
             this.groupBox5.Controls.Add(this.label21);
             this.groupBox5.Controls.Add(this.L_SpacingType);
             this.groupBox5.Controls.Add(this.label22);
-            this.groupBox5.Location = new System.Drawing.Point(11, 166);
+            this.groupBox5.Location = new System.Drawing.Point(11, 90);
             this.groupBox5.Name = "groupBox5";
             this.groupBox5.Size = new System.Drawing.Size(521, 65);
             this.groupBox5.TabIndex = 73;
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "수직근 간격";
             // 
+            // checkBox37
+            // 
+            this.structuresExtender.SetAttributeName(this.checkBox37, "L_UserSpacing");
+            this.structuresExtender.SetAttributeTypeName(this.checkBox37, null);
+            this.checkBox37.AutoSize = true;
+            this.structuresExtender.SetBindPropertyName(this.checkBox37, "Checked");
+            this.checkBox37.Checked = true;
+            this.checkBox37.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.structuresExtender.SetIsFilter(this.checkBox37, true);
+            this.checkBox37.Location = new System.Drawing.Point(246, 41);
+            this.checkBox37.Name = "checkBox37";
+            this.checkBox37.Size = new System.Drawing.Size(15, 14);
+            this.checkBox37.TabIndex = 36;
+            this.checkBox37.UseVisualStyleBackColor = true;
+            // 
+            // label42
+            // 
+            this.structuresExtender.SetAttributeName(this.label42, null);
+            this.structuresExtender.SetAttributeTypeName(this.label42, null);
+            this.label42.AutoSize = true;
+            this.structuresExtender.SetBindPropertyName(this.label42, null);
+            this.label42.Location = new System.Drawing.Point(345, 19);
+            this.label42.Name = "label42";
+            this.label42.Size = new System.Drawing.Size(69, 12);
+            this.label42.TabIndex = 35;
+            this.label42.Text = "사용자 지정";
+            // 
+            // L_UserSpacing
+            // 
+            this.structuresExtender.SetAttributeName(this.L_UserSpacing, "L_UserSpacing");
+            this.structuresExtender.SetAttributeTypeName(this.L_UserSpacing, "String");
+            this.structuresExtender.SetBindPropertyName(this.L_UserSpacing, "Text");
+            this.L_UserSpacing.Location = new System.Drawing.Point(264, 38);
+            this.L_UserSpacing.Name = "L_UserSpacing";
+            this.L_UserSpacing.Size = new System.Drawing.Size(245, 21);
+            this.L_UserSpacing.TabIndex = 34;
+            // 
             // L_Spacing
             // 
             this.structuresExtender.SetAttributeName(this.L_Spacing, "L_Spacing");
             this.structuresExtender.SetAttributeTypeName(this.L_Spacing, "Double");
             this.structuresExtender.SetBindPropertyName(this.L_Spacing, "Text");
-            this.L_Spacing.Location = new System.Drawing.Point(167, 38);
+            this.L_Spacing.Location = new System.Drawing.Point(167, 39);
             this.L_Spacing.Name = "L_Spacing";
             this.L_Spacing.Size = new System.Drawing.Size(72, 21);
             this.L_Spacing.TabIndex = 25;
@@ -865,7 +902,7 @@ namespace YT.WallVerticalRebar
             this.checkBox21.Checked = true;
             this.checkBox21.CheckState = System.Windows.Forms.CheckState.Checked;
             this.structuresExtender.SetIsFilter(this.checkBox21, true);
-            this.checkBox21.Location = new System.Drawing.Point(151, 41);
+            this.checkBox21.Location = new System.Drawing.Point(151, 42);
             this.checkBox21.Name = "checkBox21";
             this.checkBox21.Size = new System.Drawing.Size(15, 14);
             this.checkBox21.TabIndex = 26;
@@ -893,7 +930,7 @@ namespace YT.WallVerticalRebar
             this.L_SpacingType.Items.AddRange(new object[] {
             "사용자 지정",
             "자동간격"});
-            this.L_SpacingType.Location = new System.Drawing.Point(10, 38);
+            this.L_SpacingType.Location = new System.Drawing.Point(10, 39);
             this.L_SpacingType.Name = "L_SpacingType";
             this.L_SpacingType.Size = new System.Drawing.Size(127, 20);
             this.L_SpacingType.TabIndex = 32;
@@ -1230,7 +1267,7 @@ namespace YT.WallVerticalRebar
             this.groupBox2.Controls.Add(this.groupBox9);
             this.groupBox2.Location = new System.Drawing.Point(6, 424);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(687, 310);
+            this.groupBox2.Size = new System.Drawing.Size(685, 310);
             this.groupBox2.TabIndex = 1;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "우측 수직근";
@@ -1259,7 +1296,7 @@ namespace YT.WallVerticalRebar
             this.groupBox13.Controls.Add(this.checkBox28);
             this.groupBox13.Controls.Add(this.checkBox29);
             this.groupBox13.Controls.Add(this.R_HookCorver);
-            this.groupBox13.Location = new System.Drawing.Point(11, 238);
+            this.groupBox13.Location = new System.Drawing.Point(11, 164);
             this.groupBox13.Name = "groupBox13";
             this.groupBox13.Size = new System.Drawing.Size(663, 65);
             this.groupBox13.TabIndex = 64;
@@ -1519,19 +1556,56 @@ namespace YT.WallVerticalRebar
             this.groupBox12.Controls.Add(this.label19);
             this.groupBox12.Controls.Add(this.R_SpacingType);
             this.groupBox12.Controls.Add(this.label20);
-            this.groupBox12.Location = new System.Drawing.Point(11, 163);
+            this.groupBox12.Location = new System.Drawing.Point(11, 93);
             this.groupBox12.Name = "groupBox12";
             this.groupBox12.Size = new System.Drawing.Size(521, 65);
             this.groupBox12.TabIndex = 63;
             this.groupBox12.TabStop = false;
             this.groupBox12.Text = "수직근 간격";
             // 
+            // checkBox36
+            // 
+            this.structuresExtender.SetAttributeName(this.checkBox36, "R_UserSpacing");
+            this.structuresExtender.SetAttributeTypeName(this.checkBox36, null);
+            this.checkBox36.AutoSize = true;
+            this.structuresExtender.SetBindPropertyName(this.checkBox36, "Checked");
+            this.checkBox36.Checked = true;
+            this.checkBox36.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.structuresExtender.SetIsFilter(this.checkBox36, true);
+            this.checkBox36.Location = new System.Drawing.Point(246, 41);
+            this.checkBox36.Name = "checkBox36";
+            this.checkBox36.Size = new System.Drawing.Size(15, 14);
+            this.checkBox36.TabIndex = 38;
+            this.checkBox36.UseVisualStyleBackColor = true;
+            // 
+            // label43
+            // 
+            this.structuresExtender.SetAttributeName(this.label43, null);
+            this.structuresExtender.SetAttributeTypeName(this.label43, null);
+            this.label43.AutoSize = true;
+            this.structuresExtender.SetBindPropertyName(this.label43, null);
+            this.label43.Location = new System.Drawing.Point(345, 18);
+            this.label43.Name = "label43";
+            this.label43.Size = new System.Drawing.Size(69, 12);
+            this.label43.TabIndex = 37;
+            this.label43.Text = "사용자 지정";
+            // 
+            // R_UserSpacing
+            // 
+            this.structuresExtender.SetAttributeName(this.R_UserSpacing, "R_UserSpacing");
+            this.structuresExtender.SetAttributeTypeName(this.R_UserSpacing, "String");
+            this.structuresExtender.SetBindPropertyName(this.R_UserSpacing, "Text");
+            this.R_UserSpacing.Location = new System.Drawing.Point(264, 38);
+            this.R_UserSpacing.Name = "R_UserSpacing";
+            this.R_UserSpacing.Size = new System.Drawing.Size(245, 21);
+            this.R_UserSpacing.TabIndex = 36;
+            // 
             // R_Spacing
             // 
             this.structuresExtender.SetAttributeName(this.R_Spacing, "R_Spacing");
             this.structuresExtender.SetAttributeTypeName(this.R_Spacing, "Double");
             this.structuresExtender.SetBindPropertyName(this.R_Spacing, "Text");
-            this.R_Spacing.Location = new System.Drawing.Point(167, 37);
+            this.R_Spacing.Location = new System.Drawing.Point(167, 38);
             this.R_Spacing.Name = "R_Spacing";
             this.R_Spacing.Size = new System.Drawing.Size(72, 21);
             this.R_Spacing.TabIndex = 23;
@@ -1545,7 +1619,7 @@ namespace YT.WallVerticalRebar
             this.checkBox20.Checked = true;
             this.checkBox20.CheckState = System.Windows.Forms.CheckState.Checked;
             this.structuresExtender.SetIsFilter(this.checkBox20, true);
-            this.checkBox20.Location = new System.Drawing.Point(151, 40);
+            this.checkBox20.Location = new System.Drawing.Point(151, 41);
             this.checkBox20.Name = "checkBox20";
             this.checkBox20.Size = new System.Drawing.Size(15, 14);
             this.checkBox20.TabIndex = 24;
@@ -1573,7 +1647,7 @@ namespace YT.WallVerticalRebar
             this.R_SpacingType.Items.AddRange(new object[] {
             "사용자 지정",
             "자동간격"});
-            this.R_SpacingType.Location = new System.Drawing.Point(10, 37);
+            this.R_SpacingType.Location = new System.Drawing.Point(10, 38);
             this.R_SpacingType.Name = "R_SpacingType";
             this.R_SpacingType.Size = new System.Drawing.Size(127, 20);
             this.R_SpacingType.TabIndex = 31;
@@ -1597,7 +1671,7 @@ namespace YT.WallVerticalRebar
             this.structuresExtender.SetBindPropertyName(this.groupBox11, null);
             this.groupBox11.Controls.Add(this.R_ExcludeType);
             this.groupBox11.Controls.Add(this.label23);
-            this.groupBox11.Location = new System.Drawing.Point(538, 163);
+            this.groupBox11.Location = new System.Drawing.Point(538, 93);
             this.groupBox11.Name = "groupBox11";
             this.groupBox11.Size = new System.Drawing.Size(136, 65);
             this.groupBox11.TabIndex = 62;
@@ -1646,7 +1720,7 @@ namespace YT.WallVerticalRebar
             this.groupBox10.Controls.Add(this.checkBox22);
             this.groupBox10.Controls.Add(this.label13);
             this.groupBox10.Controls.Add(this.label15);
-            this.groupBox10.Location = new System.Drawing.Point(11, 93);
+            this.groupBox10.Location = new System.Drawing.Point(11, 235);
             this.groupBox10.Name = "groupBox10";
             this.groupBox10.Size = new System.Drawing.Size(251, 65);
             this.groupBox10.TabIndex = 61;
@@ -2110,84 +2184,10 @@ namespace YT.WallVerticalRebar
             this.structuresExtender.SetBindPropertyName(this.tabPage3, null);
             this.tabPage3.Location = new System.Drawing.Point(4, 22);
             this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Size = new System.Drawing.Size(700, 588);
+            this.tabPage3.Size = new System.Drawing.Size(700, 747);
             this.tabPage3.TabIndex = 1;
             this.tabPage3.Text = "tabPage3";
             this.tabPage3.UseVisualStyleBackColor = true;
-            // 
-            // L_UserSpacing
-            // 
-            this.structuresExtender.SetAttributeName(this.L_UserSpacing, "L_UserSpacing");
-            this.structuresExtender.SetAttributeTypeName(this.L_UserSpacing, "String");
-            this.structuresExtender.SetBindPropertyName(this.L_UserSpacing, "Text");
-            this.L_UserSpacing.Location = new System.Drawing.Point(264, 37);
-            this.L_UserSpacing.Name = "L_UserSpacing";
-            this.L_UserSpacing.Size = new System.Drawing.Size(245, 21);
-            this.L_UserSpacing.TabIndex = 34;
-            // 
-            // label42
-            // 
-            this.structuresExtender.SetAttributeName(this.label42, null);
-            this.structuresExtender.SetAttributeTypeName(this.label42, null);
-            this.label42.AutoSize = true;
-            this.structuresExtender.SetBindPropertyName(this.label42, null);
-            this.label42.Location = new System.Drawing.Point(345, 19);
-            this.label42.Name = "label42";
-            this.label42.Size = new System.Drawing.Size(69, 12);
-            this.label42.TabIndex = 35;
-            this.label42.Text = "사용자 지정";
-            // 
-            // label43
-            // 
-            this.structuresExtender.SetAttributeName(this.label43, null);
-            this.structuresExtender.SetAttributeTypeName(this.label43, null);
-            this.label43.AutoSize = true;
-            this.structuresExtender.SetBindPropertyName(this.label43, null);
-            this.label43.Location = new System.Drawing.Point(345, 18);
-            this.label43.Name = "label43";
-            this.label43.Size = new System.Drawing.Size(69, 12);
-            this.label43.TabIndex = 37;
-            this.label43.Text = "사용자 지정";
-            // 
-            // R_UserSpacing
-            // 
-            this.structuresExtender.SetAttributeName(this.R_UserSpacing, "R_UserSpacing");
-            this.structuresExtender.SetAttributeTypeName(this.R_UserSpacing, "String");
-            this.structuresExtender.SetBindPropertyName(this.R_UserSpacing, "Text");
-            this.R_UserSpacing.Location = new System.Drawing.Point(264, 37);
-            this.R_UserSpacing.Name = "R_UserSpacing";
-            this.R_UserSpacing.Size = new System.Drawing.Size(245, 21);
-            this.R_UserSpacing.TabIndex = 36;
-            // 
-            // checkBox36
-            // 
-            this.structuresExtender.SetAttributeName(this.checkBox36, "R_UserSpacing");
-            this.structuresExtender.SetAttributeTypeName(this.checkBox36, null);
-            this.checkBox36.AutoSize = true;
-            this.structuresExtender.SetBindPropertyName(this.checkBox36, "Checked");
-            this.checkBox36.Checked = true;
-            this.checkBox36.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.structuresExtender.SetIsFilter(this.checkBox36, true);
-            this.checkBox36.Location = new System.Drawing.Point(246, 40);
-            this.checkBox36.Name = "checkBox36";
-            this.checkBox36.Size = new System.Drawing.Size(15, 14);
-            this.checkBox36.TabIndex = 38;
-            this.checkBox36.UseVisualStyleBackColor = true;
-            // 
-            // checkBox37
-            // 
-            this.structuresExtender.SetAttributeName(this.checkBox37, "L_UserSpacing");
-            this.structuresExtender.SetAttributeTypeName(this.checkBox37, null);
-            this.checkBox37.AutoSize = true;
-            this.structuresExtender.SetBindPropertyName(this.checkBox37, "Checked");
-            this.checkBox37.Checked = true;
-            this.checkBox37.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.structuresExtender.SetIsFilter(this.checkBox37, true);
-            this.checkBox37.Location = new System.Drawing.Point(246, 40);
-            this.checkBox37.Name = "checkBox37";
-            this.checkBox37.Size = new System.Drawing.Size(15, 14);
-            this.checkBox37.TabIndex = 36;
-            this.checkBox37.UseVisualStyleBackColor = true;
             // 
             // WallVerticalRebarU
             // 
@@ -2196,7 +2196,7 @@ namespace YT.WallVerticalRebar
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.structuresExtender.SetBindPropertyName(this, null);
-            this.ClientSize = new System.Drawing.Size(708, 851);
+            this.ClientSize = new System.Drawing.Size(709, 851);
             this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.saveLoad1);
             this.Controls.Add(this.okApplyModifyGetOnOffCancel1);
