@@ -76,7 +76,7 @@ namespace YT.WallVerticalRebar
         protected override string LoadValuesPath(string fileName)
         {
             // UI 화면에 표시되는 값 과 모델 실제값
-            this.SetAttributeValue(this.W_Coordination, "StartEnd");
+            //this.SetAttributeValue(this.W_Coordination, "StartEnd");
             this.SetAttributeValue(this.W_UDA, "부재 UDA 정보 사용");
             this.SetAttributeValue(this.W_Building, "");
             this.SetAttributeValue(this.W_Building_Storey, "");

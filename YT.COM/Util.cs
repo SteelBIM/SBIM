@@ -134,8 +134,8 @@ namespace YT.COM
                 var cross = TSG.Intersection.LineToLine(line1, line2);
                 var crosspoint = cross.Point1;
 
-                var controlPoint = new TSM.ControlPoint(crosspoint);
-                controlPoint.Insert();
+                //var controlPoint = new TSM.ControlPoint(crosspoint);
+                //controlPoint.Insert();
 
                 return crosspoint;
             }

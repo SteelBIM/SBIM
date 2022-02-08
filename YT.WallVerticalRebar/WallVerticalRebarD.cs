@@ -22,7 +22,7 @@ namespace YT.WallVerticalRebar
 
 
         #region 공통
-        [TSP.StructuresField("W_Coordination")] public string W_Coordination;
+        //[TSP.StructuresField("W_Coordination")] public string W_Coordination;
         [TSP.StructuresField("W_Building")] public string W_Building;
         [TSP.StructuresField("W_Building_Storey")] public string W_Building_Storey;
         [TSP.StructuresField("W_UDA")] public string W_UDA;

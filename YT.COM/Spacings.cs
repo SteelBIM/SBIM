@@ -283,8 +283,8 @@ namespace YT.COM
             else if (ls2 == rs2 && le2 < re2)
             {
                 var point = new TSG.Point(le2, re2, re2);
-                var cpoint = new TSM.ControlPoint(point);
-                cpoint.Insert(); /////////
+                //var cpoint = new TSM.ControlPoint(point);
+                //cpoint.Insert(); /////////
 
                 for (int i = 0; i < ea - 1; i++)
                 {
@@ -307,8 +307,8 @@ namespace YT.COM
             else if (ls2 == rs2 && le2 > re2)
             {
                 var point = new TSG.Point(re.X, le.Y, le.Z);
-                var cpoint = new TSM.ControlPoint(point);
-                cpoint.Insert();
+                //var cpoint = new TSM.ControlPoint(point);
+                //cpoint.Insert();
 
                 var l1 = new TSG.LineSegment(ls, point).Length();
                 var l2 = new TSG.LineSegment(point, le).Length();
@@ -373,8 +373,8 @@ namespace YT.COM
             else if (ls2 < rs2 && le2 == re2)
             {
                 var point = new TSG.Point(rs.X, ls.Y, ls.Z);
-                var cpoint = new TSM.ControlPoint(point);
-                cpoint.Insert();
+                //var cpoint = new TSM.ControlPoint(point);
+                //cpoint.Insert();
 
                 var l1 = new TSG.LineSegment(ls, point).Length();
                 var l2 = new TSG.LineSegment(point, le).Length();
@@ -438,12 +438,13 @@ namespace YT.COM
             {
 
                 var point = new TSG.Point(rs.X, ls.Y, ls.Z);
-                var cpoint = new TSM.ControlPoint(point);
-                cpoint.Insert();
+                //var cpoint = new TSM.ControlPoint(point);
+                //cpoint.Insert();
 
                 var point2 = new TSG.Point(le.X, re.Y, re.Z);
-                var cpoint2 = new TSM.ControlPoint(point2);
-                cpoint2.Insert();
+                //var cpoint2 = new TSM.ControlPoint(point2);
+                //cpoint2.Insert();
+
                 var l1 = new TSG.LineSegment(ls, point).Length();
                 var l2 = new TSG.LineSegment(point, le).Length();
 
@@ -504,12 +505,12 @@ namespace YT.COM
             {
 
                 var point = new TSG.Point(rs.X, ls.Y, ls.Z);
-                var cpoint = new TSM.ControlPoint(point);
-                cpoint.Insert();
+                //var cpoint = new TSM.ControlPoint(point);
+                //cpoint.Insert();
 
                 var point2 = new TSG.Point(re.X, le.Y, le.Z);
-                var cpoint2 = new TSM.ControlPoint(point2);
-                cpoint2.Insert();
+                //var cpoint2 = new TSM.ControlPoint(point2);
+                //cpoint2.Insert();
 
                 var l1 = new TSG.LineSegment(ls, point).Length();
                 var l2 = new TSG.LineSegment(point, point2).Length();
@@ -593,8 +594,8 @@ namespace YT.COM
             {
 
                 var point = new TSG.Point(ls.X, rs.Y, rs.Z);
-                var cpoint = new TSM.ControlPoint(point);
-                cpoint.Insert();
+                //var cpoint = new TSM.ControlPoint(point);
+                //cpoint.Insert();
 
 
                 for (int i = 0; i < ea - 1; i++)
@@ -619,12 +620,12 @@ namespace YT.COM
             else if (ls2 > rs2 && le2 < re2)
             {
                 var point = new TSG.Point(ls.X, rs.Y, rs.Z);
-                var cpoint = new TSM.ControlPoint(point);
-                cpoint.Insert();
+                //var cpoint = new TSM.ControlPoint(point);
+                //cpoint.Insert();
 
                 var point2 = new TSG.Point(le.X, re.Y, re.Z);
-                var cpoint2 = new TSM.ControlPoint(point2);
-                cpoint2.Insert();
+                //var cpoint2 = new TSM.ControlPoint(point2);
+                //cpoint2.Insert();
 
                 for (int i = 0; i < ea - 1; i++)
                 {
@@ -648,12 +649,12 @@ namespace YT.COM
             else if (ls2 > rs2 && le2 > re2)
             {
                 var point = new TSG.Point(ls.X, rs.Y, rs.Z);
-                var cpoint = new TSM.ControlPoint(point);
-                cpoint.Insert();
+                //var cpoint = new TSM.ControlPoint(point);
+                //cpoint.Insert();
 
                 var point2 = new TSG.Point(re.X, le.Y, le.Z);
-                var cpoint2 = new TSM.ControlPoint(point2);
-                cpoint2.Insert();
+                //var cpoint2 = new TSM.ControlPoint(point2);
+                //cpoint2.Insert();
 
                 var l1 = new TSG.LineSegment(ls, point2).Length();
                 var l2 = new TSG.LineSegment(point2, le).Length();
@@ -757,8 +758,8 @@ namespace YT.COM
             else if (ls2 == rs2 && le2 < re2)
             {
                 var point = new TSG.Point(le.X, re.Y, re.Z);
-                var cpoint = new TSM.ControlPoint(point);
-                cpoint.Insert();
+                //var cpoint = new TSM.ControlPoint(point);
+                //cpoint.Insert();
 
                 var l1 = new TSG.LineSegment(rs, point).Length();
                 var l2 = new TSG.LineSegment(point, re).Length();
@@ -820,8 +821,8 @@ namespace YT.COM
             else if (ls2 == rs2 && le2 > re2)
             {
                 var point = new TSG.Point(re.X, le.Y, le.Z);
-                var cpoint = new TSM.ControlPoint(point);
-                cpoint.Insert();
+                //var cpoint = new TSM.ControlPoint(point);
+                //cpoint.Insert();
 
                 for (int i = 0; i < ea - 1; i++)
                 {
@@ -848,8 +849,8 @@ namespace YT.COM
             else if (ls2 < rs2 && le2 == re2)
             {
                 var point = new TSG.Point(rs.X, ls.Y, ls.Z);
-                var cpoint = new TSM.ControlPoint(point);
-                cpoint.Insert();
+                //var cpoint = new TSM.ControlPoint(point);
+                //cpoint.Insert();
 
                 for (int i = 0; i < ea - 1; i++)
                 {
@@ -876,12 +877,12 @@ namespace YT.COM
             {
 
                 var point = new TSG.Point(rs.X, ls.Y, ls.Z);
-                var cpoint = new TSM.ControlPoint(point);
-                cpoint.Insert();
+                //var cpoint = new TSM.ControlPoint(point);
+                //cpoint.Insert();
 
                 var point2 = new TSG.Point(le.X, re.Y, re.Z);
-                var cpoint2 = new TSM.ControlPoint(point2);
-                cpoint2.Insert();
+                //var cpoint2 = new TSM.ControlPoint(point2);
+                //cpoint2.Insert();
 
                 var l1 = new TSG.LineSegment(rs, point2).Length();
                 var l2 = new TSG.LineSegment(point2, re).Length();
@@ -945,12 +946,12 @@ namespace YT.COM
             {
 
                 var point = new TSG.Point(rs.X, ls.Y, ls.Z);
-                var cpoint = new TSM.ControlPoint(point);
-                cpoint.Insert();
+                //var cpoint = new TSM.ControlPoint(point);
+                //cpoint.Insert();
 
                 var point2 = new TSG.Point(re.X, le.Y, le.Z);
-                var cpoint2 = new TSM.ControlPoint(point2);
-                cpoint2.Insert();
+                //var cpoint2 = new TSM.ControlPoint(point2);
+                //cpoint2.Insert();
 
                 for (int i = 0; i < ea - 1; i++)
                 {
@@ -980,8 +981,8 @@ namespace YT.COM
             {
 
                 var point = new TSG.Point(ls.X, rs.Y, rs.Z);
-                var cpoint = new TSM.ControlPoint(point);
-                cpoint.Insert();
+                //var cpoint = new TSM.ControlPoint(point);
+                //cpoint.Insert();
 
                 var l1 = new TSG.LineSegment(rs, point).Length();
                 var l2 = new TSG.LineSegment(point, re).Length();
@@ -1045,12 +1046,12 @@ namespace YT.COM
             else if (ls2 > rs2 && le2 < re2)
             {
                 var point = new TSG.Point(ls.X, rs.Y, rs.Z);
-                var cpoint = new TSM.ControlPoint(point);
-                cpoint.Insert();
+                //var cpoint = new TSM.ControlPoint(point);
+                //cpoint.Insert();
 
                 var point2 = new TSG.Point(le.X, re.Y, re.Z);
-                var cpoint2 = new TSM.ControlPoint(point2);
-                cpoint2.Insert();
+                //var cpoint2 = new TSM.ControlPoint(point2);
+                //cpoint2.Insert();
 
                 var l1 = new TSG.LineSegment(rs, point).Length();
                 var l2 = new TSG.LineSegment(point, point2).Length();
@@ -1136,12 +1137,12 @@ namespace YT.COM
             else if (ls2> rs2 && le2 > re2)
             {
                 var point = new TSG.Point(ls.X, rs.Y, rs.Z);
-                var cpoint = new TSM.ControlPoint(point);
-                cpoint.Insert();
+                //var cpoint = new TSM.ControlPoint(point);
+                //cpoint.Insert();
 
                 var point2 = new TSG.Point(re.X, le.Y, le.Z);
-                var cpoint2 = new TSM.ControlPoint(point2);
-                cpoint2.Insert();
+                //var cpoint2 = new TSM.ControlPoint(point2);
+                //cpoint2.Insert();
 
 
                 var l1 = new TSG.LineSegment(rs, point).Length();

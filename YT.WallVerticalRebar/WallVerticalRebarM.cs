@@ -83,25 +83,25 @@ namespace YT.WallVerticalRebar
             var s_ucs_tp = new TSM.TransformationPlane(s_ucs_op, s_ucs_ax, s_ucs_ay);
 
             // 부재 끝점 좌표
-            var e_ucs_op = wall.EndPoint;
-            var e_ucs_ax = lcs.AxisX.GetNormal() * -1;
-            var e_ucs_ay = lcs.AxisX.Cross(lcs.AxisY).GetNormal();
-            var e_ucs_tp = new TSM.TransformationPlane(e_ucs_op, e_ucs_ax, e_ucs_ay);
+            //var e_ucs_op = wall.EndPoint;
+            //var e_ucs_ax = lcs.AxisX.GetNormal() * -1;
+            //var e_ucs_ay = lcs.AxisX.Cross(lcs.AxisY).GetNormal();
+            //var e_ucs_tp = new TSM.TransformationPlane(e_ucs_op, e_ucs_ax, e_ucs_ay);
 
             var ucs_tp = new TSM.TransformationPlane();
 
-            switch (D.W_Coordination)
-            {
-                case "StartEnd":
+            //switch (D.W_Coordination)
+            //{
+            //    case "StartEnd":
                     ucs_tp = s_ucs_tp;
-                    break;
-                case "EndStart":
-                    ucs_tp = e_ucs_tp;
-                    break;
-                default:
-                    ucs_tp = s_ucs_tp;
-                    break;
-            }
+            //        break;
+            //    case "EndStart":
+            //        ucs_tp = e_ucs_tp;
+            //        break;
+            //    default:
+            //        ucs_tp = s_ucs_tp;
+            //        break;
+            //}
 
             m.GetWorkPlaneHandler().SetCurrentTransformationPlane(ucs_tp);
 
@@ -134,17 +134,17 @@ namespace YT.WallVerticalRebar
             startLineSegment.Point1 = point1;
             startLineSegment.Point2 = point2;
 
-            var startControlLine = new TSM.ControlLine();
-            startControlLine.Line = startLineSegment;
-            startControlLine.Insert();
+            //var startControlLine = new TSM.ControlLine();
+            //startControlLine.Line = startLineSegment;
+            //startControlLine.Insert();
 
             var endLineSegment = new TSG.LineSegment();
             endLineSegment.Point1 = point3;
             endLineSegment.Point2 = point4;
 
-            var endControlLine = new TSM.ControlLine();
-            endControlLine.Line = endLineSegment;
-            endControlLine.Insert();
+            //var endControlLine = new TSM.ControlLine();
+            //endControlLine.Line = endLineSegment;
+            //endControlLine.Insert();
 
             #endregion
 
@@ -193,34 +193,34 @@ namespace YT.WallVerticalRebar
             rightLineSegment.Point1 = new TSG.Point(minX + rightMoveXS + rightKsXS, minY + rightMoveY + rightKsY, maxZ);
             rightLineSegment.Point2 = new TSG.Point(maxX - rightMoveXE - rightKsXE, minY + rightMoveY + rightKsY, maxZ);
 
-            var rightControlLine = new TSM.ControlLine();
-            rightControlLine.Line = rightLineSegment;
-            rightControlLine.Insert();
+            //var rightControlLine = new TSM.ControlLine();
+            //rightControlLine.Line = rightLineSegment;
+            //rightControlLine.Insert();
 
             var startrightCrossPoint = Util.FindPoint.CrossPoint(new TSG.Line(startLineSegment), new TSG.Line(rightLineSegment));
-            var startrigthControlPoint = new TSM.ControlPoint(startrightCrossPoint);
-            startrigthControlPoint.Insert();
+            //var startrigthControlPoint = new TSM.ControlPoint(startrightCrossPoint);
+            //startrigthControlPoint.Insert();
 
             var endrightCrossPoint = Util.FindPoint.CrossPoint(new TSG.Line(endLineSegment), new TSG.Line(rightLineSegment));
-            var endrightContolPoint = new TSM.ControlPoint(endrightCrossPoint);
-            endrightContolPoint.Insert();
+            //var endrightContolPoint = new TSM.ControlPoint(endrightCrossPoint);
+            //endrightContolPoint.Insert();
 
 
             var leftLineSegment = new TSG.LineSegment();
             leftLineSegment.Point1 = new TSG.Point(minX + leftMoveXS + leftKsXS, maxY - leftMoveY - leftKsY, maxZ);
             leftLineSegment.Point2 = new TSG.Point(maxX - leftMoveXE - leftKsXE, maxY - leftMoveY - leftKsY, maxZ);
 
-            var leftControlLine = new TSM.ControlLine();
-            leftControlLine.Line = leftLineSegment;
-            leftControlLine.Insert();
+            //var leftControlLine = new TSM.ControlLine();
+            //leftControlLine.Line = leftLineSegment;
+            //leftControlLine.Insert();
 
             var startleftCrossPoint = Util.FindPoint.CrossPoint(new TSG.Line(startLineSegment), new TSG.Line(leftLineSegment));
-            var startleftControlPoint = new TSM.ControlPoint(startleftCrossPoint);
-            startleftControlPoint.Insert();
+            //var startleftControlPoint = new TSM.ControlPoint(startleftCrossPoint);
+            //startleftControlPoint.Insert();
 
             var endleftCrossPoint = Util.FindPoint.CrossPoint(new TSG.Line(endLineSegment), new TSG.Line(leftLineSegment));
-            var endleftControlPoint = new TSM.ControlPoint(endleftCrossPoint);
-            endleftControlPoint.Insert();
+            //var endleftControlPoint = new TSM.ControlPoint(endleftCrossPoint);
+            //endleftControlPoint.Insert();
 
             var barRStartPoint = new TSG.Point(startrightCrossPoint.X + rightMoveXS + rightKsXS, startrightCrossPoint.Y, startrightCrossPoint.Z);
             var barREndPoint = new TSG.Point(endrightCrossPoint.X - rightMoveXE - rightKsXE, endrightCrossPoint.Y, endrightCrossPoint.Z);
@@ -243,8 +243,8 @@ namespace YT.WallVerticalRebar
             barR.Prefix = D.R_Prefix;
             barR.StartNumber = D.R_StartNumber;
 
-            if (D.W_Coordination == "StartEnd")
-            {
+            //if (D.W_Coordination == "StartEnd")
+            //{
                 var shapeR = new TSM.Polygon();
 
                 if (D.R_SpliceType == "일반")
@@ -261,8 +261,8 @@ namespace YT.WallVerticalRebar
 
                     shapeR.Points.Add(new TSG.Point(startrightCrossPoint.X + rightMoveXS + rightKsXS, startrightCrossPoint.Y, minZ));
                     shapeR.Points.Add(new TSG.Point(startrightCrossPoint.X + rightMoveXS + rightKsXS, startrightCrossPoint.Y, maxZ - y));
-                    shapeR.Points.Add(new TSG.Point(startrightCrossPoint.X + rightMoveXS + rightKsXS, startrightCrossPoint.Y + x, maxZ));
-                    shapeR.Points.Add(new TSG.Point(startrightCrossPoint.X + rightMoveXS + rightKsXS, startrightCrossPoint.Y + x, maxZ + D.R_Splice1 + D.R_Splice2));
+                    shapeR.Points.Add(new TSG.Point(startrightCrossPoint.X + rightMoveXS + rightKsXS, startrightCrossPoint.Y +x, maxZ));
+                    shapeR.Points.Add(new TSG.Point(startrightCrossPoint.X + rightMoveXS + rightKsXS, startrightCrossPoint.Y +x, maxZ + D.R_Splice1 + D.R_Splice2));
                 }
                 if (D.R_SpliceType == "후크")
                 {
@@ -287,54 +287,55 @@ namespace YT.WallVerticalRebar
 
                 barR.StartPoint = new TSG.Point(startrightCrossPoint.X + rightMoveXS + rightKsXS, startrightCrossPoint.Y, startrightCrossPoint.Z);
                 barR.EndPoint = new TSG.Point(endrightCrossPoint.X - rightMoveXE - rightKsXE, endrightCrossPoint.Y, endrightCrossPoint.Z);
-            }
-            else if (D.W_Coordination == "EndStart")
-            {
-                var shapeR = new TSM.Polygon();
 
-                if (D.R_SpliceType == "일반")
-                {
-                    shapeR.Points.Add(new TSG.Point(endrightCrossPoint.X + rightMoveXS + rightKsXS, startrightCrossPoint.Y, minZ));
-                    shapeR.Points.Add(new TSG.Point(endrightCrossPoint.X + rightMoveXS + rightKsXS, startrightCrossPoint.Y, maxZ));
+            //}
+            //else if (D.W_Coordination == "EndStart")
+            //{
+            //    var shapeR = new TSM.Polygon();
 
-                    barR.EndOffsetValue = -(D.R_Splice1 + D.R_Splice2);
-                }
-                else if (D.R_SpliceType == "벤트")
-                {
-                    double x = D.R_Bent;
-                    double y = 6 * x;
+            //    if (D.R_SpliceType == "일반")
+            //    {
+            //        shapeR.Points.Add(new TSG.Point(endrightCrossPoint.X + rightMoveXS + rightKsXS, startrightCrossPoint.Y, minZ));
+            //        shapeR.Points.Add(new TSG.Point(endrightCrossPoint.X + rightMoveXS + rightKsXS, startrightCrossPoint.Y, maxZ));
 
-                    shapeR.Points.Add(new TSG.Point(endrightCrossPoint.X + rightMoveXS + rightKsXS, startrightCrossPoint.Y, minZ));
-                    shapeR.Points.Add(new TSG.Point(endrightCrossPoint.X + rightMoveXS + rightKsXS, startrightCrossPoint.Y, maxZ - y));
-                    shapeR.Points.Add(new TSG.Point(endrightCrossPoint.X + rightMoveXS + rightKsXS, startrightCrossPoint.Y + x, maxZ));
-                    shapeR.Points.Add(new TSG.Point(endrightCrossPoint.X + rightMoveXS + rightKsXS, startrightCrossPoint.Y + x, maxZ + D.R_Splice1 + D.R_Splice2));
+            //        barR.EndOffsetValue = -(D.R_Splice1 + D.R_Splice2);
+            //    }
+            //    else if (D.R_SpliceType == "벤트")
+            //    {
+            //        double x = D.R_Bent;
+            //        double y = 6 * x;
 
-                }
-                if (D.R_SpliceType == "후크")
-                {
-                    shapeR.Points.Add(new TSG.Point(endrightCrossPoint.X + rightMoveXS + rightKsXS, startrightCrossPoint.Y, minZ));
-                    shapeR.Points.Add(new TSG.Point(endrightCrossPoint.X + rightMoveXS + rightKsXS, startrightCrossPoint.Y, maxZ));
+            //        shapeR.Points.Add(new TSG.Point(endrightCrossPoint.X + rightMoveXS + rightKsXS, startrightCrossPoint.Y, minZ));
+            //        shapeR.Points.Add(new TSG.Point(endrightCrossPoint.X + rightMoveXS + rightKsXS, startrightCrossPoint.Y, maxZ - y));
+            //        shapeR.Points.Add(new TSG.Point(endrightCrossPoint.X + rightMoveXS + rightKsXS, startrightCrossPoint.Y +x , maxZ));
+            //        shapeR.Points.Add(new TSG.Point(endrightCrossPoint.X + rightMoveXS + rightKsXS, startrightCrossPoint.Y +x , maxZ + D.R_Splice1 + D.R_Splice2));
+            //    }
+            //    if (D.R_SpliceType == "후크")
+            //    {
+            //        shapeR.Points.Add(new TSG.Point(endrightCrossPoint.X + rightMoveXS + rightKsXS, startrightCrossPoint.Y, minZ));
+            //        shapeR.Points.Add(new TSG.Point(endrightCrossPoint.X + rightMoveXS + rightKsXS, startrightCrossPoint.Y, maxZ));
 
-                    barR.EndOffsetValue = D.R_HookCorver;
+            //        barR.EndOffsetValue = D.R_HookCorver;
 
-                    barR.EndHookShape = TSM.RebarHookData.RebarHookShapeEnum.CUSTOM_HOOK;
+            //        barR.EndHookShape = TSM.RebarHookData.RebarHookShapeEnum.CUSTOM_HOOK;
 
-                    switch (D.R_HookInOut)
-                    {
-                        case "내": barR.EndHookAngle = 90.0; break;
-                        case "외": barR.EndHookAngle = -90.0; break;
-                    }
+            //        switch (D.R_HookInOut)
+            //        {
+            //            case "내": barR.EndHookAngle = 90.0; break;
+            //            case "외": barR.EndHookAngle = -90.0; break;
+            //        }
 
-                    barR.EndHookRadius = barR.Radius;
-                    barR.EndHookLength = D.R_HookLength - barR.Radius - KS.GetDiameter(Convert.ToDouble(barR.Size));
+            //        barR.EndHookRadius = barR.Radius;
+            //        barR.EndHookLength = D.R_HookLength - barR.Radius - KS.GetDiameter(Convert.ToDouble(barR.Size));
 
-                }
+            //    }
 
-                barR.Polygon.Add(shapeR);
+            //    barR.Polygon.Add(shapeR);
 
-                barR.StartPoint = barRStartPoint;
-                barR.EndPoint = barREndPoint;
-            }
+            //    barR.StartPoint = new TSG.Point(endrightCrossPoint.X + rightMoveXS + rightKsXS, endrightCrossPoint.Y, endrightCrossPoint.Z);
+            //    barR.EndPoint = new TSG.Point(startrightCrossPoint.X - rightMoveXE - rightKsXE, startrightCrossPoint.Y, startrightCrossPoint.Z);
+
+            //}
 
             barR.Father = beam;
 
@@ -364,8 +365,15 @@ namespace YT.WallVerticalRebar
 
                     var rightSpacings = new Spacings();
 
-                    //barR.Spacing = rightSpacings.RightSpacing(startleftCrossPoint, endleftCrossPoint, startrightCrossPoint, endrightCrossPoint, lengthR, rightSpacing, barR.Size);
-                   barR.Spacing = rightSpacings.RightSpacing(barLStartPoint, barLEndPoint, barRStartPoint, barREndPoint, lengthR, rightSpacing, barR.Size);
+
+                    //if (D.W_Coordination == "StartEnd")
+                    //{
+                        barR.Spacing = rightSpacings.RightSpacing(barLStartPoint, barLEndPoint, barRStartPoint, barREndPoint, lengthR, rightSpacing, barR.Size);
+                    //}
+                    //else if(D.W_Coordination == "EndStart")
+                    //{
+                    //    barR.Spacing = rightSpacings.RightSpacing(barLEndPoint, barLStartPoint, barREndPoint, barRStartPoint, lengthR, rightSpacing, barR.Size);
+                    //}
 
                     break;
             }
@@ -418,8 +426,8 @@ namespace YT.WallVerticalRebar
             barL.Prefix = D.L_Prefix;
             barL.StartNumber = D.L_StartNumber;
 
-            if (D.W_Coordination == "StartEnd")
-            {
+            //if (D.W_Coordination == "StartEnd")
+            //{
                 var shapeL = new TSM.Polygon();
 
                 if (D.L_SpliceType == "일반")
@@ -432,12 +440,12 @@ namespace YT.WallVerticalRebar
                 else if (D.L_SpliceType == "벤트")
                 {
                     double x = D.L_Bent;
-                    double y = 6 * D.L_Bent;
+                    double y = 6 * x;
 
                     shapeL.Points.Add(new TSG.Point(startleftCrossPoint.X + leftMoveXS + leftKsXS, startleftCrossPoint.Y, minZ));
                     shapeL.Points.Add(new TSG.Point(startleftCrossPoint.X + leftMoveXS + leftKsXS, startleftCrossPoint.Y, maxZ - y));
-                    shapeL.Points.Add(new TSG.Point(startleftCrossPoint.X + leftMoveXS + leftKsXS, startleftCrossPoint.Y - x, maxZ));
-                    shapeL.Points.Add(new TSG.Point(startleftCrossPoint.X + leftMoveXS + leftKsXS, startleftCrossPoint.Y - x, maxZ + D.L_Splice1 + D.L_Splice2));
+                    shapeL.Points.Add(new TSG.Point(startleftCrossPoint.X + leftMoveXS + leftKsXS, startleftCrossPoint.Y -x, maxZ));
+                    shapeL.Points.Add(new TSG.Point(startleftCrossPoint.X + leftMoveXS + leftKsXS, startleftCrossPoint.Y -x, maxZ + D.L_Splice1 + D.L_Splice2));
                 }
                 else if (D.L_SpliceType == "후크")
                 {
@@ -462,54 +470,53 @@ namespace YT.WallVerticalRebar
 
                 barL.StartPoint = new TSG.Point(startleftCrossPoint.X + leftMoveXS + leftKsXS, startleftCrossPoint.Y, startleftCrossPoint.Z);
                 barL.EndPoint = new TSG.Point(endleftCrossPoint.X - leftMoveXE - leftKsXE, endleftCrossPoint.Y, endleftCrossPoint.Z);
-            }
+            //}
 
-            else if (D.W_Coordination == "EndStart")
-            {
-                var shapeL = new TSM.Polygon();
+            //else if (D.W_Coordination == "EndStart")
+            //{
+            //    var shapeL = new TSM.Polygon();
 
-                if (D.L_SpliceType == "일반")
-                {
-                    shapeL.Points.Add(new TSG.Point(endleftCrossPoint.X + leftMoveXS + leftKsXS, startleftCrossPoint.Y, minZ));
-                    shapeL.Points.Add(new TSG.Point(endleftCrossPoint.X + leftMoveXS + leftKsXS, startleftCrossPoint.Y, maxZ));
+            //    if (D.L_SpliceType == "일반")
+            //    {
+            //        shapeL.Points.Add(new TSG.Point(endleftCrossPoint.X + leftMoveXS + leftKsXS, startleftCrossPoint.Y, minZ));
+            //        shapeL.Points.Add(new TSG.Point(endleftCrossPoint.X + leftMoveXS + leftKsXS, startleftCrossPoint.Y, maxZ));
 
-                    barL.EndOffsetValue = -(D.L_Splice1 + D.L_Splice2);
-                }
-                else if (D.L_SpliceType == "벤트")
-                {
-                    double x = D.L_Bent;
-                    double y = 6 * x;
+            //        barL.EndOffsetValue = -(D.L_Splice1 + D.L_Splice2);
+            //    }
+            //    else if (D.L_SpliceType == "벤트")
+            //    {
+            //        double x = D.L_Bent;
+            //        double y = 6 * x;
 
-                    shapeL.Points.Add(new TSG.Point(endleftCrossPoint.X + leftMoveXS + leftKsXS, startleftCrossPoint.Y, minZ));
-                    shapeL.Points.Add(new TSG.Point(endleftCrossPoint.X + leftMoveXS + leftKsXS, startleftCrossPoint.Y, maxZ - y));
-                    shapeL.Points.Add(new TSG.Point(endleftCrossPoint.X + leftMoveXS + leftKsXS, startleftCrossPoint.Y - x, maxZ));
-                    shapeL.Points.Add(new TSG.Point(endleftCrossPoint.X + leftMoveXS + leftKsXS, startleftCrossPoint.Y - x, maxZ + D.L_Splice1 + D.L_Splice2));
+            //        shapeL.Points.Add(new TSG.Point(endleftCrossPoint.X + leftMoveXS + leftKsXS, startleftCrossPoint.Y, minZ));
+            //        shapeL.Points.Add(new TSG.Point(endleftCrossPoint.X + leftMoveXS + leftKsXS, startleftCrossPoint.Y, maxZ - y));
+            //        shapeL.Points.Add(new TSG.Point(endleftCrossPoint.X + leftMoveXS + leftKsXS, startleftCrossPoint.Y -x, maxZ));
+            //        shapeL.Points.Add(new TSG.Point(endleftCrossPoint.X + leftMoveXS + leftKsXS, startleftCrossPoint.Y -x, maxZ + D.L_Splice1 + D.L_Splice2));
+            //    }
+            //    else if (D.L_SpliceType == "후크")
+            //    {
+            //        shapeL.Points.Add(new TSG.Point(endleftCrossPoint.X + leftMoveXS + leftKsXS, startleftCrossPoint.Y, minZ));
+            //        shapeL.Points.Add(new TSG.Point(endleftCrossPoint.X + leftMoveXS + leftKsXS, startleftCrossPoint.Y, maxZ));
 
-                }
-                else if (D.L_SpliceType == "후크")
-                {
-                    shapeL.Points.Add(new TSG.Point(endleftCrossPoint.X + leftMoveXS + leftKsXS, startleftCrossPoint.Y, minZ));
-                    shapeL.Points.Add(new TSG.Point(endleftCrossPoint.X + leftMoveXS + leftKsXS, startleftCrossPoint.Y, maxZ));
+            //        barL.EndOffsetValue = D.L_HookCorver;
 
-                    barL.EndOffsetValue = D.L_HookCorver;
+            //        barL.EndHookShape = TSM.RebarHookData.RebarHookShapeEnum.CUSTOM_HOOK;
 
-                    barL.EndHookShape = TSM.RebarHookData.RebarHookShapeEnum.CUSTOM_HOOK;
+            //        switch (D.L_HookInOut)
+            //        {
+            //            case "내": barL.EndHookAngle = -90.0; break;
+            //            case "외": barL.EndHookAngle = 90.0; break;
+            //        }
 
-                    switch (D.L_HookInOut)
-                    {
-                        case "내": barL.EndHookAngle = -90.0; break;
-                        case "외": barL.EndHookAngle = 90.0; break;
-                    }
+            //        barL.EndHookRadius = barL.Radius;
+            //        barL.EndHookLength = D.L_HookLength - barL.Radius - KS.GetDiameter(Convert.ToDouble(barL.Size));
+            //    }
 
-                    barL.EndHookRadius = barL.Radius;
-                    barL.EndHookLength = D.L_HookLength - barL.Radius - KS.GetDiameter(Convert.ToDouble(barL.Size));
-                }
-
-                barL.Polygon.Add(shapeL);
-
-                barL.StartPoint = barLStartPoint;
-                barL.EndPoint = barLEndPoint;
-            }
+            //    barL.Polygon.Add(shapeL);
+                
+            //    barL.StartPoint = new TSG.Point(endleftCrossPoint.X + leftMoveXS + leftKsXS, endleftCrossPoint.Y, endleftCrossPoint.Z);
+            //    barL.EndPoint = new TSG.Point(startleftCrossPoint.X - leftMoveXE - leftKsXE, startleftCrossPoint.Y, startleftCrossPoint.Z);
+            //}
 
             barL.Father = beam;
 
@@ -537,8 +544,15 @@ namespace YT.WallVerticalRebar
 
                     var leftSpacings = new Spacings();
 
-                    barL.Spacing = leftSpacings.LeftSpacing(startleftCrossPoint, endleftCrossPoint, startrightCrossPoint, endrightCrossPoint, lengthL, leftSpacing, barL.Size);
-                    barL.Spacing = leftSpacings.LeftSpacing(barLStartPoint, barLEndPoint, barRStartPoint, barREndPoint, lengthL, leftSpacing, barL.Size);
+
+                    //if (D.W_Coordination == "StartEnd")
+                    //{
+                        barL.Spacing = leftSpacings.LeftSpacing(barLStartPoint, barLEndPoint, barRStartPoint, barREndPoint, lengthL, leftSpacing, barL.Size);
+                    //}
+                    //else if (D.W_Coordination == "EndStart")
+                    //{
+                    //    barL.Spacing = leftSpacings.LeftSpacing(barLEndPoint, barLStartPoint, barREndPoint, barRStartPoint, lengthL, leftSpacing, barL.Size);
+                    //}
 
                     break;
             }
