@@ -89,17 +89,17 @@ namespace YT.WallVerticalRebar
             this.SetAttributeValue(this.R_Class, 2);
             this.SetAttributeValue(this.R_Prefix, "W");
             this.SetAttributeValue(this.R_StartNumber, 1);
-            this.SetAttributeValue(this.R_MoveXS, 20.0);
-            this.SetAttributeValue(this.R_MoveXE, 20.0);
-            this.SetAttributeValue(this.R_MoveY, 50.0);
+            this.SetAttributeValue(this.R_MoveXS, 0.0);
+            this.SetAttributeValue(this.R_MoveXE, 0.0);
+            this.SetAttributeValue(this.R_MoveY, 20.0);
             this.SetAttributeValue(this.R_Spacing, 150.0);
             this.SetAttributeValue(this.R_ExcludeType, "없음");
             this.SetAttributeValue(this.R_Splice1, 300.00);
-            this.SetAttributeValue(this.R_Splice2, 100.00);
+            this.SetAttributeValue(this.R_Splice2, 0.00);
             this.SetAttributeValue(this.R_SpliceType, "일반");
             this.SetAttributeValue(this.R_Bent, 70.0);
             this.SetAttributeValue(this.R_HookCorver, 50.0);
-            this.SetAttributeValue(this.R_HookLength, 100.0);
+            this.SetAttributeValue(this.R_HookLength, 150.0);
             this.SetAttributeValue(this.R_HookInOut, "내");
             this.SetAttributeValue(this.R_SpacingType, "자동간격");
             
@@ -111,17 +111,17 @@ namespace YT.WallVerticalRebar
             this.SetAttributeValue(this.L_Class, 2);
             this.SetAttributeValue(this.L_Prefix, "W");
             this.SetAttributeValue(this.L_StartNumber, 1);
-            this.SetAttributeValue(this.L_MoveXS, 20.0);
-            this.SetAttributeValue(this.L_MoveXE, 20.0);
-            this.SetAttributeValue(this.L_MoveY, 50.0);
+            this.SetAttributeValue(this.L_MoveXS, 0.0);
+            this.SetAttributeValue(this.L_MoveXE, 0.0);
+            this.SetAttributeValue(this.L_MoveY, 20.0);
             this.SetAttributeValue(this.L_Spacing, 150.0);
             this.SetAttributeValue(this.L_ExcludeType, "없음");
             this.SetAttributeValue(this.L_Splice1, 300.00);
-            this.SetAttributeValue(this.L_Splice2, 100.00);
+            this.SetAttributeValue(this.L_Splice2, 0.00);
             this.SetAttributeValue(this.L_SpliceType, "일반");
             this.SetAttributeValue(this.L_Bent, 70.0);
             this.SetAttributeValue(this.L_HookCorver, 50.0);
-            this.SetAttributeValue(this.L_HookLength, 100.0);
+            this.SetAttributeValue(this.L_HookLength, 150.0);
             this.SetAttributeValue(this.L_HookInOut, "내");
             this.SetAttributeValue(this.L_SpacingType, "자동간격");
 

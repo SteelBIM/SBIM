@@ -228,6 +228,16 @@ namespace YT.WallVerticalRebar
             var barLStartPoint = new TSG.Point(startleftCrossPoint.X + leftMoveXS + leftKsXS, startleftCrossPoint.Y, startleftCrossPoint.Z);
             var barLEndPoint = new TSG.Point(endleftCrossPoint.X - leftMoveXE - leftKsXE, endleftCrossPoint.Y, endleftCrossPoint.Z);
 
+            var rebar = "";
+            if (Convert.ToInt32(D.L_Size) <= Convert.ToInt32(D.R_Size))
+            {
+                rebar = D.R_Size;
+            }
+            else if (Convert.ToInt32(D.L_Size) > Convert.ToInt32(D.R_Size))
+            {
+                rebar = D.L_Size;
+            }
+
 
 
             #region 우측철근
@@ -368,7 +378,7 @@ namespace YT.WallVerticalRebar
 
                     //if (D.W_Coordination == "StartEnd")
                     //{
-                        barR.Spacing = rightSpacings.RightSpacing(barLStartPoint, barLEndPoint, barRStartPoint, barREndPoint, lengthR, rightSpacing, barR.Size);
+                        barR.Spacing = rightSpacings.RightSpacing(barLStartPoint, barLEndPoint, barRStartPoint, barREndPoint, lengthR, rightSpacing, rebar);
                     //}
                     //else if(D.W_Coordination == "EndStart")
                     //{
@@ -547,7 +557,7 @@ namespace YT.WallVerticalRebar
 
                     //if (D.W_Coordination == "StartEnd")
                     //{
-                        barL.Spacing = leftSpacings.LeftSpacing(barLStartPoint, barLEndPoint, barRStartPoint, barREndPoint, lengthL, leftSpacing, barL.Size);
+                        barL.Spacing = leftSpacings.LeftSpacing(barLStartPoint, barLEndPoint, barRStartPoint, barREndPoint, lengthL, leftSpacing, rebar);
                     //}
                     //else if (D.W_Coordination == "EndStart")
                     //{
