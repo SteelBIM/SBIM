@@ -383,17 +383,21 @@ namespace TEST
             var rightMoveXE = 0;
             var rightMoveY = 20;
 
-            var rightKsXS = KS.GetDiameter(Convert.ToDouble(19)) / 2;
-            var rightKsXE = KS.GetDiameter(Convert.ToDouble(19)) / 2;
-            var rightKsY = KS.GetDiameter(Convert.ToDouble(19)) / 2;
+            var rightKsXS = KS.GetDiameter(Convert.ToDouble(22)) / 2;
+            var rightKsXSD = KS.GetDiameter(Convert.ToDouble(22));
+            var rightKsXE = KS.GetDiameter(Convert.ToDouble(22)) / 2;
+            var rightKsXED = KS.GetDiameter(Convert.ToDouble(22)) ;
+            var rightKsY = KS.GetDiameter(Convert.ToDouble(22)) / 2;
 
             var leftMoveXS = 0;
             var leftMoveXE = 0;
-            var leftMoveY =20;
+            var leftMoveY = 20;
 
-            var leftKsXS = KS.GetDiameter(Convert.ToDouble(19)) / 2;
-            var leftKsXE = KS.GetDiameter(Convert.ToDouble(19)) / 2;
-            var leftKsY = KS.GetDiameter(Convert.ToDouble(19)) / 2;
+            var leftKsXS = KS.GetDiameter(Convert.ToDouble(10)) / 2;
+            var leftKsXSD = KS.GetDiameter(Convert.ToDouble(10));
+            var leftKsXE = KS.GetDiameter(Convert.ToDouble(10)) / 2;
+            var leftKsXED = KS.GetDiameter(Convert.ToDouble(10));
+            var leftKsY = KS.GetDiameter(Convert.ToDouble(10) )/ 2;
 
             var maxX = beam.GetSolid().MaximumPoint.X;
             var maxY = beam.GetSolid().MaximumPoint.Y;
@@ -439,6 +443,14 @@ namespace TEST
             var endleftControlPoint = new TSM.ControlPoint(endleftCrossPoint);
             endleftControlPoint.Insert();
 
+            var barRStartPoint = new TSG.Point(startrightCrossPoint.X + rightMoveXS + rightKsXS, startrightCrossPoint.Y, startrightCrossPoint.Z);
+            var barREndPoint = new TSG.Point(endrightCrossPoint.X - rightMoveXE - rightKsXE, endrightCrossPoint.Y, endrightCrossPoint.Z);
+
+            var barLStartPoint = new TSG.Point(startleftCrossPoint.X + leftMoveXS + leftKsXS, startleftCrossPoint.Y, startleftCrossPoint.Z);
+            var barLEndPoint = new TSG.Point(endleftCrossPoint.X - leftMoveXE - leftKsXE, endleftCrossPoint.Y, endleftCrossPoint.Z);
+
+
+            #region 우측메인
             var barR = new Rebar();
 
             barR.Name = "rebar";
@@ -461,16 +473,15 @@ namespace TEST
 
             barR.Father = beam;
 
-            double rightSpacing =100;
+            double rightSpacing = 100;
 
             var lengthR = new TSG.LineSegment(barR.StartPoint, barR.EndPoint).Length();
 
-            var rightSpacings = new Spacings();
-            barR.Spacing = rightSpacings.RightSpacing(startleftCrossPoint, endleftCrossPoint, startrightCrossPoint, endrightCrossPoint, lengthR, rightSpacing, barR.Size);
-
-            barR.Insert();
+            var rightSpacings = new Spacings(); 
+            #endregion
 
 
+            #region 좌측메인
             if (leftMoveXS == 0) leftKsXS = 0;
             if (leftMoveXE == 0) leftKsXE = 0;
             if (leftMoveY == 0) leftKsY = 0;
@@ -480,7 +491,7 @@ namespace TEST
 
             barL.Name = "rebar";
             barL.Grade = "SD400";
-            barL.Size = barR.Size;
+            barL.Size = "10";
             barL.Radius = 30.0;
             barL.Class = 2;
 
@@ -504,14 +515,121 @@ namespace TEST
             var lengthL = new TSG.LineSegment(barL.StartPoint, barL.EndPoint).Length();
 
             var leftSpacings = new Spacings();
-            //barL.Spacing = leftSpacings.SetSpacing2(lengthL, leftSpacing, "19");
-            barL.Spacing = leftSpacings.LeftSpacing(startleftCrossPoint, endleftCrossPoint, startrightCrossPoint, endrightCrossPoint,lengthL, leftSpacing, barL.Size);
+
+            var rebar = "";
+
+            if (Convert.ToInt32(barL.Size) <= Convert.ToInt32(barR.Size))
+            {
+                rebar = barR.Size;
+            }
+            else if (Convert.ToInt32(barL.Size) > Convert.ToInt32(barR.Size))
+            {
+                rebar = barL.Size;
+            }
+            #endregion
+
+            #region 우측다월
+
+            var barRD = new Rebar();
+
+            barRD.Name = barR.Name;
+            barRD.Grade = barR.Grade;
+            barRD.Size = barR.Size;
+            barRD.Radius = barR.Radius;
+            barRD.Class = 3;
+
+            barRD.Prefix = "W";
+            barRD.StartNumber = 1;
+
+            var shapeRD = new TSM.Polygon();
+
+            shapeRD.Points.Add(new TSG.Point(startrightCrossPoint.X + rightMoveXS + rightKsXS , startrightCrossPoint.Y, minZ));
+            shapeRD.Points.Add(new TSG.Point(startrightCrossPoint.X + rightMoveXS + rightKsXS , startrightCrossPoint.Y, 300.0+ 100.0));
+
+            barRD.Polygon.Add(shapeRD);
+
+            barRD.StartOffsetValue = -100.0;
+
+            barRD.StartPoint = new TSG.Point(startrightCrossPoint.X + rightMoveXS + rightKsXS , startrightCrossPoint.Y, startrightCrossPoint.Z);
+            barRD.EndPoint = new TSG.Point(endrightCrossPoint.X - rightMoveXE - rightKsXE , endrightCrossPoint.Y, endrightCrossPoint.Z);
+            
+            barRD.StartHookShape = TSM.RebarHookData.RebarHookShapeEnum.CUSTOM_HOOK;
+            barRD.StartHookAngle = -90;
+            barRD.StartHookRadius = barRD.Radius;
+            barRD.StartHookLength = 250.0 - barRD.Radius - KS.GetDiameter(Convert.ToDouble(barRD.Size));
+
+            double rightSpacingD = rightSpacing;
+
+            var lengthRD = new TSG.LineSegment(barRD.StartPoint, barRD.EndPoint).Length();
+
+            var rightSpacingsD = new Spacings();
+
+
+            #endregion
+
+            #region 좌측다월
+            var barLD = new Rebar();
+
+            barLD.Name = barL.Name;
+            barLD.Grade = barL.Grade;
+            barLD.Size = barL.Size;
+            barLD.Radius = barL.Radius;
+            barLD.Class = barL.Class;
+
+            barLD.Prefix = "W";
+            barLD.StartNumber = 1;
+
+            var shapeLD = new TSM.Polygon();
+
+            shapeLD.Points.Add(new TSG.Point(startleftCrossPoint.X + leftMoveXS + leftKsXS , startleftCrossPoint.Y, minZ));
+            shapeLD.Points.Add(new TSG.Point(startleftCrossPoint.X + leftMoveXS + leftKsXS , startleftCrossPoint.Y, 300.0 + 100.0));
+
+            barLD.Polygon.Add(shapeLD);
+
+            barLD.StartOffsetValue = -100.0;
+
+            barLD.StartPoint = new TSG.Point(startleftCrossPoint.X + leftMoveXS + leftKsXS , startleftCrossPoint.Y, startleftCrossPoint.Z);
+            barLD.EndPoint =  new TSG.Point(endleftCrossPoint.X - leftMoveXE - leftKsXE , endleftCrossPoint.Y, endleftCrossPoint.Z);
+
+            
+            barLD.StartHookShape = TSM.RebarHookData.RebarHookShapeEnum.CUSTOM_HOOK;
+            barLD.StartHookAngle = 90;
+            barLD.StartHookRadius = barLD.Radius;
+            barLD.StartHookLength = 250.0 - barLD.Radius - KS.GetDiameter(Convert.ToDouble(barLD.Size));
+
+
+
+            double leftSpacingD = leftSpacing;
+
+            var lengthLD = new TSG.LineSegment(barLD.StartPoint, barLD.EndPoint).Length();
+
+            var leftSpacingsD = new Spacings();
+
+            #endregion
+
+
+
+            barR.Spacing = rightSpacings.RightMainSpacing(startleftCrossPoint, endleftCrossPoint, startrightCrossPoint, endrightCrossPoint, lengthR, rightSpacing, rebar);
+
+            barR.Insert();
+
+
+            barL.Spacing = leftSpacings.LeftMainSpacing(startleftCrossPoint, endleftCrossPoint, startrightCrossPoint, endrightCrossPoint, lengthL, leftSpacing, rebar);
 
             barL.Insert();
 
-            //var a = new Spacings();
-            //a.Test(startleftCrossPoint, endleftCrossPoint, startrightCrossPoint, endrightCrossPoint);
+            //barRD.Spacing = rightSpacingsD.RightDoWelSpacing(barLStartPoint, barLEndPoint, barRStartPoint, barREndPoint, lengthRD, rightSpacingD, barRD.Size);
+            barRD.ExcludeType = TSM.BaseRebarGroup.ExcludeTypeEnum.EXCLUDE_TYPE_FIRST;
+            barRD.Spacing = rightSpacingsD.RightDoWelSpacing(startleftCrossPoint, endleftCrossPoint, startrightCrossPoint, endrightCrossPoint, lengthRD, rightSpacingD, rebar, barRD.Size);
+            barRD.Insert();
+
+            //barLD.Spacing = leftSpacingsD.LeftDoWelSpacing(barLStartPoint, barLEndPoint, barRStartPoint, barREndPoint, lengthLD, leftSpacingD, barLD.Size);
+            barLD.ExcludeType = TSM.BaseRebarGroup.ExcludeTypeEnum.EXCLUDE_TYPE_FIRST;
+            barLD.Spacing = leftSpacingsD.LeftDoWelSpacing(startleftCrossPoint, endleftCrossPoint, startrightCrossPoint, endrightCrossPoint, lengthLD, leftSpacingD, rebar, barLD.Size);
+            barLD.Insert();
             m.CommitChanges();
+
+            
 
         }
 
@@ -520,7 +638,7 @@ namespace TEST
 
         private void Button6_Click(object sender, EventArgs e)
         {
-            
+
 
             var m = new TSM.Model();
 

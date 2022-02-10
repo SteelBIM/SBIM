@@ -55,32 +55,32 @@ namespace YT.WallVerticalRebar
             L_SpliceType.TextChanged += L_SpliceType_TextChanged1;
             #endregion
 
-            #region Event : UDA
+            #region Event : 메인 UDA
             W_UDA.TextChanged += W_UDA_TextChanged;
             #endregion
 
+            #region Evnet : 다월 UDA
+            DW_UDA.TextChanged += DW_UDA_TextChanged; 
+            #endregion
+
+            #region 철근간격
             R_SpacingType.TextChanged += R_SpacingType_TextChanged;
-            L_SpacingType.TextChanged += L_SpacingType_TextChanged;
-            
+            L_SpacingType.TextChanged += L_SpacingType_TextChanged; 
+            #endregion
+
         }
-
-        
-
-
-
-
-
 
         #region UI 화면 표시
 
         protected override string LoadValuesPath(string fileName)
         {
-            // UI 화면에 표시되는 값 과 모델 실제값
-            //this.SetAttributeValue(this.W_Coordination, "StartEnd");
+            #region 메인공통
             this.SetAttributeValue(this.W_UDA, "부재 UDA 정보 사용");
             this.SetAttributeValue(this.W_Building, "");
-            this.SetAttributeValue(this.W_Building_Storey, "");
+            this.SetAttributeValue(this.W_Building_Storey, ""); 
+            #endregion
 
+            #region 우측메인수직
             //ExcludeType
             this.SetAttributeValue(this.R_Name, "W_V");
             this.SetAttributeValue(this.R_Grade, "SD500");
@@ -102,7 +102,9 @@ namespace YT.WallVerticalRebar
             this.SetAttributeValue(this.R_HookLength, 150.0);
             this.SetAttributeValue(this.R_HookInOut, "내");
             this.SetAttributeValue(this.R_SpacingType, "자동간격");
-            
+            #endregion
+
+            #region 좌측메인수직
 
             this.SetAttributeValue(this.L_Name, "W_V");
             this.SetAttributeValue(this.L_Grade, "SD500");
@@ -124,8 +126,53 @@ namespace YT.WallVerticalRebar
             this.SetAttributeValue(this.L_HookLength, 150.0);
             this.SetAttributeValue(this.L_HookInOut, "내");
             this.SetAttributeValue(this.L_SpacingType, "자동간격");
+            #endregion
 
+            #region 다월공통
+            this.SetAttributeValue(this.DW_UDA, "부재 UDA 정보 사용");
+            this.SetAttributeValue(this.DW_Building, "");
+            this.SetAttributeValue(this.DW_Building_Storey, ""); 
+            #endregion
 
+            #region 우측다월철근
+            this.SetAttributeValue(this.DR_Name, "W_DW");
+
+            this.SetAttributeValue(this.DR_Class, 3);
+            this.SetAttributeValue(this.DR_Prefix, "W");
+            this.SetAttributeValue(this.DR_StartNumber, 1);
+
+            this.SetAttributeValue(this.DR_YesOrNo, "예");
+
+            this.SetAttributeValue(this.DR_Splice1, 300.0);
+            this.SetAttributeValue(this.DR_Splice2, 0.0);
+
+            this.SetAttributeValue(this.DR_FootingDepth, 300.0);
+
+            this.SetAttributeValue(this.DR_HookCorver, 50.0);
+            this.SetAttributeValue(this.DR_HookLength, 150.0);
+            this.SetAttributeValue(this.DR_HookInOut, "외");
+
+            #endregion
+
+            #region 좌측다월철근
+            this.SetAttributeValue(this.DL_Name, "W_DW");
+
+            this.SetAttributeValue(this.DL_Class, 3);
+            this.SetAttributeValue(this.DL_Prefix, "W");
+            this.SetAttributeValue(this.DL_StartNumber, 1);
+
+            this.SetAttributeValue(this.DL_YesOrNo, "예");
+
+            this.SetAttributeValue(this.DL_Splice1, 300.0);
+            this.SetAttributeValue(this.DL_Splice2, 0.0);
+
+            this.SetAttributeValue(this.DL_FootingDepth, 300.0);
+
+            this.SetAttributeValue(this.DL_HookCorver, 50.0);
+            this.SetAttributeValue(this.DL_HookLength, 150.0);
+            this.SetAttributeValue(this.DL_HookInOut, "외");
+
+            #endregion
 
             string result = base.LoadValuesPath(fileName);
             this.Apply();
@@ -261,7 +308,7 @@ namespace YT.WallVerticalRebar
         }
         #endregion
 
-        #region Event : UDA
+        #region Event : 메인 UDA
         private void W_UDA_TextChanged(object sender, EventArgs e)
         {
             switch (W_UDA.Text)
@@ -279,7 +326,25 @@ namespace YT.WallVerticalRebar
         }
         #endregion
 
+        #region Event : 다월 UDA
+        private void DW_UDA_TextChanged(object sender, EventArgs e)
+        {
+            switch (DW_UDA.Text)
+            {
+                case "부재 UDA 정보 사용":
+                    DW_Building.Enabled = false;
+                    DW_Building_Storey.Enabled = false;
+                    break;
 
+                case "사용자 지정":
+                    DW_Building.Enabled = true;
+                    DW_Building_Storey.Enabled = true;
+                    break;
+            }
+        } 
+        #endregion
+
+        #region Event : 철근간격
         private void R_SpacingType_TextChanged(object sender, EventArgs e)
         {
             switch (R_SpacingType.Text)
@@ -310,6 +375,7 @@ namespace YT.WallVerticalRebar
                     L_UserSpacing.Enabled = false;
                     break;
             }
-        }
+        } 
+        #endregion
     }
 }

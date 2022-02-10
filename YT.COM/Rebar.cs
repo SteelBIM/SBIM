@@ -80,7 +80,6 @@ namespace YT.COM
         public string BuildingStorey { get; set; }
 
         #endregion
-
         public void Insert()
         {
             var m = new TSM.Model();

@@ -21,14 +21,14 @@ namespace YT.WallVerticalRebar
     {
 
 
-        #region 공통
+        #region 메인공통
         //[TSP.StructuresField("W_Coordination")] public string W_Coordination;
         [TSP.StructuresField("W_Building")] public string W_Building;
         [TSP.StructuresField("W_Building_Storey")] public string W_Building_Storey;
         [TSP.StructuresField("W_UDA")] public string W_UDA;
         #endregion
 
-        #region Right Rebar 
+        #region 우측메인
 
         [TSP.StructuresField("R_Name")] public string R_Name;
         [TSP.StructuresField("R_Grade")] public string R_Grade;
@@ -60,10 +60,9 @@ namespace YT.WallVerticalRebar
         [TSP.StructuresField("R_UserSpacing")] public string R_UserSpacing;// 사용자 지정 철근 간격
         [TSP.StructuresField("R_Spacing")] public double R_Spacing;// 자동 철근 간격
 
-
         #endregion
 
-        #region Left Rebar
+        #region 좌측메인
         [TSP.StructuresField("L_Name")] public string L_Name;
         [TSP.StructuresField("L_Grade")] public string L_Grade;
         [TSP.StructuresField("L_Size")] public string L_Size;
@@ -94,6 +93,55 @@ namespace YT.WallVerticalRebar
         [TSP.StructuresField("L_UserSpacing")] public string L_UserSpacing;// 사용자 지정 철근 간격
         [TSP.StructuresField("L_Spacing")] public double L_Spacing;//자동 철근 간격
 
+
+        #endregion
+
+        #region 다월공통
+        [TSP.StructuresField("DW_Building")] public string DW_Building;
+        [TSP.StructuresField("DW_Building_Storey")] public string DW_Building_Storey;
+        [TSP.StructuresField("DW_UDA")] public string DW_UDA; 
+        #endregion
+
+        #region 우측다월
+
+        [TSP.StructuresField("DR_Name")] public string DR_Name;
+
+        [TSP.StructuresField("DR_Class")] public int DR_Class;
+        [TSP.StructuresField("DR_Prefix")] public string DR_Prefix;
+        [TSP.StructuresField("DR_StartNumber")] public int DR_StartNumber;
+
+        [TSP.StructuresField("DR_YesOrNo")] public string DR_YesOrNo;
+
+        [TSP.StructuresField("DR_Splice1")] public double DR_Splice1;// 이음
+        [TSP.StructuresField("DR_Splice2")] public double DR_Splice2;// 이음
+
+        [TSP.StructuresField("DR_FootingDepth")] public double DR_FootingDepth;// 기초두께
+
+        [TSP.StructuresField("DR_HookCorver")] public double DR_HookCorver;// 후크피복
+        [TSP.StructuresField("DR_HookLength")] public double DR_HookLength;// 후크길이
+        [TSP.StructuresField("DR_HookInOut")] public string DR_HookInOut;// 후크내/외
+
+
+        #endregion
+
+        #region 좌측다월
+
+        [TSP.StructuresField("DL_Name")] public string DL_Name;
+
+        [TSP.StructuresField("DL_Class")] public int DL_Class;
+        [TSP.StructuresField("DL_Prefix")] public string DL_Prefix;
+        [TSP.StructuresField("DL_StartNumber")] public int DL_StartNumber;
+
+        [TSP.StructuresField("DL_YesOrNo")] public string DL_YesOrNo;
+
+        [TSP.StructuresField("DL_Splice1")] public double DL_Splice1;// 이음
+        [TSP.StructuresField("DL_Splice2")] public double DL_Splice2;// 이음
+
+        [TSP.StructuresField("DL_FootingDepth")] public double DL_FootingDepth;// 기초두께
+
+        [TSP.StructuresField("DL_HookCorver")] public double DL_HookCorver;// 후크피복
+        [TSP.StructuresField("DL_HookLength")] public double DL_HookLength;// 후크길이
+        [TSP.StructuresField("DL_HookInOut")] public string DL_HookInOut;// 후크내/외
 
         #endregion
     }
