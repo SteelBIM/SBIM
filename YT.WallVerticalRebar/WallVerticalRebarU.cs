@@ -84,8 +84,8 @@ namespace YT.WallVerticalRebar
             //ExcludeType
             this.SetAttributeValue(this.R_Name, "W_V");
             this.SetAttributeValue(this.R_Grade, "SD500");
-            this.SetAttributeValue(this.R_Size, "19");
-            this.SetAttributeValue(this.R_Radius, 60.00);
+            this.SetAttributeValue(this.R_Size, "16");
+            this.SetAttributeValue(this.R_Radius, 50.00);
             this.SetAttributeValue(this.R_Class, 2);
             this.SetAttributeValue(this.R_Prefix, "W");
             this.SetAttributeValue(this.R_StartNumber, 1);
@@ -94,12 +94,12 @@ namespace YT.WallVerticalRebar
             this.SetAttributeValue(this.R_MoveY, 20.0);
             this.SetAttributeValue(this.R_Spacing, 150.0);
             this.SetAttributeValue(this.R_ExcludeType, "없음");
-            this.SetAttributeValue(this.R_Splice1, 300.00);
-            this.SetAttributeValue(this.R_Splice2, 0.00);
+            this.SetAttributeValue(this.R_Splice1, 0.00);
+            this.SetAttributeValue(this.R_Splice2, 50.00);
             this.SetAttributeValue(this.R_SpliceType, "일반");
-            this.SetAttributeValue(this.R_Bent, 70.0);
+            this.SetAttributeValue(this.R_Bent, 75.0);
             this.SetAttributeValue(this.R_HookCorver, 50.0);
-            this.SetAttributeValue(this.R_HookLength, 150.0);
+            this.SetAttributeValue(this.R_HookLength, 260.0);
             this.SetAttributeValue(this.R_HookInOut, "내");
             this.SetAttributeValue(this.R_SpacingType, "자동간격");
             #endregion
@@ -108,8 +108,8 @@ namespace YT.WallVerticalRebar
 
             this.SetAttributeValue(this.L_Name, "W_V");
             this.SetAttributeValue(this.L_Grade, "SD500");
-            this.SetAttributeValue(this.L_Size, "19");
-            this.SetAttributeValue(this.L_Radius, 60.00);
+            this.SetAttributeValue(this.L_Size, "16");
+            this.SetAttributeValue(this.L_Radius, 50.00);
             this.SetAttributeValue(this.L_Class, 2);
             this.SetAttributeValue(this.L_Prefix, "W");
             this.SetAttributeValue(this.L_StartNumber, 1);
@@ -118,12 +118,12 @@ namespace YT.WallVerticalRebar
             this.SetAttributeValue(this.L_MoveY, 20.0);
             this.SetAttributeValue(this.L_Spacing, 150.0);
             this.SetAttributeValue(this.L_ExcludeType, "없음");
-            this.SetAttributeValue(this.L_Splice1, 300.00);
-            this.SetAttributeValue(this.L_Splice2, 0.00);
+            this.SetAttributeValue(this.L_Splice1, 0.00);
+            this.SetAttributeValue(this.L_Splice2, 50.00);
             this.SetAttributeValue(this.L_SpliceType, "일반");
-            this.SetAttributeValue(this.L_Bent, 70.0);
+            this.SetAttributeValue(this.L_Bent, 75.0);
             this.SetAttributeValue(this.L_HookCorver, 50.0);
-            this.SetAttributeValue(this.L_HookLength, 150.0);
+            this.SetAttributeValue(this.L_HookLength, 260.0);
             this.SetAttributeValue(this.L_HookInOut, "내");
             this.SetAttributeValue(this.L_SpacingType, "자동간격");
             #endregion
@@ -131,7 +131,11 @@ namespace YT.WallVerticalRebar
             #region 다월공통
             this.SetAttributeValue(this.DW_UDA, "부재 UDA 정보 사용");
             this.SetAttributeValue(this.DW_Building, "");
-            this.SetAttributeValue(this.DW_Building_Storey, ""); 
+            this.SetAttributeValue(this.DW_Building_Storey, "");
+
+            this.SetAttributeValue(this.DW_FootingDepth, 1000.0);
+            this.SetAttributeValue(this.DW_FootingSpacing, 100.0);
+            this.SetAttributeValue(this.DW_FootingSplice, 100.0);
             #endregion
 
             #region 우측다월철근
@@ -143,13 +147,13 @@ namespace YT.WallVerticalRebar
 
             this.SetAttributeValue(this.DR_YesOrNo, "예");
 
-            this.SetAttributeValue(this.DR_Splice1, 300.0);
+            this.SetAttributeValue(this.DR_Splice1, 600.0);
             this.SetAttributeValue(this.DR_Splice2, 0.0);
 
-            this.SetAttributeValue(this.DR_FootingDepth, 300.0);
+            
 
             this.SetAttributeValue(this.DR_HookCorver, 50.0);
-            this.SetAttributeValue(this.DR_HookLength, 150.0);
+            this.SetAttributeValue(this.DR_HookLength, 260.0);
             this.SetAttributeValue(this.DR_HookInOut, "외");
 
             #endregion
@@ -163,13 +167,11 @@ namespace YT.WallVerticalRebar
 
             this.SetAttributeValue(this.DL_YesOrNo, "예");
 
-            this.SetAttributeValue(this.DL_Splice1, 300.0);
+            this.SetAttributeValue(this.DL_Splice1, 600.0);
             this.SetAttributeValue(this.DL_Splice2, 0.0);
 
-            this.SetAttributeValue(this.DL_FootingDepth, 300.0);
-
             this.SetAttributeValue(this.DL_HookCorver, 50.0);
-            this.SetAttributeValue(this.DL_HookLength, 150.0);
+            this.SetAttributeValue(this.DL_HookLength, 260.0);
             this.SetAttributeValue(this.DL_HookInOut, "외");
 
             #endregion

@@ -657,7 +657,9 @@ namespace YT.WallVerticalRebar
             var rightMoveY = D.R_MoveY;
 
             var rightKsXS = KS.GetDiameter(Convert.ToDouble(D.R_Size)) / 2;
+            var rightKsXSD = KS.GetDiameter(Convert.ToDouble(D.R_Size)) ;
             var rightKsXE = KS.GetDiameter(Convert.ToDouble(D.R_Size)) / 2;
+            var rightKsXED = KS.GetDiameter(Convert.ToDouble(D.R_Size)) ;
             var rightKsY = KS.GetDiameter(Convert.ToDouble(D.R_Size)) / 2;
 
             var leftMoveXS = D.L_MoveXS;
@@ -665,7 +667,9 @@ namespace YT.WallVerticalRebar
             var leftMoveY = D.L_MoveY;
 
             var leftKsXS = KS.GetDiameter(Convert.ToDouble(D.L_Size)) / 2;
+            var leftKsXSD = KS.GetDiameter(Convert.ToDouble(D.L_Size)) ;
             var leftKsXE = KS.GetDiameter(Convert.ToDouble(D.L_Size)) / 2;
+            var leftKsXED = KS.GetDiameter(Convert.ToDouble(D.L_Size));
             var leftKsY = KS.GetDiameter(Convert.ToDouble(D.L_Size)) / 2;
 
             #endregion
@@ -763,15 +767,43 @@ namespace YT.WallVerticalRebar
 
             barRD.Polygon.Add(shapeR);
 
-            barRD.StartOffsetValue = -D.DR_FootingDepth + D.DR_HookCorver;
+            barRD.StartOffsetValue = -D.DW_FootingDepth + D.DR_HookCorver;
 
-            barRD.StartPoint = new TSG.Point(startrightCrossPoint.X + rightMoveXS + rightKsXS, startrightCrossPoint.Y, startrightCrossPoint.Z);
-            barRD.EndPoint = new TSG.Point(endrightCrossPoint.X - rightMoveXE - rightKsXE, endrightCrossPoint.Y, endrightCrossPoint.Z);
+            barRD.StartPoint = new TSG.Point(startrightCrossPoint.X + rightMoveXS + rightKsXS+rightKsXSD, startrightCrossPoint.Y, startrightCrossPoint.Z);
+            barRD.EndPoint = new TSG.Point(endrightCrossPoint.X - rightMoveXE - rightKsXE+rightKsXED, endrightCrossPoint.Y, endrightCrossPoint.Z);
 
             barRD.StartHookShape = TSM.RebarHookData.RebarHookShapeEnum.CUSTOM_HOOK;
-            barRD.ExcludeType = TSM.BaseRebarGroup.ExcludeTypeEnum.EXCLUDE_TYPE_FIRST;
+            //barRD.ExcludeType = TSM.BaseRebarGroup.ExcludeTypeEnum.EXCLUDE_TYPE_FIRST;
             barRD.StartHookRadius = barRD.Radius;
-            barRD.StartHookLength = D.DR_HookLength - barRD.Radius - KS.GetDiameter(Convert.ToDouble(barRD.Size));
+
+            if (D.DW_FootingSpacing + D.DW_FootingSplice > D.DR_HookLength)
+            {
+                barRD.StartHookLength = D.DW_FootingSpacing + D.DW_FootingSplice - barRD.Radius - KS.GetDiameter(Convert.ToDouble(barRD.Size));
+            }
+            else
+            {
+                barRD.StartHookLength = D.DR_HookLength - barRD.Radius - KS.GetDiameter(Convert.ToDouble(barRD.Size));
+            }
+            
+
+            switch (D.R_ExcludeType)
+            {
+                case "없음":
+                    barRD.ExcludeType = TSM.BaseRebarGroup.ExcludeTypeEnum.EXCLUDE_TYPE_NONE;
+                    break;
+                case "첫번째":
+                    barRD.ExcludeType = TSM.BaseRebarGroup.ExcludeTypeEnum.EXCLUDE_TYPE_FIRST;
+                    break;
+                case "마지막":
+                    barRD.ExcludeType = TSM.BaseRebarGroup.ExcludeTypeEnum.EXCLUDE_TYPE_LAST;
+                    break;
+                case "첫번째 및 마지막":
+                    barRD.ExcludeType = TSM.BaseRebarGroup.ExcludeTypeEnum.EXCLUDE_TYPE_BOTH;
+                    break;
+                default:
+                    barRD.ExcludeType = TSM.BaseRebarGroup.ExcludeTypeEnum.EXCLUDE_TYPE_NONE;
+                    break;
+            }
 
             if (D.DR_HookInOut == "내")
             {
@@ -797,17 +829,22 @@ namespace YT.WallVerticalRebar
             switch (D.R_SpacingType)
             {
                 case "사용자 지정":
+
                     var listr = new ArrayList();
 
                     string str = D.R_UserSpacing;
                     string[] chr = str.Split(' ');
 
-                    listr.Add(barRD.Size);
-
                     for (int i = 0; i < chr.Count(); i++)
                     {
                         listr.Add(Convert.ToDouble(chr[i]));
                     }
+
+                    var last = Convert.ToDouble(listr[chr.Count() - 1]);
+
+                    listr.RemoveAt(chr.Count() - 1);
+
+                    listr.Add(last - (KS.GetDiameter(Convert.ToDouble(barRD.Size))*2));
 
                     barRD.Spacing = listr;
 
@@ -821,7 +858,7 @@ namespace YT.WallVerticalRebar
 
                     var rightSpacings = new Spacings();
 
-                    barRD.Spacing = rightSpacings.RightDoWelSpacing(barLStartPoint, barLEndPoint, barRStartPoint, barREndPoint, lengthR, rightSpacing, rebar, barRD.Size);
+                    barRD.Spacing = rightSpacings.RightDoWelSpacing2(barLStartPoint, barLEndPoint, barRStartPoint, barREndPoint, lengthR, rightSpacing, rebar, barRD.Size);
                     //barR.Spacing = RSP;
                     break;
             }
@@ -850,15 +887,43 @@ namespace YT.WallVerticalRebar
 
             barLD.Polygon.Add(shapeL);
 
-            barLD.StartOffsetValue = -D.DL_FootingDepth + D.DL_HookCorver;
+            barLD.StartOffsetValue = -D.DW_FootingDepth + D.DL_HookCorver;
 
-            barLD.StartPoint = new TSG.Point(startleftCrossPoint.X + leftMoveXS + leftKsXS, startleftCrossPoint.Y, startleftCrossPoint.Z);
-            barLD.EndPoint = new TSG.Point(endleftCrossPoint.X - leftMoveXE - leftKsXE, endleftCrossPoint.Y, endleftCrossPoint.Z);
+            barLD.StartPoint = new TSG.Point(startleftCrossPoint.X + leftMoveXS + leftKsXS+leftKsXSD, startleftCrossPoint.Y, startleftCrossPoint.Z);
+            barLD.EndPoint = new TSG.Point(endleftCrossPoint.X - leftMoveXE - leftKsXE+leftKsXED, endleftCrossPoint.Y, endleftCrossPoint.Z);
 
             barLD.StartHookShape = TSM.RebarHookData.RebarHookShapeEnum.CUSTOM_HOOK;
-            barLD.ExcludeType = TSM.BaseRebarGroup.ExcludeTypeEnum.EXCLUDE_TYPE_FIRST;
+            //barLD.ExcludeType = TSM.BaseRebarGroup.ExcludeTypeEnum.EXCLUDE_TYPE_FIRST;
             barLD.StartHookRadius = barLD.Radius;
-            barLD.StartHookLength = D.DL_HookLength - barLD.Radius - KS.GetDiameter(Convert.ToDouble(barLD.Size));
+
+            if (D.DW_FootingSpacing+D.DW_FootingSplice > D.DL_HookLength)
+            {
+                barLD.StartHookLength = D.DW_FootingSpacing + D.DW_FootingSplice - barLD.Radius - KS.GetDiameter(Convert.ToDouble(barLD.Size));
+            }
+            else
+            {
+                barLD.StartHookLength = D.DL_HookLength - barLD.Radius - KS.GetDiameter(Convert.ToDouble(barLD.Size));
+            }
+            
+
+            switch (D.L_ExcludeType)
+            {
+                case "없음":
+                    barLD.ExcludeType = TSM.BaseRebarGroup.ExcludeTypeEnum.EXCLUDE_TYPE_NONE;
+                    break;
+                case "첫번째":
+                    barLD.ExcludeType = TSM.BaseRebarGroup.ExcludeTypeEnum.EXCLUDE_TYPE_FIRST;
+                    break;
+                case "마지막":
+                    barLD.ExcludeType = TSM.BaseRebarGroup.ExcludeTypeEnum.EXCLUDE_TYPE_LAST;
+                    break;
+                case "첫번째 및 마지막":
+                    barLD.ExcludeType = TSM.BaseRebarGroup.ExcludeTypeEnum.EXCLUDE_TYPE_BOTH;
+                    break;
+                default:
+                    barLD.ExcludeType = TSM.BaseRebarGroup.ExcludeTypeEnum.EXCLUDE_TYPE_NONE;
+                    break;
+            }
 
             if (D.DL_HookInOut == "내")
             {
@@ -890,14 +955,19 @@ namespace YT.WallVerticalRebar
                     string stl = D.L_UserSpacing;
                     string[] chl = stl.Split(' ');
 
-                    listl.Add(barLD.Size);
-
                     for (int i = 0; i < chl.Count(); i++)
                     {
                         listl.Add(Convert.ToDouble(chl[i]));
                     }
 
+                    var last = Convert.ToDouble(listl[chl.Count() - 1]);
+
+                    listl.RemoveAt(chl.Count() - 1);
+
+                    listl.Add(last - (KS.GetDiameter(Convert.ToDouble(barLD.Size))*2));
+
                     barLD.Spacing = listl;
+
                     break;
 
                 case "자동간격":
@@ -908,7 +978,7 @@ namespace YT.WallVerticalRebar
 
                     var leftSpacings = new Spacings();
 
-                    barLD.Spacing = leftSpacings.LeftDoWelSpacing(barLStartPoint, barLEndPoint, barRStartPoint, barREndPoint, lengthL, leftSpacing, rebar, barLD.Size);
+                    barLD.Spacing = leftSpacings.LeftDoWelSpacing2(barLStartPoint, barLEndPoint, barRStartPoint, barREndPoint, lengthL, leftSpacing, rebar, barLD.Size);
 
                     break;
             }

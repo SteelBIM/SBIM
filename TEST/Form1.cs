@@ -588,8 +588,8 @@ namespace TEST
 
             barLD.StartOffsetValue = -100.0;
 
-            barLD.StartPoint = new TSG.Point(startleftCrossPoint.X + leftMoveXS + leftKsXS , startleftCrossPoint.Y, startleftCrossPoint.Z);
-            barLD.EndPoint =  new TSG.Point(endleftCrossPoint.X - leftMoveXE - leftKsXE , endleftCrossPoint.Y, endleftCrossPoint.Z);
+            barLD.StartPoint = new TSG.Point(startleftCrossPoint.X + leftMoveXS + leftKsXS + leftKsXSD , startleftCrossPoint.Y, startleftCrossPoint.Z);
+            barLD.EndPoint =  new TSG.Point(endleftCrossPoint.X - leftMoveXE - leftKsXE + leftKsXED, endleftCrossPoint.Y, endleftCrossPoint.Z);
 
             
             barLD.StartHookShape = TSM.RebarHookData.RebarHookShapeEnum.CUSTOM_HOOK;
@@ -620,12 +620,33 @@ namespace TEST
 
             //barRD.Spacing = rightSpacingsD.RightDoWelSpacing(barLStartPoint, barLEndPoint, barRStartPoint, barREndPoint, lengthRD, rightSpacingD, barRD.Size);
             barRD.ExcludeType = TSM.BaseRebarGroup.ExcludeTypeEnum.EXCLUDE_TYPE_FIRST;
-            barRD.Spacing = rightSpacingsD.RightDoWelSpacing(startleftCrossPoint, endleftCrossPoint, startrightCrossPoint, endrightCrossPoint, lengthRD, rightSpacingD, rebar, barRD.Size);
-            barRD.Insert();
+            barRD.Spacing = rightSpacingsD.RightDoWelSpacing2(startleftCrossPoint, endleftCrossPoint, startrightCrossPoint, endrightCrossPoint, lengthRD, rightSpacingD, rebar, barRD.Size);
+            //barRD.Insert();
 
             //barLD.Spacing = leftSpacingsD.LeftDoWelSpacing(barLStartPoint, barLEndPoint, barRStartPoint, barREndPoint, lengthLD, leftSpacingD, barLD.Size);
-            barLD.ExcludeType = TSM.BaseRebarGroup.ExcludeTypeEnum.EXCLUDE_TYPE_FIRST;
-            barLD.Spacing = leftSpacingsD.LeftDoWelSpacing(startleftCrossPoint, endleftCrossPoint, startrightCrossPoint, endrightCrossPoint, lengthLD, leftSpacingD, rebar, barLD.Size);
+            //barLD.ExcludeType = TSM.BaseRebarGroup.ExcludeTypeEnum.EXCLUDE_TYPE_FIRST;
+            //barLD.Spacing = leftSpacingsD.LeftDoWelSpacing2(startleftCrossPoint, endleftCrossPoint, startrightCrossPoint, endrightCrossPoint, lengthLD, leftSpacingD, rebar, barLD.Size);
+
+            var listl = new ArrayList();
+
+            string stl = "100 100 100 200";
+            string[] chl = stl.Split(' ');
+
+            //listl.Add(barLD.Size);
+
+            for (int i = 0; i < chl.Count(); i++)
+            {
+                listl.Add(Convert.ToDouble(chl[i]));
+            }
+            var a = Convert.ToDouble(listl[chl.Count() - 1]);
+
+            //listl.Remove(chl.Count() - 1);
+            listl.RemoveAt(chl.Count() - 1);
+
+            listl.Add(a - Convert.ToDouble(barLD.Size));
+
+            barLD.Spacing = listl;
+
             barLD.Insert();
             m.CommitChanges();
 

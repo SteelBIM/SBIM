@@ -99,7 +99,12 @@ namespace YT.WallVerticalRebar
         #region 다월공통
         [TSP.StructuresField("DW_Building")] public string DW_Building;
         [TSP.StructuresField("DW_Building_Storey")] public string DW_Building_Storey;
-        [TSP.StructuresField("DW_UDA")] public string DW_UDA; 
+        [TSP.StructuresField("DW_UDA")] public string DW_UDA;
+
+        [TSP.StructuresField("DW_FootingDepth")] public double DW_FootingDepth;// 기초두께
+        [TSP.StructuresField("DW_FootingSpacing")] public double DW_FootingSpacing;// 기초간격
+        [TSP.StructuresField("DW_FootingSplice")] public double DW_FootingSplice;// 기초여장
+
         #endregion
 
         #region 우측다월
@@ -115,7 +120,7 @@ namespace YT.WallVerticalRebar
         [TSP.StructuresField("DR_Splice1")] public double DR_Splice1;// 이음
         [TSP.StructuresField("DR_Splice2")] public double DR_Splice2;// 이음
 
-        [TSP.StructuresField("DR_FootingDepth")] public double DR_FootingDepth;// 기초두께
+    
 
         [TSP.StructuresField("DR_HookCorver")] public double DR_HookCorver;// 후크피복
         [TSP.StructuresField("DR_HookLength")] public double DR_HookLength;// 후크길이
@@ -136,8 +141,6 @@ namespace YT.WallVerticalRebar
 
         [TSP.StructuresField("DL_Splice1")] public double DL_Splice1;// 이음
         [TSP.StructuresField("DL_Splice2")] public double DL_Splice2;// 이음
-
-        [TSP.StructuresField("DL_FootingDepth")] public double DL_FootingDepth;// 기초두께
 
         [TSP.StructuresField("DL_HookCorver")] public double DL_HookCorver;// 후크피복
         [TSP.StructuresField("DL_HookLength")] public double DL_HookLength;// 후크길이
