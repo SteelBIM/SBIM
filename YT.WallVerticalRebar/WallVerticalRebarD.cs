@@ -20,7 +20,6 @@ namespace YT.WallVerticalRebar
     public class WallVerticalRebarD
     {
 
-
         #region 메인공통
         //[TSP.StructuresField("W_Coordination")] public string W_Coordination;
         [TSP.StructuresField("W_Building")] public string W_Building;
@@ -147,5 +146,33 @@ namespace YT.WallVerticalRebar
         [TSP.StructuresField("DL_HookInOut")] public string DL_HookInOut;// 후크내/외
 
         #endregion
+
+        #region 보강근 공통
+
+        [TSP.StructuresField("R_Building")] public string RFC_Building ;
+        [TSP.StructuresField("R_Building_Storey")] public string RFC_Building_Storey ;
+        [TSP.StructuresField("R_UDA")] public string RFC_UDA;
+
+        #endregion
+
+        #region 우측 하부 보강근
+        //[TSP.StructuresField("R_RB_Name")] public string R_RB_Name = "W_ADD";
+        //[TSP.StructuresField("R_RB_Grade")] public string R_RB_Grade = "SD400";
+        //[TSP.StructuresField("R_RB_Size")] public string R_RB_Size = "10";
+        //[TSP.StructuresField("R_RB_Radius")] public double R_RB_Radius = 30.0;
+        //[TSP.StructuresField("R_RB_Class")] public int R_RB_Class = 3;
+
+        //[TSP.StructuresField("R_RB_Prefix")] public string R_RB_Prefix = "w";
+        //[TSP.StructuresField("R_RB_StartNumber")] public int R_RB_StartNumber = 5;
+        #endregion
+
+        #region 좌측 하부 보강근
+        //[TSP.StructuresField("R_LB_Name")] public string R_LB_Name;
+        //[TSP.StructuresField("R_LB_Grade")] public string R_LB_Grade;
+        //[TSP.StructuresField("R_LB_Size")] public string R_LB_Size;
+        //[TSP.StructuresField("R_LB_Radius")] public double R_LB_Radius;
+        //[TSP.StructuresField("R_LB_Class")] public int R_LB_Class;
+        #endregion
+
     }
 }

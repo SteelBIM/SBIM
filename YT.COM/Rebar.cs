@@ -22,6 +22,7 @@ namespace YT.COM
         public Rebar()
         {
         }
+
         #endregion
 
         #region 속성
@@ -79,13 +80,14 @@ namespace YT.COM
         public string Building { get; set; }
         public string BuildingStorey { get; set; }
 
+
         #endregion
+
         public void Insert()
         {
             var m = new TSM.Model();
 
             var bar = new TSM.RebarGroup();
-
 
             //형상
             bar.Polygons = Polygon;
@@ -137,19 +139,12 @@ namespace YT.COM
             bar.Insert();
             m.CommitChanges();
 
-            //UDA
-            //var a = string.Empty;
-            //var b = Father.GetUserProperty("IFC_BUILDING", ref a);
-
-            //var c = string.Empty;
-            //var d = Father.GetUserProperty("IFC_BUILDING_STOREY", ref c);
-
-            //Building = a;
-            //BuildingStorey = c;
-
             bar.SetUserProperty("USER_FIELD_1", Building);
             bar.SetUserProperty("USER_FIELD_2", BuildingStorey);
 
         }
+
+        
     }
+
 }

@@ -72,9 +72,6 @@ namespace YT.WallVerticalRebar
             var endPoint1 = (TSG.Point)(Input[3]).GetInput();
             var endPoint2 = (TSG.Point)(Input[4]).GetInput();
 
-
-
-
             // 좌표 변경
             var lcs = wall.GetCoordinateSystem();
 
@@ -117,6 +114,8 @@ namespace YT.WallVerticalRebar
 
             InsertMainRebar(wall, p1, p2, p3, p4);
             InsertDowellRebar(wall, p1, p2, p3, p4);
+            InsertReinforcingBar(wall, p1, p2, p3, p4);
+
             return true;
         }
 
@@ -657,9 +656,9 @@ namespace YT.WallVerticalRebar
             var rightMoveY = D.R_MoveY;
 
             var rightKsXS = KS.GetDiameter(Convert.ToDouble(D.R_Size)) / 2;
-            var rightKsXSD = KS.GetDiameter(Convert.ToDouble(D.R_Size)) ;
+            var rightKsXSD = KS.GetDiameter(Convert.ToDouble(D.R_Size));
             var rightKsXE = KS.GetDiameter(Convert.ToDouble(D.R_Size)) / 2;
-            var rightKsXED = KS.GetDiameter(Convert.ToDouble(D.R_Size)) ;
+            var rightKsXED = KS.GetDiameter(Convert.ToDouble(D.R_Size));
             var rightKsY = KS.GetDiameter(Convert.ToDouble(D.R_Size)) / 2;
 
             var leftMoveXS = D.L_MoveXS;
@@ -667,7 +666,7 @@ namespace YT.WallVerticalRebar
             var leftMoveY = D.L_MoveY;
 
             var leftKsXS = KS.GetDiameter(Convert.ToDouble(D.L_Size)) / 2;
-            var leftKsXSD = KS.GetDiameter(Convert.ToDouble(D.L_Size)) ;
+            var leftKsXSD = KS.GetDiameter(Convert.ToDouble(D.L_Size));
             var leftKsXE = KS.GetDiameter(Convert.ToDouble(D.L_Size)) / 2;
             var leftKsXED = KS.GetDiameter(Convert.ToDouble(D.L_Size));
             var leftKsY = KS.GetDiameter(Convert.ToDouble(D.L_Size)) / 2;
@@ -769,8 +768,8 @@ namespace YT.WallVerticalRebar
 
             barRD.StartOffsetValue = -D.DW_FootingDepth + D.DR_HookCorver;
 
-            barRD.StartPoint = new TSG.Point(startrightCrossPoint.X + rightMoveXS + rightKsXS+rightKsXSD, startrightCrossPoint.Y, startrightCrossPoint.Z);
-            barRD.EndPoint = new TSG.Point(endrightCrossPoint.X - rightMoveXE - rightKsXE+rightKsXED, endrightCrossPoint.Y, endrightCrossPoint.Z);
+            barRD.StartPoint = new TSG.Point(startrightCrossPoint.X + rightMoveXS + rightKsXS + rightKsXSD, startrightCrossPoint.Y, startrightCrossPoint.Z);
+            barRD.EndPoint = new TSG.Point(endrightCrossPoint.X - rightMoveXE - rightKsXE + rightKsXED, endrightCrossPoint.Y, endrightCrossPoint.Z);
 
             barRD.StartHookShape = TSM.RebarHookData.RebarHookShapeEnum.CUSTOM_HOOK;
             //barRD.ExcludeType = TSM.BaseRebarGroup.ExcludeTypeEnum.EXCLUDE_TYPE_FIRST;
@@ -784,7 +783,7 @@ namespace YT.WallVerticalRebar
             {
                 barRD.StartHookLength = D.DR_HookLength - barRD.Radius - KS.GetDiameter(Convert.ToDouble(barRD.Size));
             }
-            
+
 
             switch (D.R_ExcludeType)
             {
@@ -844,7 +843,7 @@ namespace YT.WallVerticalRebar
 
                     listr.RemoveAt(chr.Count() - 1);
 
-                    listr.Add(last - (KS.GetDiameter(Convert.ToDouble(barRD.Size))*2));
+                    listr.Add(last - (KS.GetDiameter(Convert.ToDouble(barRD.Size)) * 2));
 
                     barRD.Spacing = listr;
 
@@ -858,7 +857,7 @@ namespace YT.WallVerticalRebar
 
                     var rightSpacings = new Spacings();
 
-                    barRD.Spacing = rightSpacings.RightDoWelSpacing2(barLStartPoint, barLEndPoint, barRStartPoint, barREndPoint, lengthR, rightSpacing, rebar, barRD.Size);
+                    barRD.Spacing = rightSpacings.RightDoWelSpacing(barLStartPoint, barLEndPoint, barRStartPoint, barREndPoint, lengthR, rightSpacing, rebar, barRD.Size);
                     //barR.Spacing = RSP;
                     break;
             }
@@ -889,14 +888,14 @@ namespace YT.WallVerticalRebar
 
             barLD.StartOffsetValue = -D.DW_FootingDepth + D.DL_HookCorver;
 
-            barLD.StartPoint = new TSG.Point(startleftCrossPoint.X + leftMoveXS + leftKsXS+leftKsXSD, startleftCrossPoint.Y, startleftCrossPoint.Z);
-            barLD.EndPoint = new TSG.Point(endleftCrossPoint.X - leftMoveXE - leftKsXE+leftKsXED, endleftCrossPoint.Y, endleftCrossPoint.Z);
+            barLD.StartPoint = new TSG.Point(startleftCrossPoint.X + leftMoveXS + leftKsXS + leftKsXSD, startleftCrossPoint.Y, startleftCrossPoint.Z);
+            barLD.EndPoint = new TSG.Point(endleftCrossPoint.X - leftMoveXE - leftKsXE + leftKsXED, endleftCrossPoint.Y, endleftCrossPoint.Z);
 
             barLD.StartHookShape = TSM.RebarHookData.RebarHookShapeEnum.CUSTOM_HOOK;
             //barLD.ExcludeType = TSM.BaseRebarGroup.ExcludeTypeEnum.EXCLUDE_TYPE_FIRST;
             barLD.StartHookRadius = barLD.Radius;
 
-            if (D.DW_FootingSpacing+D.DW_FootingSplice > D.DL_HookLength)
+            if (D.DW_FootingSpacing + D.DW_FootingSplice > D.DL_HookLength)
             {
                 barLD.StartHookLength = D.DW_FootingSpacing + D.DW_FootingSplice - barLD.Radius - KS.GetDiameter(Convert.ToDouble(barLD.Size));
             }
@@ -904,7 +903,7 @@ namespace YT.WallVerticalRebar
             {
                 barLD.StartHookLength = D.DL_HookLength - barLD.Radius - KS.GetDiameter(Convert.ToDouble(barLD.Size));
             }
-            
+
 
             switch (D.L_ExcludeType)
             {
@@ -964,7 +963,7 @@ namespace YT.WallVerticalRebar
 
                     listl.RemoveAt(chl.Count() - 1);
 
-                    listl.Add(last - (KS.GetDiameter(Convert.ToDouble(barLD.Size))*2));
+                    listl.Add(last - (KS.GetDiameter(Convert.ToDouble(barLD.Size)) * 2));
 
                     barLD.Spacing = listl;
 
@@ -978,7 +977,7 @@ namespace YT.WallVerticalRebar
 
                     var leftSpacings = new Spacings();
 
-                    barLD.Spacing = leftSpacings.LeftDoWelSpacing2(barLStartPoint, barLEndPoint, barRStartPoint, barREndPoint, lengthL, leftSpacing, rebar, barLD.Size);
+                    barLD.Spacing = leftSpacings.LeftDoWelSpacing(barLStartPoint, barLEndPoint, barRStartPoint, barREndPoint, lengthL, leftSpacing, rebar, barLD.Size);
 
                     break;
             }
@@ -988,5 +987,160 @@ namespace YT.WallVerticalRebar
             #endregion
 
         }
+
+        private void InsertReinforcingBar(TSM.Beam beam, TSG.Point point1, TSG.Point point2, TSG.Point point3, TSG.Point point4)
+        {
+            var m = new TSM.Model();
+
+            #region 사용자정보
+
+            var buildingSt = string.Empty;
+            var building = beam.GetUserProperty("IFC_BUILDING", ref buildingSt);
+
+            var buildingStoreySt = string.Empty;
+            var buildingStorey = beam.GetUserProperty("IFC_BUILDING_STOREY", ref buildingStoreySt);
+
+            #endregion
+
+            #region 양단부 범위 설정
+
+            var startLineSegment = new TSG.LineSegment();
+            startLineSegment.Point1 = point1;
+            startLineSegment.Point2 = point2;
+
+            var endLineSegment = new TSG.LineSegment();
+            endLineSegment.Point1 = point3;
+            endLineSegment.Point2 = point4;
+
+            #endregion
+
+            #region 철근 공칭지름 관련 이동
+
+            var rightMoveXS = D.R_MoveXS;
+            var rightMoveXE = D.R_MoveXE;
+            var rightMoveY = D.R_MoveY;
+
+            var rightKsXS = KS.GetDiameter(Convert.ToDouble(D.R_Size)) / 2;
+            var rightKsXSD = KS.GetDiameter(Convert.ToDouble(D.R_Size));
+            var rightKsXE = KS.GetDiameter(Convert.ToDouble(D.R_Size)) / 2;
+            var rightKsXED = KS.GetDiameter(Convert.ToDouble(D.R_Size));
+            var rightKsY = KS.GetDiameter(Convert.ToDouble(D.R_Size)) / 2;
+
+            var leftMoveXS = D.L_MoveXS;
+            var leftMoveXE = D.L_MoveXE;
+            var leftMoveY = D.L_MoveY;
+
+            var leftKsXS = KS.GetDiameter(Convert.ToDouble(D.L_Size)) / 2;
+            var leftKsXSD = KS.GetDiameter(Convert.ToDouble(D.L_Size));
+            var leftKsXE = KS.GetDiameter(Convert.ToDouble(D.L_Size)) / 2;
+            var leftKsXED = KS.GetDiameter(Convert.ToDouble(D.L_Size));
+            var leftKsY = KS.GetDiameter(Convert.ToDouble(D.L_Size)) / 2;
+
+            #endregion
+
+            #region 솔리드
+
+            var maxX = beam.GetSolid().MaximumPoint.X;
+            var maxY = beam.GetSolid().MaximumPoint.Y;
+            var maxZ = beam.GetSolid().MaximumPoint.Z;
+
+            var minX = beam.GetSolid().MinimumPoint.X;
+            var minY = beam.GetSolid().MinimumPoint.Y;
+            var minZ = beam.GetSolid().MinimumPoint.Z;
+
+            #endregion
+
+            #region 포인트
+            if (rightMoveXS == 0) rightKsXS = 0;
+            if (rightMoveXE == 0) rightKsXE = 0;
+            if (rightMoveY == 0) rightKsY = 0;
+
+            if (leftMoveXS == 0) leftKsXS = 0;
+            if (leftMoveXE == 0) leftKsXE = 0;
+            if (leftMoveY == 0) leftKsY = 0;
+
+
+            var rightLineSegment = new TSG.LineSegment();
+            rightLineSegment.Point1 = new TSG.Point(minX + rightMoveXS + rightKsXS, minY + rightMoveY + rightKsY, maxZ);
+            rightLineSegment.Point2 = new TSG.Point(maxX - rightMoveXE - rightKsXE, minY + rightMoveY + rightKsY, maxZ);
+
+            var startrightCrossPoint = Util.FindPoint.CrossPoint(new TSG.Line(startLineSegment), new TSG.Line(rightLineSegment));
+
+            var endrightCrossPoint = Util.FindPoint.CrossPoint(new TSG.Line(endLineSegment), new TSG.Line(rightLineSegment));
+
+
+            var leftLineSegment = new TSG.LineSegment();
+            leftLineSegment.Point1 = new TSG.Point(minX + leftMoveXS + leftKsXS, maxY - leftMoveY - leftKsY, maxZ);
+            leftLineSegment.Point2 = new TSG.Point(maxX - leftMoveXE - leftKsXE, maxY - leftMoveY - leftKsY, maxZ);
+
+            var startleftCrossPoint = Util.FindPoint.CrossPoint(new TSG.Line(startLineSegment), new TSG.Line(leftLineSegment));
+
+            var endleftCrossPoint = Util.FindPoint.CrossPoint(new TSG.Line(endLineSegment), new TSG.Line(leftLineSegment));
+
+            var barRStartPoint = new TSG.Point(startrightCrossPoint.X + rightMoveXS + rightKsXS, startrightCrossPoint.Y, startrightCrossPoint.Z);
+            var barREndPoint = new TSG.Point(endrightCrossPoint.X - rightMoveXE - rightKsXE, endrightCrossPoint.Y, endrightCrossPoint.Z);
+
+            var barLStartPoint = new TSG.Point(startleftCrossPoint.X + leftMoveXS + leftKsXS, startleftCrossPoint.Y, startleftCrossPoint.Z);
+            var barLEndPoint = new TSG.Point(endleftCrossPoint.X - leftMoveXE - leftKsXE, endleftCrossPoint.Y, endleftCrossPoint.Z);
+
+            var rebar = "";
+
+            if (Convert.ToInt32(D.L_Size) <= Convert.ToInt32(D.R_Size))
+            {
+                rebar = D.R_Size;
+            }
+            else if (Convert.ToInt32(D.L_Size) > Convert.ToInt32(D.R_Size))
+            {
+                rebar = D.L_Size;
+            }
+            #endregion
+
+            var barRRB = new Rebar();
+
+            //barRRB.Name = D.R_RB_Name;
+            //barRRB.Grade = D.R_RB_Grade;
+            //barRRB.Size = D.R_RB_Size;
+            //barRRB.Radius = D.R_RB_Radius;
+            //barRRB.Class = D.R_RB_Class;
+
+            //barRRB.Prefix = D.R_RB_Prefix;
+            //barRRB.StartNumber = D.R_RB_StartNumber;
+
+            barRRB.Name = "W_ADD";
+            barRRB.Grade = "SD400";
+            barRRB.Size = "10";
+            barRRB.Radius = 30.0;
+            barRRB.Class = 10;
+
+            barRRB.Prefix = "w";
+            barRRB.StartNumber = 3;
+
+            var shapeR = new TSM.Polygon();
+
+            shapeR.Points.Add(new TSG.Point(startrightCrossPoint.X + rightMoveXS + rightKsXS, startrightCrossPoint.Y, minZ- (100.0 + 100.0)));
+            shapeR.Points.Add(new TSG.Point(startrightCrossPoint.X + rightMoveXS + rightKsXS, startrightCrossPoint.Y, minZ + 100.0 + 100.0));
+
+            barRRB.Polygon.Add(shapeR);
+
+            double rightSpacing = D.R_Spacing;
+
+            barRRB.StartPoint = new TSG.Point(startrightCrossPoint.X + rightMoveXS + rightKsXS + rightSpacing/2, startrightCrossPoint.Y, startrightCrossPoint.Z);
+            barRRB.EndPoint = new TSG.Point(endrightCrossPoint.X - rightMoveXE - rightKsXE+ rightSpacing/2, endrightCrossPoint.Y, endrightCrossPoint.Z);
+
+            var rightSpacings = new Spacings();
+
+            var lengthR = new TSG.LineSegment(barRRB.StartPoint, barRRB.EndPoint).Length();
+
+            barRRB.Spacing = rightSpacings.RightReinforcementSpacing(barLStartPoint, barLEndPoint, barRStartPoint, barREndPoint, lengthR, rightSpacing, rebar);
+
+
+            //barRRB.Spacing = new ArrayList() { 100, 200, 300 };
+
+            barRRB.Insert();
+
+
+
+        }
+
     }
 }
