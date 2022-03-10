@@ -39,12 +39,12 @@ namespace YT.WallVerticalRebar
             okApplyModifyGetOnOffCancel1.OnOffClicked += OkApplyModifyGetOnOffCancel1_OnOffClicked;
             #endregion
 
-            #region Event : reinforcementCatalogR
+            #region Event : 우측 메인 철근선택
             reinforcementCatalogR.SelectClicked += ReinforcementCatalogR_SelectClicked;
             reinforcementCatalogR.SelectionDone += ReinforcementCatalogR_SelectionDone;
             #endregion
 
-            #region Event :reinforcementCatalogL
+            #region Event :좌측 메인 철근선택
             reinforcementCatalogL.SelectClicked += ReinforcementCatalogL_SelectClicked;
             reinforcementCatalogL.SelectionDone += ReinforcementCatalogL_SelectionDone;
             #endregion
@@ -60,14 +60,33 @@ namespace YT.WallVerticalRebar
             #endregion
 
             #region Evnet : 다월 UDA
-            DW_UDA.TextChanged += DW_UDA_TextChanged; 
+            DW_UDA.TextChanged += DW_UDA_TextChanged;
             #endregion
 
-            #region 철근간격
+            #region Event : 메인 철근간격
             R_SpacingType.TextChanged += R_SpacingType_TextChanged;
-            L_SpacingType.TextChanged += L_SpacingType_TextChanged; 
+            L_SpacingType.TextChanged += L_SpacingType_TextChanged;
             #endregion
 
+            #region Event : 하부 우측 보강근 철근선택
+            reinforcementCatalog1.SelectClicked += ReinforcementCatalog1_SelectClicked;
+            reinforcementCatalog1.SelectionDone += ReinforcementCatalog1_SelectionDone;
+            #endregion
+
+            #region Event : 하부 좌측 보강근 철근선택
+            reinforcementCatalog2.SelectClicked += ReinforcementCatalog2_SelectClicked;
+            reinforcementCatalog2.SelectionDone += ReinforcementCatalog2_SelectionDone;
+            #endregion
+
+            #region Event : 중앙부 우측 보강근 철근선택
+            reinforcementCatalog3.SelectClicked += ReinforcementCatalog3_SelectClicked;
+            reinforcementCatalog3.SelectionDone += ReinforcementCatalog3_SelectionDone;
+            #endregion
+
+            #region Event : 중앙부 좌측 보강근 철근선택
+            reinforcementCatalog4.SelectClicked += ReinforcementCatalog4_SelectClicked;
+            reinforcementCatalog4.SelectionDone += ReinforcementCatalog4_SelectionDone;
+            #endregion
         }
 
         #region UI 화면 표시
@@ -102,6 +121,7 @@ namespace YT.WallVerticalRebar
             this.SetAttributeValue(this.R_HookLength, 260.0);
             this.SetAttributeValue(this.R_HookInOut, "내");
             this.SetAttributeValue(this.R_SpacingType, "자동간격");
+            this.SetAttributeValue(this.R_UserSpacing, "0");
             #endregion
 
             #region 좌측메인수직
@@ -126,6 +146,7 @@ namespace YT.WallVerticalRebar
             this.SetAttributeValue(this.L_HookLength, 260.0);
             this.SetAttributeValue(this.L_HookInOut, "내");
             this.SetAttributeValue(this.L_SpacingType, "자동간격");
+            this.SetAttributeValue(this.L_UserSpacing, "0");
             #endregion
 
             #region 다월공통
@@ -176,6 +197,175 @@ namespace YT.WallVerticalRebar
 
             #endregion
 
+            #region 하부 보강근공통
+            this.SetAttributeValue(this.R_B_UDA, "부재 UDA 정보 사용");
+            this.SetAttributeValue(this.R_B_Building, "");
+            this.SetAttributeValue(this.R_B_Building_Storey, "");
+            #endregion
+
+            #region 우측하부보강근
+
+            this.SetAttributeValue(this.R_RB_Name, "W_ADD");
+            this.SetAttributeValue(this.R_RB_Grade, "SD400");
+            this.SetAttributeValue(this.R_RB_Size, "10");
+            this.SetAttributeValue(this.R_RB_Radius, 30.00);
+            this.SetAttributeValue(this.R_RB_Class, 7);
+
+            this.SetAttributeValue(this.R_RB_Prefix, "W");
+            this.SetAttributeValue(this.R_RB_StartNumber, 1);
+
+            this.SetAttributeValue(this.R_RB_SpacingType, "수직근 S/2");
+
+            this.SetAttributeValue(this.R_RB_YesOrNo, "아니오");
+
+            this.SetAttributeValue(this.R_RB_Splice1, 450.0);
+            this.SetAttributeValue(this.R_RB_Splice2, 350.0);
+
+            this.SetAttributeValue(this.R_RB_ExcludeType, "없음");
+
+            this.SetAttributeValue(this.R_RB_Type, "일반");
+            this.SetAttributeValue(this.R_RB_HookLength, 260.0);
+            this.SetAttributeValue(this.R_RB_HookInOut, "외");
+
+            this.SetAttributeValue(this.R_RB_UserSpacing,"0");
+
+            #endregion
+
+            #region 좌측하부보강근
+
+            this.SetAttributeValue(this.R_LB_Name, "W_ADD");
+            this.SetAttributeValue(this.R_LB_Grade, "SD400");
+            this.SetAttributeValue(this.R_LB_Size, "10");
+            this.SetAttributeValue(this.R_LB_Radius, 30.00);
+            this.SetAttributeValue(this.R_LB_Class, 7);
+
+            this.SetAttributeValue(this.R_LB_Prefix, "W");
+            this.SetAttributeValue(this.R_LB_StartNumber, 1);
+
+            this.SetAttributeValue(this.R_LB_SpacingType, "수직근 S/2");
+
+            this.SetAttributeValue(this.R_LB_YesOrNo, "아니오");
+
+            this.SetAttributeValue(this.R_LB_Splice1, 450.0);
+            this.SetAttributeValue(this.R_LB_Splice2, 350.0);
+
+            this.SetAttributeValue(this.R_LB_ExcludeType, "없음");
+
+
+            this.SetAttributeValue(this.R_LB_Type, "일반");
+            this.SetAttributeValue(this.R_LB_HookLength, 260.0);
+            this.SetAttributeValue(this.R_LB_HookInOut, "외");
+
+            this.SetAttributeValue(this.R_LB_UserSpacing, "0");
+
+            #endregion
+
+            #region 중앙부 보강근공통
+            this.SetAttributeValue(this.R_M_UDA, "부재 UDA 정보 사용");
+            this.SetAttributeValue(this.R_M_Building, "");
+            this.SetAttributeValue(this.R_M_Building_Storey, "");
+            #endregion
+
+            #region 우측 중앙부 보강근
+
+            this.SetAttributeValue(this.R_RM_Name, "W_ADD");
+            this.SetAttributeValue(this.R_RM_Grade, "SD400");
+            this.SetAttributeValue(this.R_RM_Size, "10");
+            this.SetAttributeValue(this.R_RM_Radius, 30.00);
+            this.SetAttributeValue(this.R_RM_Class, 7);
+
+            this.SetAttributeValue(this.R_RM_Prefix, "W");
+            this.SetAttributeValue(this.R_RM_StartNumber, 1);
+
+            this.SetAttributeValue(this.R_RM_SpacingType, "수직근 S/2");
+
+            this.SetAttributeValue(this.R_RM_YesOrNo, "아니오");
+
+            this.SetAttributeValue(this.R_RM_Splice1, 450.0);
+            this.SetAttributeValue(this.R_RM_Splice2, 0.0);
+
+            this.SetAttributeValue(this.R_RM_ExcludeType, "없음");
+
+            this.SetAttributeValue(this.R_RM_UserSpacing, "0");
+
+            this.SetAttributeValue(this.R_RM_SpliceType, "일반");
+            this.SetAttributeValue(this.R_RM_Bent, 75.0);
+            this.SetAttributeValue(this.R_RM_HookCorver, 50.0);
+            this.SetAttributeValue(this.R_RM_HookLength, 260.0);
+            this.SetAttributeValue(this.R_RM_HookInOut, "내");
+
+
+            #endregion
+
+            #region 좌측 중앙부 보강근
+
+            this.SetAttributeValue(this.R_LM_Name, "W_ADD");
+            this.SetAttributeValue(this.R_LM_Grade, "SD400");
+            this.SetAttributeValue(this.R_LM_Size, "10");
+            this.SetAttributeValue(this.R_LM_Radius, 30.00);
+            this.SetAttributeValue(this.R_LM_Class, 7);
+
+            this.SetAttributeValue(this.R_LM_Prefix, "W");
+            this.SetAttributeValue(this.R_LM_StartNumber, 1);
+
+            this.SetAttributeValue(this.R_LM_SpacingType, "수직근 S/2");
+
+            this.SetAttributeValue(this.R_LM_YesOrNo, "아니오");
+
+            this.SetAttributeValue(this.R_LM_Splice1, 450.0);
+            this.SetAttributeValue(this.R_LM_Splice2, 0.0);
+
+            this.SetAttributeValue(this.R_LM_ExcludeType, "없음");
+
+            this.SetAttributeValue(this.R_LM_UserSpacing, "0");
+
+            this.SetAttributeValue(this.R_LM_SpliceType, "일반");
+            this.SetAttributeValue(this.R_LM_Bent, 75.0);
+            this.SetAttributeValue(this.R_LM_HookCorver, 50.0);
+            this.SetAttributeValue(this.R_LM_HookLength, 260.0);
+            this.SetAttributeValue(this.R_LM_HookInOut, "내");
+
+
+            #endregion
+
+
+            #region 상부 보강근공통
+            this.SetAttributeValue(this.R_T_UDA, "부재 UDA 정보 사용");
+            this.SetAttributeValue(this.R_T_Building, "");
+            this.SetAttributeValue(this.R_T_Building_Storey, "");
+            #endregion
+
+            #region 우측 상부 보강근
+
+            this.SetAttributeValue(this.R_RT_Name, "W_ADD");
+            this.SetAttributeValue(this.R_RT_Grade, "SD400");
+            this.SetAttributeValue(this.R_RT_Size, "10");
+            this.SetAttributeValue(this.R_RT_Radius, 30.00);
+            this.SetAttributeValue(this.R_RT_Class, 7);
+
+            this.SetAttributeValue(this.R_RT_Prefix, "W");
+            this.SetAttributeValue(this.R_RT_StartNumber, 1);
+
+            this.SetAttributeValue(this.R_RT_SpacingType, "수직근 S/2");
+
+            this.SetAttributeValue(this.R_RT_YesOrNo, "예");
+
+            this.SetAttributeValue(this.R_RT_Splice1, 0.0);
+            this.SetAttributeValue(this.R_RT_Splice2, 450.0);
+
+            this.SetAttributeValue(this.R_RT_ExcludeType, "없음");
+
+            this.SetAttributeValue(this.R_RT_UserSpacing, "0");
+
+            this.SetAttributeValue(this.R_RT_SpliceType, "일반");
+            this.SetAttributeValue(this.R_RT_Bent, 75.0);
+            this.SetAttributeValue(this.R_RT_HookCorver, 50.0);
+            this.SetAttributeValue(this.R_RT_HookLength, 260.0);
+            this.SetAttributeValue(this.R_RT_HookInOut, "내");
+
+
+            #endregion
+
             string result = base.LoadValuesPath(fileName);
             this.Apply();
             return result;
@@ -213,19 +403,22 @@ namespace YT.WallVerticalRebar
 
         #endregion
 
-        #region Event : reinforcementCatalogR
+        #region Evet : 우측 메인 철근선택
         private void ReinforcementCatalogR_SelectClicked(object sender, EventArgs e)
         {
             reinforcementCatalogR.SelectedRebarGrade = R_Grade.Text;
             reinforcementCatalogR.SelectedRebarSize = R_Size.Text;
             reinforcementCatalogR.SelectedRebarBendingRadius = Convert.ToDouble(R_Size.Text);
         }
+        #endregion
+
+        #region Event : 좌측 메인 철근선택
         private void ReinforcementCatalogR_SelectionDone(object sender, EventArgs e)
         {
             SetAttributeValue(R_Grade, reinforcementCatalogR.SelectedRebarGrade);
             SetAttributeValue(R_Size, reinforcementCatalogR.SelectedRebarSize);
             SetAttributeValue(R_Radius, reinforcementCatalogR.SelectedRebarBendingRadius);
-        }
+        } 
         #endregion
 
         #region reinforcementCatalogL
@@ -346,7 +539,7 @@ namespace YT.WallVerticalRebar
         } 
         #endregion
 
-        #region Event : 철근간격
+        #region Event : 메인 철근간격
         private void R_SpacingType_TextChanged(object sender, EventArgs e)
         {
             switch (R_SpacingType.Text)
@@ -377,7 +570,69 @@ namespace YT.WallVerticalRebar
                     L_UserSpacing.Enabled = false;
                     break;
             }
-        } 
+        }
         #endregion
+
+        #region Event : 하부 우측 보강근 철근선택
+        private void ReinforcementCatalog1_SelectClicked(object sender, EventArgs e)
+        {
+            reinforcementCatalog1.SelectedRebarGrade = R_RB_Grade.Text;
+            reinforcementCatalog1.SelectedRebarSize = R_RB_Size.Text;
+            reinforcementCatalog1.SelectedRebarBendingRadius = Convert.ToDouble(R_RB_Radius.Text);
+        }
+        private void ReinforcementCatalog1_SelectionDone(object sender, EventArgs e)
+        {
+            SetAttributeValue(R_RB_Grade, reinforcementCatalog1.SelectedRebarGrade);
+            SetAttributeValue(R_RB_Size,reinforcementCatalog1.SelectedRebarSize);
+            SetAttributeValue(R_RB_Radius, reinforcementCatalog1.SelectedRebarBendingRadius);
+        }
+        #endregion
+
+        #region Event : 하부 좌측 보강근 철근선택
+        private void ReinforcementCatalog2_SelectClicked(object sender, EventArgs e)
+        {
+            reinforcementCatalog2.SelectedRebarGrade = R_LB_Grade.Text;
+            reinforcementCatalog2.SelectedRebarSize = R_LB_Size.Text;
+            reinforcementCatalog2.SelectedRebarBendingRadius = Convert.ToDouble(R_LB_Radius.Text);
+        }
+        private void ReinforcementCatalog2_SelectionDone(object sender, EventArgs e)
+        {
+            SetAttributeValue(R_LB_Grade, reinforcementCatalog2.SelectedRebarGrade);
+            SetAttributeValue(R_LB_Size, reinforcementCatalog2.SelectedRebarSize);
+            SetAttributeValue(R_LB_Radius, reinforcementCatalog2.SelectedRebarBendingRadius);
+        }
+        #endregion
+
+        #region Event : 중앙부 우측 보강근 철근선택
+        private void ReinforcementCatalog3_SelectClicked(object sender, EventArgs e)
+        {
+            reinforcementCatalog3.SelectedRebarGrade = R_RM_Grade.Text;
+            reinforcementCatalog3.SelectedRebarSize = R_RM_Size.Text;
+            reinforcementCatalog3.SelectedRebarBendingRadius = Convert.ToDouble(R_RM_Radius.Text);
+        }
+        private void ReinforcementCatalog3_SelectionDone(object sender, EventArgs e)
+        {
+            SetAttributeValue(R_RM_Grade, reinforcementCatalog3.SelectedRebarGrade);
+            SetAttributeValue(R_RM_Size, reinforcementCatalog3.SelectedRebarSize);
+            SetAttributeValue(R_RM_Radius, reinforcementCatalog3.SelectedRebarBendingRadius);
+        }
+        #endregion
+
+        #region Event : 중앙부 좌측 보강근 철근선택
+        private void ReinforcementCatalog4_SelectClicked(object sender, EventArgs e)
+        {
+            reinforcementCatalog4.SelectedRebarGrade = R_LM_Grade.Text;
+            reinforcementCatalog4.SelectedRebarSize = R_LM_Size.Text;
+            reinforcementCatalog4.SelectedRebarBendingRadius = Convert.ToDouble(R_LM_Radius.Text);
+        }
+        private void ReinforcementCatalog4_SelectionDone(object sender, EventArgs e)
+        {
+            SetAttributeValue(R_LM_Grade, reinforcementCatalog4.SelectedRebarGrade);
+            SetAttributeValue(R_LM_Size, reinforcementCatalog4.SelectedRebarSize);
+            SetAttributeValue(R_LM_Radius, reinforcementCatalog4.SelectedRebarBendingRadius);
+        }
+        #endregion
+
+        
     }
 }

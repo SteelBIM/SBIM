@@ -19,12 +19,13 @@ namespace YT.WallVerticalRebar
 {
     public class WallVerticalRebarD
     {
-
         #region 메인공통
+
         //[TSP.StructuresField("W_Coordination")] public string W_Coordination;
         [TSP.StructuresField("W_Building")] public string W_Building;
         [TSP.StructuresField("W_Building_Storey")] public string W_Building_Storey;
         [TSP.StructuresField("W_UDA")] public string W_UDA;
+
         #endregion
 
         #region 우측메인
@@ -62,6 +63,7 @@ namespace YT.WallVerticalRebar
         #endregion
 
         #region 좌측메인
+
         [TSP.StructuresField("L_Name")] public string L_Name;
         [TSP.StructuresField("L_Grade")] public string L_Grade;
         [TSP.StructuresField("L_Size")] public string L_Size;
@@ -92,10 +94,10 @@ namespace YT.WallVerticalRebar
         [TSP.StructuresField("L_UserSpacing")] public string L_UserSpacing;// 사용자 지정 철근 간격
         [TSP.StructuresField("L_Spacing")] public double L_Spacing;//자동 철근 간격
 
-
         #endregion
 
         #region 다월공통
+
         [TSP.StructuresField("DW_Building")] public string DW_Building;
         [TSP.StructuresField("DW_Building_Storey")] public string DW_Building_Storey;
         [TSP.StructuresField("DW_UDA")] public string DW_UDA;
@@ -119,12 +121,9 @@ namespace YT.WallVerticalRebar
         [TSP.StructuresField("DR_Splice1")] public double DR_Splice1;// 이음
         [TSP.StructuresField("DR_Splice2")] public double DR_Splice2;// 이음
 
-    
-
         [TSP.StructuresField("DR_HookCorver")] public double DR_HookCorver;// 후크피복
         [TSP.StructuresField("DR_HookLength")] public double DR_HookLength;// 후크길이
         [TSP.StructuresField("DR_HookInOut")] public string DR_HookInOut;// 후크내/외
-
 
         #endregion
 
@@ -147,31 +146,181 @@ namespace YT.WallVerticalRebar
 
         #endregion
 
-        #region 보강근 공통
+        #region  하부 보강근 공통
 
-        [TSP.StructuresField("R_Building")] public string RFC_Building ;
-        [TSP.StructuresField("R_Building_Storey")] public string RFC_Building_Storey ;
-        [TSP.StructuresField("R_UDA")] public string RFC_UDA;
+        [TSP.StructuresField("R_B_Building")] public string R_B_Building;
+        [TSP.StructuresField("R_B_Building_Storey")] public string R_B_Building_Storey;
+        [TSP.StructuresField("R_B_UDA")] public string R_B_UDA;
 
         #endregion
 
         #region 우측 하부 보강근
-        //[TSP.StructuresField("R_RB_Name")] public string R_RB_Name = "W_ADD";
-        //[TSP.StructuresField("R_RB_Grade")] public string R_RB_Grade = "SD400";
-        //[TSP.StructuresField("R_RB_Size")] public string R_RB_Size = "10";
-        //[TSP.StructuresField("R_RB_Radius")] public double R_RB_Radius = 30.0;
-        //[TSP.StructuresField("R_RB_Class")] public int R_RB_Class = 3;
 
-        //[TSP.StructuresField("R_RB_Prefix")] public string R_RB_Prefix = "w";
-        //[TSP.StructuresField("R_RB_StartNumber")] public int R_RB_StartNumber = 5;
+        [TSP.StructuresField("R_RB_Name")] public string R_RB_Name;
+        [TSP.StructuresField("R_RB_Grade")] public string R_RB_Grade;
+        [TSP.StructuresField("R_RB_Size")] public string R_RB_Size;
+        [TSP.StructuresField("R_RB_Radius")] public double R_RB_Radius;
+        [TSP.StructuresField("R_RB_Class")] public int R_RB_Class;
+
+        [TSP.StructuresField("R_RB_Prefix")] public string R_RB_Prefix;
+        [TSP.StructuresField("R_RB_StartNumber")] public int R_RB_StartNumber;
+
+        [TSP.StructuresField("R_RB_SpacingType")] public string R_RB_SpacingType;// 철근 간격 타입
+        [TSP.StructuresField("R_RB_UserSpacing")] public string R_RB_UserSpacing;// 사용자 지정 철근 간격
+
+        [TSP.StructuresField("R_RB_YesOrNo")] public string R_RB_YesOrNo;
+
+        [TSP.StructuresField("R_RB_Splice1")] public double R_RB_Splice1;// 상부길이
+        [TSP.StructuresField("R_RB_Splice2")] public double R_RB_Splice2;// 여장길이
+
+        [TSP.StructuresField("R_RB_ExcludeType")] public string R_RB_ExcludeType;// 철근제외
+
+        [TSP.StructuresField("R_RB_Type")] public string R_RB_Type;// 일반, 후크
+        [TSP.StructuresField("R_RB_HookLength")] public double R_RB_HookLength;// 후크길이
+        [TSP.StructuresField("R_RB_HookInOut")] public string R_RB_HookInOut;// 후크내/외
+
+        //[TSP.StructuresField("R_RB_HookCorver")] public double R_RB_HookCorver;// 후크피복
+        //[TSP.StructuresField("R_RB_HookLength")] public double R_RB_HookLength;// 후크길이
+        //[TSP.StructuresField("R_RB_HookInOut")] public string R_RB_HookInOut;// 후크내/외
+
         #endregion
 
         #region 좌측 하부 보강근
-        //[TSP.StructuresField("R_LB_Name")] public string R_LB_Name;
-        //[TSP.StructuresField("R_LB_Grade")] public string R_LB_Grade;
-        //[TSP.StructuresField("R_LB_Size")] public string R_LB_Size;
-        //[TSP.StructuresField("R_LB_Radius")] public double R_LB_Radius;
-        //[TSP.StructuresField("R_LB_Class")] public int R_LB_Class;
+
+        [TSP.StructuresField("R_LB_Name")] public string R_LB_Name;
+        [TSP.StructuresField("R_LB_Grade")] public string R_LB_Grade;
+        [TSP.StructuresField("R_LB_Size")] public string R_LB_Size;
+        [TSP.StructuresField("R_LB_Radius")] public double R_LB_Radius;
+        [TSP.StructuresField("R_LB_Class")] public int R_LB_Class;
+
+        [TSP.StructuresField("R_LB_Prefix")] public string R_LB_Prefix;
+        [TSP.StructuresField("R_LB_StartNumber")] public int R_LB_StartNumber;
+
+        [TSP.StructuresField("R_LB_SpacingType")] public string R_LB_SpacingType;// 철근 간격 타입
+        [TSP.StructuresField("R_LB_UserSpacing")] public string R_LB_UserSpacing;// 사용자 지정 철근 간격
+
+        [TSP.StructuresField("R_LB_YesOrNo")] public string R_LB_YesOrNo;
+
+        [TSP.StructuresField("R_LB_Splice1")] public double R_LB_Splice1;// 상부길이
+        [TSP.StructuresField("R_LB_Splice2")] public double R_LB_Splice2;// 여장길이
+
+        [TSP.StructuresField("R_LB_ExcludeType")] public string R_LB_ExcludeType;// 철근제외
+
+        [TSP.StructuresField("R_LB_Type")] public string R_LB_Type;// 일반, 후크
+        [TSP.StructuresField("R_LB_HookLength")] public double R_LB_HookLength;// 후크길이
+        [TSP.StructuresField("R_LB_HookInOut")] public string R_LB_HookInOut;// 후크내/외
+
+        #endregion
+
+        #region  중앙부 보강근 공통
+
+        [TSP.StructuresField("R_M_Building")] public string R_M_Building;
+        [TSP.StructuresField("R_M_Building_Storey")] public string R_M_Building_Storey;
+        [TSP.StructuresField("R_M_UDA")] public string R_M_UDA;
+
+        #endregion
+
+        #region 우측 중앙 보강근
+
+        [TSP.StructuresField("R_RM_Name")] public string R_RM_Name;
+        [TSP.StructuresField("R_RM_Grade")] public string R_RM_Grade;
+        [TSP.StructuresField("R_RM_Size")] public string R_RM_Size;
+        [TSP.StructuresField("R_RM_Radius")] public double R_RM_Radius;
+        [TSP.StructuresField("R_RM_Class")] public int R_RM_Class;
+
+        [TSP.StructuresField("R_RM_Prefix")] public string R_RM_Prefix;
+        [TSP.StructuresField("R_RM_StartNumber")] public int R_RM_StartNumber;
+
+        [TSP.StructuresField("R_RM_SpacingType")] public string R_RM_SpacingType;// 철근 간격 타입
+        [TSP.StructuresField("R_RM_UserSpacing")] public string R_RM_UserSpacing;// 사용자 지정 철근 간격
+
+        [TSP.StructuresField("R_RM_YesOrNo")] public string R_RM_YesOrNo;
+
+        [TSP.StructuresField("R_RM_Splice1")] public double R_RM_Splice1;// 윗면에서
+        [TSP.StructuresField("R_RM_Splice2")] public double R_RM_Splice2;// 아랫면에서
+
+        [TSP.StructuresField("R_RM_ExcludeType")] public string R_RM_ExcludeType;// 철근제외
+
+        [TSP.StructuresField("R_RB_AddDowel")] public string R_RM_ChangeDowel;// 다월 추가
+
+        [TSP.StructuresField("R_RM_SpliceType")] public string R_RM_SpliceType;// 이음 타입
+        [TSP.StructuresField("R_RM_Bent")] public double R_RM_Bent;// 이음
+        [TSP.StructuresField("R_RM_HookCorver")] public double R_RM_HookCorver;// 후크피복
+        [TSP.StructuresField("R_RM_HookLength")] public double R_RM_HookLength;// 후크길이
+        [TSP.StructuresField("R_RM_HookInOut")] public string R_RM_HookInOut;// 후크내/외
+
+
+        #endregion
+
+
+
+        #region 좌측 중앙 보강근
+
+        [TSP.StructuresField("R_LM_Name")] public string R_LM_Name;
+        [TSP.StructuresField("R_LM_Grade")] public string R_LM_Grade;
+        [TSP.StructuresField("R_LM_Size")] public string R_LM_Size;
+        [TSP.StructuresField("R_LM_Radius")] public double R_LM_Radius;
+        [TSP.StructuresField("R_LM_Class")] public int R_LM_Class;
+
+        [TSP.StructuresField("R_LM_Prefix")] public string R_LM_Prefix;
+        [TSP.StructuresField("R_LM_StartNumber")] public int R_LM_StartNumber;
+
+        [TSP.StructuresField("R_LM_SpacingType")] public string R_LM_SpacingType;// 철근 간격 타입
+        [TSP.StructuresField("R_LM_UserSpacing")] public string R_LM_UserSpacing;// 사용자 지정 철근 간격
+
+        [TSP.StructuresField("R_LM_YesOrNo")] public string R_LM_YesOrNo;
+
+        [TSP.StructuresField("R_LM_Splice1")] public double R_LM_Splice1;// 윗면에서
+        [TSP.StructuresField("R_LM_Splice2")] public double R_LM_Splice2;// 아랫면에서
+
+        [TSP.StructuresField("R_LM_ExcludeType")] public string R_LM_ExcludeType;// 철근제외
+
+        [TSP.StructuresField("R_LB_AddDowel")] public string R_LM_ChangeDowel;// 다월 추가
+
+        [TSP.StructuresField("R_LM_SpliceType")] public string R_LM_SpliceType;// 이음 타입
+        [TSP.StructuresField("R_LM_Bent")] public double R_LM_Bent;// 이음
+        [TSP.StructuresField("R_LM_HookCorver")] public double R_LM_HookCorver;// 후크피복
+        [TSP.StructuresField("R_LM_HookLength")] public double R_LM_HookLength;// 후크길이
+        [TSP.StructuresField("R_LM_HookInOut")] public string R_LM_HookInOut;// 후크내/외
+
+        #endregion
+
+        #region  상부 보강근 공통
+
+        [TSP.StructuresField("R_T_Building")] public string R_T_Building;
+        [TSP.StructuresField("R_T_Building_Storey")] public string R_T_Building_Storey;
+        [TSP.StructuresField("R_T_UDA")] public string R_T_UDA;
+
+        #endregion
+
+        #region 우측 상앙 보강근
+
+        [TSP.StructuresField("R_RT_Name")] public string R_RT_Name;
+        [TSP.StructuresField("R_RT_Grade")] public string R_RT_Grade;
+        [TSP.StructuresField("R_RT_Size")] public string R_RT_Size;
+        [TSP.StructuresField("R_RT_Radius")] public double R_RT_Radius;
+        [TSP.StructuresField("R_RT_Class")] public int R_RT_Class;
+
+        [TSP.StructuresField("R_RT_Prefix")] public string R_RT_Prefix;
+        [TSP.StructuresField("R_RT_StartNumber")] public int R_RT_StartNumber;
+
+        [TSP.StructuresField("R_RT_SpacingType")] public string R_RT_SpacingType;// 철근 간격 타입
+        [TSP.StructuresField("R_RT_UserSpacing")] public string R_RT_UserSpacing;// 사용자 지정 철근 간격
+
+        [TSP.StructuresField("R_RT_YesOrNo")] public string R_RT_YesOrNo;
+
+        [TSP.StructuresField("R_RT_Splice1")] public double R_RT_Splice1;// 상부길이
+        [TSP.StructuresField("R_RT_Splice2")] public double R_RT_Splice2;// 하부길이
+
+        [TSP.StructuresField("R_RT_ExcludeType")] public string R_RT_ExcludeType;// 철근제외
+
+        [TSP.StructuresField("R_RT_SpliceType")] public string R_RT_SpliceType;// 이음 타입
+        [TSP.StructuresField("R_RT_Bent")] public double R_RT_Bent;// 이음
+        [TSP.StructuresField("R_RT_HookCorver")] public double R_RT_HookCorver;// 후크피복
+        [TSP.StructuresField("R_RT_HookLength")] public double R_RT_HookLength;// 후크길이
+        [TSP.StructuresField("R_RT_HookInOut")] public string R_RT_HookInOut;// 후크내/외
+
+
         #endregion
 
     }
