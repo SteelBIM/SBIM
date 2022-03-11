@@ -68,12 +68,8 @@ namespace YT.WallVerticalRebar
             this.label24 = new System.Windows.Forms.Label();
             this.L_ExcludeType = new System.Windows.Forms.ComboBox();
             this.groupBox6 = new System.Windows.Forms.GroupBox();
-            this.L_MoveXS = new System.Windows.Forms.TextBox();
-            this.checkBox19 = new System.Windows.Forms.CheckBox();
             this.L_MoveY = new System.Windows.Forms.TextBox();
             this.checkBox18 = new System.Windows.Forms.CheckBox();
-            this.L_MoveXE = new System.Windows.Forms.TextBox();
-            this.checkBox23 = new System.Windows.Forms.CheckBox();
             this.label14 = new System.Windows.Forms.Label();
             this.label18 = new System.Windows.Forms.Label();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
@@ -142,11 +138,11 @@ namespace YT.WallVerticalRebar
             this.R_ExcludeType = new System.Windows.Forms.ComboBox();
             this.label23 = new System.Windows.Forms.Label();
             this.groupBox10 = new System.Windows.Forms.GroupBox();
-            this.R_MoveXS = new System.Windows.Forms.TextBox();
+            this.MoveXS = new System.Windows.Forms.TextBox();
             this.checkBox16 = new System.Windows.Forms.CheckBox();
             this.R_MoveY = new System.Windows.Forms.TextBox();
             this.checkBox17 = new System.Windows.Forms.CheckBox();
-            this.R_MoveXE = new System.Windows.Forms.TextBox();
+            this.MoveXE = new System.Windows.Forms.TextBox();
             this.checkBox22 = new System.Windows.Forms.CheckBox();
             this.label13 = new System.Windows.Forms.Label();
             this.label15 = new System.Windows.Forms.Label();
@@ -564,6 +560,105 @@ namespace YT.WallVerticalRebar
             this.checkBox125 = new System.Windows.Forms.CheckBox();
             this.R_T_Building_Storey = new System.Windows.Forms.TextBox();
             this.R_T_Building = new System.Windows.Forms.TextBox();
+            this.groupBox63 = new System.Windows.Forms.GroupBox();
+            this.groupBox65 = new System.Windows.Forms.GroupBox();
+            this.R_LT_Splice1 = new System.Windows.Forms.TextBox();
+            this.checkBox123 = new System.Windows.Forms.CheckBox();
+            this.R_LT_SpliceType = new System.Windows.Forms.ComboBox();
+            this.checkBox126 = new System.Windows.Forms.CheckBox();
+            this.label162 = new System.Windows.Forms.Label();
+            this.R_LT_HookLength = new System.Windows.Forms.TextBox();
+            this.R_LT_HookInOut = new System.Windows.Forms.ComboBox();
+            this.label166 = new System.Windows.Forms.Label();
+            this.label167 = new System.Windows.Forms.Label();
+            this.label168 = new System.Windows.Forms.Label();
+            this.label169 = new System.Windows.Forms.Label();
+            this.R_LT_Bent = new System.Windows.Forms.TextBox();
+            this.label170 = new System.Windows.Forms.Label();
+            this.checkBox127 = new System.Windows.Forms.CheckBox();
+            this.checkBox128 = new System.Windows.Forms.CheckBox();
+            this.R_LT_HookCorver = new System.Windows.Forms.TextBox();
+            this.groupBox66 = new System.Windows.Forms.GroupBox();
+            this.label171 = new System.Windows.Forms.Label();
+            this.R_LT_ExcludeType = new System.Windows.Forms.ComboBox();
+            this.groupBox67 = new System.Windows.Forms.GroupBox();
+            this.label172 = new System.Windows.Forms.Label();
+            this.R_LT_YesOrNo = new System.Windows.Forms.ComboBox();
+            this.groupBox68 = new System.Windows.Forms.GroupBox();
+            this.R_LT_Splice2 = new System.Windows.Forms.TextBox();
+            this.checkBox129 = new System.Windows.Forms.CheckBox();
+            this.label173 = new System.Windows.Forms.Label();
+            this.groupBox69 = new System.Windows.Forms.GroupBox();
+            this.checkBox130 = new System.Windows.Forms.CheckBox();
+            this.label174 = new System.Windows.Forms.Label();
+            this.R_LT_UserSpacing = new System.Windows.Forms.TextBox();
+            this.R_LT_SpacingType = new System.Windows.Forms.ComboBox();
+            this.label175 = new System.Windows.Forms.Label();
+            this.groupBox70 = new System.Windows.Forms.GroupBox();
+            this.R_LT_Name = new System.Windows.Forms.TextBox();
+            this.R_LT_Grade = new System.Windows.Forms.TextBox();
+            this.R_LT_Size = new System.Windows.Forms.TextBox();
+            this.R_LT_Radius = new System.Windows.Forms.TextBox();
+            this.label176 = new System.Windows.Forms.Label();
+            this.label177 = new System.Windows.Forms.Label();
+            this.label178 = new System.Windows.Forms.Label();
+            this.label179 = new System.Windows.Forms.Label();
+            this.checkBox131 = new System.Windows.Forms.CheckBox();
+            this.checkBox132 = new System.Windows.Forms.CheckBox();
+            this.checkBox133 = new System.Windows.Forms.CheckBox();
+            this.checkBox134 = new System.Windows.Forms.CheckBox();
+            this.reinforcementCatalog6 = new Tekla.Structures.Dialog.UIControls.ReinforcementCatalog();
+            this.R_LT_Class = new System.Windows.Forms.TextBox();
+            this.R_LT_Prefix = new System.Windows.Forms.TextBox();
+            this.label180 = new System.Windows.Forms.Label();
+            this.label181 = new System.Windows.Forms.Label();
+            this.R_LT_StartNumber = new System.Windows.Forms.TextBox();
+            this.checkBox135 = new System.Windows.Forms.CheckBox();
+            this.checkBox136 = new System.Windows.Forms.CheckBox();
+            this.checkBox137 = new System.Windows.Forms.CheckBox();
+            this.label182 = new System.Windows.Forms.Label();
+            this.groupBox72 = new System.Windows.Forms.GroupBox();
+            this.label186 = new System.Windows.Forms.Label();
+            this.R_DW_UDA = new System.Windows.Forms.ComboBox();
+            this.label187 = new System.Windows.Forms.Label();
+            this.label188 = new System.Windows.Forms.Label();
+            this.checkBox141 = new System.Windows.Forms.CheckBox();
+            this.checkBox142 = new System.Windows.Forms.CheckBox();
+            this.R_DW_Building_S = new System.Windows.Forms.TextBox();
+            this.R_DW_Building = new System.Windows.Forms.TextBox();
+            this.groupBox78 = new System.Windows.Forms.GroupBox();
+            this.groupBox79 = new System.Windows.Forms.GroupBox();
+            this.label199 = new System.Windows.Forms.Label();
+            this.R_DR_YesOrNo = new System.Windows.Forms.ComboBox();
+            this.groupBox80 = new System.Windows.Forms.GroupBox();
+            this.checkBox151 = new System.Windows.Forms.CheckBox();
+            this.R_DR_HookLength = new System.Windows.Forms.TextBox();
+            this.R_DR_HookInOut = new System.Windows.Forms.ComboBox();
+            this.label200 = new System.Windows.Forms.Label();
+            this.label201 = new System.Windows.Forms.Label();
+            this.label202 = new System.Windows.Forms.Label();
+            this.checkBox152 = new System.Windows.Forms.CheckBox();
+            this.R_DR_HookCorver = new System.Windows.Forms.TextBox();
+            this.groupBox81 = new System.Windows.Forms.GroupBox();
+            this.R_DR_Splice1 = new System.Windows.Forms.TextBox();
+            this.checkBox153 = new System.Windows.Forms.CheckBox();
+            this.R_DR_Splice2 = new System.Windows.Forms.TextBox();
+            this.label203 = new System.Windows.Forms.Label();
+            this.checkBox154 = new System.Windows.Forms.CheckBox();
+            this.label204 = new System.Windows.Forms.Label();
+            this.groupBox82 = new System.Windows.Forms.GroupBox();
+            this.R_DR_Name = new System.Windows.Forms.TextBox();
+            this.label205 = new System.Windows.Forms.Label();
+            this.checkBox155 = new System.Windows.Forms.CheckBox();
+            this.R_DR_Class = new System.Windows.Forms.TextBox();
+            this.R_DR_Prefix = new System.Windows.Forms.TextBox();
+            this.label206 = new System.Windows.Forms.Label();
+            this.label207 = new System.Windows.Forms.Label();
+            this.R_DR_StartNumber = new System.Windows.Forms.TextBox();
+            this.checkBox156 = new System.Windows.Forms.CheckBox();
+            this.checkBox157 = new System.Windows.Forms.CheckBox();
+            this.checkBox158 = new System.Windows.Forms.CheckBox();
+            this.label208 = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.groupBox14.SuspendLayout();
@@ -622,6 +717,7 @@ namespace YT.WallVerticalRebar
             this.groupBox43.SuspendLayout();
             this.groupBox44.SuspendLayout();
             this.groupBox45.SuspendLayout();
+            this.tabPage5.SuspendLayout();
             this.tabPage6.SuspendLayout();
             this.groupBox54.SuspendLayout();
             this.groupBox55.SuspendLayout();
@@ -633,6 +729,19 @@ namespace YT.WallVerticalRebar
             this.groupBox61.SuspendLayout();
             this.groupBox62.SuspendLayout();
             this.groupBox64.SuspendLayout();
+            this.groupBox63.SuspendLayout();
+            this.groupBox65.SuspendLayout();
+            this.groupBox66.SuspendLayout();
+            this.groupBox67.SuspendLayout();
+            this.groupBox68.SuspendLayout();
+            this.groupBox69.SuspendLayout();
+            this.groupBox70.SuspendLayout();
+            this.groupBox72.SuspendLayout();
+            this.groupBox78.SuspendLayout();
+            this.groupBox79.SuspendLayout();
+            this.groupBox80.SuspendLayout();
+            this.groupBox81.SuspendLayout();
+            this.groupBox82.SuspendLayout();
             this.SuspendLayout();
             // 
             // okApplyModifyGetOnOffCancel1
@@ -1156,12 +1265,8 @@ namespace YT.WallVerticalRebar
             this.structuresExtender.SetAttributeName(this.groupBox6, null);
             this.structuresExtender.SetAttributeTypeName(this.groupBox6, null);
             this.structuresExtender.SetBindPropertyName(this.groupBox6, null);
-            this.groupBox6.Controls.Add(this.L_MoveXS);
-            this.groupBox6.Controls.Add(this.checkBox19);
             this.groupBox6.Controls.Add(this.L_MoveY);
             this.groupBox6.Controls.Add(this.checkBox18);
-            this.groupBox6.Controls.Add(this.L_MoveXE);
-            this.groupBox6.Controls.Add(this.checkBox23);
             this.groupBox6.Controls.Add(this.label14);
             this.groupBox6.Controls.Add(this.label18);
             this.groupBox6.Location = new System.Drawing.Point(11, 232);
@@ -1170,31 +1275,6 @@ namespace YT.WallVerticalRebar
             this.groupBox6.TabIndex = 74;
             this.groupBox6.TabStop = false;
             this.groupBox6.Text = "이격거리";
-            // 
-            // L_MoveXS
-            // 
-            this.structuresExtender.SetAttributeName(this.L_MoveXS, "L_MoveXS");
-            this.structuresExtender.SetAttributeTypeName(this.L_MoveXS, "Double");
-            this.structuresExtender.SetBindPropertyName(this.L_MoveXS, "Text");
-            this.L_MoveXS.Location = new System.Drawing.Point(27, 38);
-            this.L_MoveXS.Name = "L_MoveXS";
-            this.L_MoveXS.Size = new System.Drawing.Size(50, 21);
-            this.L_MoveXS.TabIndex = 23;
-            // 
-            // checkBox19
-            // 
-            this.structuresExtender.SetAttributeName(this.checkBox19, "L_MoveXS");
-            this.structuresExtender.SetAttributeTypeName(this.checkBox19, null);
-            this.checkBox19.AutoSize = true;
-            this.structuresExtender.SetBindPropertyName(this.checkBox19, "Checked");
-            this.checkBox19.Checked = true;
-            this.checkBox19.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.structuresExtender.SetIsFilter(this.checkBox19, true);
-            this.checkBox19.Location = new System.Drawing.Point(10, 41);
-            this.checkBox19.Name = "checkBox19";
-            this.checkBox19.Size = new System.Drawing.Size(15, 14);
-            this.checkBox19.TabIndex = 24;
-            this.checkBox19.UseVisualStyleBackColor = true;
             // 
             // L_MoveY
             // 
@@ -1220,31 +1300,6 @@ namespace YT.WallVerticalRebar
             this.checkBox18.Size = new System.Drawing.Size(15, 14);
             this.checkBox18.TabIndex = 26;
             this.checkBox18.UseVisualStyleBackColor = true;
-            // 
-            // L_MoveXE
-            // 
-            this.structuresExtender.SetAttributeName(this.L_MoveXE, "L_MoveXE");
-            this.structuresExtender.SetAttributeTypeName(this.L_MoveXE, "Double");
-            this.structuresExtender.SetBindPropertyName(this.L_MoveXE, "Text");
-            this.L_MoveXE.Location = new System.Drawing.Point(99, 38);
-            this.L_MoveXE.Name = "L_MoveXE";
-            this.L_MoveXE.Size = new System.Drawing.Size(50, 21);
-            this.L_MoveXE.TabIndex = 27;
-            // 
-            // checkBox23
-            // 
-            this.structuresExtender.SetAttributeName(this.checkBox23, "L_MoveXE");
-            this.structuresExtender.SetAttributeTypeName(this.checkBox23, null);
-            this.checkBox23.AutoSize = true;
-            this.structuresExtender.SetBindPropertyName(this.checkBox23, "Checked");
-            this.checkBox23.Checked = true;
-            this.checkBox23.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.structuresExtender.SetIsFilter(this.checkBox23, true);
-            this.checkBox23.Location = new System.Drawing.Point(82, 41);
-            this.checkBox23.Name = "checkBox23";
-            this.checkBox23.Size = new System.Drawing.Size(15, 14);
-            this.checkBox23.TabIndex = 28;
-            this.checkBox23.UseVisualStyleBackColor = true;
             // 
             // label14
             // 
@@ -2156,11 +2211,11 @@ namespace YT.WallVerticalRebar
             this.structuresExtender.SetAttributeName(this.groupBox10, null);
             this.structuresExtender.SetAttributeTypeName(this.groupBox10, null);
             this.structuresExtender.SetBindPropertyName(this.groupBox10, null);
-            this.groupBox10.Controls.Add(this.R_MoveXS);
+            this.groupBox10.Controls.Add(this.MoveXS);
             this.groupBox10.Controls.Add(this.checkBox16);
             this.groupBox10.Controls.Add(this.R_MoveY);
             this.groupBox10.Controls.Add(this.checkBox17);
-            this.groupBox10.Controls.Add(this.R_MoveXE);
+            this.groupBox10.Controls.Add(this.MoveXE);
             this.groupBox10.Controls.Add(this.checkBox22);
             this.groupBox10.Controls.Add(this.label13);
             this.groupBox10.Controls.Add(this.label15);
@@ -2171,19 +2226,19 @@ namespace YT.WallVerticalRebar
             this.groupBox10.TabStop = false;
             this.groupBox10.Text = "이격거리";
             // 
-            // R_MoveXS
+            // MoveXS
             // 
-            this.structuresExtender.SetAttributeName(this.R_MoveXS, "R_MoveXS");
-            this.structuresExtender.SetAttributeTypeName(this.R_MoveXS, "Double");
-            this.structuresExtender.SetBindPropertyName(this.R_MoveXS, "Text");
-            this.R_MoveXS.Location = new System.Drawing.Point(27, 37);
-            this.R_MoveXS.Name = "R_MoveXS";
-            this.R_MoveXS.Size = new System.Drawing.Size(50, 21);
-            this.R_MoveXS.TabIndex = 19;
+            this.structuresExtender.SetAttributeName(this.MoveXS, "MoveXS");
+            this.structuresExtender.SetAttributeTypeName(this.MoveXS, "Double");
+            this.structuresExtender.SetBindPropertyName(this.MoveXS, "Text");
+            this.MoveXS.Location = new System.Drawing.Point(27, 37);
+            this.MoveXS.Name = "MoveXS";
+            this.MoveXS.Size = new System.Drawing.Size(50, 21);
+            this.MoveXS.TabIndex = 19;
             // 
             // checkBox16
             // 
-            this.structuresExtender.SetAttributeName(this.checkBox16, "R_MoveXS");
+            this.structuresExtender.SetAttributeName(this.checkBox16, "MoveXS");
             this.structuresExtender.SetAttributeTypeName(this.checkBox16, null);
             this.checkBox16.AutoSize = true;
             this.structuresExtender.SetBindPropertyName(this.checkBox16, "Checked");
@@ -2221,19 +2276,19 @@ namespace YT.WallVerticalRebar
             this.checkBox17.TabIndex = 22;
             this.checkBox17.UseVisualStyleBackColor = true;
             // 
-            // R_MoveXE
+            // MoveXE
             // 
-            this.structuresExtender.SetAttributeName(this.R_MoveXE, "R_MoveXE");
-            this.structuresExtender.SetAttributeTypeName(this.R_MoveXE, "Double");
-            this.structuresExtender.SetBindPropertyName(this.R_MoveXE, "Text");
-            this.R_MoveXE.Location = new System.Drawing.Point(99, 37);
-            this.R_MoveXE.Name = "R_MoveXE";
-            this.R_MoveXE.Size = new System.Drawing.Size(50, 21);
-            this.R_MoveXE.TabIndex = 25;
+            this.structuresExtender.SetAttributeName(this.MoveXE, "MoveXE");
+            this.structuresExtender.SetAttributeTypeName(this.MoveXE, "Double");
+            this.structuresExtender.SetBindPropertyName(this.MoveXE, "Text");
+            this.MoveXE.Location = new System.Drawing.Point(99, 37);
+            this.MoveXE.Name = "MoveXE";
+            this.MoveXE.Size = new System.Drawing.Size(50, 21);
+            this.MoveXE.TabIndex = 25;
             // 
             // checkBox22
             // 
-            this.structuresExtender.SetAttributeName(this.checkBox22, "R_MoveXE");
+            this.structuresExtender.SetAttributeName(this.checkBox22, "MoveXE");
             this.structuresExtender.SetAttributeTypeName(this.checkBox22, null);
             this.checkBox22.AutoSize = true;
             this.structuresExtender.SetBindPropertyName(this.checkBox22, "Checked");
@@ -6548,6 +6603,8 @@ namespace YT.WallVerticalRebar
             this.structuresExtender.SetAttributeName(this.tabPage5, null);
             this.structuresExtender.SetAttributeTypeName(this.tabPage5, null);
             this.structuresExtender.SetBindPropertyName(this.tabPage5, null);
+            this.tabPage5.Controls.Add(this.groupBox72);
+            this.tabPage5.Controls.Add(this.groupBox78);
             this.tabPage5.Location = new System.Drawing.Point(4, 22);
             this.tabPage5.Name = "tabPage5";
             this.tabPage5.Padding = new System.Windows.Forms.Padding(3);
@@ -6561,6 +6618,7 @@ namespace YT.WallVerticalRebar
             this.structuresExtender.SetAttributeName(this.tabPage6, null);
             this.structuresExtender.SetAttributeTypeName(this.tabPage6, null);
             this.structuresExtender.SetBindPropertyName(this.tabPage6, null);
+            this.tabPage6.Controls.Add(this.groupBox63);
             this.tabPage6.Controls.Add(this.groupBox56);
             this.tabPage6.Controls.Add(this.groupBox64);
             this.tabPage6.Location = new System.Drawing.Point(4, 22);
@@ -7880,6 +7938,1344 @@ namespace YT.WallVerticalRebar
             this.R_T_Building.Size = new System.Drawing.Size(56, 21);
             this.R_T_Building.TabIndex = 0;
             // 
+            // groupBox63
+            // 
+            this.structuresExtender.SetAttributeName(this.groupBox63, null);
+            this.structuresExtender.SetAttributeTypeName(this.groupBox63, null);
+            this.structuresExtender.SetBindPropertyName(this.groupBox63, null);
+            this.groupBox63.Controls.Add(this.groupBox65);
+            this.groupBox63.Controls.Add(this.groupBox66);
+            this.groupBox63.Controls.Add(this.groupBox67);
+            this.groupBox63.Controls.Add(this.groupBox68);
+            this.groupBox63.Controls.Add(this.groupBox69);
+            this.groupBox63.Controls.Add(this.groupBox70);
+            this.groupBox63.Location = new System.Drawing.Point(8, 98);
+            this.groupBox63.Name = "groupBox63";
+            this.groupBox63.Size = new System.Drawing.Size(685, 308);
+            this.groupBox63.TabIndex = 80;
+            this.groupBox63.TabStop = false;
+            this.groupBox63.Text = "좌측 보강근";
+            // 
+            // groupBox65
+            // 
+            this.structuresExtender.SetAttributeName(this.groupBox65, null);
+            this.structuresExtender.SetAttributeTypeName(this.groupBox65, null);
+            this.structuresExtender.SetBindPropertyName(this.groupBox65, null);
+            this.groupBox65.Controls.Add(this.R_LT_Splice1);
+            this.groupBox65.Controls.Add(this.checkBox123);
+            this.groupBox65.Controls.Add(this.R_LT_SpliceType);
+            this.groupBox65.Controls.Add(this.checkBox126);
+            this.groupBox65.Controls.Add(this.label162);
+            this.groupBox65.Controls.Add(this.R_LT_HookLength);
+            this.groupBox65.Controls.Add(this.R_LT_HookInOut);
+            this.groupBox65.Controls.Add(this.label166);
+            this.groupBox65.Controls.Add(this.label167);
+            this.groupBox65.Controls.Add(this.label168);
+            this.groupBox65.Controls.Add(this.label169);
+            this.groupBox65.Controls.Add(this.R_LT_Bent);
+            this.groupBox65.Controls.Add(this.label170);
+            this.groupBox65.Controls.Add(this.checkBox127);
+            this.groupBox65.Controls.Add(this.checkBox128);
+            this.groupBox65.Controls.Add(this.R_LT_HookCorver);
+            this.groupBox65.Location = new System.Drawing.Point(11, 243);
+            this.groupBox65.Name = "groupBox65";
+            this.groupBox65.Size = new System.Drawing.Size(663, 65);
+            this.groupBox65.TabIndex = 79;
+            this.groupBox65.TabStop = false;
+            this.groupBox65.Text = "상부연결";
+            // 
+            // R_LT_Splice1
+            // 
+            this.structuresExtender.SetAttributeName(this.R_LT_Splice1, "R_LT_Splice1");
+            this.structuresExtender.SetAttributeTypeName(this.R_LT_Splice1, "Double");
+            this.structuresExtender.SetBindPropertyName(this.R_LT_Splice1, "Text");
+            this.R_LT_Splice1.Location = new System.Drawing.Point(123, 38);
+            this.R_LT_Splice1.Name = "R_LT_Splice1";
+            this.R_LT_Splice1.Size = new System.Drawing.Size(65, 21);
+            this.R_LT_Splice1.TabIndex = 36;
+            // 
+            // checkBox123
+            // 
+            this.structuresExtender.SetAttributeName(this.checkBox123, "R_LT_Splice1");
+            this.structuresExtender.SetAttributeTypeName(this.checkBox123, null);
+            this.checkBox123.AutoSize = true;
+            this.structuresExtender.SetBindPropertyName(this.checkBox123, "Checked");
+            this.checkBox123.Checked = true;
+            this.checkBox123.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.structuresExtender.SetIsFilter(this.checkBox123, true);
+            this.checkBox123.Location = new System.Drawing.Point(106, 41);
+            this.checkBox123.Name = "checkBox123";
+            this.checkBox123.Size = new System.Drawing.Size(15, 14);
+            this.checkBox123.TabIndex = 37;
+            this.checkBox123.UseVisualStyleBackColor = true;
+            // 
+            // R_LT_SpliceType
+            // 
+            this.structuresExtender.SetAttributeName(this.R_LT_SpliceType, "R_LT_SpliceType");
+            this.structuresExtender.SetAttributeTypeName(this.R_LT_SpliceType, "String");
+            this.structuresExtender.SetBindPropertyName(this.R_LT_SpliceType, "Text");
+            this.R_LT_SpliceType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.R_LT_SpliceType.FormattingEnabled = true;
+            this.R_LT_SpliceType.Items.AddRange(new object[] {
+            "일반",
+            "벤트",
+            "후크"});
+            this.R_LT_SpliceType.Location = new System.Drawing.Point(6, 37);
+            this.R_LT_SpliceType.Name = "R_LT_SpliceType";
+            this.R_LT_SpliceType.Size = new System.Drawing.Size(82, 20);
+            this.R_LT_SpliceType.TabIndex = 48;
+            // 
+            // checkBox126
+            // 
+            this.structuresExtender.SetAttributeName(this.checkBox126, "R_LT_HookLength");
+            this.structuresExtender.SetAttributeTypeName(this.checkBox126, null);
+            this.checkBox126.AutoSize = true;
+            this.structuresExtender.SetBindPropertyName(this.checkBox126, "Checked");
+            this.checkBox126.Checked = true;
+            this.checkBox126.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.structuresExtender.SetIsFilter(this.checkBox126, true);
+            this.checkBox126.Location = new System.Drawing.Point(483, 40);
+            this.checkBox126.Name = "checkBox126";
+            this.checkBox126.Size = new System.Drawing.Size(15, 14);
+            this.checkBox126.TabIndex = 60;
+            this.checkBox126.UseVisualStyleBackColor = true;
+            // 
+            // label162
+            // 
+            this.structuresExtender.SetAttributeName(this.label162, null);
+            this.structuresExtender.SetAttributeTypeName(this.label162, null);
+            this.label162.AutoSize = true;
+            this.structuresExtender.SetBindPropertyName(this.label162, null);
+            this.label162.Location = new System.Drawing.Point(132, 19);
+            this.label162.Name = "label162";
+            this.label162.Size = new System.Drawing.Size(53, 12);
+            this.label162.TabIndex = 46;
+            this.label162.Text = "윗면길이";
+            // 
+            // R_LT_HookLength
+            // 
+            this.structuresExtender.SetAttributeName(this.R_LT_HookLength, "R_LT_HookLength");
+            this.structuresExtender.SetAttributeTypeName(this.R_LT_HookLength, "Double");
+            this.structuresExtender.SetBindPropertyName(this.R_LT_HookLength, "Text");
+            this.R_LT_HookLength.Location = new System.Drawing.Point(500, 37);
+            this.R_LT_HookLength.Name = "R_LT_HookLength";
+            this.R_LT_HookLength.Size = new System.Drawing.Size(65, 21);
+            this.R_LT_HookLength.TabIndex = 59;
+            // 
+            // R_LT_HookInOut
+            // 
+            this.structuresExtender.SetAttributeName(this.R_LT_HookInOut, "R_LT_HookInOut");
+            this.structuresExtender.SetAttributeTypeName(this.R_LT_HookInOut, "String");
+            this.structuresExtender.SetBindPropertyName(this.R_LT_HookInOut, "Text");
+            this.R_LT_HookInOut.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.R_LT_HookInOut.FormattingEnabled = true;
+            this.R_LT_HookInOut.Items.AddRange(new object[] {
+            "내",
+            "외"});
+            this.R_LT_HookInOut.Location = new System.Drawing.Point(577, 37);
+            this.R_LT_HookInOut.Name = "R_LT_HookInOut";
+            this.R_LT_HookInOut.Size = new System.Drawing.Size(64, 20);
+            this.R_LT_HookInOut.TabIndex = 58;
+            // 
+            // label166
+            // 
+            this.structuresExtender.SetAttributeName(this.label166, null);
+            this.structuresExtender.SetAttributeTypeName(this.label166, null);
+            this.label166.AutoSize = true;
+            this.structuresExtender.SetBindPropertyName(this.label166, null);
+            this.label166.Location = new System.Drawing.Point(6, 18);
+            this.label166.Name = "label166";
+            this.label166.Size = new System.Drawing.Size(85, 12);
+            this.label166.TabIndex = 49;
+            this.label166.Text = "이음 타입 설정";
+            // 
+            // label167
+            // 
+            this.structuresExtender.SetAttributeName(this.label167, null);
+            this.structuresExtender.SetAttributeTypeName(this.label167, null);
+            this.label167.AutoSize = true;
+            this.structuresExtender.SetBindPropertyName(this.label167, null);
+            this.label167.Location = new System.Drawing.Point(583, 18);
+            this.label167.Name = "label167";
+            this.label167.Size = new System.Drawing.Size(53, 12);
+            this.label167.TabIndex = 57;
+            this.label167.Text = "후크방향";
+            // 
+            // label168
+            // 
+            this.structuresExtender.SetAttributeName(this.label168, null);
+            this.structuresExtender.SetAttributeTypeName(this.label168, null);
+            this.label168.AutoSize = true;
+            this.structuresExtender.SetBindPropertyName(this.label168, null);
+            this.label168.Location = new System.Drawing.Point(308, 18);
+            this.label168.Name = "label168";
+            this.label168.Size = new System.Drawing.Size(53, 12);
+            this.label168.TabIndex = 50;
+            this.label168.Text = "벤트설정";
+            // 
+            // label169
+            // 
+            this.structuresExtender.SetAttributeName(this.label169, null);
+            this.structuresExtender.SetAttributeTypeName(this.label169, null);
+            this.label169.AutoSize = true;
+            this.structuresExtender.SetBindPropertyName(this.label169, null);
+            this.label169.Location = new System.Drawing.Point(504, 18);
+            this.label169.Name = "label169";
+            this.label169.Size = new System.Drawing.Size(53, 12);
+            this.label169.TabIndex = 56;
+            this.label169.Text = "후크길이";
+            // 
+            // R_LT_Bent
+            // 
+            this.structuresExtender.SetAttributeName(this.R_LT_Bent, "R_LT_Bent");
+            this.structuresExtender.SetAttributeTypeName(this.R_LT_Bent, "Double");
+            this.structuresExtender.SetBindPropertyName(this.R_LT_Bent, "Text");
+            this.R_LT_Bent.Location = new System.Drawing.Point(301, 37);
+            this.R_LT_Bent.Name = "R_LT_Bent";
+            this.R_LT_Bent.Size = new System.Drawing.Size(65, 21);
+            this.R_LT_Bent.TabIndex = 51;
+            // 
+            // label170
+            // 
+            this.structuresExtender.SetAttributeName(this.label170, null);
+            this.structuresExtender.SetAttributeTypeName(this.label170, null);
+            this.label170.AutoSize = true;
+            this.structuresExtender.SetBindPropertyName(this.label170, null);
+            this.label170.Location = new System.Drawing.Point(407, 18);
+            this.label170.Name = "label170";
+            this.label170.Size = new System.Drawing.Size(81, 12);
+            this.label170.TabIndex = 55;
+            this.label170.Text = "상부 후크피복";
+            // 
+            // checkBox127
+            // 
+            this.structuresExtender.SetAttributeName(this.checkBox127, "R_LT_Bent");
+            this.structuresExtender.SetAttributeTypeName(this.checkBox127, null);
+            this.checkBox127.AutoSize = true;
+            this.structuresExtender.SetBindPropertyName(this.checkBox127, "Checked");
+            this.checkBox127.Checked = true;
+            this.checkBox127.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.structuresExtender.SetIsFilter(this.checkBox127, true);
+            this.checkBox127.Location = new System.Drawing.Point(284, 40);
+            this.checkBox127.Name = "checkBox127";
+            this.checkBox127.Size = new System.Drawing.Size(15, 14);
+            this.checkBox127.TabIndex = 52;
+            this.checkBox127.UseVisualStyleBackColor = true;
+            // 
+            // checkBox128
+            // 
+            this.structuresExtender.SetAttributeName(this.checkBox128, "R_LT_HookCorver");
+            this.structuresExtender.SetAttributeTypeName(this.checkBox128, null);
+            this.checkBox128.AutoSize = true;
+            this.structuresExtender.SetBindPropertyName(this.checkBox128, "Checked");
+            this.checkBox128.Checked = true;
+            this.checkBox128.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.structuresExtender.SetIsFilter(this.checkBox128, true);
+            this.checkBox128.Location = new System.Drawing.Point(397, 40);
+            this.checkBox128.Name = "checkBox128";
+            this.checkBox128.Size = new System.Drawing.Size(15, 14);
+            this.checkBox128.TabIndex = 54;
+            this.checkBox128.UseVisualStyleBackColor = true;
+            // 
+            // R_LT_HookCorver
+            // 
+            this.structuresExtender.SetAttributeName(this.R_LT_HookCorver, "R_LT_HookCorver");
+            this.structuresExtender.SetAttributeTypeName(this.R_LT_HookCorver, "Double");
+            this.structuresExtender.SetBindPropertyName(this.R_LT_HookCorver, "Text");
+            this.R_LT_HookCorver.Location = new System.Drawing.Point(414, 37);
+            this.R_LT_HookCorver.Name = "R_LT_HookCorver";
+            this.R_LT_HookCorver.Size = new System.Drawing.Size(65, 21);
+            this.R_LT_HookCorver.TabIndex = 53;
+            // 
+            // groupBox66
+            // 
+            this.structuresExtender.SetAttributeName(this.groupBox66, null);
+            this.structuresExtender.SetAttributeTypeName(this.groupBox66, null);
+            this.structuresExtender.SetBindPropertyName(this.groupBox66, null);
+            this.groupBox66.Controls.Add(this.label171);
+            this.groupBox66.Controls.Add(this.R_LT_ExcludeType);
+            this.groupBox66.Location = new System.Drawing.Point(440, 165);
+            this.groupBox66.Name = "groupBox66";
+            this.groupBox66.Size = new System.Drawing.Size(234, 65);
+            this.groupBox66.TabIndex = 77;
+            this.groupBox66.TabStop = false;
+            this.groupBox66.Text = "시작,끝 제외여부";
+            // 
+            // label171
+            // 
+            this.structuresExtender.SetAttributeName(this.label171, null);
+            this.structuresExtender.SetAttributeTypeName(this.label171, null);
+            this.label171.AutoSize = true;
+            this.structuresExtender.SetBindPropertyName(this.label171, null);
+            this.label171.Location = new System.Drawing.Point(38, 18);
+            this.label171.Name = "label171";
+            this.label171.Size = new System.Drawing.Size(41, 12);
+            this.label171.TabIndex = 34;
+            this.label171.Text = "보강근";
+            // 
+            // R_LT_ExcludeType
+            // 
+            this.structuresExtender.SetAttributeName(this.R_LT_ExcludeType, "R_LT_ExcludeType");
+            this.structuresExtender.SetAttributeTypeName(this.R_LT_ExcludeType, "String");
+            this.structuresExtender.SetBindPropertyName(this.R_LT_ExcludeType, "Text");
+            this.R_LT_ExcludeType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.R_LT_ExcludeType.FormattingEnabled = true;
+            this.R_LT_ExcludeType.Items.AddRange(new object[] {
+            "없음",
+            "첫번째",
+            "마지막",
+            "첫번째 및 마지막"});
+            this.R_LT_ExcludeType.Location = new System.Drawing.Point(15, 37);
+            this.R_LT_ExcludeType.Name = "R_LT_ExcludeType";
+            this.R_LT_ExcludeType.Size = new System.Drawing.Size(121, 20);
+            this.R_LT_ExcludeType.TabIndex = 35;
+            // 
+            // groupBox67
+            // 
+            this.structuresExtender.SetAttributeName(this.groupBox67, null);
+            this.structuresExtender.SetAttributeTypeName(this.groupBox67, null);
+            this.structuresExtender.SetBindPropertyName(this.groupBox67, null);
+            this.groupBox67.Controls.Add(this.label172);
+            this.groupBox67.Controls.Add(this.R_LT_YesOrNo);
+            this.groupBox67.Location = new System.Drawing.Point(11, 19);
+            this.groupBox67.Name = "groupBox67";
+            this.groupBox67.Size = new System.Drawing.Size(112, 65);
+            this.groupBox67.TabIndex = 70;
+            this.groupBox67.TabStop = false;
+            this.groupBox67.Text = "사용여부";
+            // 
+            // label172
+            // 
+            this.structuresExtender.SetAttributeName(this.label172, null);
+            this.structuresExtender.SetAttributeTypeName(this.label172, null);
+            this.label172.AutoSize = true;
+            this.structuresExtender.SetBindPropertyName(this.label172, null);
+            this.label172.Location = new System.Drawing.Point(23, 18);
+            this.label172.Name = "label172";
+            this.label172.Size = new System.Drawing.Size(53, 12);
+            this.label172.TabIndex = 72;
+            this.label172.Text = "사용여부";
+            // 
+            // R_LT_YesOrNo
+            // 
+            this.structuresExtender.SetAttributeName(this.R_LT_YesOrNo, "R_LT_YesOrNo");
+            this.structuresExtender.SetAttributeTypeName(this.R_LT_YesOrNo, "String");
+            this.structuresExtender.SetBindPropertyName(this.R_LT_YesOrNo, "Text");
+            this.R_LT_YesOrNo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.R_LT_YesOrNo.FormattingEnabled = true;
+            this.R_LT_YesOrNo.Items.AddRange(new object[] {
+            "예",
+            "아니오"});
+            this.R_LT_YesOrNo.Location = new System.Drawing.Point(15, 37);
+            this.R_LT_YesOrNo.Name = "R_LT_YesOrNo";
+            this.R_LT_YesOrNo.Size = new System.Drawing.Size(75, 20);
+            this.R_LT_YesOrNo.TabIndex = 71;
+            // 
+            // groupBox68
+            // 
+            this.structuresExtender.SetAttributeName(this.groupBox68, null);
+            this.structuresExtender.SetAttributeTypeName(this.groupBox68, null);
+            this.structuresExtender.SetBindPropertyName(this.groupBox68, null);
+            this.groupBox68.Controls.Add(this.R_LT_Splice2);
+            this.groupBox68.Controls.Add(this.checkBox129);
+            this.groupBox68.Controls.Add(this.label173);
+            this.groupBox68.Location = new System.Drawing.Point(139, 19);
+            this.groupBox68.Name = "groupBox68";
+            this.groupBox68.Size = new System.Drawing.Size(423, 65);
+            this.groupBox68.TabIndex = 64;
+            this.groupBox68.TabStop = false;
+            this.groupBox68.Text = "길이 설정 (윗면,바닥면에서 거리)";
+            // 
+            // R_LT_Splice2
+            // 
+            this.structuresExtender.SetAttributeName(this.R_LT_Splice2, "R_LT_Splice2");
+            this.structuresExtender.SetAttributeTypeName(this.R_LT_Splice2, "Double");
+            this.structuresExtender.SetBindPropertyName(this.R_LT_Splice2, "Text");
+            this.R_LT_Splice2.Location = new System.Drawing.Point(123, 37);
+            this.R_LT_Splice2.Name = "R_LT_Splice2";
+            this.R_LT_Splice2.Size = new System.Drawing.Size(65, 21);
+            this.R_LT_Splice2.TabIndex = 38;
+            // 
+            // checkBox129
+            // 
+            this.structuresExtender.SetAttributeName(this.checkBox129, "R_LT_Splice2");
+            this.structuresExtender.SetAttributeTypeName(this.checkBox129, null);
+            this.checkBox129.AutoSize = true;
+            this.structuresExtender.SetBindPropertyName(this.checkBox129, "Checked");
+            this.checkBox129.Checked = true;
+            this.checkBox129.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.structuresExtender.SetIsFilter(this.checkBox129, true);
+            this.checkBox129.Location = new System.Drawing.Point(106, 40);
+            this.checkBox129.Name = "checkBox129";
+            this.checkBox129.Size = new System.Drawing.Size(15, 14);
+            this.checkBox129.TabIndex = 39;
+            this.checkBox129.UseVisualStyleBackColor = true;
+            // 
+            // label173
+            // 
+            this.structuresExtender.SetAttributeName(this.label173, null);
+            this.structuresExtender.SetAttributeTypeName(this.label173, null);
+            this.label173.AutoSize = true;
+            this.structuresExtender.SetBindPropertyName(this.label173, null);
+            this.label173.Location = new System.Drawing.Point(126, 18);
+            this.label173.Name = "label173";
+            this.label173.Size = new System.Drawing.Size(65, 12);
+            this.label173.TabIndex = 47;
+            this.label173.Text = "바닥면길이";
+            // 
+            // groupBox69
+            // 
+            this.structuresExtender.SetAttributeName(this.groupBox69, null);
+            this.structuresExtender.SetAttributeTypeName(this.groupBox69, null);
+            this.structuresExtender.SetBindPropertyName(this.groupBox69, null);
+            this.groupBox69.Controls.Add(this.checkBox130);
+            this.groupBox69.Controls.Add(this.label174);
+            this.groupBox69.Controls.Add(this.R_LT_UserSpacing);
+            this.groupBox69.Controls.Add(this.R_LT_SpacingType);
+            this.groupBox69.Controls.Add(this.label175);
+            this.groupBox69.Location = new System.Drawing.Point(11, 165);
+            this.groupBox69.Name = "groupBox69";
+            this.groupBox69.Size = new System.Drawing.Size(423, 65);
+            this.groupBox69.TabIndex = 63;
+            this.groupBox69.TabStop = false;
+            this.groupBox69.Text = "보강근 간격";
+            // 
+            // checkBox130
+            // 
+            this.structuresExtender.SetAttributeName(this.checkBox130, "R_LT_UserSpacing");
+            this.structuresExtender.SetAttributeTypeName(this.checkBox130, null);
+            this.checkBox130.AutoSize = true;
+            this.structuresExtender.SetBindPropertyName(this.checkBox130, "Checked");
+            this.checkBox130.Checked = true;
+            this.checkBox130.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.structuresExtender.SetIsFilter(this.checkBox130, true);
+            this.checkBox130.Location = new System.Drawing.Point(150, 41);
+            this.checkBox130.Name = "checkBox130";
+            this.checkBox130.Size = new System.Drawing.Size(15, 14);
+            this.checkBox130.TabIndex = 38;
+            this.checkBox130.UseVisualStyleBackColor = true;
+            // 
+            // label174
+            // 
+            this.structuresExtender.SetAttributeName(this.label174, null);
+            this.structuresExtender.SetAttributeTypeName(this.label174, null);
+            this.label174.AutoSize = true;
+            this.structuresExtender.SetBindPropertyName(this.label174, null);
+            this.label174.Location = new System.Drawing.Point(249, 18);
+            this.label174.Name = "label174";
+            this.label174.Size = new System.Drawing.Size(69, 12);
+            this.label174.TabIndex = 37;
+            this.label174.Text = "사용자 지정";
+            // 
+            // R_LT_UserSpacing
+            // 
+            this.structuresExtender.SetAttributeName(this.R_LT_UserSpacing, "R_LT_UserSpacing");
+            this.structuresExtender.SetAttributeTypeName(this.R_LT_UserSpacing, "String");
+            this.structuresExtender.SetBindPropertyName(this.R_LT_UserSpacing, "Text");
+            this.R_LT_UserSpacing.Location = new System.Drawing.Point(168, 38);
+            this.R_LT_UserSpacing.Name = "R_LT_UserSpacing";
+            this.R_LT_UserSpacing.Size = new System.Drawing.Size(245, 21);
+            this.R_LT_UserSpacing.TabIndex = 36;
+            // 
+            // R_LT_SpacingType
+            // 
+            this.structuresExtender.SetAttributeName(this.R_LT_SpacingType, "R_LT_SpacingType");
+            this.structuresExtender.SetAttributeTypeName(this.R_LT_SpacingType, "String");
+            this.structuresExtender.SetBindPropertyName(this.R_LT_SpacingType, "Text");
+            this.R_LT_SpacingType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.R_LT_SpacingType.FormattingEnabled = true;
+            this.R_LT_SpacingType.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.R_LT_SpacingType.Items.AddRange(new object[] {
+            "사용자 지정",
+            "수직근 S/2"});
+            this.R_LT_SpacingType.Location = new System.Drawing.Point(10, 38);
+            this.R_LT_SpacingType.Name = "R_LT_SpacingType";
+            this.R_LT_SpacingType.Size = new System.Drawing.Size(127, 20);
+            this.R_LT_SpacingType.TabIndex = 31;
+            // 
+            // label175
+            // 
+            this.structuresExtender.SetAttributeName(this.label175, null);
+            this.structuresExtender.SetAttributeTypeName(this.label175, null);
+            this.label175.AutoSize = true;
+            this.structuresExtender.SetBindPropertyName(this.label175, null);
+            this.label175.Location = new System.Drawing.Point(44, 18);
+            this.label175.Name = "label175";
+            this.label175.Size = new System.Drawing.Size(53, 12);
+            this.label175.TabIndex = 32;
+            this.label175.Text = "간격타입";
+            // 
+            // groupBox70
+            // 
+            this.structuresExtender.SetAttributeName(this.groupBox70, null);
+            this.structuresExtender.SetAttributeTypeName(this.groupBox70, null);
+            this.structuresExtender.SetBindPropertyName(this.groupBox70, null);
+            this.groupBox70.Controls.Add(this.R_LT_Name);
+            this.groupBox70.Controls.Add(this.R_LT_Grade);
+            this.groupBox70.Controls.Add(this.R_LT_Size);
+            this.groupBox70.Controls.Add(this.R_LT_Radius);
+            this.groupBox70.Controls.Add(this.label176);
+            this.groupBox70.Controls.Add(this.label177);
+            this.groupBox70.Controls.Add(this.label178);
+            this.groupBox70.Controls.Add(this.label179);
+            this.groupBox70.Controls.Add(this.checkBox131);
+            this.groupBox70.Controls.Add(this.checkBox132);
+            this.groupBox70.Controls.Add(this.checkBox133);
+            this.groupBox70.Controls.Add(this.checkBox134);
+            this.groupBox70.Controls.Add(this.reinforcementCatalog6);
+            this.groupBox70.Controls.Add(this.R_LT_Class);
+            this.groupBox70.Controls.Add(this.R_LT_Prefix);
+            this.groupBox70.Controls.Add(this.label180);
+            this.groupBox70.Controls.Add(this.label181);
+            this.groupBox70.Controls.Add(this.R_LT_StartNumber);
+            this.groupBox70.Controls.Add(this.checkBox135);
+            this.groupBox70.Controls.Add(this.checkBox136);
+            this.groupBox70.Controls.Add(this.checkBox137);
+            this.groupBox70.Controls.Add(this.label182);
+            this.groupBox70.Location = new System.Drawing.Point(11, 90);
+            this.groupBox70.Name = "groupBox70";
+            this.groupBox70.Size = new System.Drawing.Size(663, 65);
+            this.groupBox70.TabIndex = 20;
+            this.groupBox70.TabStop = false;
+            this.groupBox70.Text = "속성";
+            // 
+            // R_LT_Name
+            // 
+            this.structuresExtender.SetAttributeName(this.R_LT_Name, "R_LT_Name");
+            this.structuresExtender.SetAttributeTypeName(this.R_LT_Name, "String");
+            this.structuresExtender.SetBindPropertyName(this.R_LT_Name, "Text");
+            this.R_LT_Name.Location = new System.Drawing.Point(33, 38);
+            this.R_LT_Name.Name = "R_LT_Name";
+            this.R_LT_Name.Size = new System.Drawing.Size(79, 21);
+            this.R_LT_Name.TabIndex = 0;
+            // 
+            // R_LT_Grade
+            // 
+            this.structuresExtender.SetAttributeName(this.R_LT_Grade, "R_LT_Grade");
+            this.structuresExtender.SetAttributeTypeName(this.R_LT_Grade, "String");
+            this.structuresExtender.SetBindPropertyName(this.R_LT_Grade, "Text");
+            this.R_LT_Grade.Location = new System.Drawing.Point(146, 38);
+            this.R_LT_Grade.Name = "R_LT_Grade";
+            this.R_LT_Grade.Size = new System.Drawing.Size(66, 21);
+            this.R_LT_Grade.TabIndex = 1;
+            // 
+            // R_LT_Size
+            // 
+            this.structuresExtender.SetAttributeName(this.R_LT_Size, "R_LT_Size");
+            this.structuresExtender.SetAttributeTypeName(this.R_LT_Size, "String");
+            this.structuresExtender.SetBindPropertyName(this.R_LT_Size, "Text");
+            this.R_LT_Size.Location = new System.Drawing.Point(236, 38);
+            this.R_LT_Size.Name = "R_LT_Size";
+            this.R_LT_Size.Size = new System.Drawing.Size(48, 21);
+            this.R_LT_Size.TabIndex = 2;
+            // 
+            // R_LT_Radius
+            // 
+            this.structuresExtender.SetAttributeName(this.R_LT_Radius, "R_LT_Radius");
+            this.structuresExtender.SetAttributeTypeName(this.R_LT_Radius, "Double");
+            this.structuresExtender.SetBindPropertyName(this.R_LT_Radius, "Text");
+            this.R_LT_Radius.Location = new System.Drawing.Point(306, 38);
+            this.R_LT_Radius.Name = "R_LT_Radius";
+            this.R_LT_Radius.Size = new System.Drawing.Size(66, 21);
+            this.R_LT_Radius.TabIndex = 3;
+            // 
+            // label176
+            // 
+            this.structuresExtender.SetAttributeName(this.label176, null);
+            this.structuresExtender.SetAttributeTypeName(this.label176, null);
+            this.label176.AutoSize = true;
+            this.structuresExtender.SetBindPropertyName(this.label176, null);
+            this.label176.Location = new System.Drawing.Point(54, 18);
+            this.label176.Name = "label176";
+            this.label176.Size = new System.Drawing.Size(29, 12);
+            this.label176.TabIndex = 6;
+            this.label176.Text = "이름";
+            // 
+            // label177
+            // 
+            this.structuresExtender.SetAttributeName(this.label177, null);
+            this.structuresExtender.SetAttributeTypeName(this.label177, null);
+            this.label177.AutoSize = true;
+            this.structuresExtender.SetBindPropertyName(this.label177, null);
+            this.label177.Location = new System.Drawing.Point(162, 18);
+            this.label177.Name = "label177";
+            this.label177.Size = new System.Drawing.Size(29, 12);
+            this.label177.TabIndex = 7;
+            this.label177.Text = "재질";
+            // 
+            // label178
+            // 
+            this.structuresExtender.SetAttributeName(this.label178, null);
+            this.structuresExtender.SetAttributeTypeName(this.label178, null);
+            this.label178.AutoSize = true;
+            this.structuresExtender.SetBindPropertyName(this.label178, null);
+            this.label178.Location = new System.Drawing.Point(244, 18);
+            this.label178.Name = "label178";
+            this.label178.Size = new System.Drawing.Size(29, 12);
+            this.label178.TabIndex = 8;
+            this.label178.Text = "크기";
+            // 
+            // label179
+            // 
+            this.structuresExtender.SetAttributeName(this.label179, null);
+            this.structuresExtender.SetAttributeTypeName(this.label179, null);
+            this.label179.AutoSize = true;
+            this.structuresExtender.SetBindPropertyName(this.label179, null);
+            this.label179.Location = new System.Drawing.Point(310, 18);
+            this.label179.Name = "label179";
+            this.label179.Size = new System.Drawing.Size(57, 12);
+            this.label179.TabIndex = 9;
+            this.label179.Text = "굽힘 반경";
+            // 
+            // checkBox131
+            // 
+            this.structuresExtender.SetAttributeName(this.checkBox131, "R_LT_Name");
+            this.structuresExtender.SetAttributeTypeName(this.checkBox131, null);
+            this.checkBox131.AutoSize = true;
+            this.structuresExtender.SetBindPropertyName(this.checkBox131, "Checked");
+            this.checkBox131.Checked = true;
+            this.checkBox131.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.structuresExtender.SetIsFilter(this.checkBox131, true);
+            this.checkBox131.Location = new System.Drawing.Point(16, 41);
+            this.checkBox131.Name = "checkBox131";
+            this.checkBox131.Size = new System.Drawing.Size(15, 14);
+            this.checkBox131.TabIndex = 2;
+            this.checkBox131.UseVisualStyleBackColor = true;
+            // 
+            // checkBox132
+            // 
+            this.structuresExtender.SetAttributeName(this.checkBox132, "R_LT_Grade");
+            this.structuresExtender.SetAttributeTypeName(this.checkBox132, null);
+            this.checkBox132.AutoSize = true;
+            this.structuresExtender.SetBindPropertyName(this.checkBox132, "Checked");
+            this.checkBox132.Checked = true;
+            this.checkBox132.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.structuresExtender.SetIsFilter(this.checkBox132, true);
+            this.checkBox132.Location = new System.Drawing.Point(125, 41);
+            this.checkBox132.Name = "checkBox132";
+            this.checkBox132.Size = new System.Drawing.Size(15, 14);
+            this.checkBox132.TabIndex = 13;
+            this.checkBox132.UseVisualStyleBackColor = true;
+            // 
+            // checkBox133
+            // 
+            this.structuresExtender.SetAttributeName(this.checkBox133, "R_LT_Size");
+            this.structuresExtender.SetAttributeTypeName(this.checkBox133, null);
+            this.checkBox133.AutoSize = true;
+            this.structuresExtender.SetBindPropertyName(this.checkBox133, "Checked");
+            this.checkBox133.Checked = true;
+            this.checkBox133.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.structuresExtender.SetIsFilter(this.checkBox133, true);
+            this.checkBox133.Location = new System.Drawing.Point(219, 41);
+            this.checkBox133.Name = "checkBox133";
+            this.checkBox133.Size = new System.Drawing.Size(15, 14);
+            this.checkBox133.TabIndex = 14;
+            this.checkBox133.UseVisualStyleBackColor = true;
+            // 
+            // checkBox134
+            // 
+            this.structuresExtender.SetAttributeName(this.checkBox134, "R_LT_Radius");
+            this.structuresExtender.SetAttributeTypeName(this.checkBox134, null);
+            this.checkBox134.AutoSize = true;
+            this.structuresExtender.SetBindPropertyName(this.checkBox134, "Checked");
+            this.checkBox134.Checked = true;
+            this.checkBox134.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.structuresExtender.SetIsFilter(this.checkBox134, true);
+            this.checkBox134.Location = new System.Drawing.Point(289, 41);
+            this.checkBox134.Name = "checkBox134";
+            this.checkBox134.Size = new System.Drawing.Size(15, 14);
+            this.checkBox134.TabIndex = 15;
+            this.checkBox134.UseVisualStyleBackColor = true;
+            // 
+            // reinforcementCatalog6
+            // 
+            this.structuresExtender.SetAttributeName(this.reinforcementCatalog6, null);
+            this.structuresExtender.SetAttributeTypeName(this.reinforcementCatalog6, null);
+            this.reinforcementCatalog6.BackColor = System.Drawing.Color.Transparent;
+            this.structuresExtender.SetBindPropertyName(this.reinforcementCatalog6, null);
+            this.reinforcementCatalog6.ButtonText = "선택...";
+            this.reinforcementCatalog6.Location = new System.Drawing.Point(376, 38);
+            this.reinforcementCatalog6.Name = "reinforcementCatalog6";
+            this.reinforcementCatalog6.SelectedRebarBendingRadius = 0D;
+            this.reinforcementCatalog6.SelectedRebarGrade = "";
+            this.reinforcementCatalog6.SelectedRebarSize = "";
+            this.reinforcementCatalog6.Size = new System.Drawing.Size(44, 20);
+            this.reinforcementCatalog6.TabIndex = 2;
+            // 
+            // R_LT_Class
+            // 
+            this.structuresExtender.SetAttributeName(this.R_LT_Class, "R_LT_Class");
+            this.structuresExtender.SetAttributeTypeName(this.R_LT_Class, "Integer");
+            this.structuresExtender.SetBindPropertyName(this.R_LT_Class, "Text");
+            this.R_LT_Class.Location = new System.Drawing.Point(471, 38);
+            this.R_LT_Class.Name = "R_LT_Class";
+            this.R_LT_Class.Size = new System.Drawing.Size(39, 21);
+            this.R_LT_Class.TabIndex = 4;
+            // 
+            // R_LT_Prefix
+            // 
+            this.structuresExtender.SetAttributeName(this.R_LT_Prefix, "R_LT_Prefix");
+            this.structuresExtender.SetAttributeTypeName(this.R_LT_Prefix, "String");
+            this.structuresExtender.SetBindPropertyName(this.R_LT_Prefix, "Text");
+            this.R_LT_Prefix.Location = new System.Drawing.Point(536, 38);
+            this.R_LT_Prefix.Name = "R_LT_Prefix";
+            this.R_LT_Prefix.Size = new System.Drawing.Size(39, 21);
+            this.R_LT_Prefix.TabIndex = 5;
+            // 
+            // label180
+            // 
+            this.structuresExtender.SetAttributeName(this.label180, null);
+            this.structuresExtender.SetAttributeTypeName(this.label180, null);
+            this.label180.AutoSize = true;
+            this.structuresExtender.SetBindPropertyName(this.label180, null);
+            this.label180.Location = new System.Drawing.Point(469, 18);
+            this.label180.Name = "label180";
+            this.label180.Size = new System.Drawing.Size(41, 12);
+            this.label180.TabIndex = 10;
+            this.label180.Text = "클래스";
+            // 
+            // label181
+            // 
+            this.structuresExtender.SetAttributeName(this.label181, null);
+            this.structuresExtender.SetAttributeTypeName(this.label181, null);
+            this.label181.AutoSize = true;
+            this.structuresExtender.SetBindPropertyName(this.label181, null);
+            this.label181.Location = new System.Drawing.Point(534, 18);
+            this.label181.Name = "label181";
+            this.label181.Size = new System.Drawing.Size(41, 12);
+            this.label181.TabIndex = 11;
+            this.label181.Text = "접두사";
+            // 
+            // R_LT_StartNumber
+            // 
+            this.structuresExtender.SetAttributeName(this.R_LT_StartNumber, "R_LT_StartNumber");
+            this.structuresExtender.SetAttributeTypeName(this.R_LT_StartNumber, "Integer");
+            this.structuresExtender.SetBindPropertyName(this.R_LT_StartNumber, "Text");
+            this.R_LT_StartNumber.Location = new System.Drawing.Point(603, 38);
+            this.R_LT_StartNumber.Name = "R_LT_StartNumber";
+            this.R_LT_StartNumber.Size = new System.Drawing.Size(39, 21);
+            this.R_LT_StartNumber.TabIndex = 12;
+            // 
+            // checkBox135
+            // 
+            this.structuresExtender.SetAttributeName(this.checkBox135, "R_LT_Class");
+            this.structuresExtender.SetAttributeTypeName(this.checkBox135, null);
+            this.checkBox135.AutoSize = true;
+            this.structuresExtender.SetBindPropertyName(this.checkBox135, "Checked");
+            this.checkBox135.Checked = true;
+            this.checkBox135.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.structuresExtender.SetIsFilter(this.checkBox135, true);
+            this.checkBox135.Location = new System.Drawing.Point(454, 41);
+            this.checkBox135.Name = "checkBox135";
+            this.checkBox135.Size = new System.Drawing.Size(15, 14);
+            this.checkBox135.TabIndex = 16;
+            this.checkBox135.UseVisualStyleBackColor = true;
+            // 
+            // checkBox136
+            // 
+            this.structuresExtender.SetAttributeName(this.checkBox136, "R_LT_Prefix");
+            this.structuresExtender.SetAttributeTypeName(this.checkBox136, null);
+            this.checkBox136.AutoSize = true;
+            this.structuresExtender.SetBindPropertyName(this.checkBox136, "Checked");
+            this.checkBox136.Checked = true;
+            this.checkBox136.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.structuresExtender.SetIsFilter(this.checkBox136, true);
+            this.checkBox136.Location = new System.Drawing.Point(519, 41);
+            this.checkBox136.Name = "checkBox136";
+            this.checkBox136.Size = new System.Drawing.Size(15, 14);
+            this.checkBox136.TabIndex = 17;
+            this.checkBox136.UseVisualStyleBackColor = true;
+            // 
+            // checkBox137
+            // 
+            this.structuresExtender.SetAttributeName(this.checkBox137, "R_LT_StartNumber");
+            this.structuresExtender.SetAttributeTypeName(this.checkBox137, null);
+            this.checkBox137.AutoSize = true;
+            this.structuresExtender.SetBindPropertyName(this.checkBox137, "Checked");
+            this.checkBox137.Checked = true;
+            this.checkBox137.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.structuresExtender.SetIsFilter(this.checkBox137, true);
+            this.checkBox137.Location = new System.Drawing.Point(586, 41);
+            this.checkBox137.Name = "checkBox137";
+            this.checkBox137.Size = new System.Drawing.Size(15, 14);
+            this.checkBox137.TabIndex = 18;
+            this.checkBox137.UseVisualStyleBackColor = true;
+            // 
+            // label182
+            // 
+            this.structuresExtender.SetAttributeName(this.label182, null);
+            this.structuresExtender.SetAttributeTypeName(this.label182, null);
+            this.label182.AutoSize = true;
+            this.structuresExtender.SetBindPropertyName(this.label182, null);
+            this.label182.Location = new System.Drawing.Point(596, 18);
+            this.label182.Name = "label182";
+            this.label182.Size = new System.Drawing.Size(53, 12);
+            this.label182.TabIndex = 29;
+            this.label182.Text = "시작번호";
+            // 
+            // groupBox72
+            // 
+            this.structuresExtender.SetAttributeName(this.groupBox72, null);
+            this.structuresExtender.SetAttributeTypeName(this.groupBox72, null);
+            this.structuresExtender.SetBindPropertyName(this.groupBox72, null);
+            this.groupBox72.Controls.Add(this.label186);
+            this.groupBox72.Controls.Add(this.R_DW_UDA);
+            this.groupBox72.Controls.Add(this.label187);
+            this.groupBox72.Controls.Add(this.label188);
+            this.groupBox72.Controls.Add(this.checkBox141);
+            this.groupBox72.Controls.Add(this.checkBox142);
+            this.groupBox72.Controls.Add(this.R_DW_Building_S);
+            this.groupBox72.Controls.Add(this.R_DW_Building);
+            this.groupBox72.Location = new System.Drawing.Point(8, 174);
+            this.groupBox72.Name = "groupBox72";
+            this.groupBox72.Size = new System.Drawing.Size(332, 65);
+            this.groupBox72.TabIndex = 72;
+            this.groupBox72.TabStop = false;
+            this.groupBox72.Text = "빌딩명,층이름";
+            // 
+            // label186
+            // 
+            this.structuresExtender.SetAttributeName(this.label186, null);
+            this.structuresExtender.SetAttributeTypeName(this.label186, null);
+            this.label186.AutoSize = true;
+            this.structuresExtender.SetBindPropertyName(this.label186, null);
+            this.label186.Location = new System.Drawing.Point(39, 19);
+            this.label186.Name = "label186";
+            this.label186.Size = new System.Drawing.Size(85, 12);
+            this.label186.TabIndex = 33;
+            this.label186.Text = "UDA 타입 설정";
+            // 
+            // R_DW_UDA
+            // 
+            this.structuresExtender.SetAttributeName(this.R_DW_UDA, "R_DW_UDA");
+            this.structuresExtender.SetAttributeTypeName(this.R_DW_UDA, "String");
+            this.structuresExtender.SetBindPropertyName(this.R_DW_UDA, "Text");
+            this.R_DW_UDA.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.R_DW_UDA.FormattingEnabled = true;
+            this.R_DW_UDA.Items.AddRange(new object[] {
+            "부재 UDA 정보 사용",
+            "사용자 지정"});
+            this.R_DW_UDA.Location = new System.Drawing.Point(15, 38);
+            this.R_DW_UDA.Name = "R_DW_UDA";
+            this.R_DW_UDA.Size = new System.Drawing.Size(132, 20);
+            this.R_DW_UDA.TabIndex = 2;
+            // 
+            // label187
+            // 
+            this.structuresExtender.SetAttributeName(this.label187, null);
+            this.structuresExtender.SetAttributeTypeName(this.label187, null);
+            this.label187.AutoSize = true;
+            this.structuresExtender.SetBindPropertyName(this.label187, null);
+            this.label187.Location = new System.Drawing.Point(270, 17);
+            this.label187.Name = "label187";
+            this.label187.Size = new System.Drawing.Size(41, 12);
+            this.label187.TabIndex = 32;
+            this.label187.Text = "층이름";
+            // 
+            // label188
+            // 
+            this.structuresExtender.SetAttributeName(this.label188, null);
+            this.structuresExtender.SetAttributeTypeName(this.label188, null);
+            this.label188.AutoSize = true;
+            this.structuresExtender.SetBindPropertyName(this.label188, null);
+            this.label188.Location = new System.Drawing.Point(186, 17);
+            this.label188.Name = "label188";
+            this.label188.Size = new System.Drawing.Size(41, 12);
+            this.label188.TabIndex = 30;
+            this.label188.Text = "빌딩명";
+            // 
+            // checkBox141
+            // 
+            this.structuresExtender.SetAttributeName(this.checkBox141, "R_DW_Building");
+            this.structuresExtender.SetAttributeTypeName(this.checkBox141, null);
+            this.checkBox141.AutoSize = true;
+            this.structuresExtender.SetBindPropertyName(this.checkBox141, "Checked");
+            this.checkBox141.Checked = true;
+            this.checkBox141.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.structuresExtender.SetIsFilter(this.checkBox141, true);
+            this.checkBox141.Location = new System.Drawing.Point(160, 41);
+            this.checkBox141.Name = "checkBox141";
+            this.checkBox141.Size = new System.Drawing.Size(15, 14);
+            this.checkBox141.TabIndex = 31;
+            this.checkBox141.UseVisualStyleBackColor = true;
+            // 
+            // checkBox142
+            // 
+            this.structuresExtender.SetAttributeName(this.checkBox142, "R_DW_Building_Storey");
+            this.structuresExtender.SetAttributeTypeName(this.checkBox142, null);
+            this.checkBox142.AutoSize = true;
+            this.structuresExtender.SetBindPropertyName(this.checkBox142, "Checked");
+            this.checkBox142.Checked = true;
+            this.checkBox142.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.structuresExtender.SetIsFilter(this.checkBox142, true);
+            this.checkBox142.Location = new System.Drawing.Point(244, 41);
+            this.checkBox142.Name = "checkBox142";
+            this.checkBox142.Size = new System.Drawing.Size(15, 14);
+            this.checkBox142.TabIndex = 30;
+            this.checkBox142.UseVisualStyleBackColor = true;
+            // 
+            // R_DW_Building_S
+            // 
+            this.structuresExtender.SetAttributeName(this.R_DW_Building_S, "R_DW_Building_S");
+            this.structuresExtender.SetAttributeTypeName(this.R_DW_Building_S, "String");
+            this.structuresExtender.SetBindPropertyName(this.R_DW_Building_S, "Text");
+            this.R_DW_Building_S.Location = new System.Drawing.Point(265, 38);
+            this.R_DW_Building_S.Name = "R_DW_Building_S";
+            this.R_DW_Building_S.Size = new System.Drawing.Size(56, 21);
+            this.R_DW_Building_S.TabIndex = 1;
+            // 
+            // R_DW_Building
+            // 
+            this.structuresExtender.SetAttributeName(this.R_DW_Building, "R_DW_Building");
+            this.structuresExtender.SetAttributeTypeName(this.R_DW_Building, "String");
+            this.structuresExtender.SetBindPropertyName(this.R_DW_Building, "Text");
+            this.R_DW_Building.Location = new System.Drawing.Point(179, 38);
+            this.R_DW_Building.Name = "R_DW_Building";
+            this.R_DW_Building.Size = new System.Drawing.Size(56, 21);
+            this.R_DW_Building.TabIndex = 0;
+            // 
+            // groupBox78
+            // 
+            this.structuresExtender.SetAttributeName(this.groupBox78, null);
+            this.structuresExtender.SetAttributeTypeName(this.groupBox78, null);
+            this.structuresExtender.SetBindPropertyName(this.groupBox78, null);
+            this.groupBox78.Controls.Add(this.groupBox79);
+            this.groupBox78.Controls.Add(this.groupBox80);
+            this.groupBox78.Controls.Add(this.groupBox81);
+            this.groupBox78.Controls.Add(this.groupBox82);
+            this.groupBox78.Location = new System.Drawing.Point(8, 409);
+            this.groupBox78.Name = "groupBox78";
+            this.groupBox78.Size = new System.Drawing.Size(685, 164);
+            this.groupBox78.TabIndex = 70;
+            this.groupBox78.TabStop = false;
+            this.groupBox78.Text = "우측 다월";
+            // 
+            // groupBox79
+            // 
+            this.structuresExtender.SetAttributeName(this.groupBox79, null);
+            this.structuresExtender.SetAttributeTypeName(this.groupBox79, null);
+            this.structuresExtender.SetBindPropertyName(this.groupBox79, null);
+            this.groupBox79.Controls.Add(this.label199);
+            this.groupBox79.Controls.Add(this.R_DR_YesOrNo);
+            this.groupBox79.Location = new System.Drawing.Point(11, 19);
+            this.groupBox79.Name = "groupBox79";
+            this.groupBox79.Size = new System.Drawing.Size(207, 65);
+            this.groupBox79.TabIndex = 66;
+            this.groupBox79.TabStop = false;
+            this.groupBox79.Text = "사용여부";
+            // 
+            // label199
+            // 
+            this.structuresExtender.SetAttributeName(this.label199, null);
+            this.structuresExtender.SetAttributeTypeName(this.label199, null);
+            this.label199.AutoSize = true;
+            this.structuresExtender.SetBindPropertyName(this.label199, null);
+            this.label199.Location = new System.Drawing.Point(28, 19);
+            this.label199.Name = "label199";
+            this.label199.Size = new System.Drawing.Size(53, 12);
+            this.label199.TabIndex = 70;
+            this.label199.Text = "사용여부";
+            // 
+            // R_DR_YesOrNo
+            // 
+            this.structuresExtender.SetAttributeName(this.R_DR_YesOrNo, "R_DR_YesOrNo");
+            this.structuresExtender.SetAttributeTypeName(this.R_DR_YesOrNo, "String");
+            this.structuresExtender.SetBindPropertyName(this.R_DR_YesOrNo, "Text");
+            this.R_DR_YesOrNo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.R_DR_YesOrNo.FormattingEnabled = true;
+            this.R_DR_YesOrNo.Items.AddRange(new object[] {
+            "예",
+            "아니오"});
+            this.R_DR_YesOrNo.Location = new System.Drawing.Point(20, 38);
+            this.R_DR_YesOrNo.Name = "R_DR_YesOrNo";
+            this.R_DR_YesOrNo.Size = new System.Drawing.Size(75, 20);
+            this.R_DR_YesOrNo.TabIndex = 69;
+            // 
+            // groupBox80
+            // 
+            this.structuresExtender.SetAttributeName(this.groupBox80, null);
+            this.structuresExtender.SetAttributeTypeName(this.groupBox80, null);
+            this.structuresExtender.SetBindPropertyName(this.groupBox80, null);
+            this.groupBox80.Controls.Add(this.checkBox151);
+            this.groupBox80.Controls.Add(this.R_DR_HookLength);
+            this.groupBox80.Controls.Add(this.R_DR_HookInOut);
+            this.groupBox80.Controls.Add(this.label200);
+            this.groupBox80.Controls.Add(this.label201);
+            this.groupBox80.Controls.Add(this.label202);
+            this.groupBox80.Controls.Add(this.checkBox152);
+            this.groupBox80.Controls.Add(this.R_DR_HookCorver);
+            this.groupBox80.Location = new System.Drawing.Point(224, 90);
+            this.groupBox80.Name = "groupBox80";
+            this.groupBox80.Size = new System.Drawing.Size(455, 65);
+            this.groupBox80.TabIndex = 65;
+            this.groupBox80.TabStop = false;
+            this.groupBox80.Text = "하부연결";
+            // 
+            // checkBox151
+            // 
+            this.structuresExtender.SetAttributeName(this.checkBox151, "R_DR_HookLength");
+            this.structuresExtender.SetAttributeTypeName(this.checkBox151, null);
+            this.checkBox151.AutoSize = true;
+            this.structuresExtender.SetBindPropertyName(this.checkBox151, "Checked");
+            this.checkBox151.Checked = true;
+            this.checkBox151.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.structuresExtender.SetIsFilter(this.checkBox151, true);
+            this.checkBox151.Location = new System.Drawing.Point(100, 42);
+            this.checkBox151.Name = "checkBox151";
+            this.checkBox151.Size = new System.Drawing.Size(15, 14);
+            this.checkBox151.TabIndex = 60;
+            this.checkBox151.UseVisualStyleBackColor = true;
+            // 
+            // R_DR_HookLength
+            // 
+            this.structuresExtender.SetAttributeName(this.R_DR_HookLength, "R_DR_HookLength");
+            this.structuresExtender.SetAttributeTypeName(this.R_DR_HookLength, "Double");
+            this.structuresExtender.SetBindPropertyName(this.R_DR_HookLength, "Text");
+            this.R_DR_HookLength.Location = new System.Drawing.Point(117, 39);
+            this.R_DR_HookLength.Name = "R_DR_HookLength";
+            this.R_DR_HookLength.Size = new System.Drawing.Size(65, 21);
+            this.R_DR_HookLength.TabIndex = 59;
+            // 
+            // R_DR_HookInOut
+            // 
+            this.structuresExtender.SetAttributeName(this.R_DR_HookInOut, "R_DR_HookInOut");
+            this.structuresExtender.SetAttributeTypeName(this.R_DR_HookInOut, "String");
+            this.structuresExtender.SetBindPropertyName(this.R_DR_HookInOut, "Text");
+            this.R_DR_HookInOut.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.R_DR_HookInOut.FormattingEnabled = true;
+            this.R_DR_HookInOut.Items.AddRange(new object[] {
+            "내",
+            "외"});
+            this.R_DR_HookInOut.Location = new System.Drawing.Point(200, 39);
+            this.R_DR_HookInOut.Name = "R_DR_HookInOut";
+            this.R_DR_HookInOut.Size = new System.Drawing.Size(64, 20);
+            this.R_DR_HookInOut.TabIndex = 58;
+            // 
+            // label200
+            // 
+            this.structuresExtender.SetAttributeName(this.label200, null);
+            this.structuresExtender.SetAttributeTypeName(this.label200, null);
+            this.label200.AutoSize = true;
+            this.structuresExtender.SetBindPropertyName(this.label200, null);
+            this.label200.Location = new System.Drawing.Point(206, 20);
+            this.label200.Name = "label200";
+            this.label200.Size = new System.Drawing.Size(53, 12);
+            this.label200.TabIndex = 57;
+            this.label200.Text = "후크방향";
+            // 
+            // label201
+            // 
+            this.structuresExtender.SetAttributeName(this.label201, null);
+            this.structuresExtender.SetAttributeTypeName(this.label201, null);
+            this.label201.AutoSize = true;
+            this.structuresExtender.SetBindPropertyName(this.label201, null);
+            this.label201.Location = new System.Drawing.Point(121, 20);
+            this.label201.Name = "label201";
+            this.label201.Size = new System.Drawing.Size(53, 12);
+            this.label201.TabIndex = 56;
+            this.label201.Text = "후크길이";
+            // 
+            // label202
+            // 
+            this.structuresExtender.SetAttributeName(this.label202, null);
+            this.structuresExtender.SetAttributeTypeName(this.label202, null);
+            this.label202.AutoSize = true;
+            this.structuresExtender.SetBindPropertyName(this.label202, null);
+            this.label202.Location = new System.Drawing.Point(17, 20);
+            this.label202.Name = "label202";
+            this.label202.Size = new System.Drawing.Size(81, 12);
+            this.label202.TabIndex = 55;
+            this.label202.Text = "하부 후크피복";
+            // 
+            // checkBox152
+            // 
+            this.structuresExtender.SetAttributeName(this.checkBox152, "R_DR_HookCorver");
+            this.structuresExtender.SetAttributeTypeName(this.checkBox152, null);
+            this.checkBox152.AutoSize = true;
+            this.structuresExtender.SetBindPropertyName(this.checkBox152, "Checked");
+            this.checkBox152.Checked = true;
+            this.checkBox152.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.structuresExtender.SetIsFilter(this.checkBox152, true);
+            this.checkBox152.Location = new System.Drawing.Point(7, 42);
+            this.checkBox152.Name = "checkBox152";
+            this.checkBox152.Size = new System.Drawing.Size(15, 14);
+            this.checkBox152.TabIndex = 54;
+            this.checkBox152.UseVisualStyleBackColor = true;
+            // 
+            // R_DR_HookCorver
+            // 
+            this.structuresExtender.SetAttributeName(this.R_DR_HookCorver, "R_DR_HookCorver");
+            this.structuresExtender.SetAttributeTypeName(this.R_DR_HookCorver, "Double");
+            this.structuresExtender.SetBindPropertyName(this.R_DR_HookCorver, "Text");
+            this.R_DR_HookCorver.Location = new System.Drawing.Point(24, 39);
+            this.R_DR_HookCorver.Name = "R_DR_HookCorver";
+            this.R_DR_HookCorver.Size = new System.Drawing.Size(65, 21);
+            this.R_DR_HookCorver.TabIndex = 53;
+            // 
+            // groupBox81
+            // 
+            this.structuresExtender.SetAttributeName(this.groupBox81, null);
+            this.structuresExtender.SetAttributeTypeName(this.groupBox81, null);
+            this.structuresExtender.SetBindPropertyName(this.groupBox81, null);
+            this.groupBox81.Controls.Add(this.R_DR_Splice1);
+            this.groupBox81.Controls.Add(this.checkBox153);
+            this.groupBox81.Controls.Add(this.R_DR_Splice2);
+            this.groupBox81.Controls.Add(this.label203);
+            this.groupBox81.Controls.Add(this.checkBox154);
+            this.groupBox81.Controls.Add(this.label204);
+            this.groupBox81.Location = new System.Drawing.Point(11, 90);
+            this.groupBox81.Name = "groupBox81";
+            this.groupBox81.Size = new System.Drawing.Size(207, 65);
+            this.groupBox81.TabIndex = 64;
+            this.groupBox81.TabStop = false;
+            this.groupBox81.Text = "상부연결";
+            // 
+            // R_DR_Splice1
+            // 
+            this.structuresExtender.SetAttributeName(this.R_DR_Splice1, "R_DR_Splice1");
+            this.structuresExtender.SetAttributeTypeName(this.R_DR_Splice1, "Double");
+            this.structuresExtender.SetBindPropertyName(this.R_DR_Splice1, "Text");
+            this.R_DR_Splice1.Location = new System.Drawing.Point(33, 38);
+            this.R_DR_Splice1.Name = "R_DR_Splice1";
+            this.R_DR_Splice1.Size = new System.Drawing.Size(65, 21);
+            this.R_DR_Splice1.TabIndex = 36;
+            // 
+            // checkBox153
+            // 
+            this.structuresExtender.SetAttributeName(this.checkBox153, "R_DR_Splice1");
+            this.structuresExtender.SetAttributeTypeName(this.checkBox153, null);
+            this.checkBox153.AutoSize = true;
+            this.structuresExtender.SetBindPropertyName(this.checkBox153, "Checked");
+            this.checkBox153.Checked = true;
+            this.checkBox153.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.structuresExtender.SetIsFilter(this.checkBox153, true);
+            this.checkBox153.Location = new System.Drawing.Point(16, 41);
+            this.checkBox153.Name = "checkBox153";
+            this.checkBox153.Size = new System.Drawing.Size(15, 14);
+            this.checkBox153.TabIndex = 37;
+            this.checkBox153.UseVisualStyleBackColor = true;
+            // 
+            // R_DR_Splice2
+            // 
+            this.structuresExtender.SetAttributeName(this.R_DR_Splice2, "R_DR_Splice2");
+            this.structuresExtender.SetAttributeTypeName(this.R_DR_Splice2, "Double");
+            this.structuresExtender.SetBindPropertyName(this.R_DR_Splice2, "Text");
+            this.R_DR_Splice2.Location = new System.Drawing.Point(123, 38);
+            this.R_DR_Splice2.Name = "R_DR_Splice2";
+            this.R_DR_Splice2.Size = new System.Drawing.Size(65, 21);
+            this.R_DR_Splice2.TabIndex = 38;
+            // 
+            // label203
+            // 
+            this.structuresExtender.SetAttributeName(this.label203, null);
+            this.structuresExtender.SetAttributeTypeName(this.label203, null);
+            this.label203.AutoSize = true;
+            this.structuresExtender.SetBindPropertyName(this.label203, null);
+            this.label203.Location = new System.Drawing.Point(42, 19);
+            this.label203.Name = "label203";
+            this.label203.Size = new System.Drawing.Size(53, 12);
+            this.label203.TabIndex = 46;
+            this.label203.Text = "이음길이";
+            // 
+            // checkBox154
+            // 
+            this.structuresExtender.SetAttributeName(this.checkBox154, "R_DR_Splice2");
+            this.structuresExtender.SetAttributeTypeName(this.checkBox154, null);
+            this.checkBox154.AutoSize = true;
+            this.structuresExtender.SetBindPropertyName(this.checkBox154, "Checked");
+            this.checkBox154.Checked = true;
+            this.checkBox154.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.structuresExtender.SetIsFilter(this.checkBox154, true);
+            this.checkBox154.Location = new System.Drawing.Point(106, 41);
+            this.checkBox154.Name = "checkBox154";
+            this.checkBox154.Size = new System.Drawing.Size(15, 14);
+            this.checkBox154.TabIndex = 39;
+            this.checkBox154.UseVisualStyleBackColor = true;
+            // 
+            // label204
+            // 
+            this.structuresExtender.SetAttributeName(this.label204, null);
+            this.structuresExtender.SetAttributeTypeName(this.label204, null);
+            this.label204.AutoSize = true;
+            this.structuresExtender.SetBindPropertyName(this.label204, null);
+            this.label204.Location = new System.Drawing.Point(130, 19);
+            this.label204.Name = "label204";
+            this.label204.Size = new System.Drawing.Size(53, 12);
+            this.label204.TabIndex = 47;
+            this.label204.Text = "여장길이";
+            // 
+            // groupBox82
+            // 
+            this.structuresExtender.SetAttributeName(this.groupBox82, null);
+            this.structuresExtender.SetAttributeTypeName(this.groupBox82, null);
+            this.structuresExtender.SetBindPropertyName(this.groupBox82, null);
+            this.groupBox82.Controls.Add(this.R_DR_Name);
+            this.groupBox82.Controls.Add(this.label205);
+            this.groupBox82.Controls.Add(this.checkBox155);
+            this.groupBox82.Controls.Add(this.R_DR_Class);
+            this.groupBox82.Controls.Add(this.R_DR_Prefix);
+            this.groupBox82.Controls.Add(this.label206);
+            this.groupBox82.Controls.Add(this.label207);
+            this.groupBox82.Controls.Add(this.R_DR_StartNumber);
+            this.groupBox82.Controls.Add(this.checkBox156);
+            this.groupBox82.Controls.Add(this.checkBox157);
+            this.groupBox82.Controls.Add(this.checkBox158);
+            this.groupBox82.Controls.Add(this.label208);
+            this.groupBox82.Location = new System.Drawing.Point(224, 20);
+            this.groupBox82.Name = "groupBox82";
+            this.groupBox82.Size = new System.Drawing.Size(455, 65);
+            this.groupBox82.TabIndex = 20;
+            this.groupBox82.TabStop = false;
+            this.groupBox82.Text = "속성";
+            // 
+            // R_DR_Name
+            // 
+            this.structuresExtender.SetAttributeName(this.R_DR_Name, "R_DR_Name");
+            this.structuresExtender.SetAttributeTypeName(this.R_DR_Name, "String");
+            this.structuresExtender.SetBindPropertyName(this.R_DR_Name, "Text");
+            this.R_DR_Name.Location = new System.Drawing.Point(33, 38);
+            this.R_DR_Name.Name = "R_DR_Name";
+            this.R_DR_Name.Size = new System.Drawing.Size(79, 21);
+            this.R_DR_Name.TabIndex = 0;
+            // 
+            // label205
+            // 
+            this.structuresExtender.SetAttributeName(this.label205, null);
+            this.structuresExtender.SetAttributeTypeName(this.label205, null);
+            this.label205.AutoSize = true;
+            this.structuresExtender.SetBindPropertyName(this.label205, null);
+            this.label205.Location = new System.Drawing.Point(54, 18);
+            this.label205.Name = "label205";
+            this.label205.Size = new System.Drawing.Size(29, 12);
+            this.label205.TabIndex = 6;
+            this.label205.Text = "이름";
+            // 
+            // checkBox155
+            // 
+            this.structuresExtender.SetAttributeName(this.checkBox155, "R_DR_Name");
+            this.structuresExtender.SetAttributeTypeName(this.checkBox155, null);
+            this.checkBox155.AutoSize = true;
+            this.structuresExtender.SetBindPropertyName(this.checkBox155, "Checked");
+            this.checkBox155.Checked = true;
+            this.checkBox155.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.structuresExtender.SetIsFilter(this.checkBox155, true);
+            this.checkBox155.Location = new System.Drawing.Point(16, 41);
+            this.checkBox155.Name = "checkBox155";
+            this.checkBox155.Size = new System.Drawing.Size(15, 14);
+            this.checkBox155.TabIndex = 2;
+            this.checkBox155.UseVisualStyleBackColor = true;
+            // 
+            // R_DR_Class
+            // 
+            this.structuresExtender.SetAttributeName(this.R_DR_Class, "R_DR_Class");
+            this.structuresExtender.SetAttributeTypeName(this.R_DR_Class, "Integer");
+            this.structuresExtender.SetBindPropertyName(this.R_DR_Class, "Text");
+            this.R_DR_Class.Location = new System.Drawing.Point(145, 37);
+            this.R_DR_Class.Name = "R_DR_Class";
+            this.R_DR_Class.Size = new System.Drawing.Size(39, 21);
+            this.R_DR_Class.TabIndex = 4;
+            // 
+            // R_DR_Prefix
+            // 
+            this.structuresExtender.SetAttributeName(this.R_DR_Prefix, "R_DR_Prefix");
+            this.structuresExtender.SetAttributeTypeName(this.R_DR_Prefix, "String");
+            this.structuresExtender.SetBindPropertyName(this.R_DR_Prefix, "Text");
+            this.R_DR_Prefix.Location = new System.Drawing.Point(210, 37);
+            this.R_DR_Prefix.Name = "R_DR_Prefix";
+            this.R_DR_Prefix.Size = new System.Drawing.Size(39, 21);
+            this.R_DR_Prefix.TabIndex = 5;
+            // 
+            // label206
+            // 
+            this.structuresExtender.SetAttributeName(this.label206, null);
+            this.structuresExtender.SetAttributeTypeName(this.label206, null);
+            this.label206.AutoSize = true;
+            this.structuresExtender.SetBindPropertyName(this.label206, null);
+            this.label206.Location = new System.Drawing.Point(143, 17);
+            this.label206.Name = "label206";
+            this.label206.Size = new System.Drawing.Size(41, 12);
+            this.label206.TabIndex = 10;
+            this.label206.Text = "클래스";
+            // 
+            // label207
+            // 
+            this.structuresExtender.SetAttributeName(this.label207, null);
+            this.structuresExtender.SetAttributeTypeName(this.label207, null);
+            this.label207.AutoSize = true;
+            this.structuresExtender.SetBindPropertyName(this.label207, null);
+            this.label207.Location = new System.Drawing.Point(208, 17);
+            this.label207.Name = "label207";
+            this.label207.Size = new System.Drawing.Size(41, 12);
+            this.label207.TabIndex = 11;
+            this.label207.Text = "접두사";
+            // 
+            // R_DR_StartNumber
+            // 
+            this.structuresExtender.SetAttributeName(this.R_DR_StartNumber, "R_DR_StartNumber");
+            this.structuresExtender.SetAttributeTypeName(this.R_DR_StartNumber, "Integer");
+            this.structuresExtender.SetBindPropertyName(this.R_DR_StartNumber, "Text");
+            this.R_DR_StartNumber.Location = new System.Drawing.Point(277, 37);
+            this.R_DR_StartNumber.Name = "R_DR_StartNumber";
+            this.R_DR_StartNumber.Size = new System.Drawing.Size(39, 21);
+            this.R_DR_StartNumber.TabIndex = 12;
+            // 
+            // checkBox156
+            // 
+            this.structuresExtender.SetAttributeName(this.checkBox156, "R_DR_Class");
+            this.structuresExtender.SetAttributeTypeName(this.checkBox156, null);
+            this.checkBox156.AutoSize = true;
+            this.structuresExtender.SetBindPropertyName(this.checkBox156, "Checked");
+            this.checkBox156.Checked = true;
+            this.checkBox156.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.structuresExtender.SetIsFilter(this.checkBox156, true);
+            this.checkBox156.Location = new System.Drawing.Point(128, 40);
+            this.checkBox156.Name = "checkBox156";
+            this.checkBox156.Size = new System.Drawing.Size(15, 14);
+            this.checkBox156.TabIndex = 16;
+            this.checkBox156.UseVisualStyleBackColor = true;
+            // 
+            // checkBox157
+            // 
+            this.structuresExtender.SetAttributeName(this.checkBox157, "R_DR_Prefix");
+            this.structuresExtender.SetAttributeTypeName(this.checkBox157, null);
+            this.checkBox157.AutoSize = true;
+            this.structuresExtender.SetBindPropertyName(this.checkBox157, "Checked");
+            this.checkBox157.Checked = true;
+            this.checkBox157.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.structuresExtender.SetIsFilter(this.checkBox157, true);
+            this.checkBox157.Location = new System.Drawing.Point(193, 40);
+            this.checkBox157.Name = "checkBox157";
+            this.checkBox157.Size = new System.Drawing.Size(15, 14);
+            this.checkBox157.TabIndex = 17;
+            this.checkBox157.UseVisualStyleBackColor = true;
+            // 
+            // checkBox158
+            // 
+            this.structuresExtender.SetAttributeName(this.checkBox158, "R_DR_StartNumber");
+            this.structuresExtender.SetAttributeTypeName(this.checkBox158, null);
+            this.checkBox158.AutoSize = true;
+            this.structuresExtender.SetBindPropertyName(this.checkBox158, "Checked");
+            this.checkBox158.Checked = true;
+            this.checkBox158.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.structuresExtender.SetIsFilter(this.checkBox158, true);
+            this.checkBox158.Location = new System.Drawing.Point(260, 40);
+            this.checkBox158.Name = "checkBox158";
+            this.checkBox158.Size = new System.Drawing.Size(15, 14);
+            this.checkBox158.TabIndex = 18;
+            this.checkBox158.UseVisualStyleBackColor = true;
+            // 
+            // label208
+            // 
+            this.structuresExtender.SetAttributeName(this.label208, null);
+            this.structuresExtender.SetAttributeTypeName(this.label208, null);
+            this.label208.AutoSize = true;
+            this.structuresExtender.SetBindPropertyName(this.label208, null);
+            this.label208.Location = new System.Drawing.Point(270, 17);
+            this.label208.Name = "label208";
+            this.label208.Size = new System.Drawing.Size(53, 12);
+            this.label208.TabIndex = 29;
+            this.label208.Text = "시작번호";
+            // 
             // WallVerticalRebarU
             // 
             this.structuresExtender.SetAttributeName(this, null);
@@ -7997,6 +9393,7 @@ namespace YT.WallVerticalRebar
             this.groupBox44.PerformLayout();
             this.groupBox45.ResumeLayout(false);
             this.groupBox45.PerformLayout();
+            this.tabPage5.ResumeLayout(false);
             this.tabPage6.ResumeLayout(false);
             this.groupBox54.ResumeLayout(false);
             this.groupBox54.PerformLayout();
@@ -8017,6 +9414,30 @@ namespace YT.WallVerticalRebar
             this.groupBox62.PerformLayout();
             this.groupBox64.ResumeLayout(false);
             this.groupBox64.PerformLayout();
+            this.groupBox63.ResumeLayout(false);
+            this.groupBox65.ResumeLayout(false);
+            this.groupBox65.PerformLayout();
+            this.groupBox66.ResumeLayout(false);
+            this.groupBox66.PerformLayout();
+            this.groupBox67.ResumeLayout(false);
+            this.groupBox67.PerformLayout();
+            this.groupBox68.ResumeLayout(false);
+            this.groupBox68.PerformLayout();
+            this.groupBox69.ResumeLayout(false);
+            this.groupBox69.PerformLayout();
+            this.groupBox70.ResumeLayout(false);
+            this.groupBox70.PerformLayout();
+            this.groupBox72.ResumeLayout(false);
+            this.groupBox72.PerformLayout();
+            this.groupBox78.ResumeLayout(false);
+            this.groupBox79.ResumeLayout(false);
+            this.groupBox79.PerformLayout();
+            this.groupBox80.ResumeLayout(false);
+            this.groupBox80.PerformLayout();
+            this.groupBox81.ResumeLayout(false);
+            this.groupBox81.PerformLayout();
+            this.groupBox82.ResumeLayout(false);
+            this.groupBox82.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -8074,19 +9495,15 @@ namespace YT.WallVerticalRebar
         private System.Windows.Forms.CheckBox checkBox17;
         private System.Windows.Forms.TextBox R_MoveY;
         private System.Windows.Forms.CheckBox checkBox16;
-        private System.Windows.Forms.TextBox R_MoveXS;
+        private System.Windows.Forms.TextBox MoveXS;
         private System.Windows.Forms.CheckBox checkBox18;
         private System.Windows.Forms.TextBox L_MoveY;
-        private System.Windows.Forms.CheckBox checkBox19;
-        private System.Windows.Forms.TextBox L_MoveXS;
         private System.Windows.Forms.CheckBox checkBox21;
         private System.Windows.Forms.TextBox L_Spacing;
         private System.Windows.Forms.CheckBox checkBox20;
         private System.Windows.Forms.TextBox R_Spacing;
         private System.Windows.Forms.CheckBox checkBox22;
-        private System.Windows.Forms.TextBox R_MoveXE;
-        private System.Windows.Forms.CheckBox checkBox23;
-        private System.Windows.Forms.TextBox L_MoveXE;
+        private System.Windows.Forms.TextBox MoveXE;
         private System.Windows.Forms.Label label17;
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.Label label16;
@@ -8557,5 +9974,104 @@ namespace YT.WallVerticalRebar
         private System.Windows.Forms.CheckBox checkBox125;
         private System.Windows.Forms.TextBox R_T_Building_Storey;
         private System.Windows.Forms.TextBox R_T_Building;
+        private System.Windows.Forms.GroupBox groupBox63;
+        private System.Windows.Forms.GroupBox groupBox65;
+        private System.Windows.Forms.TextBox R_LT_Splice1;
+        private System.Windows.Forms.CheckBox checkBox123;
+        private System.Windows.Forms.ComboBox R_LT_SpliceType;
+        private System.Windows.Forms.CheckBox checkBox126;
+        private System.Windows.Forms.Label label162;
+        private System.Windows.Forms.TextBox R_LT_HookLength;
+        private System.Windows.Forms.ComboBox R_LT_HookInOut;
+        private System.Windows.Forms.Label label166;
+        private System.Windows.Forms.Label label167;
+        private System.Windows.Forms.Label label168;
+        private System.Windows.Forms.Label label169;
+        private System.Windows.Forms.TextBox R_LT_Bent;
+        private System.Windows.Forms.Label label170;
+        private System.Windows.Forms.CheckBox checkBox127;
+        private System.Windows.Forms.CheckBox checkBox128;
+        private System.Windows.Forms.TextBox R_LT_HookCorver;
+        private System.Windows.Forms.GroupBox groupBox66;
+        private System.Windows.Forms.Label label171;
+        private System.Windows.Forms.ComboBox R_LT_ExcludeType;
+        private System.Windows.Forms.GroupBox groupBox67;
+        private System.Windows.Forms.Label label172;
+        private System.Windows.Forms.ComboBox R_LT_YesOrNo;
+        private System.Windows.Forms.GroupBox groupBox68;
+        private System.Windows.Forms.TextBox R_LT_Splice2;
+        private System.Windows.Forms.CheckBox checkBox129;
+        private System.Windows.Forms.Label label173;
+        private System.Windows.Forms.GroupBox groupBox69;
+        private System.Windows.Forms.CheckBox checkBox130;
+        private System.Windows.Forms.Label label174;
+        private System.Windows.Forms.TextBox R_LT_UserSpacing;
+        private System.Windows.Forms.ComboBox R_LT_SpacingType;
+        private System.Windows.Forms.Label label175;
+        private System.Windows.Forms.GroupBox groupBox70;
+        private System.Windows.Forms.TextBox R_LT_Name;
+        private System.Windows.Forms.TextBox R_LT_Grade;
+        private System.Windows.Forms.TextBox R_LT_Size;
+        private System.Windows.Forms.TextBox R_LT_Radius;
+        private System.Windows.Forms.Label label176;
+        private System.Windows.Forms.Label label177;
+        private System.Windows.Forms.Label label178;
+        private System.Windows.Forms.Label label179;
+        private System.Windows.Forms.CheckBox checkBox131;
+        private System.Windows.Forms.CheckBox checkBox132;
+        private System.Windows.Forms.CheckBox checkBox133;
+        private System.Windows.Forms.CheckBox checkBox134;
+        private Tekla.Structures.Dialog.UIControls.ReinforcementCatalog reinforcementCatalog6;
+        private System.Windows.Forms.TextBox R_LT_Class;
+        private System.Windows.Forms.TextBox R_LT_Prefix;
+        private System.Windows.Forms.Label label180;
+        private System.Windows.Forms.Label label181;
+        private System.Windows.Forms.TextBox R_LT_StartNumber;
+        private System.Windows.Forms.CheckBox checkBox135;
+        private System.Windows.Forms.CheckBox checkBox136;
+        private System.Windows.Forms.CheckBox checkBox137;
+        private System.Windows.Forms.Label label182;
+        private System.Windows.Forms.GroupBox groupBox72;
+        private System.Windows.Forms.Label label186;
+        private System.Windows.Forms.ComboBox R_DW_UDA;
+        private System.Windows.Forms.Label label187;
+        private System.Windows.Forms.Label label188;
+        private System.Windows.Forms.CheckBox checkBox141;
+        private System.Windows.Forms.CheckBox checkBox142;
+        private System.Windows.Forms.TextBox R_DW_Building_S;
+        private System.Windows.Forms.TextBox R_DW_Building;
+        private System.Windows.Forms.GroupBox groupBox78;
+        private System.Windows.Forms.GroupBox groupBox79;
+        private System.Windows.Forms.Label label199;
+        private System.Windows.Forms.ComboBox R_DR_YesOrNo;
+        private System.Windows.Forms.GroupBox groupBox80;
+        private System.Windows.Forms.CheckBox checkBox151;
+        private System.Windows.Forms.TextBox R_DR_HookLength;
+        private System.Windows.Forms.ComboBox R_DR_HookInOut;
+        private System.Windows.Forms.Label label200;
+        private System.Windows.Forms.Label label201;
+        private System.Windows.Forms.Label label202;
+        private System.Windows.Forms.CheckBox checkBox152;
+        private System.Windows.Forms.TextBox R_DR_HookCorver;
+        private System.Windows.Forms.GroupBox groupBox81;
+        private System.Windows.Forms.TextBox R_DR_Splice1;
+        private System.Windows.Forms.CheckBox checkBox153;
+        private System.Windows.Forms.TextBox R_DR_Splice2;
+        private System.Windows.Forms.Label label203;
+        private System.Windows.Forms.CheckBox checkBox154;
+        private System.Windows.Forms.Label label204;
+        private System.Windows.Forms.GroupBox groupBox82;
+        private System.Windows.Forms.TextBox R_DR_Name;
+        private System.Windows.Forms.Label label205;
+        private System.Windows.Forms.CheckBox checkBox155;
+        private System.Windows.Forms.TextBox R_DR_Class;
+        private System.Windows.Forms.TextBox R_DR_Prefix;
+        private System.Windows.Forms.Label label206;
+        private System.Windows.Forms.Label label207;
+        private System.Windows.Forms.TextBox R_DR_StartNumber;
+        private System.Windows.Forms.CheckBox checkBox156;
+        private System.Windows.Forms.CheckBox checkBox157;
+        private System.Windows.Forms.CheckBox checkBox158;
+        private System.Windows.Forms.Label label208;
     }
 }

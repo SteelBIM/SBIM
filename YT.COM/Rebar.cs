@@ -79,8 +79,7 @@ namespace YT.COM
         //
         public string Building { get; set; }
         public string BuildingStorey { get; set; }
-
-
+        //
         #endregion
 
         public void Insert()

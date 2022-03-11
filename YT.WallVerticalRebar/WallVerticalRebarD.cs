@@ -26,6 +26,8 @@ namespace YT.WallVerticalRebar
         [TSP.StructuresField("W_Building_Storey")] public string W_Building_Storey;
         [TSP.StructuresField("W_UDA")] public string W_UDA;
 
+        [TSP.StructuresField("MoveXS")] public double MoveXS;//시작평면
+        [TSP.StructuresField("MoveXE")] public double MoveXE;//시작평면
         #endregion
 
         #region 우측메인
@@ -39,8 +41,8 @@ namespace YT.WallVerticalRebar
         [TSP.StructuresField("R_Prefix")] public string R_Prefix;
         [TSP.StructuresField("R_StartNumber")] public int R_StartNumber;
 
-        [TSP.StructuresField("R_MoveXS")] public double R_MoveXS;//시작평면
-        [TSP.StructuresField("R_MoveXE")] public double R_MoveXE;//시작평면
+        //[TSP.StructuresField("R_MoveXS")] public double R_MoveXS;//시작평면
+        //[TSP.StructuresField("R_MoveXE")] public double R_MoveXE;//시작평면
         [TSP.StructuresField("R_MoveY")] public double R_MoveY;//평면
 
         [TSP.StructuresField("R_ExcludeType")] public string R_ExcludeType;// 철근제외
@@ -73,8 +75,8 @@ namespace YT.WallVerticalRebar
         [TSP.StructuresField("L_Prefix")] public string L_Prefix;
         [TSP.StructuresField("L_StartNumber")] public int L_StartNumber;
 
-        [TSP.StructuresField("L_MoveXS")] public double L_MoveXS;//시작평면
-        [TSP.StructuresField("L_MoveXE")] public double L_MoveXE;//시작평면
+        //[TSP.StructuresField("L_MoveXS")] public double L_MoveXS;//시작평면
+        //[TSP.StructuresField("L_MoveXE")] public double L_MoveXE;//시작평면
         [TSP.StructuresField("L_MoveY")] public double L_MoveY;//평면
 
         [TSP.StructuresField("L_ExcludeType")] public string L_ExcludeType;// 철근제외
@@ -252,8 +254,6 @@ namespace YT.WallVerticalRebar
 
         #endregion
 
-
-
         #region 좌측 중앙 보강근
 
         [TSP.StructuresField("R_LM_Name")] public string R_LM_Name;
@@ -293,7 +293,7 @@ namespace YT.WallVerticalRebar
 
         #endregion
 
-        #region 우측 상앙 보강근
+        #region 우측 상부 보강근
 
         [TSP.StructuresField("R_RT_Name")] public string R_RT_Name;
         [TSP.StructuresField("R_RT_Grade")] public string R_RT_Grade;
@@ -320,6 +320,86 @@ namespace YT.WallVerticalRebar
         [TSP.StructuresField("R_RT_HookLength")] public double R_RT_HookLength;// 후크길이
         [TSP.StructuresField("R_RT_HookInOut")] public string R_RT_HookInOut;// 후크내/외
 
+
+        #endregion
+
+        #region 좌측 상부 보강근
+
+        [TSP.StructuresField("R_LT_Name")] public string R_LT_Name;
+        [TSP.StructuresField("R_LT_Grade")] public string R_LT_Grade;
+        [TSP.StructuresField("R_LT_Size")] public string R_LT_Size;
+        [TSP.StructuresField("R_LT_Radius")] public double R_LT_Radius;
+        [TSP.StructuresField("R_LT_Class")] public int R_LT_Class;
+
+        [TSP.StructuresField("R_LT_Prefix")] public string R_LT_Prefix;
+        [TSP.StructuresField("R_LT_StartNumber")] public int R_LT_StartNumber;
+
+        [TSP.StructuresField("R_LT_SpacingType")] public string R_LT_SpacingType;// 철근 간격 타입
+        [TSP.StructuresField("R_LT_UserSpacing")] public string R_LT_UserSpacing;// 사용자 지정 철근 간격
+
+        [TSP.StructuresField("R_LT_YesOrNo")] public string R_LT_YesOrNo;
+
+        [TSP.StructuresField("R_LT_Splice1")] public double R_LT_Splice1;// 상부길이
+        [TSP.StructuresField("R_LT_Splice2")] public double R_LT_Splice2;// 하부길이
+
+        [TSP.StructuresField("R_LT_ExcludeType")] public string R_LT_ExcludeType;// 철근제외
+
+        [TSP.StructuresField("R_LT_SpliceType")] public string R_LT_SpliceType;// 이음 타입
+        [TSP.StructuresField("R_LT_Bent")] public double R_LT_Bent;// 이음
+        [TSP.StructuresField("R_LT_HookCorver")] public double R_LT_HookCorver;// 후크피복
+        [TSP.StructuresField("R_LT_HookLength")] public double R_LT_HookLength;// 후크길이
+        [TSP.StructuresField("R_LT_HookInOut")] public string R_LT_HookInOut;// 후크내/외
+
+
+        #endregion
+
+        #region 보강근 다월 공통
+
+        [TSP.StructuresField("R_DW_Building")] public string R_DW_Building;
+        [TSP.StructuresField("R_DW_Building_S")] public string R_DW_Building_S;
+        [TSP.StructuresField("R_DW_UDA")] public string R_DW_UDA;
+
+        //[TSP.StructuresField("DW_FootingDepth")] public double DW_FootingDepth;// 기초두께
+        //[TSP.StructuresField("DW_FootingSpacing")] public double DW_FootingSpacing;// 기초간격
+        //[TSP.StructuresField("DW_FootingSplice")] public double DW_FootingSplice;// 기초여장
+
+        #endregion
+
+        #region 우측 보강근 다월 공통
+
+        [TSP.StructuresField("R_DR_Name")] public string R_DR_Name;
+
+        [TSP.StructuresField("R_DR_Class")] public int R_DR_Class;
+        [TSP.StructuresField("R_DR_Prefix")] public string R_DR_Prefix;
+        [TSP.StructuresField("R_DR_StartNumber")] public int R_DR_StartNumber;
+
+        [TSP.StructuresField("R_DR_YesOrNo")] public string R_DR_YesOrNo;
+
+        [TSP.StructuresField("R_DR_Splice1")] public double R_DR_Splice1;// 이음
+        [TSP.StructuresField("R_DR_Splice2")] public double R_DR_Splice2;// 이음
+
+        [TSP.StructuresField("R_DR_HookCorver")] public double R_DR_HookCorver;// 후크피복
+        [TSP.StructuresField("R_DR_HookLength")] public double R_DR_HookLength;// 후크길이
+        [TSP.StructuresField("R_DR_HookInOut")] public string R_DR_HookInOut;// 후크내/외
+        #endregion
+
+
+        #region 좌측 보강근 다월 공통월
+
+        //[TSP.StructuresField("R_DL_Name")] public string R_DL_Name;
+
+        //[TSP.StructuresField("R_DL_Class")] public int R_DL_Class;
+        //[TSP.StructuresField("R_DL_Prefix")] public string R_DL_Prefix;
+        //[TSP.StructuresField("R_DL_StartNumber")] public int R_DL_StartNumber;
+
+        //[TSP.StructuresField("R_DL_YesOrNo")] public string R_DL_YesOrNo;
+
+        //[TSP.StructuresField("R_DL_Splice1")] public double R_DL_Splice1;// 이음
+        //[TSP.StructuresField("R_DL_Splice2")] public double R_DL_Splice2;// 이음
+
+        //[TSP.StructuresField("R_DL_HookCorver")] public double R_DL_HookCorver;// 후크피복
+        //[TSP.StructuresField("R_DL_HookLength")] public double R_DL_HookLength;// 후크길이
+        //[TSP.StructuresField("R_DL_HookInOut")] public string R_DL_HookInOut;// 후크내/외
 
         #endregion
 
