@@ -30,23 +30,35 @@ namespace TEST
         private void InitializeComponent()
         {
             this.WallVericalRebarTest = new System.Windows.Forms.Button();
+            this.ArrayTest = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // WallVericalRebarTest
             // 
             this.WallVericalRebarTest.Location = new System.Drawing.Point(31, 33);
             this.WallVericalRebarTest.Name = "WallVericalRebarTest";
-            this.WallVericalRebarTest.Size = new System.Drawing.Size(77, 23);
+            this.WallVericalRebarTest.Size = new System.Drawing.Size(146, 23);
             this.WallVericalRebarTest.TabIndex = 5;
             this.WallVericalRebarTest.Text = "WallVericalRebarTest";
             this.WallVericalRebarTest.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             this.WallVericalRebarTest.UseVisualStyleBackColor = true;
+            // 
+            // ArrayTest
+            // 
+            this.ArrayTest.Location = new System.Drawing.Point(31, 72);
+            this.ArrayTest.Name = "ArrayTest";
+            this.ArrayTest.Size = new System.Drawing.Size(146, 23);
+            this.ArrayTest.TabIndex = 6;
+            this.ArrayTest.Text = "ArrayTest";
+            this.ArrayTest.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.ArrayTest.UseVisualStyleBackColor = true;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.ArrayTest);
             this.Controls.Add(this.WallVericalRebarTest);
             this.Name = "Form1";
             this.Text = "Form1";
@@ -56,6 +68,7 @@ namespace TEST
 
         #endregion
         private System.Windows.Forms.Button WallVericalRebarTest;
+        private System.Windows.Forms.Button ArrayTest;
     }
 }
 

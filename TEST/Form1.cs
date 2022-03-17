@@ -30,8 +30,19 @@ namespace TEST
             InitializeComponent();
 
             WallVericalRebarTest.Click += Button5_Click;
+            ArrayTest.Click += ArrayTest_Click;
 
         }
+
+        private void ArrayTest_Click(object sender, EventArgs e)
+        {
+
+            CopyArray(2000, 150);
+
+
+        }
+
+       
 
         private void Button5_Click(object sender, EventArgs e)
         {
@@ -139,7 +150,6 @@ namespace TEST
             var barLStartPoint = new TSG.Point(startleftCrossPoint.X + leftMoveXS + leftKsXS, startleftCrossPoint.Y, startleftCrossPoint.Z);
             var barLEndPoint = new TSG.Point(endleftCrossPoint.X - leftMoveXE - leftKsXE, endleftCrossPoint.Y, endleftCrossPoint.Z);
             #endregion
-
 
             #region 우측메인
             var barR = new Rebar();
@@ -298,6 +308,7 @@ namespace TEST
 
             #endregion
 
+            #region MyRegion
 
             barR.Spacing = rightSpacings.RightMainSpacing2(startleftCrossPoint, endleftCrossPoint, startrightCrossPoint, endrightCrossPoint, lengthR, rightSpacing, rebar);
 
@@ -443,7 +454,7 @@ namespace TEST
             var ssa = ss / 2;
 
 
-            if (ss > 0 && ss <= leftSpacing*2  && ss > leftSpacing)
+            if (ss > 0 && ss <= leftSpacing * 2 && ss > leftSpacing)
             {
                 barRRL.StartPoint = new TSG.Point(startleftCrossPoint.X + leftMoveXS + leftKsXS + ssa / 2, startleftCrossPoint.Y, startleftCrossPoint.Z);
                 barRRL.EndPoint = new TSG.Point(endleftCrossPoint.X - leftMoveXE - leftKsXE + ssa / 2, endleftCrossPoint.Y, endleftCrossPoint.Z);
@@ -468,20 +479,254 @@ namespace TEST
 
             barRRL.Spacing = barRRLSpacings.LeftReinforcementSpacing3(startleftCrossPoint, endleftCrossPoint, startrightCrossPoint, endrightCrossPoint, barRRLlength, barRRLSpacing, rebar);
 
-
-
-
-
-
-            //barRRB.StartPoint = new TSG.Point(startrightCrossPoint.X + rightMoveXS + rightKsXS + barRRBSpacing / 2, startrightCrossPoint.Y, startrightCrossPoint.Z);
-            //barRRB.EndPoint = new TSG.Point(endrightCrossPoint.X - rightMoveXE - rightKsXE + barRRBSpacing/2, endrightCrossPoint.Y, endrightCrossPoint.Z);
-
-
-
             barRRL.Insert();
+
+            #endregion
+
+
+            var ssp = 150;
+            var l = 3000;
+
+
+            // 전단근
+            var startpoint = new TSG.Point();
+            var endpoint = new TSG.Point();
+
+            var poly = new TSM.Polygon();
+
+            var points = new ShearBarPoints(startpoint, endpoint);
+            points.FirstPoints(barLStartPoint, barLEndPoint, barRStartPoint, barREndPoint, beam, 10, 35, 35);
+
+            poly.Points.Add(points.StartPoint);
+            poly.Points.Add(points.Endpoint);
+
+
+            var bar1 = new TSM.RebarGroup();
+            bar1.Polygons.Add(poly);
+            bar1.SpacingType = TSM.RebarGroup.RebarGroupSpacingTypeEnum.SPACING_TYPE_EXACT_SPACINGS;
+
+
+            var bar1spacing = new Spacings();
+            var bar1llist = bar1spacing.InsertShearBar5(barLStartPoint, barLEndPoint, barRStartPoint, barREndPoint, ssp);
+
+            var ap = new ArrayList();
+            ap.Add(0.0);
+
+            bar1.Spacings = CopyArray(l, 150);
+            bar1.ExcludeType = TSM.RebarGroup.ExcludeTypeEnum.EXCLUDE_TYPE_NONE;
+            bar1.Father = beam;
+            bar1.Name = "RebarGroup";
+            bar1.Class = 3;
+            bar1.Size = "10";
+            bar1.Grade = "SD400";
+            bar1.RadiusValues.Add(20.0);
+            bar1.NumberingSeries.StartNumber = 0;
+            bar1.NumberingSeries.Prefix = "Group";
+
+            bar1.StartHook.Shape = TSM.RebarHookData.RebarHookShapeEnum.HOOK_90_DEGREES;
+            bar1.EndHook.Shape = TSM.RebarHookData.RebarHookShapeEnum.HOOK_135_DEGREES;
+
+            bar1.OnPlaneOffsets.Add(0.0);
+            bar1.StartPointOffsetType = TSM.Reinforcement.RebarOffsetTypeEnum.OFFSET_TYPE_COVER_THICKNESS;
+            bar1.StartPointOffsetValue = 0;
+            bar1.EndPointOffsetType = TSM.Reinforcement.RebarOffsetTypeEnum.OFFSET_TYPE_COVER_THICKNESS;
+            bar1.EndPointOffsetValue = 0;
+            bar1.FromPlaneOffset = 0;
+            bar1.StartPoint = new TSG.Point(minX, minY, minZ);
+            bar1.EndPoint = new TSG.Point(minX, minY, minZ+150);
+
+            bar1.Insert();
+
+            Copy(bar1, bar1llist);
+
+            var startpoint2 = new TSG.Point();
+            var endpoint2 = new TSG.Point();
+
+            var poly2 = new TSM.Polygon();
+
+            var points2 = new ShearBarPoints(startpoint2, endpoint2);
+            points2.SecondPoints(new TSG.Point(barLStartPoint.X + ssp*2, barLStartPoint.Y, barLStartPoint.Z), barLEndPoint, new TSG.Point(barRStartPoint.X + ssp*2, barRStartPoint.Y, barRStartPoint.Z), barREndPoint, beam, 10, 35, 35);
+
+            poly2.Points.Add(points2.StartPoint);
+            poly2.Points.Add(points2.Endpoint);
+
+            var bar2 = new TSM.RebarGroup();
+            bar2.Polygons.Add(poly2);
+            bar2.SpacingType = TSM.RebarGroup.RebarGroupSpacingTypeEnum.SPACING_TYPE_EXACT_SPACINGS;
+
+            var bar2spacing = new Spacings();
+            var bar2list = bar2spacing.InsertShearBar6(new TSG.Point(barLStartPoint.X + ssp*2, barLStartPoint.Y, barLStartPoint.Z), barLEndPoint, new TSG.Point(barRStartPoint.X + ssp*2, barRStartPoint.Y, barRStartPoint.Z), barREndPoint, ssp);
+
+            var ap2 = new ArrayList();
+            ap2.Add(0.0);
+
+            bar2.Spacings = CopyArray(l, 150);
+            bar2.ExcludeType = TSM.RebarGroup.ExcludeTypeEnum.EXCLUDE_TYPE_NONE;
+            bar2.Father = beam;
+            bar2.Name = "RebarGroup";
+            bar2.Class = 3;
+            bar2.Size = "10";
+            bar2.Grade = "SD400";
+            bar2.RadiusValues.Add(20.0);
+            bar2.NumberingSeries.StartNumber = 0;
+            bar2.NumberingSeries.Prefix = "Group";
+
+            bar2.StartHook.Shape = TSM.RebarHookData.RebarHookShapeEnum.HOOK_90_DEGREES;
+            bar2.EndHook.Shape = TSM.RebarHookData.RebarHookShapeEnum.HOOK_135_DEGREES;
+
+            bar2.OnPlaneOffsets.Add(0.0);
+            bar2.StartPointOffsetType = TSM.Reinforcement.RebarOffsetTypeEnum.OFFSET_TYPE_COVER_THICKNESS;
+            bar2.StartPointOffsetValue = 0;
+            bar2.EndPointOffsetType = TSM.Reinforcement.RebarOffsetTypeEnum.OFFSET_TYPE_COVER_THICKNESS;
+            bar2.EndPointOffsetValue = 0;
+            bar2.FromPlaneOffset = 0;
+            bar2.StartPoint = new TSG.Point(minX, minY, minZ);
+            bar2.EndPoint = new TSG.Point(minX, minY, minZ + 150);
+
+            bar2.Insert();
+
+            //TSM.Operations.Operation.MoveObject(bar2, new TSG.Vector(ssp, 0, 0));
+
+            Copy(bar2, bar2list);
+
+
+            var bar3 = new TSM.RebarGroup();
+            bar3.Polygons.Add(poly);
+            bar3.SpacingType = TSM.RebarGroup.RebarGroupSpacingTypeEnum.SPACING_TYPE_EXACT_SPACINGS;
+
+
+
+            var ap3 = new ArrayList();
+            ap3.Add(0.0);
+
+            bar3.Spacings = CopyArray2(l, 150); 
+            bar3.ExcludeType = TSM.RebarGroup.ExcludeTypeEnum.EXCLUDE_TYPE_NONE;
+            bar3.Father = beam;
+            bar3.Name = "RebarGroup";
+            bar3.Class = 3;
+            bar3.Size = "10";
+            bar3.Grade = "SD400";
+            bar3.RadiusValues.Add(20.0);
+            bar3.NumberingSeries.StartNumber = 0;
+            bar3.NumberingSeries.Prefix = "Group";
+
+            bar3.StartHook.Shape = TSM.RebarHookData.RebarHookShapeEnum.HOOK_135_DEGREES;
+            bar3.EndHook.Shape = TSM.RebarHookData.RebarHookShapeEnum.HOOK_90_DEGREES;
+
+            bar3.OnPlaneOffsets.Add(0.0);
+            bar3.StartPointOffsetType = TSM.Reinforcement.RebarOffsetTypeEnum.OFFSET_TYPE_COVER_THICKNESS;
+            bar3.StartPointOffsetValue = 0;
+            bar3.EndPointOffsetType = TSM.Reinforcement.RebarOffsetTypeEnum.OFFSET_TYPE_COVER_THICKNESS;
+            bar3.EndPointOffsetValue = 0;
+            bar3.FromPlaneOffset = 0;
+            bar3.StartPoint = new TSG.Point(minX, minY, minZ);
+            bar3.EndPoint = new TSG.Point(minX, minY, minZ + 150);
+
+            bar3.Insert();
+
+            MoveZ(bar3, 150);
+            Copy(bar3, bar1llist);
+
+
+
+            var bar4 = new TSM.RebarGroup();
+            bar4.Polygons.Add(poly2);
+            bar4.SpacingType = TSM.RebarGroup.RebarGroupSpacingTypeEnum.SPACING_TYPE_EXACT_SPACINGS;
+
+
+            var ap4 = new ArrayList();
+            ap4.Add(0.0);
+
+            bar4.Spacings = CopyArray2(l, 150);
+            bar4.ExcludeType = TSM.RebarGroup.ExcludeTypeEnum.EXCLUDE_TYPE_NONE;
+            bar4.Father = beam;
+            bar4.Name = "RebarGroup";
+            bar4.Class = 3;
+            bar4.Size = "10";
+            bar4.Grade = "SD400";
+            bar4.RadiusValues.Add(20.0);
+            bar4.NumberingSeries.StartNumber = 0;
+            bar4.NumberingSeries.Prefix = "Group";
+
+            bar4.StartHook.Shape = TSM.RebarHookData.RebarHookShapeEnum.HOOK_135_DEGREES;
+            bar4.EndHook.Shape = TSM.RebarHookData.RebarHookShapeEnum.HOOK_90_DEGREES;
+
+            bar4.OnPlaneOffsets.Add(0.0);
+            bar4.StartPointOffsetType = TSM.Reinforcement.RebarOffsetTypeEnum.OFFSET_TYPE_COVER_THICKNESS;
+            bar4.StartPointOffsetValue = 0;
+            bar4.EndPointOffsetType = TSM.Reinforcement.RebarOffsetTypeEnum.OFFSET_TYPE_COVER_THICKNESS;
+            bar4.EndPointOffsetValue = 0;
+            bar4.FromPlaneOffset = 0;
+            bar4.StartPoint = new TSG.Point(minX, minY, minZ);
+            bar4.EndPoint = new TSG.Point(minX, minY, minZ + 150);
+
+            bar4.Insert();
+
+            MoveZ(bar4, 150);
+            Copy(bar4, bar2list);
+
 
             m.CommitChanges();
 
+
+        }
+
+        private ArrayList CopyArray(double length, double spacing)
+        {
+            var list = new ArrayList();
+
+            var ea = Math.Truncate(length / (spacing*2));
+
+            var sp = length / ea;
+
+            for (int i = 0; i < ea; i++)
+            {
+                list.Add(sp);
+            }
+
+            return list;
+        }
+
+        private ArrayList CopyArray2(double length, double spacing)
+        {
+            var list = new ArrayList();
+
+            var ea = Math.Truncate(length / (spacing * 2));
+
+            var sp = length / ea;
+
+            for (int i = 0; i < ea-1 ; i++)
+            {
+                list.Add(sp);
+            }
+
+            return list;
+        }
+
+
+        private void Copy(TSM.RebarGroup bar, ArrayList list)
+        {
+            var ob = bar as TSM.ModelObject;
+
+            double sum = 0.0;
+
+            for (int i = 0; i < list.Count; i++)
+            {
+                var a = Convert.ToDouble(list[i]);
+
+                var aaa = sum += a;
+
+                TSM.Operations.Operation.CopyObject(bar, new TSG.Vector(aaa, 0, 0));
+            }
+        }
+
+
+
+        private void MoveZ(TSM.RebarGroup bar, double z)
+        {
+            var ob = bar as TSM.ModelObject;
+
+            TSM.Operations.Operation.MoveObject(bar, new TSG.Vector(0, 0, z));
         }
 
 

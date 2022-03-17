@@ -82,6 +82,7 @@
   <ItemGroup>
     <Compile Include="KS.cs" />
     <Compile Include="Rebar.cs" />
+    <Compile Include="ShearBarPoints.cs" />
     <Compile Include="Spacings.cs" />
     <Compile Include="Util.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

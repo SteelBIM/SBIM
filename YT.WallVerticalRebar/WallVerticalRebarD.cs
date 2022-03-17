@@ -386,20 +386,54 @@ namespace YT.WallVerticalRebar
 
         #region 좌측 보강근 다월 공통월
 
-        //[TSP.StructuresField("R_DL_Name")] public string R_DL_Name;
+        [TSP.StructuresField("R_DL_Name")] public string R_DL_Name;
 
-        //[TSP.StructuresField("R_DL_Class")] public int R_DL_Class;
-        //[TSP.StructuresField("R_DL_Prefix")] public string R_DL_Prefix;
-        //[TSP.StructuresField("R_DL_StartNumber")] public int R_DL_StartNumber;
+        [TSP.StructuresField("R_DL_Class")] public int R_DL_Class;
+        [TSP.StructuresField("R_DL_Prefix")] public string R_DL_Prefix;
+        [TSP.StructuresField("R_DL_StartNumber")] public int R_DL_StartNumber;
 
-        //[TSP.StructuresField("R_DL_YesOrNo")] public string R_DL_YesOrNo;
+        [TSP.StructuresField("R_DL_YesOrNo")] public string R_DL_YesOrNo;
 
-        //[TSP.StructuresField("R_DL_Splice1")] public double R_DL_Splice1;// 이음
-        //[TSP.StructuresField("R_DL_Splice2")] public double R_DL_Splice2;// 이음
+        [TSP.StructuresField("R_DL_Splice1")] public double R_DL_Splice1;// 이음
+        [TSP.StructuresField("R_DL_Splice2")] public double R_DL_Splice2;// 이음
 
-        //[TSP.StructuresField("R_DL_HookCorver")] public double R_DL_HookCorver;// 후크피복
-        //[TSP.StructuresField("R_DL_HookLength")] public double R_DL_HookLength;// 후크길이
-        //[TSP.StructuresField("R_DL_HookInOut")] public string R_DL_HookInOut;// 후크내/외
+        [TSP.StructuresField("R_DL_HookCorver")] public double R_DL_HookCorver;// 후크피복
+        [TSP.StructuresField("R_DL_HookLength")] public double R_DL_HookLength;// 후크길이
+        [TSP.StructuresField("R_DL_HookInOut")] public string R_DL_HookInOut;// 후크내/외
+
+        #endregion
+
+        #region 전단근
+
+        [TSP.StructuresField("S_Type")] public string S_Type;// 이음
+
+
+        [TSP.StructuresField("S_YesOrNO")] public string S_YesOrNO;
+
+        [TSP.StructuresField("S_UDA")] public string S_UDA;
+        [TSP.StructuresField("S_Building")] public string S_Building;
+        [TSP.StructuresField("S_Building_S")] public string S_Building_S;
+
+        [TSP.StructuresField("S_FirstX")] public double S_FirstX;
+        [TSP.StructuresField("S_FirstY")] public double S_FirstY;
+
+        [TSP.StructuresField("S_SpacingX")] public double S_SpacingX;
+
+        [TSP.StructuresField("S_SpacingY")] public double S_SpacingY;
+
+        [TSP.StructuresField("S_LengthY")] public double S_LengthY;
+
+        [TSP.StructuresField("S_Name")] public string S_Name;
+        [TSP.StructuresField("S_Grade")] public string S_Grade;
+        [TSP.StructuresField("S_Size")] public string S_Size;
+        [TSP.StructuresField("S_Radius")] public double S_Radius;
+        [TSP.StructuresField("S_Class")] public int S_Class;
+
+        [TSP.StructuresField("S_Prefix")] public string S_Prefix;
+        [TSP.StructuresField("S_StartNumber")] public int S_StartNumber;
+
+        [TSP.StructuresField("S_R_Offset")] public double S_R_Offset;
+        [TSP.StructuresField("S_L_Offset")] public double S_L_Offset;
 
         #endregion
 
