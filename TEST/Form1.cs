@@ -9,7 +9,6 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 
 using YT.COM;
-//using YT.WallVerticalRebar;
 
 using TS = Tekla.Structures;
 using TSM = Tekla.Structures.Model;
@@ -31,18 +30,754 @@ namespace TEST
 
             WallVericalRebarTest.Click += Button5_Click;
             ArrayTest.Click += ArrayTest_Click;
+            Coupler.Click += Coupler_Click;
+            test.Click += Test_Click;
+
+            button1.Click += Button1_Click;
+            SingleSlab.Click += SingleSlab_Click;
+        }
+
+        private void SingleSlab_Click(object sender, EventArgs e)
+        {
+            var m = new TSM.Model();
+
+
+            var beam = new TSM.Beam(new TSG.Point(15000, 3000, 0), new TSG.Point(21000, 3000, 0));
+            beam.Profile.ProfileString = "400x400";
+            beam.Insert();
+
+            //var beam2 = new TSM.Beam(new TSG.Point(15000, 3000, 0), new TSG.Point(21000, 3000, 0));
+            //beam2.Profile.ProfileString = "400x400";
+            //beam2.Insert();
+
+            //TSM.Seam S = new TSM.Seam();
+
+            //S.Name = "seamdm";
+            //S.Number = -1;
+            //S.LoadAttributesFromFile("standard");
+            //S.UpVector = new TSG.Vector(0, 0, 0);
+            //S.AutoDirectionType = TS.AutoDirectionTypeEnum.AUTODIR_BASIC;
+            //S.AutoPosition = true;
+
+            //S.SetPrimaryObject(beam);
+            //S.SetSecondaryObject(beam2);
+
+            //S.SetInputPositions(new TSG.Point(15000, 3000, 0), new TSG.Point(21000, 3000, 0));
+            //S.Insert();
+
+            //TSG.Point point = new TSG.Point(0, 0, 0);
+            //TSG.Point point2 = new TSG.Point(1000, 0, 0);
+            //TSM.Brep brep = new TSM.Brep();
+            //brep.StartPoint = point;
+            //brep.EndPoint = point2;
+            //brep.Profile.ProfileString = "Default" ;
+            //bool result = brep.Insert();
+
+            var contour1 = new TSM.Contour();
+            contour1.AddContourPoint(new TSM.ContourPoint(new TSG.Point(6000.0, 8500.0, 0.0), null));
+            contour1.AddContourPoint(new TSM.ContourPoint(new TSG.Point(6000.0, 6000.0, 0.0), null));
+            contour1.AddContourPoint(new TSM.ContourPoint(new TSG.Point(12000.0, 6000.0, 0.0), null));
+            contour1.AddContourPoint(new TSM.ContourPoint(new TSG.Point(12000.0, 8500.0, 0.0), null));
+            var geometry = new TSM.ConnectiveGeometry(contour1);
+
+            var contour2 = new TSM.Contour();
+            contour2.AddContourPoint(new TSM.ContourPoint(new TSG.Point(15000.0, 8500.0, 1000.0), null));
+            contour2.AddContourPoint(new TSM.ContourPoint(new TSG.Point(15000.0, 6000.0, 1000.0), null));
+            contour2.AddContourPoint(new TSM.ContourPoint(new TSG.Point(19600.0, 6000.0, 3500.0), null));
+            contour2.AddContourPoint(new TSM.ContourPoint(new TSG.Point(19600.0, 8500.0, 3500.0), null));
+
+            var radius = 2000.0;
+            var bentPlateGeometrySolver = new TSM.BentPlateGeometrySolver();
+            var newGeometry = bentPlateGeometrySolver.AddLeg(geometry, contour2, radius);
+
+
+            ////var xlist = new List<double>();
+            ////var ylist = new List<double>();
+
+            ////var alllist = new List<TSG.Point>();
+
+            //var toplist = new List<TSG.Point>();
+            //var bottomlist = new List<TSG.Point>();
+
+
+            //var pick = new TSM.UI.Picker().PickObjects(TSM.UI.Picker.PickObjectsEnum.PICK_N_OBJECTS);
+
+
+            //var pickline = new TSM.UI.Picker().PickLine();
+
+            //var pickline1 = pickline[0] as TSG.Point;
+            //var pickline2 = pickline[1] as TSG.Point;
+            /////
+            //Util.Coordination.ChangeCoordinates(pickline1, pickline2);
+
+            //while (pick.MoveNext())
+            //{
+            //    var slab = pick.Current as TSM.ContourPlate;
+
+            //    var coordination = slab.GetCoordinateSystem();
+            //     var solid = slab.GetSolid();
+
+            //    var maxZ = solid.MaximumPoint.Z;
+            //    var minZ = solid.MinimumPoint.Z;
+
+            //    var edgeEnum = solid.GetEdgeEnumerator();
+
+            //    while (edgeEnum.MoveNext())
+            //    {
+            //        var edge = edgeEnum.Current as TS.Solid.Edge;
+
+
+            //        ////xlist.Add(edge.StartPoint.X);
+            //        ////ylist.Add(edge.StartPoint.Y);
+
+
+            //        //if (edge.StartPoint.Z == maxZ)
+            //        //{
+            //        //    //xlist.Add( Math.Round(edge.StartPoint.X,2));
+            //        //    toplist.Add(edge.EndPoint);
+            //        //}
+            //        //if (edge.StartPoint.Z == minZ)
+            //        //{
+            //        //    //ylist.Add(Math.Round(edge.StartPoint.Y,2));
+            //        //    bottomlist.Add(edge.EndPoint);
+            //        //}
+            //    }
+            //}
+
+            //var list = toplist.Distinct().ToList();
+            //var all = alllist.OrderBy(x => x.X).ThenBy(y => y.Y).ToList();
+
+            //var xdouble = xlist.Distinct().OrderBy(x=>x).ToList();
+            //var ydouble = ylist.Distinct().OrderBy(x=>x).ToList();    
+
+            //var all = alllist.Distinct().OrderBy(x => x.X).ThenBy(y => y.Y).ThenBy(z => z.Z).ToList();
+            //var sss = all.Where(x => x.Z == 0).ToList();
+
+            //var listsum = new List<TSG.Point>();
+
+            //var top = toplist.Distinct().OrderBy(x => x.X).ThenBy(y => y.Y).ThenBy(z => z.Z).ToList();
+
+            //var topX = top.Select(x => Math.Round(x.X, 3)).Distinct().OrderBy(x => x).ToList();
+            //var topY = top.Select(x => Math.Round(x.Y, 3)).Distinct().OrderBy(x => x).ToList();
+            ////for (int i = 0; i < topX.Count; i++)
+            ////{
+            ////    listsum.Add(new TSG.Point(topX[i], topY[i], 0.0));
+            ////}
+
+            //var bottom = bottomlist.Distinct().OrderBy(x => x.X).ThenBy(y => y.Y).ToList();
+            //var bottomY = bottomlist.Distinct().OrderBy(x => x.Y).ToList();
+
+            m.CommitChanges();
+        }
+
+        private void Button1_Click(object sender, EventArgs e)
+        {
+            TSM.UI.GraphicsDrawer drawer = new TSM.UI.GraphicsDrawer();
+            ConeMesh cone = new ConeMesh(new TSG.Point(0.0, 0.0, 0.0), 5000.0, 5000.0, 100);
+
+            drawer.DrawMeshSurface(cone.Mesh, new TSM.UI.Color(1.0, 0.0, 1.0));
+            drawer.DrawMeshLines(cone.Mesh, new TSM.UI.Color(0.0, 0.0, 1.0));
+
+
+            //var m = new TSM.Model();
+
+            //var beam1 = new TSM.Beam( new TSG.Point(0,0,0) , new TSG.Point(0,0,6000));
+            //var beam2 = new TSM.Beam( new TSG.Point(0,1000,0) , new TSG.Point(0,1000,6000));
+            //var beam3 = new TSM.Beam( new TSG.Point(0,2000,0) , new TSG.Point(0,2000,6000));
+
+            //beam1.Profile.ProfileString = beam2.Profile.ProfileString = beam3.Profile.ProfileString = "400x400";
+
+            //beam1.Insert();
+            //beam2.Insert();
+            //beam3.Insert();
+
+            //ArrayList oblist = new ArrayList();
+            //oblist.Add(beam1);
+            //oblist.Add(beam2);
+
+            //TSM.UI.ModelObjectSelector ms = new TSM.UI.ModelObjectSelector();
+            //ms.Select(oblist);
+
+
+            //m.CommitChanges();
+
+            //var drawer = new TSM.UI.GraphicsDrawer();
+            //drawer.DrawText(new TSG.Point(0.0, 1000.0, 1000.0), "TEXT SAMPLE", new TSM.UI.Color(1.0, 0.5, 0.0));
+            //drawer.DrawLineSegment(new TSG.Point(0.0, 0.0, 0.0), new TSG.Point(1000.0, 1000.0, 1000.0), new TSM.UI.Color(1.0, 0.0, 0.0));
+
+            //var mesh = new TSM.UI.Mesh();
+            //mesh.AddPoint(new TSG.Point(0.0, 0.0, 0.0));
+            //mesh.AddPoint(new TSG.Point(1000.0, 0.0, 0.0));
+            //mesh.AddPoint(new TSG.Point(1000.0, 1000.0, 0.0));
+            //mesh.AddPoint(new TSG.Point(0.0, 1000.0, 0.0));
+            //mesh.AddTriangle(0, 1, 2);
+            //mesh.AddTriangle(0, 2, 3);
+            //mesh.AddLine(0, 1); mesh.AddLine(1, 2); mesh.AddLine(2, 3); mesh.AddLine(3, 1);
+
+            //drawer.DrawMeshSurface(mesh, new TSM.UI.Color(1.0, 0.0, 0.0, 0.5));
+            //drawer.DrawMeshLines(mesh, new TSM.UI.Color(0.0, 0.0, 1.0));
+
+
+
+            //var contour1 = new TSM.Contour();
+            //contour1.AddContourPoint(new TSM.ContourPoint(new TSG.Point(6000.0, 8500.0, 0.0), null));
+            //contour1.AddContourPoint(new TSM.ContourPoint(new TSG.Point(6000.0, 6000.0, 0.0), null));
+            //contour1.AddContourPoint(new TSM.ContourPoint(new TSG.Point(12000.0, 6000.0, 0.0), null));
+            //contour1.AddContourPoint(new TSM.ContourPoint(new TSG.Point(12000.0, 8500.0, 0.0), null));
+
+            //var geometry = new TSM.ConnectiveGeometry(contour1);
+
+            //var contour2 = new TSM.Contour();
+            //contour2.AddContourPoint(new TSM.ContourPoint(new TSG.Point(15000.0, 8500.0, 1000.0), null));
+            //contour2.AddContourPoint(new TSM.ContourPoint(new TSG.Point(15000.0, 6000.0, 1000.0), null));
+            //contour2.AddContourPoint(new TSM.ContourPoint(new TSG.Point(19600.0, 6000.0, 3500.0), null));
+            //contour2.AddContourPoint(new TSM.ContourPoint(new TSG.Point(19600.0, 8500.0, 3500.0), null));
+
+            //var radius = 2000.0;
+            //var bent = new TSM.BentPlateGeometrySolver();
+            //var newgeo = bent.AddLeg(geometry, contour2, radius);
+
+
+
+
+            //var pick = new TSM.UI.Picker().PickObject(TSM.UI.Picker.PickObjectEnum.PICK_ONE_OBJECT);
+
+            //var com = pick as TSM.Component;
+
+
+
+            //var bar = pick as TSM.Reinforcement;
+
+            //var geo = bar.GetRebarGeometries(TSM.Reinforcement.RebarGeometryOptionEnum.AVOID_CLASH);
+
+
+            //var com = pick as TSM.Component;
+
+
+            //var p = pick as TSM.ContourPlate;
+
+            //var solid = p.GetSolid();
+
+            //var edgeenum = solid.GetEdgeEnumerator();
+
+            //var listt = new List<TS.Solid.Edge>();
+
+            //var list = new ArrayList();
+
+            //while (edgeenum.MoveNext())
+            //{
+            //    var edge = edgeenum.Current as TS.Solid.Edge;
+
+            //    listt.Add(edge);
+
+            //}
+            //listt.Distinct();
+
 
         }
+
+        private void Test_Click(object sender, EventArgs e)
+        {
+
+            //var pick = new TSM.UI.Picker().PickObject(TSM.UI.Picker.PickObjectEnum.PICK_ONE_OBJECT);
+
+            //var bar = pick as TSM.Reinforcement;
+
+            //TSM.Component com = new TSM.Component();
+            //com.Name = "YT.AutoCoupler";
+            //com.Number = -100000;
+
+            //TSM.ComponentInput cominput = new TSM.ComponentInput();
+            //cominput.AddInputObject(bar);
+
+            //com.SetComponentInput(cominput);
+            //com.Insert();
+
+
+
+            var pick = new TSM.UI.Picker().PickObjects(TSM.UI.Picker.PickObjectsEnum.PICK_N_OBJECTS);
+
+            while (pick.MoveNext())
+            {
+                var bar = pick.Current as TSM.Reinforcement;
+
+                TSM.Component com = new TSM.Component();
+                com.Name = "YT.AutoCoupler";
+                com.Number = -100000;
+
+                TSM.ComponentInput cominput = new TSM.ComponentInput();
+                cominput.AddInputObject(bar);
+
+                com.SetComponentInput(cominput);
+                com.Insert();
+            }
+
+
+
+        }
+
+        private void Coupler_Click(object sender, EventArgs e)
+        {
+
+            var a = new TSM.UI.Picker().PickObject(TSM.UI.Picker.PickObjectEnum.PICK_ONE_REINFORCEMENT);
+            //var a = new TSM.UI.Picker().PickObjects(TSM.UI.Picker.PickObjectsEnum.PICK_N_OBJECTS);
+            //if (a != null)
+            //{
+            //    while (a.MoveNext())
+            //    {
+            //        var bar = a.Current as TSM.RebarGroup;
+
+            //        Util.Coordination.ChangeCoordinates(bar.StartPoint, bar.EndPoint);
+
+            //        var geo = bar.GetRebarGeometries(TSM.Reinforcement.RebarGeometryOptionEnum.LENGTH_ADJUSTMENTS);
+
+
+            //        //var sadff = 0;
+            //        //var asdf = 0;
+
+
+            //        for (int i = 0; i < geo.Count; i++)
+            //        {
+            //            var p = geo[i] as TSM.RebarGeometry;
+
+            //            var sp = p.Shape.Points[0] as TSG.Point;
+            //            var ep = p.Shape.Points[1] as TSG.Point;
+
+
+            //            var minX = Math.Min(sp.X, ep.X);
+            //            var minY = Math.Min(sp.Y, ep.Y);
+            //            var minZ = Math.Min(sp.Z,ep.Z);
+
+            //            var maxX = Math.Max(sp.X, ep.X);
+            //            var maxY = Math.Max(sp.Y, ep.Y);
+            //            var maxZ = Math.Max(sp.Z, ep.Z);
+
+            //            var length = 100 / 2;
+
+            //            var coupler = new TSM.Beam(TSM.Beam.BeamTypeEnum.COLUMN);
+
+            //            coupler.Name = "Coulpler";
+            //            coupler.Profile.ProfileString = "D22";
+            //            coupler.Material.MaterialString = "Steel_Undefined";
+            //            coupler.StartPoint = new TSG.Point(maxX, maxY, maxZ - length);
+            //            coupler.EndPoint = new TSG.Point(maxX, maxY, maxZ + length);
+            //            coupler.Position.Plane = TSM.Position.PlaneEnum.MIDDLE;
+            //            coupler.Position.Rotation = TSM.Position.RotationEnum.FRONT;
+            //            coupler.Position.Depth = TSM.Position.DepthEnum.MIDDLE;
+            //            coupler.Insert();
+
+
+            //            var coupler2 = new TSM.Beam(TSM.Beam.BeamTypeEnum.COLUMN);
+
+            //            coupler2.Name = "Coulpler";
+            //            coupler2.Profile.ProfileString = "D22";
+            //            coupler2.Material.MaterialString = "Steel_Undefined";
+            //            coupler2.StartPoint = new TSG.Point(maxX, maxY, minZ - length);
+            //            coupler2.EndPoint = new TSG.Point(maxX, maxY, minZ + length);
+            //            coupler2.Position.Plane = TSM.Position.PlaneEnum.MIDDLE;
+            //            coupler2.Position.Rotation = TSM.Position.RotationEnum.FRONT;
+            //            coupler2.Position.Depth = TSM.Position.DepthEnum.MIDDLE;
+            //            coupler2.Insert();
+            //        }
+            //    }
+
+            //}
+        }
+
 
         private void ArrayTest_Click(object sender, EventArgs e)
         {
+            var a = MainShearBar(1350, 150);
+            var b = AddShearBar(1350, 150);
 
-            CopyArray(2000, 150);
-
-
+            var c = FirstMainShearBar(3173.44, 300);
+            var d = SecondMainShearBar(3173.44, 300);
         }
 
-       
+
+        private ArrayList MainShearBar(double length, double spacing)
+        {
+            var list = new ArrayList();
+
+            var eaA = (int)length / (int)spacing;
+            var teA = length % spacing;
+
+
+            for (int i = 0; i < eaA - 1; i++)
+            {
+                list.Add(spacing);
+            }
+
+            if (teA == 0)
+            {
+                list.Add(spacing);
+
+            }
+            else if (teA != 0)
+            {
+                list.Add((spacing + teA) / 2);
+                list.Add((spacing + teA) / 2);
+            }
+
+            return list;
+        }
+        private ArrayList AddShearBar(double length, double spacing)
+        {
+            var list = new ArrayList();
+
+            var eaA = (int)length / (int)spacing;
+            var teA = length % spacing;
+
+
+            for (int i = 0; i < eaA - 2; i++)
+            {
+                list.Add(spacing);
+            }
+
+            if (teA == 0)
+            {
+                list.Add(spacing);
+
+            }
+            else if (teA != 0)
+            {
+                list.Add(spacing / 2 + ((spacing + teA) / 2) / 2);
+                list.Add((spacing + teA) / 2);
+            }
+
+            return list;
+        }
+
+
+
+        private ArrayList FirstMainShearBar(double length, double spacing)
+        {
+            var list = new ArrayList();
+
+            var eaA = (int)length / (int)spacing;
+            var teA = length % spacing;
+
+            var eaD = (int)length / ((int)spacing * 2);
+
+            for (int i = 0; i < eaD - 1; i++)
+            {
+                list.Add(spacing * 2);
+            }
+
+            if (teA == 0)
+            {
+                list.Add(spacing * 2);
+
+            }
+            else if (teA != 0)
+            {
+                if (eaA % 2 == 0)
+                {
+                    list.Add(spacing + ((teA + spacing) / 2));
+
+                }
+                else if (eaA % 2 == 1)
+                {
+                    list.Add(spacing * 2);
+                    list.Add(spacing + teA);
+                }
+            }
+
+            return list;
+        }
+        private ArrayList SecondMainShearBar(double length, double spacing)
+        {
+            var list = new ArrayList();
+
+            var eaA = (int)length / (int)spacing;
+            var teA = length % spacing;
+
+            var eaD = (int)length / ((int)spacing * 2);
+
+
+            for (int i = 0; i < eaD - 2; i++)
+            {
+                list.Add(spacing * 2);
+            }
+
+            if (teA == 0)
+            {
+                list.Add(spacing * 2);
+
+            }
+            else if (teA != 0)
+            {
+                if (eaA % 2 == 0)
+                {
+                    list.Add(spacing * 2);
+                    list.Add(spacing + teA);
+                }
+                else if (eaA % 2 == 1)
+                {
+                    list.Add(spacing * 2);
+                    list.Add(spacing + ((teA + spacing) / 2));
+                }
+            }
+
+            return list;
+        }
+
+
+        private ArrayList FirstAddShearBar1(double length, double spacing)
+        {
+            var list = new ArrayList();
+
+            var eaA = (int)length / (int)spacing;
+            var teA = length % spacing;
+
+            var eaD = (int)length / ((int)spacing * 2);
+
+
+            for (int i = 0; i < eaD - 1; i++)
+            {
+                list.Add(spacing * 2);
+            }
+
+            if (teA == 0)
+            {
+                if (eaA % 2 == 0)
+                {
+
+                }
+                else if (eaA % 2 == 1)
+                {
+                    list.Add(spacing * 2);
+                }
+
+            }
+            else if (teA != 0)
+            {
+                if (eaA % 2 == 0)
+                {
+                    list.Add((spacing / 2) + ((spacing + teA) * 3 / 4));
+                }
+                else if (eaA % 2 == 1)
+                {
+                    list.Add((spacing / 2 * 3) + ((spacing + teA) * 1 / 4));
+                }
+            }
+
+            return list;
+        }
+        private ArrayList SecondAddShearBar1(double length, double spacing)
+        {
+            var list = new ArrayList();
+
+            var eaA = (int)length / (int)spacing;
+            var teA = length % spacing;
+
+            var eaD = (int)length / ((int)spacing * 2);
+
+            for (int i = 0; i < eaD - 2; i++)
+            {
+                list.Add(spacing * 2);
+            }
+
+            if (teA == 0)
+            {
+                if (eaA % 2 == 0)
+                {
+                    list.Add(spacing * 2);
+                }
+                else if (eaA % 2 == 1)
+                {
+                    list.Add(spacing * 2);
+                }
+
+            }
+            else if (teA != 0)
+            {
+                if (eaA % 2 == 0)
+                {
+                    list.Add((spacing / 2 * 3) + ((spacing + teA) * 1 / 4));
+                }
+                else if (eaA % 2 == 1)
+                {
+                    list.Add(spacing * 2);
+                    list.Add((spacing / 2) + ((spacing + teA) * 3 / 4));
+                }
+            }
+
+            return list;
+        }
+
+
+        private ArrayList FirstAddShearBar2(double length, double spacing)
+        {
+            var list = new ArrayList();
+
+            var eaA = (int)length / (int)spacing;
+            var teA = length % spacing;
+
+            var eaD = (int)length / ((int)spacing * 2);
+
+            for (int i = 0; i < eaD - 1; i++)
+            {
+                list.Add(spacing * 2);
+            }
+
+            if (teA == 0)
+            {
+                if (eaA % 2 == 0)
+                {
+
+                }
+                else if (eaA % 2 == 1)
+                {
+                    list.Add(spacing * 2);
+                }
+            }
+
+            else if (teA != 0)
+            {
+                if (eaA % 2 == 0)
+                {
+                    ////
+                    list.Add((spacing / 3 * 2) + ((spacing + teA) * 4 / 6));
+                }
+                else if (eaA % 2 == 1)
+                {
+                    ////
+                    list.Add((spacing / 3 * 2) + spacing + ((spacing + teA) / 2 / 3));
+                }
+            }
+
+            return list;
+        }
+        private ArrayList SecondAddShearBar2(double length, double spacing)
+        {
+            var list = new ArrayList();
+
+            var eaA = (int)length / (int)spacing;
+            var teA = length % spacing;
+
+            var eaD = (int)length / ((int)spacing * 2);
+
+            for (int i = 0; i < eaD - 2; i++)
+            {
+                list.Add(spacing * 2);
+            }
+
+            if (teA == 0)
+            {
+                if (eaA % 2 == 0)
+                {
+                    list.Add(spacing * 2);
+                }
+                else if (eaA % 2 == 1)
+                {
+                    list.Add(spacing * 2);
+                }
+
+            }
+            else if (teA != 0)
+            {
+                if (eaA % 2 == 0)
+                {
+                    list.Add((spacing / 3 * 2) + spacing + ((spacing + teA) / 2 / 3));
+                }
+                else if (eaA % 2 == 1)
+                {
+                    list.Add(spacing * 2);
+                    list.Add((spacing / 3 * 2) + ((spacing + teA) * 4 / 6));
+                }
+            }
+
+            return list;
+        }
+
+
+        private ArrayList FirstAddShearBar3(double length, double spacing)
+        {
+            var list = new ArrayList();
+
+            var eaA = (int)length / (int)spacing;
+            var teA = length % spacing;
+
+            var eaD = (int)length / ((int)spacing * 2);
+
+            for (int i = 0; i < eaD - 1; i++)
+            {
+                list.Add(spacing * 2);
+            }
+
+            if (teA == 0)
+            {
+                if (eaA % 2 == 0)
+                {
+
+                }
+                else if (eaA % 2 == 1)
+                {
+                    list.Add(spacing * 2);
+                }
+            }
+
+            else if (teA != 0)
+            {
+                if (eaA % 2 == 0)
+                {
+                    list.Add((spacing / 3) + ((spacing + teA) / 6 * 5));
+                }
+                else if (eaA % 2 == 1)
+                {
+                    list.Add((spacing / 3 * 4) + ((spacing + teA) / 6 * 2));
+                }
+            }
+
+            return list;
+        }
+        private ArrayList SecondAddShearBar3(double length, double spacing)
+        {
+            var list = new ArrayList();
+
+            var eaA = (int)length / (int)spacing;
+            var teA = length % spacing;
+
+            var eaD = (int)length / ((int)spacing * 2);
+
+            for (int i = 0; i < eaD - 2; i++)
+            {
+                list.Add(spacing * 2);
+            }
+
+            if (teA == 0)
+            {
+                if (eaA % 2 == 0)
+                {
+                    list.Add(spacing * 2);
+                }
+                else if (eaA % 2 == 1)
+                {
+                    list.Add(spacing * 2);
+                }
+
+            }
+            else if (teA != 0)
+            {
+                if (eaA % 2 == 0)
+                {
+                    list.Add((spacing / 3 * 4) + ((spacing + teA) / 6 * 2));
+                }
+                else if (eaA % 2 == 1)
+                {
+                    list.Add(spacing * 2);
+                    list.Add((spacing / 3) + ((spacing + teA) / 6 * 5));
+                }
+            }
+
+            return list;
+        }
+
+
+
+
+
 
         private void Button5_Click(object sender, EventArgs e)
         {
@@ -78,7 +813,7 @@ namespace TEST
 
             var rightMoveXS = 0;
             var rightMoveXE = 0;
-            var rightMoveY = 20;
+            var rightMoveY = 0;
 
             var rightKsXS = KS.GetDiameter(Convert.ToDouble(22)) / 2;
             var rightKsXSD = KS.GetDiameter(Convert.ToDouble(22));
@@ -88,7 +823,7 @@ namespace TEST
 
             var leftMoveXS = 0;
             var leftMoveXE = 0;
-            var leftMoveY = 20;
+            var leftMoveY = 0;
 
             var leftKsXS = KS.GetDiameter(Convert.ToDouble(10)) / 2;
             var leftKsXSD = KS.GetDiameter(Convert.ToDouble(10));
@@ -117,24 +852,24 @@ namespace TEST
             rightLineSegment.Point2 = new TSG.Point(maxX - rightMoveXE - rightKsXE, minY + rightMoveY + rightKsY, maxZ);
 
             var rightControlLine = new TSM.ControlLine();
-            rightControlLine.Line = rightLineSegment;
-            rightControlLine.Insert();
+            //rightControlLine.Line = rightLineSegment;
+            //rightControlLine.Insert();
 
             var startrightCrossPoint = Util.FindPoint.CrossPoint(new TSG.Line(startLineSegment), new TSG.Line(rightLineSegment));
-            var startrigthControlPoint = new TSM.ControlPoint(startrightCrossPoint);
-            startrigthControlPoint.Insert();
+            //var startrigthControlPoint = new TSM.ControlPoint(startrightCrossPoint);
+            //startrigthControlPoint.Insert();
 
             var endrightCrossPoint = Util.FindPoint.CrossPoint(new TSG.Line(endLineSegment), new TSG.Line(rightLineSegment));
-            var endrightContolPoint = new TSM.ControlPoint(endrightCrossPoint);
-            endrightContolPoint.Insert();
+            //var endrightContolPoint = new TSM.ControlPoint(endrightCrossPoint);
+            //endrightContolPoint.Insert();
 
             var leftLineSegment = new TSG.LineSegment();
             leftLineSegment.Point1 = new TSG.Point(minX + leftMoveXS + leftKsXS, maxY - leftMoveY - leftKsY, maxZ);
             leftLineSegment.Point2 = new TSG.Point(maxX - leftMoveXE - leftKsXE, maxY - leftMoveY - leftKsY, maxZ);
 
             var leftControlLine = new TSM.ControlLine();
-            leftControlLine.Line = leftLineSegment;
-            leftControlLine.Insert();
+            //leftControlLine.Line = leftLineSegment;
+            //leftControlLine.Insert();
 
             var startleftCrossPoint = Util.FindPoint.CrossPoint(new TSG.Line(startLineSegment), new TSG.Line(leftLineSegment));
             var startleftControlPoint = new TSM.ControlPoint(startleftCrossPoint);
@@ -310,20 +1045,25 @@ namespace TEST
 
             #region MyRegion
 
-            barR.Spacing = rightSpacings.RightMainSpacing2(startleftCrossPoint, endleftCrossPoint, startrightCrossPoint, endrightCrossPoint, lengthR, rightSpacing, rebar);
+            barR.Spacing = rightSpacings.RightMainSpacing(startleftCrossPoint, endleftCrossPoint, startrightCrossPoint, endrightCrossPoint, lengthR, rightSpacing, rebar);
 
             barR.Insert();
 
 
-            barL.Spacing = leftSpacings.LeftMainSpacing2(startleftCrossPoint, endleftCrossPoint, startrightCrossPoint, endrightCrossPoint, lengthL, leftSpacing, rebar);
+            barL.Spacing = leftSpacings.LeftMainSpacing(startleftCrossPoint, endleftCrossPoint, startrightCrossPoint, endrightCrossPoint, lengthL, leftSpacing, rebar);
 
             barL.Insert();
 
-            barRD.Spacing = rightSpacingsD.RightDoWelSpacing2(barLStartPoint, barLEndPoint, barRStartPoint, barREndPoint, lengthRD, rightSpacingD, rebar, barRD.Size);
-            barRD.Insert();
+            barRD.Spacing = rightSpacingsD.RightDoWelSpacing(barLStartPoint, barLEndPoint, barRStartPoint, barREndPoint, lengthRD, rightSpacingD, rebar, barRD.Size);
+            //barRD.Insert();
 
-            barLD.Spacing = leftSpacingsD.LeftDoWelSpacing2(barLStartPoint, barLEndPoint, barRStartPoint, barREndPoint, lengthLD, leftSpacingD, rebar, barLD.Size);
-            barLD.Insert();
+            barLD.Spacing = leftSpacingsD.LeftDoWelSpacing(barLStartPoint, barLEndPoint, barRStartPoint, barREndPoint, lengthLD, leftSpacingD, rebar, barLD.Size);
+            //barLD.Insert();
+
+
+
+
+
 
             var barRRB = new Rebar();
 
@@ -353,33 +1093,23 @@ namespace TEST
             var sa = s / 2;
 
 
-            var ch = 0;
-
-            //if (ch == 0)
-            //{
-
 
             if (s > 0 && s <= leftSpacing * 2 && s > leftSpacing)
             {
-                barRRB.StartPoint = new TSG.Point(startrightCrossPoint.X + rightMoveXS + rightKsXS + sa / 2, startrightCrossPoint.Y, startrightCrossPoint.Z);
-                barRRB.EndPoint = new TSG.Point(endrightCrossPoint.X - rightMoveXE - rightKsXE + sa / 2, endrightCrossPoint.Y, endrightCrossPoint.Z);
+                barRRB.StartPoint = new TSG.Point(startrightCrossPoint.X + rightMoveXS + rightKsXS + sa / 3 * 2, startrightCrossPoint.Y, startrightCrossPoint.Z);
+                barRRB.EndPoint = new TSG.Point(endrightCrossPoint.X - rightMoveXE - rightKsXE + sa / 3 * 2, endrightCrossPoint.Y, endrightCrossPoint.Z);
             }
 
             else if (s > 0 && s <= leftSpacing)
             {
-                barRRB.StartPoint = new TSG.Point(startrightCrossPoint.X + rightMoveXS + rightKsXS + s / 2, startrightCrossPoint.Y, startrightCrossPoint.Z);
-                barRRB.EndPoint = new TSG.Point(endrightCrossPoint.X - rightMoveXE - rightKsXE + s / 2, endrightCrossPoint.Y, endrightCrossPoint.Z);
+                barRRB.StartPoint = new TSG.Point(startrightCrossPoint.X + rightMoveXS + rightKsXS + s / 3 * 2, startrightCrossPoint.Y, startrightCrossPoint.Z);
+                barRRB.EndPoint = new TSG.Point(endrightCrossPoint.X - rightMoveXE - rightKsXE + s / 3 * 2, endrightCrossPoint.Y, endrightCrossPoint.Z);
             }
 
-            //else if (leftSpacing == s)
-            //{
-            //    barRRB.StartPoint = new TSG.Point(startrightCrossPoint.X + rightMoveXS + rightKsXS + barRRBSpacing / 2, startrightCrossPoint.Y, startrightCrossPoint.Z);
-            //    barRRB.EndPoint = new TSG.Point(endrightCrossPoint.X - rightMoveXE - rightKsXE + barRRBSpacing / 2, endrightCrossPoint.Y, endrightCrossPoint.Z);
-            //}
             else
             {
-                barRRB.StartPoint = new TSG.Point(startrightCrossPoint.X + rightMoveXS + rightKsXS + barRRBSpacing / 2, startrightCrossPoint.Y, startrightCrossPoint.Z);
-                barRRB.EndPoint = new TSG.Point(endrightCrossPoint.X - rightMoveXE - rightKsXE + barRRBSpacing / 2, endrightCrossPoint.Y, endrightCrossPoint.Z);
+                barRRB.StartPoint = new TSG.Point(startrightCrossPoint.X + rightMoveXS + rightKsXS + barRRBSpacing / 3 * 2, startrightCrossPoint.Y, startrightCrossPoint.Z);
+                barRRB.EndPoint = new TSG.Point(endrightCrossPoint.X - rightMoveXE - rightKsXE + barRRBSpacing / 3 * 2, endrightCrossPoint.Y, endrightCrossPoint.Z);
             }
 
 
@@ -388,38 +1118,6 @@ namespace TEST
             var barRRBSpacings = new Spacings();
 
             barRRB.Spacing = barRRBSpacings.RightReinforcementSpacing3(startleftCrossPoint, endleftCrossPoint, startrightCrossPoint, endrightCrossPoint, barRRBlength, barRRBSpacing, rebar);
-            //}
-            //else
-            //{
-            //    if ((int)s > 0 && (int)s <= leftSpacing + Convert.ToDouble(rebar) + 25 && (int)s > leftSpacing)
-            //    {
-            //        barRRB.StartPoint = new TSG.Point(startrightCrossPoint.X + rightMoveXS + rightKsXS + sa / 3, startrightCrossPoint.Y, startrightCrossPoint.Z);
-            //        barRRB.EndPoint = new TSG.Point(endrightCrossPoint.X - rightMoveXE - rightKsXE + sa / 3, endrightCrossPoint.Y, endrightCrossPoint.Z);
-            //    }
-
-            //    else if ((int)s > 0 && (int)s < leftSpacing)
-            //    {
-            //        barRRB.StartPoint = new TSG.Point(startrightCrossPoint.X + rightMoveXS + rightKsXS + s / 3, startrightCrossPoint.Y, startrightCrossPoint.Z);
-            //        barRRB.EndPoint = new TSG.Point(endrightCrossPoint.X - rightMoveXE - rightKsXE + s / 3, endrightCrossPoint.Y, endrightCrossPoint.Z);
-            //    }
-
-            //    else
-            //    {
-            //        barRRB.StartPoint = new TSG.Point(startrightCrossPoint.X + rightMoveXS + rightKsXS + barRRBSpacing / 3, startrightCrossPoint.Y, startrightCrossPoint.Z);
-            //        barRRB.EndPoint = new TSG.Point(endrightCrossPoint.X - rightMoveXE - rightKsXE + barRRBSpacing / 3, endrightCrossPoint.Y, endrightCrossPoint.Z);
-            //    }
-
-
-            //    var barRRBlength = new TSG.LineSegment(barRRB.StartPoint, barRRB.EndPoint).Length();
-
-            //    var barRRBSpacings = new Spacings();
-
-            //    barRRB.Spacing = barRRBSpacings.RightReinforcementSpacing2(startleftCrossPoint, endleftCrossPoint, startrightCrossPoint, endrightCrossPoint, barRRBlength, barRRBSpacing, rebar);
-            //}
-
-
-
-
 
             barRRB.Insert();
 
@@ -456,20 +1154,20 @@ namespace TEST
 
             if (ss > 0 && ss <= leftSpacing * 2 && ss > leftSpacing)
             {
-                barRRL.StartPoint = new TSG.Point(startleftCrossPoint.X + leftMoveXS + leftKsXS + ssa / 2, startleftCrossPoint.Y, startleftCrossPoint.Z);
-                barRRL.EndPoint = new TSG.Point(endleftCrossPoint.X - leftMoveXE - leftKsXE + ssa / 2, endleftCrossPoint.Y, endleftCrossPoint.Z);
+                barRRL.StartPoint = new TSG.Point(startleftCrossPoint.X + leftMoveXS + leftKsXS + ssa / 3 * 2, startleftCrossPoint.Y, startleftCrossPoint.Z);
+                barRRL.EndPoint = new TSG.Point(endleftCrossPoint.X - leftMoveXE - leftKsXE + ssa / 3 * 2, endleftCrossPoint.Y, endleftCrossPoint.Z);
             }
 
             else if (ss > 0 && ss <= leftSpacing)
             {
-                barRRL.StartPoint = new TSG.Point(startleftCrossPoint.X + leftMoveXS + leftKsXS + ss / 2, startleftCrossPoint.Y, startleftCrossPoint.Z);
-                barRRL.EndPoint = new TSG.Point(endleftCrossPoint.X - leftMoveXE - leftKsXE + ss / 2, endleftCrossPoint.Y, endleftCrossPoint.Z);
+                barRRL.StartPoint = new TSG.Point(startleftCrossPoint.X + leftMoveXS + leftKsXS + ss / 3 * 2, startleftCrossPoint.Y, startleftCrossPoint.Z);
+                barRRL.EndPoint = new TSG.Point(endleftCrossPoint.X - leftMoveXE - leftKsXE + ss / 3 * 2, endleftCrossPoint.Y, endleftCrossPoint.Z);
             }
 
             else
             {
-                barRRL.StartPoint = new TSG.Point(startleftCrossPoint.X + leftMoveXS + leftKsXS + barRRLSpacing / 2, startleftCrossPoint.Y, startleftCrossPoint.Z);
-                barRRL.EndPoint = new TSG.Point(endleftCrossPoint.X - leftMoveXE - leftKsXE + barRRLSpacing / 2, endleftCrossPoint.Y, endleftCrossPoint.Z);
+                barRRL.StartPoint = new TSG.Point(startleftCrossPoint.X + leftMoveXS + leftKsXS + barRRLSpacing / 3 * 2, startleftCrossPoint.Y, startleftCrossPoint.Z);
+                barRRL.EndPoint = new TSG.Point(endleftCrossPoint.X - leftMoveXE - leftKsXE + barRRLSpacing / 3 * 2, endleftCrossPoint.Y, endleftCrossPoint.Z);
 
 
             }
@@ -483,10 +1181,12 @@ namespace TEST
 
             #endregion
 
+            var l = 2600;
+            var sspacing = 260;
 
-            var ssp = 150;
-            var l = 3000;
+            #region 전단근
 
+            var ssp = sspacing;
 
             // 전단근
             var startpoint = new TSG.Point();
@@ -503,16 +1203,16 @@ namespace TEST
 
             var bar1 = new TSM.RebarGroup();
             bar1.Polygons.Add(poly);
-            bar1.SpacingType = TSM.RebarGroup.RebarGroupSpacingTypeEnum.SPACING_TYPE_EXACT_SPACINGS;
-
 
             var bar1spacing = new Spacings();
-            var bar1llist = bar1spacing.InsertShearBar5(barLStartPoint, barLEndPoint, barRStartPoint, barREndPoint, ssp);
+            var bar1llist = bar1spacing.InsertShearBar3(barLStartPoint, barLEndPoint, barRStartPoint, barREndPoint, ssp);
 
             var ap = new ArrayList();
             ap.Add(0.0);
 
-            bar1.Spacings = CopyArray(l, 150);
+            bar1.SpacingType = TSM.BaseRebarGroup.RebarGroupSpacingTypeEnum.SPACING_TYPE_EXACT_SPACINGS;
+            bar1.Spacings = CopyArray(l, sspacing);
+
             bar1.ExcludeType = TSM.RebarGroup.ExcludeTypeEnum.EXCLUDE_TYPE_NONE;
             bar1.Father = beam;
             bar1.Name = "RebarGroup";
@@ -532,11 +1232,11 @@ namespace TEST
             bar1.EndPointOffsetType = TSM.Reinforcement.RebarOffsetTypeEnum.OFFSET_TYPE_COVER_THICKNESS;
             bar1.EndPointOffsetValue = 0;
             bar1.FromPlaneOffset = 0;
+
             bar1.StartPoint = new TSG.Point(minX, minY, minZ);
-            bar1.EndPoint = new TSG.Point(minX, minY, minZ+150);
+            bar1.EndPoint = new TSG.Point(minX, minY, minZ + l);
 
-            bar1.Insert();
-
+            //bar1.Insert();
             Copy(bar1, bar1llist);
 
             var startpoint2 = new TSG.Point();
@@ -545,7 +1245,7 @@ namespace TEST
             var poly2 = new TSM.Polygon();
 
             var points2 = new ShearBarPoints(startpoint2, endpoint2);
-            points2.SecondPoints(new TSG.Point(barLStartPoint.X + ssp*2, barLStartPoint.Y, barLStartPoint.Z), barLEndPoint, new TSG.Point(barRStartPoint.X + ssp*2, barRStartPoint.Y, barRStartPoint.Z), barREndPoint, beam, 10, 35, 35);
+            points2.SecondPoints(new TSG.Point(barLStartPoint.X + ssp * 2, barLStartPoint.Y, barLStartPoint.Z), barLEndPoint, new TSG.Point(barRStartPoint.X + ssp * 2, barRStartPoint.Y, barRStartPoint.Z), barREndPoint, beam, 10, 35, 35);
 
             poly2.Points.Add(points2.StartPoint);
             poly2.Points.Add(points2.Endpoint);
@@ -555,13 +1255,10 @@ namespace TEST
             bar2.SpacingType = TSM.RebarGroup.RebarGroupSpacingTypeEnum.SPACING_TYPE_EXACT_SPACINGS;
 
             var bar2spacing = new Spacings();
-            var bar2list = bar2spacing.InsertShearBar6(new TSG.Point(barLStartPoint.X + ssp*2, barLStartPoint.Y, barLStartPoint.Z), barLEndPoint, new TSG.Point(barRStartPoint.X + ssp*2, barRStartPoint.Y, barRStartPoint.Z), barREndPoint, ssp);
+            var bar2list = bar2spacing.InsertShearBar4(new TSG.Point(barLStartPoint.X + ssp * 2, barLStartPoint.Y, barLStartPoint.Z), barLEndPoint, new TSG.Point(barRStartPoint.X + ssp * 2, barRStartPoint.Y, barRStartPoint.Z), barREndPoint, ssp);
 
             var ap2 = new ArrayList();
             ap2.Add(0.0);
-
-            bar2.Spacings = CopyArray(l, 150);
-            bar2.ExcludeType = TSM.RebarGroup.ExcludeTypeEnum.EXCLUDE_TYPE_NONE;
             bar2.Father = beam;
             bar2.Name = "RebarGroup";
             bar2.Class = 3;
@@ -581,11 +1278,8 @@ namespace TEST
             bar2.EndPointOffsetValue = 0;
             bar2.FromPlaneOffset = 0;
             bar2.StartPoint = new TSG.Point(minX, minY, minZ);
-            bar2.EndPoint = new TSG.Point(minX, minY, minZ + 150);
+            bar2.EndPoint = new TSG.Point(minX, minY, minZ + l);
 
-            bar2.Insert();
-
-            //TSM.Operations.Operation.MoveObject(bar2, new TSG.Vector(ssp, 0, 0));
 
             Copy(bar2, bar2list);
 
@@ -594,16 +1288,13 @@ namespace TEST
             bar3.Polygons.Add(poly);
             bar3.SpacingType = TSM.RebarGroup.RebarGroupSpacingTypeEnum.SPACING_TYPE_EXACT_SPACINGS;
 
-
-
             var ap3 = new ArrayList();
             ap3.Add(0.0);
 
-            bar3.Spacings = CopyArray2(l, 150); 
-            bar3.ExcludeType = TSM.RebarGroup.ExcludeTypeEnum.EXCLUDE_TYPE_NONE;
+            bar3.Spacings = CopyArray2(l, sspacing);
             bar3.Father = beam;
             bar3.Name = "RebarGroup";
-            bar3.Class = 3;
+            bar3.Class = 2;
             bar3.Size = "10";
             bar3.Grade = "SD400";
             bar3.RadiusValues.Add(20.0);
@@ -620,11 +1311,11 @@ namespace TEST
             bar3.EndPointOffsetValue = 0;
             bar3.FromPlaneOffset = 0;
             bar3.StartPoint = new TSG.Point(minX, minY, minZ);
-            bar3.EndPoint = new TSG.Point(minX, minY, minZ + 150);
+            bar3.EndPoint = new TSG.Point(minX, minY, minZ + l - sspacing);
 
-            bar3.Insert();
+            //bar3.Insert();
 
-            MoveZ(bar3, 150);
+            MoveZ(bar3, sspacing);
             Copy(bar3, bar1llist);
 
 
@@ -633,15 +1324,12 @@ namespace TEST
             bar4.Polygons.Add(poly2);
             bar4.SpacingType = TSM.RebarGroup.RebarGroupSpacingTypeEnum.SPACING_TYPE_EXACT_SPACINGS;
 
-
             var ap4 = new ArrayList();
             ap4.Add(0.0);
 
-            bar4.Spacings = CopyArray2(l, 150);
-            bar4.ExcludeType = TSM.RebarGroup.ExcludeTypeEnum.EXCLUDE_TYPE_NONE;
             bar4.Father = beam;
             bar4.Name = "RebarGroup";
-            bar4.Class = 3;
+            bar4.Class = 2;
             bar4.Size = "10";
             bar4.Grade = "SD400";
             bar4.RadiusValues.Add(20.0);
@@ -658,16 +1346,16 @@ namespace TEST
             bar4.EndPointOffsetValue = 0;
             bar4.FromPlaneOffset = 0;
             bar4.StartPoint = new TSG.Point(minX, minY, minZ);
-            bar4.EndPoint = new TSG.Point(minX, minY, minZ + 150);
+            bar4.EndPoint = new TSG.Point(minX, minY, minZ + l - sspacing);
 
-            bar4.Insert();
 
-            MoveZ(bar4, 150);
+            MoveZ(bar4, sspacing);
             Copy(bar4, bar2list);
 
 
             m.CommitChanges();
 
+            #endregion
 
         }
 
@@ -675,32 +1363,167 @@ namespace TEST
         {
             var list = new ArrayList();
 
-            var ea = Math.Truncate(length / (spacing*2));
+            var ea1 = (int)length / ((int)spacing * 2);
+            var te1 = (int)length % ((int)spacing * 2);
 
-            var sp = length / ea;
+            var ea2 = ((int)length - (int)spacing) / ((int)spacing * 2);
+            var te2 = ((int)length - (int)spacing) % ((int)spacing * 2);
 
-            for (int i = 0; i < ea; i++)
+
+            for (int i = 0; i < ea1 - 1; i++)
             {
-                list.Add(sp);
+                list.Add(spacing * 2);
             }
+
+
+            if (te1 == 0 && te2 == 0)
+            {
+            }
+            else if (te1 < spacing && te2 == 0)
+            {
+            }
+            else if (te1 > spacing && te2 == 0)
+            {
+            }
+            else if (te1 == spacing && te2 == 0)
+            {
+                list.Add(spacing * 2); ////////
+            }
+
+
+            else if (te1 == 0 && te2 < spacing)
+            {
+            }
+            else if (te1 < spacing && te2 < spacing)
+            {
+            }
+            else if (te1 > spacing && te2 < spacing)
+            {
+                list.Add(spacing * 2);
+                list.Add(te1); //////////////
+            }
+            else if (te1 == spacing && te2 < spacing)
+            {
+            }
+
+
+
+            else if (te1 == 0 && te2 > spacing)
+            {
+            }
+            else if (te1 < spacing && te2 > spacing)
+            {
+                list.Add(spacing * 2); ////////////////////
+            }
+            else if (te1 > spacing && te2 > spacing)
+            {
+            }
+            else if (te1 == spacing && te2 > spacing)
+            {
+            }
+
+
+            else if (te1 == 0 && te2 == spacing)
+            {
+                list.Add(spacing * 2); ////
+            }
+            else if (te1 < spacing && te2 == spacing)
+            {
+            }
+            else if (te1 > spacing && te2 == spacing)
+            {
+            }
+            else if (te1 == spacing && te2 == spacing)
+            {
+            }
+
 
             return list;
         }
 
         private ArrayList CopyArray2(double length, double spacing)
         {
+
             var list = new ArrayList();
 
-            var ea = Math.Truncate(length / (spacing * 2));
+            var ea1 = (int)length / ((int)spacing * 2);
+            var te1 = (int)length % ((int)spacing * 2);
 
-            var sp = length / ea;
+            var ea2 = ((int)length - (int)spacing) / ((int)spacing * 2);
+            var te2 = ((int)length - (int)spacing) % ((int)spacing * 2);
 
-            for (int i = 0; i < ea-1 ; i++)
+
+            for (int i = 0; i < ea2 - 1; i++)
             {
-                list.Add(sp);
+                list.Add(spacing * 2);
+            }
+
+
+            if (te1 == 0 && te2 == 0)
+            {
+            }
+            else if (te1 < spacing && te2 == 0)
+            {
+            }
+            else if (te1 > spacing && te2 == 0)
+            {
+            }
+            else if (te1 == spacing && te2 == 0)
+            {
+                list.Add(spacing * 2); ////
+            }
+
+
+            else if (te1 == 0 && te2 < spacing)
+            {
+            }
+            else if (te1 < spacing && te2 < spacing)
+            {
+            }
+            else if (te1 > spacing && te2 < spacing)
+            {
+                //list.Add(spacing + (te1/2)); ///////// 
+                list.Add(spacing * 2);
+            }
+            else if (te1 == spacing && te2 < spacing)
+            {
+            }
+
+
+            else if (te1 == 0 && te2 > spacing)
+            {
+            }
+            else if (te1 < spacing && te2 > spacing)
+            {
+                list.Add(spacing * 2);
+                list.Add(te2); //////
+            }
+            else if (te1 > spacing && te2 > spacing)
+            {
+            }
+            else if (te1 == spacing && te2 > spacing)
+            {
+            }
+
+
+
+            else if (te1 == 0 && te2 == spacing)
+            {
+                list.Add(spacing * 2); ///////
+            }
+            else if (te1 < spacing && te2 == spacing)
+            {
+            }
+            else if (te1 > spacing && te2 == spacing)
+            {
+            }
+            else if (te1 == spacing && te2 == spacing)
+            {
             }
 
             return list;
+
+
         }
 
 
@@ -720,13 +1543,95 @@ namespace TEST
             }
         }
 
-
-
         private void MoveZ(TSM.RebarGroup bar, double z)
         {
             var ob = bar as TSM.ModelObject;
 
             TSM.Operations.Operation.MoveObject(bar, new TSG.Vector(0, 0, z));
+        }
+
+        private ArrayList OddArraySum(ArrayList list)
+        {
+            var tmp = 0D;
+
+            var list1 = new ArrayList();
+
+            for (int j = 0; j < list.Count; j++) // 0 1 2 3
+            {
+                if (j != list.Count - 1)
+                {
+                    if (j % 2 != 0) // 홀
+                    {
+                        tmp = tmp + Convert.ToDouble(list[j]);
+                        list1.Add(tmp);
+                    }
+                    else
+                    {
+                        tmp = Convert.ToDouble(list[j]);
+                    }
+                }
+                else
+                {
+                    if (j % 2 == 0) // 짝
+                    {
+                        tmp = Convert.ToDouble(list[j]);
+                        list1.Add(tmp);
+                    }
+                    else
+                    {
+                        tmp = tmp + Convert.ToDouble(list[j]);
+                        list1.Add(tmp);
+                    }
+
+                }
+            }
+            return list1;
+
+        }
+
+
+        public class ConeMesh
+        {
+            private TSM.UI.Mesh _mesh; // 필드
+            public TSM.UI.Mesh Mesh { get { return _mesh; } } //속성
+
+            public ConeMesh(TSG.Point center, double height, double radius, int segmentCount)
+            {
+
+                _mesh = new TSM.UI.Mesh();
+                TSG.Point centerTop = new TSG.Point(center);
+                centerTop.Z = centerTop.Z + height;
+                _mesh.Points.Add(centerTop);
+
+                double x = center.X + radius * Math.Cos(0.0);
+                double y = center.X + radius * Math.Sin(0.0);
+                double z = center.Z;
+
+                TSG.Point p = new TSG.Point(x, y, z);
+                _mesh.AddPoint(p);
+                _mesh.AddLine(0, 1);
+
+                for (int i = 1; i < segmentCount; i++)
+                {
+                    x = center.X + radius * Math.Cos(i * (2 * Math.PI) / segmentCount);
+                    y = center.Y + radius * Math.Sin(i * (2 * Math.PI) / segmentCount);
+                    z = center.Z;
+
+                    p = new TSG.Point(x, y, z);
+
+                    _mesh.AddPoint(p);
+                    _mesh.AddTriangle(0, i, i + 1);
+                    _mesh.AddLine(0, i + 1);
+                    _mesh.AddLine(i, i + 1);
+
+                }
+
+                _mesh.AddTriangle(0, segmentCount, 1);
+                _mesh.AddLine(segmentCount, 1);
+
+            }
+
+
         }
 
 

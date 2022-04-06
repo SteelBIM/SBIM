@@ -17,8 +17,9 @@ using System.Collections;
 
 namespace YT.WallVerticalRebar
 {
-    [TSP.Plugin("YT.WallVerticalRebar")]  // Tekla에서 표시되는 PlugIn 이름
+    [TSP.Plugin("YT.RWV.Rebar")]  // Tekla에서 표시되는 PlugIn 이름
     [TSP.PluginUserInterface("YT.WallVerticalRebar.WallVerticalRebarU")] // Form 결합
+    //[TSP.AutoDirectionType(TS.AutoDirectionTypeEnum.AUTODIR_BASIC)]
     public class WallVerticalRebarM : TSP.PluginBase
     {
         public WallVerticalRebarD D { get; set; }
@@ -115,6 +116,8 @@ namespace YT.WallVerticalRebar
             InsertMainRebar(wall, p1, p2, p3, p4);
             InsertDowelRebar(wall, p1, p2, p3, p4);
             InsertReinforcingBar(wall, p1, p2, p3, p4);
+            InsertReinforcingBar2(wall, p1, p2, p3, p4);
+            InsertReinforcingBar3(wall, p1, p2, p3, p4);
             InsertShearBar(wall, p1, p2, p3, p4);
 
             return true;
@@ -183,6 +186,9 @@ namespace YT.WallVerticalRebar
             #endregion
 
             #region 포인트
+
+            if (D.RebarS == "중심") ksXS2 = 0;
+            if (D.RebarE == "중심") ksXE2 = 0;
 
             if (MoveXS == 0) ksXS2 = 0;
             if (MoveXE == 0) ksXE2 = 0;
@@ -319,9 +325,10 @@ namespace YT.WallVerticalRebar
 
                     var rightSpacings = new Spacings();
 
-                    barR.Spacing = rightSpacings.RightMainSpacing2(ls, le, rs, re, lengthR, rightSpacing, rebar);
+                    barR.Spacing = rightSpacings.RightMainSpacing(ls, le, rs, re, lengthR, rightSpacing, rebar);
 
                     break;
+
             }
 
             switch (D.R_ExcludeType)
@@ -355,7 +362,14 @@ namespace YT.WallVerticalRebar
                     break;
             }
 
-            barR.Insert();
+            if (D.R_YesOrNo == "예")
+            {
+                barR.Insert();
+            }
+            else if (D.R_YesOrNo == "아니오")
+            {
+
+            }
 
             #endregion
 
@@ -444,9 +458,10 @@ namespace YT.WallVerticalRebar
 
                     var leftSpacings = new Spacings();
 
-                    barL.Spacing = leftSpacings.LeftMainSpacing2(ls, le, rs, re, lengthL, leftSpacing, rebar);
+                    barL.Spacing = leftSpacings.LeftMainSpacing(ls, le, rs, re, lengthL, leftSpacing, rebar);
 
                     break;
+
             }
 
             switch (D.L_ExcludeType)
@@ -480,10 +495,20 @@ namespace YT.WallVerticalRebar
                     break;
             }
 
-            barL.Insert();
+            if (D.L_YesOrNo == "예")
+            {
+                barL.Insert();
+            }
+            else if (D.L_YesOrNo == "아니오")
+            {
+
+            }
 
             #endregion
 
+            var pp = new TSM.ControlPoint(beam.StartPoint);
+            pp.Insert();
+            pp.Delete();
 
         }
 
@@ -550,6 +575,9 @@ namespace YT.WallVerticalRebar
             #endregion
 
             #region 포인트
+
+            if (D.RebarS == "중심") ksXS2 = 0;
+            if (D.RebarE == "중심") ksXE2 = 0;
 
             if (MoveXS == 0) ksXS2 = 0;
             if (MoveXE == 0) ksXE2 = 0;
@@ -704,12 +732,22 @@ namespace YT.WallVerticalRebar
 
                     var rightSpacings = new Spacings();
 
-                    barRD.Spacing = rightSpacings.RightDoWelSpacing2(ls, le, rs, re, lengthR, rightSpacing, rebar, barRD.Size);
+                    barRD.Spacing = rightSpacings.RightDoWelSpacing(ls, le, rs, re, lengthR, rightSpacing, rebar, barRD.Size);
                     //barR.Spacing = RSP;
                     break;
+
+
+
             }
 
-            if (D.DR_YesOrNo == "예") barRD.Insert();
+            if (D.DR_YesOrNo == "예")
+            {
+                barRD.Insert();
+            }
+            else if (D.DR_YesOrNo == "아니오")
+            {
+
+            }
 
             #endregion
 
@@ -823,12 +861,20 @@ namespace YT.WallVerticalRebar
 
                     var leftSpacings = new Spacings();
 
-                    barLD.Spacing = leftSpacings.LeftDoWelSpacing2(ls, le, rs, re, lengthL, leftSpacing, rebar, barLD.Size);
+                    barLD.Spacing = leftSpacings.LeftDoWelSpacing(ls, le, rs, re, lengthL, leftSpacing, rebar, barLD.Size);
 
                     break;
+
             }
 
-            if (D.DL_YesOrNo == "예") barLD.Insert();
+            if (D.DL_YesOrNo == "예")
+            {
+                barLD.Insert();
+            }
+            else if (D.DL_YesOrNo == "아니오")
+            {
+
+            }
 
             #endregion
 
@@ -897,6 +943,9 @@ namespace YT.WallVerticalRebar
             #endregion
 
             #region 포인트
+
+            if (D.RebarS == "중심") ksXS2 = 0;
+            if (D.RebarE == "중심") ksXE2 = 0;
 
             if (MoveXS == 0) ksXS2 = 0;
             if (MoveXE == 0) ksXE2 = 0;
@@ -995,8 +1044,8 @@ namespace YT.WallVerticalRebar
 
             switch (D.R_RB_SpacingType)
             {
-                case "수직근 S/2":
-                    barRRB.Spacing = rightSpacings.RightReinforcementSpacing3(ls, le, rs, re, lengthR, rightSpacing, D.R_Size);
+                case "자동간격":
+                    barRRB.Spacing = rightSpacings.RightReinforcementSpacing(ls, le, rs, re, lengthR, rightSpacing, D.R_Size);
 
                     break;
 
@@ -1069,7 +1118,15 @@ namespace YT.WallVerticalRebar
             }
 
 
-            if (D.R_RB_YesOrNo == "예") barRRB.Insert();
+            if (D.R_RB_YesOrNo == "1단")
+            {
+                barRRB.Insert();
+            }
+            else if (D.R_RB_YesOrNo == "아니오")
+            {
+
+            }
+
             #endregion
 
             #region RLB
@@ -1125,8 +1182,8 @@ namespace YT.WallVerticalRebar
 
             switch (D.R_LB_SpacingType)
             {
-                case "수직근 S/2":
-                    barRLB.Spacing = barRLBSpacings.LeftReinforcementSpacing3(ls, le, rs, re, barRRLlength, leftSpacing, D.L_Size);
+                case "자동간격":
+                    barRLB.Spacing = barRLBSpacings.LeftReinforcementSpacing(ls, le, rs, re, barRRLlength, leftSpacing, D.L_Size);
                     break;
 
                 case "사용자 지정":
@@ -1196,8 +1253,14 @@ namespace YT.WallVerticalRebar
                 }
             }
 
-            if (D.R_LB_YesOrNo == "예") barRLB.Insert();
+            if (D.R_LB_YesOrNo == "1단")
+            {
+                barRLB.Insert();
+            }
+            else if (D.R_LB_YesOrNo == "아니오")
+            {
 
+            }
             m.CommitChanges();
             #endregion
 
@@ -1288,9 +1351,9 @@ namespace YT.WallVerticalRebar
 
             switch (D.R_RM_SpacingType)
             {
-                case "수직근 S/2":
+                case "자동간격":
 
-                    barRRM.Spacing = rightSpacingsM.RightReinforcementSpacing3(ls, le, rs, re, lengthRM, rightSpacingM, D.R_Size);
+                    barRRM.Spacing = rightSpacingsM.RightReinforcementSpacing(ls, le, rs, re, lengthRM, rightSpacingM, D.R_Size);
 
                     break;
 
@@ -1341,7 +1404,14 @@ namespace YT.WallVerticalRebar
                     break;
             }
 
-            if (D.R_RM_YesOrNo == "예") barRRM.Insert();
+            if (D.R_RM_YesOrNo == "1단")
+            {
+                barRRM.Insert();
+            }
+            else if (D.R_RM_YesOrNo == "아니오")
+            {
+
+            }
 
             #endregion
 
@@ -1430,8 +1500,8 @@ namespace YT.WallVerticalRebar
 
             switch (D.R_LM_SpacingType)
             {
-                case "수직근 S/2":
-                    barRLM.Spacing = barRLMSpacingsM.LeftReinforcementSpacing3(ls, le, rs, re, barRRLlengthM, leftSpacingM, D.L_Size);
+                case "자동간격":
+                    barRLM.Spacing = barRLMSpacingsM.LeftReinforcementSpacing(ls, le, rs, re, barRRLlengthM, leftSpacingM, D.L_Size);
                     break;
 
                 case "사용자 지정":
@@ -1480,8 +1550,14 @@ namespace YT.WallVerticalRebar
                     break;
             }
 
-            if (D.R_LM_YesOrNo == "예") barRLM.Insert();
+            if (D.R_LM_YesOrNo == "1단")
+            {
+                barRLM.Insert();
+            }
+            else if (D.R_LM_YesOrNo == "아니오")
+            {
 
+            }
             m.CommitChanges();
             #endregion
 
@@ -1551,9 +1627,9 @@ namespace YT.WallVerticalRebar
 
             switch (D.R_RT_SpacingType)
             {
-                case "수직근 S/2":
+                case "자동간격":
 
-                    barRRT.Spacing = rightSpacingsT.RightReinforcementSpacing3(ls, le, rs, re, lengthRT, rightSpacingT, D.R_Size);
+                    barRRT.Spacing = rightSpacingsT.RightReinforcementSpacing(ls, le, rs, re, lengthRT, rightSpacingT, D.R_Size);
 
                     break;
 
@@ -1604,8 +1680,14 @@ namespace YT.WallVerticalRebar
                     break;
             }
 
-            if (D.R_RT_YesOrNo == "예") barRRT.Insert();
+            if (D.R_RT_YesOrNo == "1단")
+            {
+                barRRT.Insert();
+            }
+            else if (D.R_RT_YesOrNo == "아니오")
+            {
 
+            }
             #endregion
 
             #region RLT
@@ -1673,8 +1755,8 @@ namespace YT.WallVerticalRebar
 
             switch (D.R_LT_SpacingType)
             {
-                case "수직근 S/2":
-                    barRLT.Spacing = barRLMSpacingsT.LeftReinforcementSpacing3(ls, le, rs, re, barRRLlengthT, leftSpacingT, D.L_Size);
+                case "자동간격":
+                    barRLT.Spacing = barRLMSpacingsT.LeftReinforcementSpacing(ls, le, rs, re, barRRLlengthT, leftSpacingT, D.L_Size);
                     break;
 
                 case "사용자 지정":
@@ -1723,7 +1805,14 @@ namespace YT.WallVerticalRebar
                     break;
             }
 
-            if (D.R_LT_YesOrNo == "예") barRLT.Insert();
+            if (D.R_LT_YesOrNo == "1단")
+            {
+                barRLT.Insert();
+            }
+            else if (D.R_LT_YesOrNo == "아니오")
+            {
+
+            }
 
             m.CommitChanges();
 
@@ -1816,7 +1905,7 @@ namespace YT.WallVerticalRebar
 
                     break;
 
-                case "수직근 S/2":
+                case "자동간격":
 
                     double rightSpacingRD = D.R_Spacing;
 
@@ -1824,12 +1913,19 @@ namespace YT.WallVerticalRebar
 
                     var rightSpacingsRD = new Spacings();
 
-                    barRRD.Spacing = rightSpacingsRD.RightReinforcementSpacing3(ls, le, rs, re, lengthRD, rightSpacingRD, D.R_RM_Size);
+                    barRRD.Spacing = rightSpacingsRD.RightReinforcementSpacing(ls, le, rs, re, lengthRD, rightSpacingRD, D.R_RM_Size);
                     //barR.Spacing = RSP;
                     break;
             }
 
-            if (D.R_DR_YesOrNo == "예") barRRD.Insert();
+            if (D.R_DR_YesOrNo == "예" && D.R_RM_YesOrNo == "1단")
+            {
+                barRRD.Insert();
+            }
+            else if (D.R_DR_YesOrNo == "아니오")
+            {
+
+            }
 
 
             #endregion
@@ -1921,7 +2017,7 @@ namespace YT.WallVerticalRebar
 
                     break;
 
-                case "수직근 S/2":
+                case "자동간격":
 
                     double rightSpacingLD = D.L_Spacing;
 
@@ -1929,12 +2025,19 @@ namespace YT.WallVerticalRebar
 
                     var rightSpacingsLD = new Spacings();
 
-                    barRLD.Spacing = rightSpacingsLD.LeftReinforcementSpacing3(ls, le, rs, re, lengthLD, rightSpacingLD, D.R_LM_Size);
+                    barRLD.Spacing = rightSpacingsLD.LeftReinforcementSpacing(ls, le, rs, re, lengthLD, rightSpacingLD, D.R_LM_Size);
                     //barR.Spacing = RSP;
                     break;
             }
 
-            if (D.R_DL_YesOrNo == "예") barRLD.Insert();
+            if (D.R_DL_YesOrNo == "예" && D.R_LM_YesOrNo == "1단")
+            {
+                barRLD.Insert();
+            }
+            else if (D.R_DL_YesOrNo == "아니오")
+            {
+
+            }
 
 
             #endregion
@@ -1942,7 +2045,7 @@ namespace YT.WallVerticalRebar
 
         }
 
-        private void InsertShearBar(TSM.Beam beam, TSG.Point point1, TSG.Point point2, TSG.Point point3, TSG.Point point4)
+        private void InsertReinforcingBar2(TSM.Beam beam, TSG.Point point1, TSG.Point point2, TSG.Point point3, TSG.Point point4)
         {
             var m = new TSM.Model();
 
@@ -2006,6 +2109,2337 @@ namespace YT.WallVerticalRebar
 
             #region 포인트
 
+            if (D.RebarS == "중심") ksXS2 = 0;
+            if (D.RebarE == "중심") ksXE2 = 0;
+
+            if (MoveXS == 0) ksXS2 = 0;
+            if (MoveXE == 0) ksXE2 = 0;
+
+            if (rightMoveY == 0) rightKsY = 0;
+            if (leftMoveY == 0) leftKsY = 0;
+
+            var leftLine = new TSG.LineSegment();
+
+            leftLine.Point1 = new TSG.Point(minX, maxY - leftMoveY - leftKsY, maxZ);
+            leftLine.Point2 = new TSG.Point(maxX, maxY - leftMoveY - leftKsY, maxZ);
+
+            var rightLine = new TSG.LineSegment();
+
+            rightLine.Point1 = new TSG.Point(minX, minY + rightMoveY + rightKsY, maxZ);
+            rightLine.Point2 = new TSG.Point(maxX, minY + rightMoveY + rightKsY, maxZ);
+
+            var rsb = Util.FindPoint.CrossPoint(new TSG.Line(rightLine), new TSG.Line(startLine));
+
+            var reb = Util.FindPoint.CrossPoint(new TSG.Line(rightLine), new TSG.Line(endLine));
+
+            var lsb = Util.FindPoint.CrossPoint(new TSG.Line(leftLine), new TSG.Line(startLine));
+
+            var leb = Util.FindPoint.CrossPoint(new TSG.Line(leftLine), new TSG.Line(endLine));
+
+            var rs = new TSG.Point(rsb.X + MoveXS + ksXS2, rsb.Y, rsb.Z);
+            var re = new TSG.Point(reb.X - MoveXE - ksXE2, reb.Y, reb.Z);
+
+            var ls = new TSG.Point(lsb.X + MoveXS + ksXS2, lsb.Y, lsb.Z);
+            var le = new TSG.Point(leb.X - MoveXE - ksXE2, leb.Y, leb.Z);
+
+            var rebar = "";
+
+            if (Convert.ToInt32(D.L_Size) <= Convert.ToInt32(D.R_Size))
+            {
+                rebar = D.R_Size;
+            }
+            else if (Convert.ToInt32(D.L_Size) > Convert.ToInt32(D.R_Size))
+            {
+                rebar = D.L_Size;
+            }
+
+            #endregion
+
+            #region RRB 
+            var barRRB = new Rebar();
+
+            barRRB.Name = D.R_RB_Name;
+            barRRB.Grade = D.R_RB_Grade;
+            barRRB.Size = D.R_RB_Size;
+
+
+            barRRB.Radius = D.R_RB_Radius;
+            barRRB.Class = D.R_RB_Class;
+
+            barRRB.Prefix = D.R_RB_Prefix;
+            barRRB.StartNumber = D.R_RB_StartNumber;
+
+            var shapeRB = new TSM.Polygon();
+
+            shapeRB.Points.Add(new TSG.Point(rs.X, rs.Y, minZ));
+            shapeRB.Points.Add(new TSG.Point(rs.X, rs.Y, minZ + (D.R_RB_Splice1)));
+
+            barRRB.Polygon.Add(shapeRB);
+
+            barRRB.StartOffsetValue = -(D.R_RB_Splice2);
+
+            double rightSpacing = D.R_Spacing;
+
+            var s = (double)ls.X - (double)rs.X;
+            var sa = s / 2;
+
+            var rightSpacings = new Spacings();
+
+
+            if (s > 0 && s <= rightSpacing * 2 && s > rightSpacing)
+            {
+                barRRB.StartPoint = new TSG.Point(rs.X + sa / 3, rs.Y, rs.Z);
+                barRRB.EndPoint = new TSG.Point(re.X + sa / 3, re.Y, re.Z);
+            }
+            else if (s > 0 && s <= rightSpacing)
+            {
+                barRRB.StartPoint = new TSG.Point(rs.X + s / 3, rs.Y, rs.Z);
+                barRRB.EndPoint = new TSG.Point(re.X + s / 3, re.Y, re.Z);
+            }
+            else
+            {
+                barRRB.StartPoint = new TSG.Point(rs.X + rightSpacing / 3, rs.Y, rs.Z);
+                barRRB.EndPoint = new TSG.Point(re.X + rightSpacing / 3, re.Y, re.Z);
+            }
+
+            var lengthR = new TSG.LineSegment(barRRB.StartPoint, barRRB.EndPoint).Length();
+
+
+            barRRB.Father = beam;
+
+            switch (D.R_RB_SpacingType)
+            {
+                case "자동간격":
+                    barRRB.Spacing = rightSpacings.RightReinforcementSpacing2(ls, le, rs, re, lengthR, rightSpacing, D.R_Size);
+
+                    break;
+
+                case "사용자 지정":
+
+                    var list = new ArrayList();
+
+                    string st = D.R_RB_UserSpacing;
+
+                    string[] ch = st.Split(' ');
+                    for (int i = 0; i < ch.Count(); i++)
+                    {
+                        list.Add(Convert.ToDouble(ch[i]));
+                    }
+                    barRRB.Spacing = list;
+
+                    break;
+            }
+
+            switch (D.R_B_UDA)
+            {
+                case "부재 UDA 정보 사용":
+                    barRRB.Building = buildingSt;
+                    barRRB.BuildingStorey = buildingStoreySt;
+                    break;
+                case "사용자 지정":
+                    barRRB.Building = D.R_B_Building;
+                    barRRB.BuildingStorey = D.R_B_Building_Storey;
+                    break;
+            }
+
+            switch (D.R_RB_ExcludeType)
+            {
+                case "없음":
+                    barRRB.ExcludeType = TSM.BaseRebarGroup.ExcludeTypeEnum.EXCLUDE_TYPE_NONE;
+                    break;
+                case "첫번째":
+                    barRRB.ExcludeType = TSM.BaseRebarGroup.ExcludeTypeEnum.EXCLUDE_TYPE_FIRST;
+                    break;
+                case "마지막":
+                    barRRB.ExcludeType = TSM.BaseRebarGroup.ExcludeTypeEnum.EXCLUDE_TYPE_LAST;
+                    break;
+                case "첫번째 및 마지막":
+                    barRRB.ExcludeType = TSM.BaseRebarGroup.ExcludeTypeEnum.EXCLUDE_TYPE_BOTH;
+                    break;
+                default:
+                    barRRB.ExcludeType = TSM.BaseRebarGroup.ExcludeTypeEnum.EXCLUDE_TYPE_NONE;
+                    break;
+            }
+
+            if (D.R_RB_Type == "일반")
+            {
+                barRRB.StartHookShape = TSM.RebarHookData.RebarHookShapeEnum.NO_HOOK;
+            }
+            else if (D.R_RB_Type == "후크")
+            {
+                barRRB.StartHookShape = TSM.RebarHookData.RebarHookShapeEnum.CUSTOM_HOOK;
+                barRRB.StartHookRadius = barRRB.Radius;
+                barRRB.StartHookLength = D.R_RB_HookLength - barRRB.Radius - KS.GetDiameter(Convert.ToDouble(barRRB.Size));
+
+                if (D.R_RB_HookInOut == "내")
+                {
+                    barRRB.StartHookAngle = 90;
+
+                }
+                else if (D.R_RB_HookInOut == "외")
+                {
+                    barRRB.StartHookAngle = -90;
+                }
+            }
+
+
+            if (D.R_RB_YesOrNo == "2단")
+            {
+                barRRB.Insert();
+            }
+            else if (D.R_RB_YesOrNo == "아니오")
+            {
+
+            }
+
+            #endregion
+
+            #region RLB
+            var barRLB = new Rebar();
+
+            barRLB.Name = D.R_LB_Name;
+            barRLB.Grade = D.R_LB_Grade;
+            barRLB.Size = D.R_LB_Size;
+            barRLB.Radius = D.R_LB_Radius;
+            barRLB.Class = D.R_LB_Class;
+
+            barRLB.Prefix = D.R_LB_Prefix;
+            barRLB.StartNumber = D.R_LB_StartNumber;
+
+            var shapeLB = new TSM.Polygon();
+
+            shapeLB.Points.Add(new TSG.Point(ls.X, ls.Y, minZ));
+            shapeLB.Points.Add(new TSG.Point(ls.X, ls.Y, minZ + D.R_LB_Splice1));
+
+            barRLB.Polygon.Add(shapeLB);
+
+            barRLB.StartOffsetValue = -(D.R_LB_Splice2);
+
+            double leftSpacing = D.L_Spacing;
+
+            var ss = Math.Round((double)rs.X - (double)ls.X, 2);
+            var ssa = ss / 2;
+
+            var barRLBSpacings = new Spacings();
+
+
+            if (ss > 0 && ss <= leftSpacing * 2 && ss > leftSpacing)
+            {
+                barRLB.StartPoint = new TSG.Point(ls.X + ssa / 3, ls.Y, ls.Z);
+                barRLB.EndPoint = new TSG.Point(le.X + ssa / 3, le.Y, le.Z);
+            }
+
+            else if (ss > 0 && ss <= leftSpacing)
+            {
+                barRLB.StartPoint = new TSG.Point(ls.X + ss / 3, ls.Y, ls.Z);
+                barRLB.EndPoint = new TSG.Point(le.X + ss / 3, le.Y, le.Z);
+            }
+
+            else
+            {
+                barRLB.StartPoint = new TSG.Point(ls.X + leftSpacing / 3, ls.Y, ls.Z);
+                barRLB.EndPoint = new TSG.Point(le.X + leftSpacing / 3, le.Y, le.Z);
+            }
+
+
+
+            var barRRLlength = new TSG.LineSegment(barRLB.StartPoint, barRLB.EndPoint).Length();
+
+            switch (D.R_LB_SpacingType)
+            {
+                case "자동간격":
+                    barRLB.Spacing = barRLBSpacings.LeftReinforcementSpacing2(ls, le, rs, re, barRRLlength, leftSpacing, D.L_Size);
+                    break;
+
+                case "사용자 지정":
+
+                    var list = new ArrayList();
+
+                    string st = D.R_LB_UserSpacing;
+                    string[] ch = st.Split(' ');
+                    for (int i = 0; i < ch.Count(); i++)
+                    {
+                        list.Add(Convert.ToDouble(ch[i]));
+                    }
+                    barRLB.Spacing = list;
+
+                    break;
+            }
+
+            switch (D.R_B_UDA)
+            {
+                case "부재 UDA 정보 사용":
+                    barRLB.Building = buildingSt;
+                    barRLB.BuildingStorey = buildingStoreySt;
+                    break;
+                case "사용자 지정":
+                    barRLB.Building = D.R_B_Building;
+                    barRLB.BuildingStorey = D.R_B_Building_Storey;
+                    break;
+            }
+
+            switch (D.R_LB_ExcludeType)
+            {
+                case "없음":
+                    barRLB.ExcludeType = TSM.BaseRebarGroup.ExcludeTypeEnum.EXCLUDE_TYPE_NONE;
+                    break;
+                case "첫번째":
+                    barRLB.ExcludeType = TSM.BaseRebarGroup.ExcludeTypeEnum.EXCLUDE_TYPE_FIRST;
+                    break;
+                case "마지막":
+                    barRLB.ExcludeType = TSM.BaseRebarGroup.ExcludeTypeEnum.EXCLUDE_TYPE_LAST;
+                    break;
+                case "첫번째 및 마지막":
+                    barRLB.ExcludeType = TSM.BaseRebarGroup.ExcludeTypeEnum.EXCLUDE_TYPE_BOTH;
+                    break;
+                default:
+                    barRLB.ExcludeType = TSM.BaseRebarGroup.ExcludeTypeEnum.EXCLUDE_TYPE_NONE;
+                    break;
+            }
+
+            if (D.R_LB_Type == "일반")
+            {
+                barRLB.StartHookShape = TSM.RebarHookData.RebarHookShapeEnum.NO_HOOK;
+            }
+            else if (D.R_LB_Type == "후크")
+            {
+                barRLB.StartHookShape = TSM.RebarHookData.RebarHookShapeEnum.CUSTOM_HOOK;
+                barRLB.StartHookRadius = barRLB.Radius;
+                barRLB.StartHookLength = D.R_LB_HookLength - barRLB.Radius - KS.GetDiameter(Convert.ToDouble(barRLB.Size));
+
+                if (D.R_LB_HookInOut == "내")
+                {
+                    barRLB.StartHookAngle = -90;
+
+                }
+                else if (D.R_LB_HookInOut == "외")
+                {
+                    barRLB.StartHookAngle = 90;
+                }
+            }
+
+            if (D.R_LB_YesOrNo == "2단")
+            {
+                barRLB.Insert();
+            }
+            else if (D.R_LB_YesOrNo == "아니오")
+            {
+
+            }
+            m.CommitChanges();
+            #endregion
+
+            #region RRM
+
+            var barRRM = new Rebar();
+
+            barRRM.Name = D.R_RM_Name;
+            barRRM.Grade = D.R_RM_Grade;
+            barRRM.Size = D.R_RM_Size;
+            barRRM.Radius = D.R_RM_Radius;
+            barRRM.Class = D.R_RM_Class;
+
+            barRRM.Prefix = D.R_RM_Prefix;
+            barRRM.StartNumber = D.R_RM_StartNumber;
+
+            var shapeRBM = new TSM.Polygon();
+
+
+            if (D.R_RM_SpliceType == "일반")
+            {
+                shapeRBM.Points.Add(new TSG.Point(rs.X, rs.Y, minZ));
+                shapeRBM.Points.Add(new TSG.Point(rs.X, rs.Y, maxZ));
+
+                barRRM.EndOffsetValue = -D.R_RM_Splice1;
+                barRRM.StartOffsetValue = D.R_RM_Splice2;
+            }
+            else if (D.R_RM_SpliceType == "벤트")
+            {
+                double x = D.R_RM_Bent;
+                double y = 6 * x;
+
+                shapeRBM.Points.Add(new TSG.Point(rs.X, rs.Y, minZ + D.R_RM_Splice2));
+                shapeRBM.Points.Add(new TSG.Point(rs.X, rs.Y, maxZ - y));
+                shapeRBM.Points.Add(new TSG.Point(rs.X, rs.Y + x, maxZ));
+                shapeRBM.Points.Add(new TSG.Point(rs.X, rs.Y + x, maxZ + D.R_RM_Splice1));
+            }
+            if (D.R_RM_SpliceType == "후크")
+            {
+                shapeRBM.Points.Add(new TSG.Point(rs.X, rs.Y, minZ));
+                shapeRBM.Points.Add(new TSG.Point(rs.X, rs.Y, maxZ));
+
+                barRRM.EndOffsetValue = D.R_RM_HookCorver;
+                barRRM.StartOffsetValue = D.R_RM_Splice2;
+
+                barRRM.EndHookShape = TSM.RebarHookData.RebarHookShapeEnum.CUSTOM_HOOK;
+
+                switch (D.R_RM_HookInOut)
+                {
+                    case "내": barRRM.EndHookAngle = 90.0; break;
+                    case "외": barRRM.EndHookAngle = -90.0; break;
+                }
+
+                barRRM.EndHookRadius = barRRM.Radius;
+                barRRM.EndHookLength = D.R_RM_HookLength - barRRM.Radius - KS.GetDiameter(Convert.ToDouble(barRRM.Size));
+            }
+
+            barRRM.Polygon.Add(shapeRBM);
+
+            double rightSpacingM = D.R_Spacing;
+
+            var sM = (double)ls.X - (double)rs.X;
+            var saM = sM / 2;
+
+            var rightSpacingsM = new Spacings();
+
+            if (sM > 0 && sM <= rightSpacingM * 2 && sM > rightSpacingM)
+            {
+                barRRM.StartPoint = new TSG.Point(rs.X + saM / 3, rs.Y, rs.Z);
+                barRRM.EndPoint = new TSG.Point(re.X + saM / 3, re.Y, re.Z);
+            }
+            else if (sM > 0 && sM <= rightSpacingM)
+            {
+                barRRM.StartPoint = new TSG.Point(rs.X + sM / 3, rs.Y, rs.Z);
+                barRRM.EndPoint = new TSG.Point(re.X + sM / 3, re.Y, re.Z);
+
+            }
+            else
+            {
+                barRRM.StartPoint = new TSG.Point(rs.X + rightSpacing / 3, rs.Y, rs.Z);
+                barRRM.EndPoint = new TSG.Point(re.X + rightSpacing / 3, re.Y, re.Z);
+            }
+
+            var lengthRM = new TSG.LineSegment(barRRM.StartPoint, barRRM.EndPoint).Length();
+
+
+            barRRM.Father = beam;
+
+            switch (D.R_RM_SpacingType)
+            {
+                case "자동간격":
+
+                    barRRM.Spacing = rightSpacingsM.RightReinforcementSpacing2(ls, le, rs, re, lengthRM, rightSpacingM, D.R_Size);
+
+                    break;
+
+                case "사용자 지정":
+
+                    var list = new ArrayList();
+
+                    string st = D.R_RM_UserSpacing;
+                    string[] ch = st.Split(' ');
+                    for (int i = 0; i < ch.Count(); i++)
+                    {
+                        list.Add(Convert.ToDouble(ch[i]));
+                    }
+                    barRRM.Spacing = list;
+
+                    break;
+            }
+
+            switch (D.R_M_UDA)
+            {
+                case "부재 UDA 정보 사용":
+                    barRRM.Building = buildingSt;
+                    barRRM.BuildingStorey = buildingStoreySt;
+                    break;
+                case "사용자 지정":
+                    barRRM.Building = D.R_M_Building;
+                    barRRM.BuildingStorey = D.R_M_Building_Storey;
+                    break;
+            }
+
+
+            switch (D.R_RM_ExcludeType)
+            {
+                case "없음":
+                    barRRM.ExcludeType = TSM.BaseRebarGroup.ExcludeTypeEnum.EXCLUDE_TYPE_NONE;
+                    break;
+                case "첫번째":
+                    barRRM.ExcludeType = TSM.BaseRebarGroup.ExcludeTypeEnum.EXCLUDE_TYPE_FIRST;
+                    break;
+                case "마지막":
+                    barRRM.ExcludeType = TSM.BaseRebarGroup.ExcludeTypeEnum.EXCLUDE_TYPE_LAST;
+                    break;
+                case "첫번째 및 마지막":
+                    barRRM.ExcludeType = TSM.BaseRebarGroup.ExcludeTypeEnum.EXCLUDE_TYPE_BOTH;
+                    break;
+                default:
+                    barRRM.ExcludeType = TSM.BaseRebarGroup.ExcludeTypeEnum.EXCLUDE_TYPE_NONE;
+                    break;
+            }
+
+            if (D.R_RM_YesOrNo == "2단")
+            {
+                barRRM.Insert();
+            }
+            else if (D.R_RM_YesOrNo == "아니오")
+            {
+
+            }
+
+            #endregion
+
+            #region RLM
+            var barRLM = new Rebar();
+
+            barRLM.Name = D.R_LM_Name;
+            barRLM.Grade = D.R_LM_Grade;
+            barRLM.Size = D.R_LM_Size;
+            barRLM.Radius = D.R_LM_Radius;
+            barRLM.Class = D.R_LM_Class;
+
+            barRLM.Prefix = D.R_LM_Prefix;
+            barRLM.StartNumber = D.R_LM_StartNumber;
+
+            var shapeRLM = new TSM.Polygon();
+
+
+            if (D.R_LM_SpliceType == "일반")
+            {
+                shapeRLM.Points.Add(new TSG.Point(ls.X, ls.Y, minZ));
+                shapeRLM.Points.Add(new TSG.Point(ls.X, ls.Y, maxZ));
+
+                barRLM.EndOffsetValue = -D.R_LM_Splice1;
+                barRLM.StartOffsetValue = D.R_LM_Splice2;
+            }
+            else if (D.R_LM_SpliceType == "벤트")
+            {
+                double x = D.R_LM_Bent;
+                double y = 6 * x;
+
+                shapeRLM.Points.Add(new TSG.Point(ls.X, ls.Y, minZ + D.R_LM_Splice2));
+                shapeRLM.Points.Add(new TSG.Point(ls.X, ls.Y, maxZ - y));
+                shapeRLM.Points.Add(new TSG.Point(ls.X, ls.Y - x, maxZ));
+                shapeRLM.Points.Add(new TSG.Point(ls.X, ls.Y - x, maxZ + D.R_LM_Splice1));
+            }
+            if (D.R_LM_SpliceType == "후크")
+            {
+                shapeRLM.Points.Add(new TSG.Point(ls.X, ls.Y, minZ));
+                shapeRLM.Points.Add(new TSG.Point(ls.X, ls.Y, maxZ));
+
+                barRLM.EndOffsetValue = D.R_LM_HookCorver;
+                barRLM.StartOffsetValue = D.R_LM_Splice2;
+
+                barRLM.EndHookShape = TSM.RebarHookData.RebarHookShapeEnum.CUSTOM_HOOK;
+
+                switch (D.R_LM_HookInOut)
+                {
+                    case "내": barRLM.EndHookAngle = -90.0; break;
+                    case "외": barRLM.EndHookAngle = 90.0; break;
+                }
+
+                barRLM.EndHookRadius = barRLM.Radius;
+                barRLM.EndHookLength = D.R_LM_HookLength - barRLM.Radius - KS.GetDiameter(Convert.ToDouble(barRLM.Size));
+            }
+
+            barRLM.Polygon.Add(shapeRLM);
+
+            double leftSpacingM = D.L_Spacing;
+
+            var ssM = Math.Round((double)rs.X - (double)ls.X, 2);
+            var ssaM = ssM / 2;
+
+            var barRLMSpacingsM = new Spacings();
+
+            if (ssM > 0 && ssM <= leftSpacingM * 2 && ssM > leftSpacingM)
+            {
+                barRLM.StartPoint = new TSG.Point(ls.X + ssaM / 3, ls.Y, ls.Z);
+                barRLM.EndPoint = new TSG.Point(le.X + ssaM / 3, le.Y, le.Z);
+            }
+
+            else if (ssM > 0 && ssM <= leftSpacingM)
+            {
+                barRLM.StartPoint = new TSG.Point(ls.X + ssM / 3, ls.Y, ls.Z);
+                barRLM.EndPoint = new TSG.Point(le.X + ssM / 3, le.Y, le.Z);
+
+            }
+
+            else
+            {
+                barRLM.StartPoint = new TSG.Point(ls.X + leftSpacing / 3, ls.Y, ls.Z);
+                barRLM.EndPoint = new TSG.Point(le.X + leftSpacing / 3, le.Y, le.Z);
+            }
+
+            var barRRLlengthM = new TSG.LineSegment(barRLM.StartPoint, barRLM.EndPoint).Length();
+
+            switch (D.R_LM_SpacingType)
+            {
+                case "자동간격":
+                    barRLM.Spacing = barRLMSpacingsM.LeftReinforcementSpacing2(ls, le, rs, re, barRRLlengthM, leftSpacingM, D.L_Size);
+                    break;
+
+                case "사용자 지정":
+
+                    var list = new ArrayList();
+
+                    string st = D.R_LM_UserSpacing;
+                    string[] ch = st.Split(' ');
+                    for (int i = 0; i < ch.Count(); i++)
+                    {
+                        list.Add(Convert.ToDouble(ch[i]));
+                    }
+                    barRLM.Spacing = list;
+
+                    break;
+            }
+
+            switch (D.R_M_UDA)
+            {
+                case "부재 UDA 정보 사용":
+                    barRLM.Building = buildingSt;
+                    barRLM.BuildingStorey = buildingStoreySt;
+                    break;
+                case "사용자 지정":
+                    barRLM.Building = D.R_M_Building;
+                    barRLM.BuildingStorey = D.R_M_Building_Storey;
+                    break;
+            }
+
+            switch (D.R_LM_ExcludeType)
+            {
+                case "없음":
+                    barRLM.ExcludeType = TSM.BaseRebarGroup.ExcludeTypeEnum.EXCLUDE_TYPE_NONE;
+                    break;
+                case "첫번째":
+                    barRLM.ExcludeType = TSM.BaseRebarGroup.ExcludeTypeEnum.EXCLUDE_TYPE_FIRST;
+                    break;
+                case "마지막":
+                    barRLM.ExcludeType = TSM.BaseRebarGroup.ExcludeTypeEnum.EXCLUDE_TYPE_LAST;
+                    break;
+                case "첫번째 및 마지막":
+                    barRLM.ExcludeType = TSM.BaseRebarGroup.ExcludeTypeEnum.EXCLUDE_TYPE_BOTH;
+                    break;
+                default:
+                    barRLM.ExcludeType = TSM.BaseRebarGroup.ExcludeTypeEnum.EXCLUDE_TYPE_NONE;
+                    break;
+            }
+
+            if (D.R_LM_YesOrNo == "2단")
+            {
+                barRLM.Insert();
+            }
+            else if (D.R_LM_YesOrNo == "아니오")
+            {
+
+            }
+            m.CommitChanges();
+            #endregion
+
+            #region RRT
+
+            var barRRT = new Rebar();
+
+            barRRT.Name = D.R_RT_Name;
+            barRRT.Grade = D.R_RT_Grade;
+            barRRT.Size = D.R_RT_Size;
+            barRRT.Radius = D.R_RT_Radius;
+            barRRT.Class = D.R_RT_Class;
+
+            barRRT.Prefix = D.R_RT_Prefix;
+            barRRT.StartNumber = D.R_RT_StartNumber;
+
+            var shapeRBT = new TSM.Polygon();
+
+            if (D.R_RT_SpliceType == "일반")
+            {
+                shapeRBT.Points.Add(new TSG.Point(rs.X, rs.Y, maxZ - D.R_RT_Splice2));
+                shapeRBT.Points.Add(new TSG.Point(rs.X, rs.Y, maxZ));
+
+                barRRT.EndOffsetValue = -D.R_RT_Splice1;
+            }
+            else if (D.R_RT_SpliceType == "벤트")
+            {
+                double x = D.R_RT_Bent;
+                double y = 6 * x;
+
+                shapeRBT.Points.Add(new TSG.Point(rs.X, rs.Y, maxZ - D.R_RT_Splice2));
+                shapeRBT.Points.Add(new TSG.Point(rs.X, rs.Y, maxZ - y));
+                shapeRBT.Points.Add(new TSG.Point(rs.X, rs.Y + x, maxZ));
+                shapeRBT.Points.Add(new TSG.Point(rs.X, rs.Y + x, maxZ + D.R_RT_Splice1));
+            }
+            if (D.R_RT_SpliceType == "후크")
+            {
+                shapeRBT.Points.Add(new TSG.Point(rs.X, rs.Y, maxZ - D.R_RT_Splice2));
+                shapeRBT.Points.Add(new TSG.Point(rs.X, rs.Y, maxZ));
+
+                barRRT.EndOffsetValue = D.R_RT_HookCorver;
+
+                barRRT.EndHookShape = TSM.RebarHookData.RebarHookShapeEnum.CUSTOM_HOOK;
+
+                switch (D.R_RT_HookInOut)
+                {
+                    case "내": barRRT.EndHookAngle = 90.0; break;
+                    case "외": barRRT.EndHookAngle = -90.0; break;
+                }
+
+                barRRT.EndHookRadius = barRRT.Radius;
+                barRRT.EndHookLength = D.R_RT_HookLength - barRRT.Radius - KS.GetDiameter(Convert.ToDouble(barRRT.Size));
+            }
+
+            barRRT.Polygon.Add(shapeRBT);
+
+            double rightSpacingT = D.R_Spacing;
+
+            var rightSpacingsT = new Spacings();
+
+            barRRT.StartPoint = barRRM.StartPoint;
+            barRRT.EndPoint = barRRM.EndPoint;
+
+            var lengthRT = new TSG.LineSegment(barRRT.StartPoint, barRRT.EndPoint).Length();
+
+            barRRT.Father = beam;
+
+            switch (D.R_RT_SpacingType)
+            {
+                case "자동간격":
+
+                    barRRT.Spacing = rightSpacingsT.RightReinforcementSpacing2(ls, le, rs, re, lengthRT, rightSpacingT, D.R_Size);
+
+                    break;
+
+                case "사용자 지정":
+
+                    var list = new ArrayList();
+
+                    string st = D.R_RT_UserSpacing;
+                    string[] ch = st.Split(' ');
+                    for (int i = 0; i < ch.Count(); i++)
+                    {
+                        list.Add(Convert.ToDouble(ch[i]));
+                    }
+                    barRRT.Spacing = list;
+
+                    break;
+            }
+
+            switch (D.R_T_UDA)
+            {
+                case "부재 UDA 정보 사용":
+                    barRRT.Building = buildingSt;
+                    barRRT.BuildingStorey = buildingStoreySt;
+                    break;
+                case "사용자 지정":
+                    barRRT.Building = D.R_T_Building;
+                    barRRT.BuildingStorey = D.R_T_Building_Storey;
+                    break;
+            }
+
+
+            switch (D.R_RT_ExcludeType)
+            {
+                case "없음":
+                    barRRT.ExcludeType = TSM.BaseRebarGroup.ExcludeTypeEnum.EXCLUDE_TYPE_NONE;
+                    break;
+                case "첫번째":
+                    barRRT.ExcludeType = TSM.BaseRebarGroup.ExcludeTypeEnum.EXCLUDE_TYPE_FIRST;
+                    break;
+                case "마지막":
+                    barRRT.ExcludeType = TSM.BaseRebarGroup.ExcludeTypeEnum.EXCLUDE_TYPE_LAST;
+                    break;
+                case "첫번째 및 마지막":
+                    barRRT.ExcludeType = TSM.BaseRebarGroup.ExcludeTypeEnum.EXCLUDE_TYPE_BOTH;
+                    break;
+                default:
+                    barRRT.ExcludeType = TSM.BaseRebarGroup.ExcludeTypeEnum.EXCLUDE_TYPE_NONE;
+                    break;
+            }
+
+            if (D.R_RT_YesOrNo == "2단")
+            {
+                barRRT.Insert();
+            }
+            else if (D.R_RT_YesOrNo == "아니오")
+            {
+
+            }
+            #endregion
+
+            #region RLT
+
+            var barRLT = new Rebar();
+
+            barRLT.Name = D.R_LT_Name;
+            barRLT.Grade = D.R_LT_Grade;
+            barRLT.Size = D.R_LT_Size;
+            barRLT.Radius = D.R_LT_Radius;
+            barRLT.Class = D.R_LT_Class;
+
+            barRLT.Prefix = D.R_LT_Prefix;
+            barRLT.StartNumber = D.R_LT_StartNumber;
+
+            var shapeRLT = new TSM.Polygon();
+
+
+            if (D.R_LT_SpliceType == "일반")
+            {
+                shapeRLT.Points.Add(new TSG.Point(ls.X, ls.Y, maxZ - D.R_LT_Splice2));
+                shapeRLT.Points.Add(new TSG.Point(ls.X, ls.Y, maxZ));
+
+                barRLT.EndOffsetValue = -D.R_LT_Splice1;
+            }
+            else if (D.R_LT_SpliceType == "벤트")
+            {
+                double x = D.R_LT_Bent;
+                double y = 6 * x;
+
+                shapeRLT.Points.Add(new TSG.Point(ls.X, ls.Y, maxZ - D.R_LT_Splice2));
+                shapeRLT.Points.Add(new TSG.Point(ls.X, ls.Y, maxZ - y));
+                shapeRLT.Points.Add(new TSG.Point(ls.X, ls.Y - x, maxZ));
+                shapeRLT.Points.Add(new TSG.Point(ls.X, ls.Y - x, maxZ + D.R_LT_Splice1));
+            }
+            if (D.R_LT_SpliceType == "후크")
+            {
+                shapeRLT.Points.Add(new TSG.Point(ls.X, ls.Y, maxZ - D.R_LT_Splice2));
+                shapeRLT.Points.Add(new TSG.Point(ls.X, ls.Y, maxZ));
+
+                barRLT.EndOffsetValue = D.R_LT_HookCorver;
+
+                barRLT.EndHookShape = TSM.RebarHookData.RebarHookShapeEnum.CUSTOM_HOOK;
+
+                switch (D.R_LT_HookInOut)
+                {
+                    case "내": barRLT.EndHookAngle = -90.0; break;
+                    case "외": barRLT.EndHookAngle = 90.0; break;
+                }
+
+                barRLT.EndHookRadius = barRLT.Radius;
+                barRLT.EndHookLength = D.R_LT_HookLength - barRLT.Radius - KS.GetDiameter(Convert.ToDouble(barRLT.Size));
+            }
+
+            barRLT.Polygon.Add(shapeRLT);
+
+            double leftSpacingT = D.L_Spacing;
+
+            var barRLMSpacingsT = new Spacings();
+
+            barRLT.StartPoint = barRLM.StartPoint;
+            barRLT.EndPoint = barRLM.EndPoint;
+
+            var barRRLlengthT = new TSG.LineSegment(barRLT.StartPoint, barRLT.EndPoint).Length();
+
+            switch (D.R_LT_SpacingType)
+            {
+                case "자동간격":
+                    barRLT.Spacing = barRLMSpacingsT.LeftReinforcementSpacing2(ls, le, rs, re, barRRLlengthT, leftSpacingT, D.L_Size);
+                    break;
+
+                case "사용자 지정":
+
+                    var list = new ArrayList();
+
+                    string st = D.R_LT_UserSpacing;
+                    string[] ch = st.Split(' ');
+                    for (int i = 0; i < ch.Count(); i++)
+                    {
+                        list.Add(Convert.ToDouble(ch[i]));
+                    }
+                    barRLT.Spacing = list;
+
+                    break;
+            }
+
+            switch (D.R_T_UDA)
+            {
+                case "부재 UDA 정보 사용":
+                    barRLT.Building = buildingSt;
+                    barRLT.BuildingStorey = buildingStoreySt;
+                    break;
+                case "사용자 지정":
+                    barRLT.Building = D.R_T_Building;
+                    barRLT.BuildingStorey = D.R_T_Building_Storey;
+                    break;
+            }
+
+            switch (D.R_LT_ExcludeType)
+            {
+                case "없음":
+                    barRLT.ExcludeType = TSM.BaseRebarGroup.ExcludeTypeEnum.EXCLUDE_TYPE_NONE;
+                    break;
+                case "첫번째":
+                    barRLT.ExcludeType = TSM.BaseRebarGroup.ExcludeTypeEnum.EXCLUDE_TYPE_FIRST;
+                    break;
+                case "마지막":
+                    barRLT.ExcludeType = TSM.BaseRebarGroup.ExcludeTypeEnum.EXCLUDE_TYPE_LAST;
+                    break;
+                case "첫번째 및 마지막":
+                    barRLT.ExcludeType = TSM.BaseRebarGroup.ExcludeTypeEnum.EXCLUDE_TYPE_BOTH;
+                    break;
+                default:
+                    barRLT.ExcludeType = TSM.BaseRebarGroup.ExcludeTypeEnum.EXCLUDE_TYPE_NONE;
+                    break;
+            }
+
+            if (D.R_LT_YesOrNo == "2단")
+            {
+                barRLT.Insert();
+            }
+            else if (D.R_LT_YesOrNo == "아니오")
+            {
+
+            }
+
+            m.CommitChanges();
+
+            #endregion
+
+            #region RRD
+
+            var barRRD = new Rebar();
+
+            barRRD.Name = D.R_DR_Name;
+            barRRD.Grade = D.R_RM_Grade;
+            barRRD.Size = D.R_RM_Size;
+            barRRD.Radius = D.R_RM_Radius;
+            barRRD.Class = D.R_DR_Class;
+
+            barRRD.Prefix = D.R_DR_Prefix;
+            barRRD.StartNumber = D.R_DR_StartNumber;
+
+            var shapeRRD = new TSM.Polygon();
+
+            shapeRRD.Points.Add(new TSG.Point(rs.X, rs.Y, minZ));
+            shapeRRD.Points.Add(new TSG.Point(rs.X, rs.Y, D.R_DR_Splice1 + D.R_DR_Splice2));
+
+            barRRD.Polygon.Add(shapeRRD);
+
+            barRRD.StartOffsetValue = -D.DW_FootingDepth + D.R_DR_HookCorver;
+
+            barRRD.StartPoint = new TSG.Point(barRRM.StartPoint.X + KS.GetDiameter(Convert.ToDouble(D.R_RM_Size)), barRRM.StartPoint.Y, barRRM.StartPoint.Z);
+            barRRD.EndPoint = new TSG.Point(barRRM.EndPoint.X + KS.GetDiameter(Convert.ToDouble(D.R_RM_Size)), barRRM.EndPoint.Y, barRRM.EndPoint.Z);
+
+            barRRD.StartHookShape = TSM.RebarHookData.RebarHookShapeEnum.CUSTOM_HOOK;
+            barRRD.StartHookRadius = barRRM.Radius;
+
+            barRRD.StartHookLength = D.R_DR_HookLength - barRRD.Radius - KS.GetDiameter(Convert.ToDouble(barRRD.Size));
+
+            switch (D.R_RM_ExcludeType)
+            {
+                case "없음":
+                    barRRD.ExcludeType = TSM.BaseRebarGroup.ExcludeTypeEnum.EXCLUDE_TYPE_NONE;
+                    break;
+                case "첫번째":
+                    barRRD.ExcludeType = TSM.BaseRebarGroup.ExcludeTypeEnum.EXCLUDE_TYPE_FIRST;
+                    break;
+                case "마지막":
+                    barRRD.ExcludeType = TSM.BaseRebarGroup.ExcludeTypeEnum.EXCLUDE_TYPE_LAST;
+                    break;
+                case "첫번째 및 마지막":
+                    barRRD.ExcludeType = TSM.BaseRebarGroup.ExcludeTypeEnum.EXCLUDE_TYPE_BOTH;
+                    break;
+                default:
+                    barRRD.ExcludeType = TSM.BaseRebarGroup.ExcludeTypeEnum.EXCLUDE_TYPE_NONE;
+                    break;
+            }
+
+            if (D.R_DR_HookInOut == "내")
+            {
+                barRRD.StartHookAngle = 90;
+            }
+            else if (D.DR_HookInOut == "외")
+            {
+                barRRD.StartHookAngle = -90;
+            }
+
+            switch (D.R_DW_UDA)
+            {
+                case "부재 UDA 정보 사용":
+                    barRRD.Building = buildingSt;
+                    barRRD.BuildingStorey = buildingStoreySt;
+                    break;
+                case "사용자 지정":
+                    barRRD.Building = D.R_DW_Building;
+                    barRRD.BuildingStorey = D.R_DW_Building_S;
+                    break;
+            }
+
+            switch (D.R_RM_SpacingType)
+            {
+                case "사용자 지정":
+
+
+                    var list = new ArrayList();
+
+                    string st = D.R_RM_UserSpacing;
+                    string[] ch = st.Split(' ');
+                    for (int i = 0; i < ch.Count(); i++)
+                    {
+                        list.Add(Convert.ToDouble(ch[i]));
+                    }
+                    barRRD.Spacing = list;
+
+                    break;
+
+                case "자동간격":
+
+                    double rightSpacingRD = D.R_Spacing;
+
+                    var lengthRD = new TSG.LineSegment(barRRD.StartPoint, barRRD.EndPoint).Length();
+
+                    var rightSpacingsRD = new Spacings();
+
+                    barRRD.Spacing = rightSpacingsRD.RightReinforcementSpacing2(ls, le, rs, re, lengthRD, rightSpacingRD, D.R_RM_Size);
+                    //barR.Spacing = RSP;
+                    break;
+            }
+
+            if (D.R_DR_YesOrNo == "예" && D.R_RM_YesOrNo == "2단")
+            {
+                barRRD.Insert();
+            }
+            else if (D.R_DR_YesOrNo == "아니오")
+            {
+
+            }
+
+
+            #endregion
+
+            #region RLD
+
+            var barRLD = new Rebar();
+
+            barRLD.Name = D.R_DL_Name;
+            barRLD.Grade = D.R_LM_Grade;
+            barRLD.Size = D.R_LM_Size;
+            barRLD.Radius = D.R_LM_Radius;
+            barRLD.Class = D.R_DL_Class;
+
+            barRLD.Prefix = D.R_DL_Prefix;
+            barRLD.StartNumber = D.R_DL_StartNumber;
+
+            var shapeRLD = new TSM.Polygon();
+
+            shapeRLD.Points.Add(new TSG.Point(ls.X, ls.Y, minZ));
+            shapeRLD.Points.Add(new TSG.Point(ls.X, ls.Y, D.R_DL_Splice1 + D.R_DL_Splice2));
+
+            barRLD.Polygon.Add(shapeRLD);
+
+            barRLD.StartOffsetValue = -D.DW_FootingDepth + D.R_DL_HookCorver;
+
+            barRLD.StartPoint = new TSG.Point(barRLM.StartPoint.X + KS.GetDiameter(Convert.ToDouble(D.R_LM_Size)), barRLM.StartPoint.Y, barRLM.StartPoint.Z);
+            barRLD.EndPoint = new TSG.Point(barRLM.EndPoint.X + KS.GetDiameter(Convert.ToDouble(D.R_LM_Size)), barRLM.EndPoint.Y, barRLM.EndPoint.Z);
+
+            barRLD.StartHookShape = TSM.RebarHookData.RebarHookShapeEnum.CUSTOM_HOOK;
+            barRLD.StartHookRadius = barRLM.Radius;
+
+            barRLD.StartHookLength = D.R_DL_HookLength - barRLD.Radius - KS.GetDiameter(Convert.ToDouble(barRLD.Size));
+
+            switch (D.R_LM_ExcludeType)
+            {
+                case "없음":
+                    barRLD.ExcludeType = TSM.BaseRebarGroup.ExcludeTypeEnum.EXCLUDE_TYPE_NONE;
+                    break;
+                case "첫번째":
+                    barRLD.ExcludeType = TSM.BaseRebarGroup.ExcludeTypeEnum.EXCLUDE_TYPE_FIRST;
+                    break;
+                case "마지막":
+                    barRLD.ExcludeType = TSM.BaseRebarGroup.ExcludeTypeEnum.EXCLUDE_TYPE_LAST;
+                    break;
+                case "첫번째 및 마지막":
+                    barRLD.ExcludeType = TSM.BaseRebarGroup.ExcludeTypeEnum.EXCLUDE_TYPE_BOTH;
+                    break;
+                default:
+                    barRLD.ExcludeType = TSM.BaseRebarGroup.ExcludeTypeEnum.EXCLUDE_TYPE_NONE;
+                    break;
+            }
+
+            if (D.R_DL_HookInOut == "내")
+            {
+                barRLD.StartHookAngle = -90;
+            }
+            else if (D.DR_HookInOut == "외")
+            {
+                barRLD.StartHookAngle = 90;
+            }
+
+            switch (D.R_DW_UDA)
+            {
+                case "부재 UDA 정보 사용":
+                    barRLD.Building = buildingSt;
+                    barRLD.BuildingStorey = buildingStoreySt;
+                    break;
+                case "사용자 지정":
+                    barRLD.Building = D.R_DW_Building;
+                    barRLD.BuildingStorey = D.R_DW_Building_S;
+                    break;
+            }
+
+            switch (D.R_RM_SpacingType)
+            {
+                case "사용자 지정":
+
+
+                    var list = new ArrayList();
+
+                    string st = D.R_LM_UserSpacing;
+                    string[] ch = st.Split(' ');
+                    for (int i = 0; i < ch.Count(); i++)
+                    {
+                        list.Add(Convert.ToDouble(ch[i]));
+                    }
+                    barRLD.Spacing = list;
+
+                    break;
+
+                case "자동간격":
+
+                    double rightSpacingLD = D.L_Spacing;
+
+                    var lengthLD = new TSG.LineSegment(barRLD.StartPoint, barRLD.EndPoint).Length();
+
+                    var rightSpacingsLD = new Spacings();
+
+                    barRLD.Spacing = rightSpacingsLD.LeftReinforcementSpacing2(ls, le, rs, re, lengthLD, rightSpacingLD, D.R_LM_Size);
+                    //barR.Spacing = RSP;
+                    break;
+            }
+
+            if (D.R_DL_YesOrNo == "예" && D.R_LM_YesOrNo == "2단")
+            {
+                barRLD.Insert();
+            }
+            else if (D.R_DL_YesOrNo == "아니오")
+            {
+
+            }
+
+
+            #endregion
+
+
+        }
+
+        private void InsertReinforcingBar3(TSM.Beam beam, TSG.Point point1, TSG.Point point2, TSG.Point point3, TSG.Point point4)
+        {
+            var m = new TSM.Model();
+
+            #region 사용자정보
+
+            var buildingSt = string.Empty;
+            var building = beam.GetUserProperty("IFC_BUILDING", ref buildingSt);
+
+            var buildingStoreySt = string.Empty;
+            var buildingStorey = beam.GetUserProperty("IFC_BUILDING_STOREY", ref buildingStoreySt);
+
+            #endregion
+
+            #region 철근 공칭지름 관련 이동
+
+            var MoveXS = D.MoveXS;
+            var MoveXE = D.MoveXE;
+
+            var ksXS = Math.Max(KS.GetDiameter(Convert.ToDouble(D.R_Size)), KS.GetDiameter(Convert.ToDouble(D.L_Size)));
+            var ksXE = Math.Max(KS.GetDiameter(Convert.ToDouble(D.R_Size)), KS.GetDiameter(Convert.ToDouble(D.L_Size)));
+            var ksXS2 = Math.Max(KS.GetDiameter(Convert.ToDouble(D.R_Size)), KS.GetDiameter(Convert.ToDouble(D.L_Size))) / 2;
+            var ksXE2 = Math.Max(KS.GetDiameter(Convert.ToDouble(D.R_Size)), KS.GetDiameter(Convert.ToDouble(D.L_Size))) / 2;
+
+            var ksR = KS.GetDiameter(Convert.ToDouble(D.R_Size));
+            var ksR2 = KS.GetDiameter(Convert.ToDouble(D.R_Size)) / 2;
+
+            var ksL = KS.GetDiameter(Convert.ToDouble(D.L_Size));
+            var ksL2 = KS.GetDiameter(Convert.ToDouble(D.L_Size)) / 2;
+
+            var rightMoveY = D.R_MoveY;
+            var rightKsY = KS.GetDiameter(Convert.ToDouble(D.R_Size)) / 2;
+
+            var leftMoveY = D.L_MoveY;
+            var leftKsY = KS.GetDiameter(Convert.ToDouble(D.L_Size)) / 2;
+
+            #endregion
+
+            #region 솔리드
+
+            var maxX = beam.GetSolid().MaximumPoint.X;
+            var maxY = beam.GetSolid().MaximumPoint.Y;
+            var maxZ = beam.GetSolid().MaximumPoint.Z;
+
+            var minX = beam.GetSolid().MinimumPoint.X;
+            var minY = beam.GetSolid().MinimumPoint.Y;
+            var minZ = beam.GetSolid().MinimumPoint.Z;
+
+            #endregion
+
+            #region 양단부 범위 설정
+
+            var startLine = new TSG.LineSegment();
+            startLine.Point1 = point1;
+            startLine.Point2 = point2;
+
+            var endLine = new TSG.LineSegment();
+            endLine.Point1 = point3;
+            endLine.Point2 = point4;
+
+            #endregion
+
+            #region 포인트
+
+            if (D.RebarS == "중심") ksXS2 = 0;
+            if (D.RebarE == "중심") ksXE2 = 0;
+
+            if (MoveXS == 0) ksXS2 = 0;
+            if (MoveXE == 0) ksXE2 = 0;
+
+            if (rightMoveY == 0) rightKsY = 0;
+            if (leftMoveY == 0) leftKsY = 0;
+
+            var leftLine = new TSG.LineSegment();
+
+            leftLine.Point1 = new TSG.Point(minX, maxY - leftMoveY - leftKsY, maxZ);
+            leftLine.Point2 = new TSG.Point(maxX, maxY - leftMoveY - leftKsY, maxZ);
+
+            var rightLine = new TSG.LineSegment();
+
+            rightLine.Point1 = new TSG.Point(minX, minY + rightMoveY + rightKsY, maxZ);
+            rightLine.Point2 = new TSG.Point(maxX, minY + rightMoveY + rightKsY, maxZ);
+
+            var rsb = Util.FindPoint.CrossPoint(new TSG.Line(rightLine), new TSG.Line(startLine));
+
+            var reb = Util.FindPoint.CrossPoint(new TSG.Line(rightLine), new TSG.Line(endLine));
+
+            var lsb = Util.FindPoint.CrossPoint(new TSG.Line(leftLine), new TSG.Line(startLine));
+
+            var leb = Util.FindPoint.CrossPoint(new TSG.Line(leftLine), new TSG.Line(endLine));
+
+            var rs = new TSG.Point(rsb.X + MoveXS + ksXS2, rsb.Y, rsb.Z);
+            var re = new TSG.Point(reb.X - MoveXE - ksXE2, reb.Y, reb.Z);
+
+            var ls = new TSG.Point(lsb.X + MoveXS + ksXS2, lsb.Y, lsb.Z);
+            var le = new TSG.Point(leb.X - MoveXE - ksXE2, leb.Y, leb.Z);
+
+            var rebar = "";
+
+            if (Convert.ToInt32(D.L_Size) <= Convert.ToInt32(D.R_Size))
+            {
+                rebar = D.R_Size;
+            }
+            else if (Convert.ToInt32(D.L_Size) > Convert.ToInt32(D.R_Size))
+            {
+                rebar = D.L_Size;
+            }
+
+            #endregion
+
+            #region RRB 
+            var barRRB = new Rebar();
+
+            barRRB.Name = D.R_RB_Name2;
+            barRRB.Grade = D.R_RB_Grade2;
+            barRRB.Size = D.R_RB_Size2;
+            barRRB.Radius = D.R_RB_Radius2;
+            barRRB.Class = D.R_RB_Class2;
+
+            barRRB.Prefix = D.R_RB_Prefix2;
+            barRRB.StartNumber = D.R_RB_StartNumber2;
+
+            var shapeRB = new TSM.Polygon();
+
+            shapeRB.Points.Add(new TSG.Point(rs.X, rs.Y, minZ));
+            shapeRB.Points.Add(new TSG.Point(rs.X, rs.Y, minZ + (D.R_RB_Splice1)));
+
+            barRRB.Polygon.Add(shapeRB);
+
+            barRRB.StartOffsetValue = -(D.R_RB_Splice2);
+
+            double rightSpacing = D.R_Spacing;
+
+            var s = (double)ls.X - (double)rs.X;
+            var sa = s / 2;
+
+            var rightSpacings = new Spacings();
+
+
+            if (s > 0 && s <= rightSpacing * 2 && s > rightSpacing)
+            {
+                barRRB.StartPoint = new TSG.Point(rs.X + sa / 3 * 2, rs.Y, rs.Z);
+                barRRB.EndPoint = new TSG.Point(re.X + sa / 3 * 2, re.Y, re.Z);
+            }
+            else if (s > 0 && s <= rightSpacing)
+            {
+                barRRB.StartPoint = new TSG.Point(rs.X + s / 3 * 2, rs.Y, rs.Z);
+                barRRB.EndPoint = new TSG.Point(re.X + s / 3 * 2, re.Y, re.Z);
+            }
+            else
+            {
+                barRRB.StartPoint = new TSG.Point(rs.X + rightSpacing / 3 * 2, rs.Y, rs.Z);
+                barRRB.EndPoint = new TSG.Point(re.X + rightSpacing / 3 * 2, re.Y, re.Z);
+            }
+
+            var lengthR = new TSG.LineSegment(barRRB.StartPoint, barRRB.EndPoint).Length();
+
+
+            barRRB.Father = beam;
+
+            switch (D.R_RB_SpacingType2)
+            {
+                case "자동간격":
+                    barRRB.Spacing = rightSpacings.RightReinforcementSpacing3(ls, le, rs, re, lengthR, rightSpacing, D.R_Size);
+
+                    break;
+
+                case "사용자 지정":
+
+                    var list = new ArrayList();
+
+                    string st = D.R_RB_UserSpacing2;
+
+                    string[] ch = st.Split(' ');
+                    for (int i = 0; i < ch.Count(); i++)
+                    {
+                        list.Add(Convert.ToDouble(ch[i]));
+                    }
+                    barRRB.Spacing = list;
+
+                    break;
+            }
+
+            switch (D.R_B_UDA)
+            {
+                case "부재 UDA 정보 사용":
+                    barRRB.Building = buildingSt;
+                    barRRB.BuildingStorey = buildingStoreySt;
+                    break;
+                case "사용자 지정":
+                    barRRB.Building = D.R_B_Building;
+                    barRRB.BuildingStorey = D.R_B_Building_Storey;
+                    break;
+            }
+
+            switch (D.R_RB_ExcludeType2)
+            {
+                case "없음":
+                    barRRB.ExcludeType = TSM.BaseRebarGroup.ExcludeTypeEnum.EXCLUDE_TYPE_NONE;
+                    break;
+                case "첫번째":
+                    barRRB.ExcludeType = TSM.BaseRebarGroup.ExcludeTypeEnum.EXCLUDE_TYPE_FIRST;
+                    break;
+                case "마지막":
+                    barRRB.ExcludeType = TSM.BaseRebarGroup.ExcludeTypeEnum.EXCLUDE_TYPE_LAST;
+                    break;
+                case "첫번째 및 마지막":
+                    barRRB.ExcludeType = TSM.BaseRebarGroup.ExcludeTypeEnum.EXCLUDE_TYPE_BOTH;
+                    break;
+                default:
+                    barRRB.ExcludeType = TSM.BaseRebarGroup.ExcludeTypeEnum.EXCLUDE_TYPE_NONE;
+                    break;
+            }
+
+            if (D.R_RB_Type == "일반")
+            {
+                barRRB.StartHookShape = TSM.RebarHookData.RebarHookShapeEnum.NO_HOOK;
+            }
+            else if (D.R_RB_Type == "후크")
+            {
+                barRRB.StartHookShape = TSM.RebarHookData.RebarHookShapeEnum.CUSTOM_HOOK;
+                barRRB.StartHookRadius = barRRB.Radius;
+                barRRB.StartHookLength = D.R_RB_HookLength - barRRB.Radius - KS.GetDiameter(Convert.ToDouble(barRRB.Size));
+
+                if (D.R_RB_HookInOut == "내")
+                {
+                    barRRB.StartHookAngle = 90;
+
+                }
+                else if (D.R_RB_HookInOut == "외")
+                {
+                    barRRB.StartHookAngle = -90;
+                }
+            }
+
+
+            if (D.R_RB_YesOrNo == "2단")
+            {
+                barRRB.Insert();
+            }
+            else if (D.R_RB_YesOrNo == "아니오")
+            {
+
+            }
+
+            #endregion
+
+            #region RLB
+            var barRLB = new Rebar();
+
+            barRLB.Name = D.R_LB_Name2;
+            barRLB.Grade = D.R_LB_Grade2;
+            barRLB.Size = D.R_LB_Size2;
+            barRLB.Radius = D.R_LB_Radius2;
+            barRLB.Class = D.R_LB_Class2;
+
+            barRLB.Prefix = D.R_LB_Prefix2;
+            barRLB.StartNumber = D.R_LB_StartNumber2;
+
+            var shapeLB = new TSM.Polygon();
+
+            shapeLB.Points.Add(new TSG.Point(ls.X, ls.Y, minZ));
+            shapeLB.Points.Add(new TSG.Point(ls.X, ls.Y, minZ + D.R_LB_Splice1));
+
+            barRLB.Polygon.Add(shapeLB);
+
+            barRLB.StartOffsetValue = -(D.R_LB_Splice2);
+
+            double leftSpacing = D.L_Spacing;
+
+            var ss = Math.Round((double)rs.X - (double)ls.X, 2);
+            var ssa = ss / 2;
+
+            var barRLBSpacings = new Spacings();
+
+
+            if (ss > 0 && ss <= leftSpacing * 2 && ss > leftSpacing)
+            {
+                barRLB.StartPoint = new TSG.Point(ls.X + ssa / 3 * 2, ls.Y, ls.Z);
+                barRLB.EndPoint = new TSG.Point(le.X + ssa / 3 * 2, le.Y, le.Z);
+            }
+
+            else if (ss > 0 && ss <= leftSpacing)
+            {
+                barRLB.StartPoint = new TSG.Point(ls.X + ss / 3 * 2, ls.Y, ls.Z);
+                barRLB.EndPoint = new TSG.Point(le.X + ss / 3 * 2, le.Y, le.Z);
+            }
+
+            else
+            {
+                barRLB.StartPoint = new TSG.Point(ls.X + leftSpacing / 3 * 2, ls.Y, ls.Z);
+                barRLB.EndPoint = new TSG.Point(le.X + leftSpacing / 3 * 2, le.Y, le.Z);
+            }
+
+
+
+            var barRRLlength = new TSG.LineSegment(barRLB.StartPoint, barRLB.EndPoint).Length();
+
+            switch (D.R_LB_SpacingType2)
+            {
+                case "자동간격":
+                    barRLB.Spacing = barRLBSpacings.LeftReinforcementSpacing3(ls, le, rs, re, barRRLlength, leftSpacing, D.L_Size);
+                    break;
+
+                case "사용자 지정":
+
+                    var list = new ArrayList();
+
+                    string st = D.R_LB_UserSpacing2;
+                    string[] ch = st.Split(' ');
+                    for (int i = 0; i < ch.Count(); i++)
+                    {
+                        list.Add(Convert.ToDouble(ch[i]));
+                    }
+                    barRLB.Spacing = list;
+
+                    break;
+            }
+
+            switch (D.R_B_UDA)
+            {
+                case "부재 UDA 정보 사용":
+                    barRLB.Building = buildingSt;
+                    barRLB.BuildingStorey = buildingStoreySt;
+                    break;
+                case "사용자 지정":
+                    barRLB.Building = D.R_B_Building;
+                    barRLB.BuildingStorey = D.R_B_Building_Storey;
+                    break;
+            }
+
+            switch (D.R_LB_ExcludeType2)
+            {
+                case "없음":
+                    barRLB.ExcludeType = TSM.BaseRebarGroup.ExcludeTypeEnum.EXCLUDE_TYPE_NONE;
+                    break;
+                case "첫번째":
+                    barRLB.ExcludeType = TSM.BaseRebarGroup.ExcludeTypeEnum.EXCLUDE_TYPE_FIRST;
+                    break;
+                case "마지막":
+                    barRLB.ExcludeType = TSM.BaseRebarGroup.ExcludeTypeEnum.EXCLUDE_TYPE_LAST;
+                    break;
+                case "첫번째 및 마지막":
+                    barRLB.ExcludeType = TSM.BaseRebarGroup.ExcludeTypeEnum.EXCLUDE_TYPE_BOTH;
+                    break;
+                default:
+                    barRLB.ExcludeType = TSM.BaseRebarGroup.ExcludeTypeEnum.EXCLUDE_TYPE_NONE;
+                    break;
+            }
+
+            if (D.R_LB_Type == "일반")
+            {
+                barRLB.StartHookShape = TSM.RebarHookData.RebarHookShapeEnum.NO_HOOK;
+            }
+            else if (D.R_LB_Type == "후크")
+            {
+                barRLB.StartHookShape = TSM.RebarHookData.RebarHookShapeEnum.CUSTOM_HOOK;
+                barRLB.StartHookRadius = barRLB.Radius;
+                barRLB.StartHookLength = D.R_LB_HookLength - barRLB.Radius - KS.GetDiameter(Convert.ToDouble(barRLB.Size));
+
+                if (D.R_LB_HookInOut == "내")
+                {
+                    barRLB.StartHookAngle = -90;
+
+                }
+                else if (D.R_LB_HookInOut == "외")
+                {
+                    barRLB.StartHookAngle = 90;
+                }
+            }
+
+            if (D.R_LB_YesOrNo == "2단")
+            {
+                barRLB.Insert();
+            }
+            else if (D.R_LB_YesOrNo == "아니오")
+            {
+
+            }
+            m.CommitChanges();
+            #endregion
+
+            #region RRM
+
+            var barRRM = new Rebar();
+
+            barRRM.Name = D.R_RM_Name2;
+            barRRM.Grade = D.R_RM_Grade2;
+            barRRM.Size = D.R_RM_Size2;
+            barRRM.Radius = D.R_RM_Radius2;
+            barRRM.Class = D.R_RM_Class2;
+
+            barRRM.Prefix = D.R_RM_Prefix2;
+            barRRM.StartNumber = D.R_RM_StartNumber2;
+
+            var shapeRBM = new TSM.Polygon();
+
+
+            if (D.R_RM_SpliceType == "일반")
+            {
+                shapeRBM.Points.Add(new TSG.Point(rs.X, rs.Y, minZ));
+                shapeRBM.Points.Add(new TSG.Point(rs.X, rs.Y, maxZ));
+
+                barRRM.EndOffsetValue = -D.R_RM_Splice1;
+                barRRM.StartOffsetValue = D.R_RM_Splice2;
+            }
+            else if (D.R_RM_SpliceType == "벤트")
+            {
+                double x = D.R_RM_Bent;
+                double y = 6 * x;
+
+                shapeRBM.Points.Add(new TSG.Point(rs.X, rs.Y, minZ + D.R_RM_Splice2));
+                shapeRBM.Points.Add(new TSG.Point(rs.X, rs.Y, maxZ - y));
+                shapeRBM.Points.Add(new TSG.Point(rs.X, rs.Y + x, maxZ));
+                shapeRBM.Points.Add(new TSG.Point(rs.X, rs.Y + x, maxZ + D.R_RM_Splice1));
+            }
+            if (D.R_RM_SpliceType == "후크")
+            {
+                shapeRBM.Points.Add(new TSG.Point(rs.X, rs.Y, minZ));
+                shapeRBM.Points.Add(new TSG.Point(rs.X, rs.Y, maxZ));
+
+                barRRM.EndOffsetValue = D.R_RM_HookCorver;
+                barRRM.StartOffsetValue = D.R_RM_Splice2;
+
+                barRRM.EndHookShape = TSM.RebarHookData.RebarHookShapeEnum.CUSTOM_HOOK;
+
+                switch (D.R_RM_HookInOut)
+                {
+                    case "내": barRRM.EndHookAngle = 90.0; break;
+                    case "외": barRRM.EndHookAngle = -90.0; break;
+                }
+
+                barRRM.EndHookRadius = barRRM.Radius;
+                barRRM.EndHookLength = D.R_RM_HookLength - barRRM.Radius - KS.GetDiameter(Convert.ToDouble(barRRM.Size));
+            }
+
+            barRRM.Polygon.Add(shapeRBM);
+
+            double rightSpacingM = D.R_Spacing;
+
+            var sM = (double)ls.X - (double)rs.X;
+            var saM = sM / 2;
+
+            var rightSpacingsM = new Spacings();
+
+            if (sM > 0 && sM <= rightSpacingM * 2 && sM > rightSpacingM)
+            {
+                barRRM.StartPoint = new TSG.Point(rs.X + saM / 3 * 2, rs.Y, rs.Z);
+                barRRM.EndPoint = new TSG.Point(re.X + saM / 3 * 2, re.Y, re.Z);
+            }
+            else if (sM > 0 && sM <= rightSpacingM)
+            {
+                barRRM.StartPoint = new TSG.Point(rs.X + sM / 3 * 2, rs.Y, rs.Z);
+                barRRM.EndPoint = new TSG.Point(re.X + sM / 3 * 2, re.Y, re.Z);
+            }
+            else
+            {
+                barRRM.StartPoint = new TSG.Point(rs.X + rightSpacing / 3 * 2, rs.Y, rs.Z);
+                barRRM.EndPoint = new TSG.Point(re.X + rightSpacing / 3 * 2, re.Y, re.Z);
+            }
+
+            var lengthRM = new TSG.LineSegment(barRRM.StartPoint, barRRM.EndPoint).Length();
+
+
+            barRRM.Father = beam;
+
+            switch (D.R_RM_SpacingType2)
+            {
+                case "자동간격":
+
+                    barRRM.Spacing = rightSpacingsM.RightReinforcementSpacing3(ls, le, rs, re, lengthRM, rightSpacingM, D.R_Size);
+
+                    break;
+
+                case "사용자 지정":
+
+                    var list = new ArrayList();
+
+                    string st = D.R_RM_UserSpacing2;
+                    string[] ch = st.Split(' ');
+                    for (int i = 0; i < ch.Count(); i++)
+                    {
+                        list.Add(Convert.ToDouble(ch[i]));
+                    }
+                    barRRM.Spacing = list;
+
+                    break;
+            }
+
+            switch (D.R_M_UDA)
+            {
+                case "부재 UDA 정보 사용":
+                    barRRM.Building = buildingSt;
+                    barRRM.BuildingStorey = buildingStoreySt;
+                    break;
+                case "사용자 지정":
+                    barRRM.Building = D.R_M_Building;
+                    barRRM.BuildingStorey = D.R_M_Building_Storey;
+                    break;
+            }
+
+
+            switch (D.R_RM_ExcludeType2)
+            {
+                case "없음":
+                    barRRM.ExcludeType = TSM.BaseRebarGroup.ExcludeTypeEnum.EXCLUDE_TYPE_NONE;
+                    break;
+                case "첫번째":
+                    barRRM.ExcludeType = TSM.BaseRebarGroup.ExcludeTypeEnum.EXCLUDE_TYPE_FIRST;
+                    break;
+                case "마지막":
+                    barRRM.ExcludeType = TSM.BaseRebarGroup.ExcludeTypeEnum.EXCLUDE_TYPE_LAST;
+                    break;
+                case "첫번째 및 마지막":
+                    barRRM.ExcludeType = TSM.BaseRebarGroup.ExcludeTypeEnum.EXCLUDE_TYPE_BOTH;
+                    break;
+                default:
+                    barRRM.ExcludeType = TSM.BaseRebarGroup.ExcludeTypeEnum.EXCLUDE_TYPE_NONE;
+                    break;
+            }
+
+            if (D.R_RM_YesOrNo == "2단")
+            {
+                barRRM.Insert();
+            }
+            else if (D.R_RM_YesOrNo == "아니오")
+            {
+
+            }
+
+            #endregion
+
+            #region RLM
+            var barRLM = new Rebar();
+
+            barRLM.Name = D.R_LM_Name2;
+            barRLM.Grade = D.R_LM_Grade2;
+            barRLM.Size = D.R_LM_Size2;
+            barRLM.Radius = D.R_LM_Radius2;
+            barRLM.Class = D.R_LM_Class2;
+
+            barRLM.Prefix = D.R_LM_Prefix2;
+            barRLM.StartNumber = D.R_LM_StartNumber2;
+
+            var shapeRLM = new TSM.Polygon();
+
+
+            if (D.R_LM_SpliceType == "일반")
+            {
+                shapeRLM.Points.Add(new TSG.Point(ls.X, ls.Y, minZ));
+                shapeRLM.Points.Add(new TSG.Point(ls.X, ls.Y, maxZ));
+
+                barRLM.EndOffsetValue = -D.R_LM_Splice1;
+                barRLM.StartOffsetValue = D.R_LM_Splice2;
+            }
+            else if (D.R_LM_SpliceType == "벤트")
+            {
+                double x = D.R_LM_Bent;
+                double y = 6 * x;
+
+                shapeRLM.Points.Add(new TSG.Point(ls.X, ls.Y, minZ + D.R_LM_Splice2));
+                shapeRLM.Points.Add(new TSG.Point(ls.X, ls.Y, maxZ - y));
+                shapeRLM.Points.Add(new TSG.Point(ls.X, ls.Y - x, maxZ));
+                shapeRLM.Points.Add(new TSG.Point(ls.X, ls.Y - x, maxZ + D.R_LM_Splice1));
+            }
+            if (D.R_LM_SpliceType == "후크")
+            {
+                shapeRLM.Points.Add(new TSG.Point(ls.X, ls.Y, minZ));
+                shapeRLM.Points.Add(new TSG.Point(ls.X, ls.Y, maxZ));
+
+                barRLM.EndOffsetValue = D.R_LM_HookCorver;
+                barRLM.StartOffsetValue = D.R_LM_Splice2;
+
+                barRLM.EndHookShape = TSM.RebarHookData.RebarHookShapeEnum.CUSTOM_HOOK;
+
+                switch (D.R_LM_HookInOut)
+                {
+                    case "내": barRLM.EndHookAngle = -90.0; break;
+                    case "외": barRLM.EndHookAngle = 90.0; break;
+                }
+
+                barRLM.EndHookRadius = barRLM.Radius;
+                barRLM.EndHookLength = D.R_LM_HookLength - barRLM.Radius - KS.GetDiameter(Convert.ToDouble(barRLM.Size));
+            }
+
+            barRLM.Polygon.Add(shapeRLM);
+
+            double leftSpacingM = D.L_Spacing;
+
+            var ssM = Math.Round((double)rs.X - (double)ls.X, 2);
+            var ssaM = ssM / 2;
+
+            var barRLMSpacingsM = new Spacings();
+
+            if (ssM > 0 && ssM <= leftSpacingM * 2 && ssM > leftSpacingM)
+            {
+                barRLM.StartPoint = new TSG.Point(ls.X + ssaM / 3 * 2, ls.Y, ls.Z);
+                barRLM.EndPoint = new TSG.Point(le.X + ssaM / 3 * 2, le.Y, le.Z);
+            }
+
+            else if (ssM > 0 && ssM <= leftSpacingM)
+            {
+                barRLM.StartPoint = new TSG.Point(ls.X + ssM / 3 * 2, ls.Y, ls.Z);
+                barRLM.EndPoint = new TSG.Point(le.X + ssM / 3 * 2, le.Y, le.Z);
+            }
+            else
+            {
+                barRLM.StartPoint = new TSG.Point(ls.X + leftSpacing / 3 * 2, ls.Y, ls.Z);
+                barRLM.EndPoint = new TSG.Point(le.X + leftSpacing / 3 * 2, le.Y, le.Z);
+            }
+
+            var barRRLlengthM = new TSG.LineSegment(barRLM.StartPoint, barRLM.EndPoint).Length();
+
+            switch (D.R_LM_SpacingType2)
+            {
+                case "자동간격":
+                    barRLM.Spacing = barRLMSpacingsM.LeftReinforcementSpacing3(ls, le, rs, re, barRRLlengthM, leftSpacingM, D.L_Size);
+                    break;
+
+                case "사용자 지정":
+
+                    var list = new ArrayList();
+
+                    string st = D.R_LM_UserSpacing2;
+                    string[] ch = st.Split(' ');
+                    for (int i = 0; i < ch.Count(); i++)
+                    {
+                        list.Add(Convert.ToDouble(ch[i]));
+                    }
+                    barRLM.Spacing = list;
+
+                    break;
+            }
+
+            switch (D.R_M_UDA)
+            {
+                case "부재 UDA 정보 사용":
+                    barRLM.Building = buildingSt;
+                    barRLM.BuildingStorey = buildingStoreySt;
+                    break;
+                case "사용자 지정":
+                    barRLM.Building = D.R_M_Building;
+                    barRLM.BuildingStorey = D.R_M_Building_Storey;
+                    break;
+            }
+
+            switch (D.R_LM_ExcludeType2)
+            {
+                case "없음":
+                    barRLM.ExcludeType = TSM.BaseRebarGroup.ExcludeTypeEnum.EXCLUDE_TYPE_NONE;
+                    break;
+                case "첫번째":
+                    barRLM.ExcludeType = TSM.BaseRebarGroup.ExcludeTypeEnum.EXCLUDE_TYPE_FIRST;
+                    break;
+                case "마지막":
+                    barRLM.ExcludeType = TSM.BaseRebarGroup.ExcludeTypeEnum.EXCLUDE_TYPE_LAST;
+                    break;
+                case "첫번째 및 마지막":
+                    barRLM.ExcludeType = TSM.BaseRebarGroup.ExcludeTypeEnum.EXCLUDE_TYPE_BOTH;
+                    break;
+                default:
+                    barRLM.ExcludeType = TSM.BaseRebarGroup.ExcludeTypeEnum.EXCLUDE_TYPE_NONE;
+                    break;
+            }
+
+            if (D.R_LM_YesOrNo == "2단")
+            {
+                barRLM.Insert();
+            }
+            else if (D.R_LM_YesOrNo == "아니오")
+            {
+
+            }
+            m.CommitChanges();
+            #endregion
+
+            #region RRT
+
+            var barRRT = new Rebar();
+
+            barRRT.Name = D.R_RT_Name2;
+            barRRT.Grade = D.R_RT_Grade2;
+            barRRT.Size = D.R_RT_Size2;
+            barRRT.Radius = D.R_RT_Radius2;
+            barRRT.Class = D.R_RT_Class2;
+
+            barRRT.Prefix = D.R_RT_Prefix2;
+            barRRT.StartNumber = D.R_RT_StartNumber2;
+
+            var shapeRBT = new TSM.Polygon();
+
+            if (D.R_RT_SpliceType == "일반")
+            {
+                shapeRBT.Points.Add(new TSG.Point(rs.X, rs.Y, maxZ - D.R_RT_Splice2));
+                shapeRBT.Points.Add(new TSG.Point(rs.X, rs.Y, maxZ));
+
+                barRRT.EndOffsetValue = -D.R_RT_Splice1;
+            }
+            else if (D.R_RT_SpliceType == "벤트")
+            {
+                double x = D.R_RT_Bent;
+                double y = 6 * x;
+
+                shapeRBT.Points.Add(new TSG.Point(rs.X, rs.Y, maxZ - D.R_RT_Splice2));
+                shapeRBT.Points.Add(new TSG.Point(rs.X, rs.Y, maxZ - y));
+                shapeRBT.Points.Add(new TSG.Point(rs.X, rs.Y + x, maxZ));
+                shapeRBT.Points.Add(new TSG.Point(rs.X, rs.Y + x, maxZ + D.R_RT_Splice1));
+            }
+            if (D.R_RT_SpliceType == "후크")
+            {
+                shapeRBT.Points.Add(new TSG.Point(rs.X, rs.Y, maxZ - D.R_RT_Splice2));
+                shapeRBT.Points.Add(new TSG.Point(rs.X, rs.Y, maxZ));
+
+                barRRT.EndOffsetValue = D.R_RT_HookCorver;
+
+                barRRT.EndHookShape = TSM.RebarHookData.RebarHookShapeEnum.CUSTOM_HOOK;
+
+                switch (D.R_RT_HookInOut)
+                {
+                    case "내": barRRT.EndHookAngle = 90.0; break;
+                    case "외": barRRT.EndHookAngle = -90.0; break;
+                }
+
+                barRRT.EndHookRadius = barRRT.Radius;
+                barRRT.EndHookLength = D.R_RT_HookLength - barRRT.Radius - KS.GetDiameter(Convert.ToDouble(barRRT.Size));
+            }
+
+            barRRT.Polygon.Add(shapeRBT);
+
+            double rightSpacingT = D.R_Spacing;
+
+            var rightSpacingsT = new Spacings();
+
+            barRRT.StartPoint = barRRM.StartPoint;
+            barRRT.EndPoint = barRRM.EndPoint;
+
+            var lengthRT = new TSG.LineSegment(barRRT.StartPoint, barRRT.EndPoint).Length();
+
+            barRRT.Father = beam;
+
+            switch (D.R_RT_SpacingType2)
+            {
+                case "자동간격":
+
+                    barRRT.Spacing = rightSpacingsT.RightReinforcementSpacing3(ls, le, rs, re, lengthRT, rightSpacingT, D.R_Size);
+
+                    break;
+
+                case "사용자 지정":
+
+                    var list = new ArrayList();
+
+                    string st = D.R_RT_UserSpacing2;
+                    string[] ch = st.Split(' ');
+                    for (int i = 0; i < ch.Count(); i++)
+                    {
+                        list.Add(Convert.ToDouble(ch[i]));
+                    }
+                    barRRT.Spacing = list;
+
+                    break;
+            }
+
+            switch (D.R_T_UDA)
+            {
+                case "부재 UDA 정보 사용":
+                    barRRT.Building = buildingSt;
+                    barRRT.BuildingStorey = buildingStoreySt;
+                    break;
+                case "사용자 지정":
+                    barRRT.Building = D.R_T_Building;
+                    barRRT.BuildingStorey = D.R_T_Building_Storey;
+                    break;
+            }
+
+
+            switch (D.R_RT_ExcludeType2)
+            {
+                case "없음":
+                    barRRT.ExcludeType = TSM.BaseRebarGroup.ExcludeTypeEnum.EXCLUDE_TYPE_NONE;
+                    break;
+                case "첫번째":
+                    barRRT.ExcludeType = TSM.BaseRebarGroup.ExcludeTypeEnum.EXCLUDE_TYPE_FIRST;
+                    break;
+                case "마지막":
+                    barRRT.ExcludeType = TSM.BaseRebarGroup.ExcludeTypeEnum.EXCLUDE_TYPE_LAST;
+                    break;
+                case "첫번째 및 마지막":
+                    barRRT.ExcludeType = TSM.BaseRebarGroup.ExcludeTypeEnum.EXCLUDE_TYPE_BOTH;
+                    break;
+                default:
+                    barRRT.ExcludeType = TSM.BaseRebarGroup.ExcludeTypeEnum.EXCLUDE_TYPE_NONE;
+                    break;
+            }
+
+            if (D.R_RT_YesOrNo == "2단")
+            {
+                barRRT.Insert();
+            }
+            else if (D.R_RT_YesOrNo == "아니오")
+            {
+
+            }
+            #endregion
+
+            #region RLT
+
+            var barRLT = new Rebar();
+
+            barRLT.Name = D.R_LT_Name2;
+            barRLT.Grade = D.R_LT_Grade2;
+            barRLT.Size = D.R_LT_Size2;
+            barRLT.Radius = D.R_LT_Radius2;
+            barRLT.Class = D.R_LT_Class2;
+
+            barRLT.Prefix = D.R_LT_Prefix2;
+            barRLT.StartNumber = D.R_LT_StartNumber2;
+
+            var shapeRLT = new TSM.Polygon();
+
+
+            if (D.R_LT_SpliceType == "일반")
+            {
+                shapeRLT.Points.Add(new TSG.Point(ls.X, ls.Y, maxZ - D.R_LT_Splice2));
+                shapeRLT.Points.Add(new TSG.Point(ls.X, ls.Y, maxZ));
+
+                barRLT.EndOffsetValue = -D.R_LT_Splice1;
+            }
+            else if (D.R_LT_SpliceType == "벤트")
+            {
+                double x = D.R_LT_Bent;
+                double y = 6 * x;
+
+                shapeRLT.Points.Add(new TSG.Point(ls.X, ls.Y, maxZ - D.R_LT_Splice2));
+                shapeRLT.Points.Add(new TSG.Point(ls.X, ls.Y, maxZ - y));
+                shapeRLT.Points.Add(new TSG.Point(ls.X, ls.Y - x, maxZ));
+                shapeRLT.Points.Add(new TSG.Point(ls.X, ls.Y - x, maxZ + D.R_LT_Splice1));
+            }
+            if (D.R_LT_SpliceType == "후크")
+            {
+                shapeRLT.Points.Add(new TSG.Point(ls.X, ls.Y, maxZ - D.R_LT_Splice2));
+                shapeRLT.Points.Add(new TSG.Point(ls.X, ls.Y, maxZ));
+
+                barRLT.EndOffsetValue = D.R_LT_HookCorver;
+
+                barRLT.EndHookShape = TSM.RebarHookData.RebarHookShapeEnum.CUSTOM_HOOK;
+
+                switch (D.R_LT_HookInOut)
+                {
+                    case "내": barRLT.EndHookAngle = -90.0; break;
+                    case "외": barRLT.EndHookAngle = 90.0; break;
+                }
+
+                barRLT.EndHookRadius = barRLT.Radius;
+                barRLT.EndHookLength = D.R_LT_HookLength - barRLT.Radius - KS.GetDiameter(Convert.ToDouble(barRLT.Size));
+            }
+
+            barRLT.Polygon.Add(shapeRLT);
+
+            double leftSpacingT = D.L_Spacing;
+
+            var barRLMSpacingsT = new Spacings();
+
+            barRLT.StartPoint = barRLM.StartPoint;
+            barRLT.EndPoint = barRLM.EndPoint;
+
+            var barRRLlengthT = new TSG.LineSegment(barRLT.StartPoint, barRLT.EndPoint).Length();
+
+            switch (D.R_LT_SpacingType2)
+            {
+                case "자동간격":
+                    barRLT.Spacing = barRLMSpacingsT.LeftReinforcementSpacing3(ls, le, rs, re, barRRLlengthT, leftSpacingT, D.L_Size);
+                    break;
+
+                case "사용자 지정":
+
+                    var list = new ArrayList();
+
+                    string st = D.R_LT_UserSpacing2;
+                    string[] ch = st.Split(' ');
+                    for (int i = 0; i < ch.Count(); i++)
+                    {
+                        list.Add(Convert.ToDouble(ch[i]));
+                    }
+                    barRLT.Spacing = list;
+
+                    break;
+            }
+
+            switch (D.R_T_UDA)
+            {
+                case "부재 UDA 정보 사용":
+                    barRLT.Building = buildingSt;
+                    barRLT.BuildingStorey = buildingStoreySt;
+                    break;
+                case "사용자 지정":
+                    barRLT.Building = D.R_T_Building;
+                    barRLT.BuildingStorey = D.R_T_Building_Storey;
+                    break;
+            }
+
+            switch (D.R_LT_ExcludeType2)
+            {
+                case "없음":
+                    barRLT.ExcludeType = TSM.BaseRebarGroup.ExcludeTypeEnum.EXCLUDE_TYPE_NONE;
+                    break;
+                case "첫번째":
+                    barRLT.ExcludeType = TSM.BaseRebarGroup.ExcludeTypeEnum.EXCLUDE_TYPE_FIRST;
+                    break;
+                case "마지막":
+                    barRLT.ExcludeType = TSM.BaseRebarGroup.ExcludeTypeEnum.EXCLUDE_TYPE_LAST;
+                    break;
+                case "첫번째 및 마지막":
+                    barRLT.ExcludeType = TSM.BaseRebarGroup.ExcludeTypeEnum.EXCLUDE_TYPE_BOTH;
+                    break;
+                default:
+                    barRLT.ExcludeType = TSM.BaseRebarGroup.ExcludeTypeEnum.EXCLUDE_TYPE_NONE;
+                    break;
+            }
+
+            if (D.R_LT_YesOrNo == "2단")
+            {
+                barRLT.Insert();
+            }
+            else if (D.R_LT_YesOrNo == "아니오")
+            {
+
+            }
+
+            m.CommitChanges();
+
+            #endregion
+
+            #region RRD
+
+            var barRRD = new Rebar();
+
+            barRRD.Name = D.R_DR_Name2;
+            barRRD.Grade = D.R_RM_Grade2;
+            barRRD.Size = D.R_RM_Size2;
+            barRRD.Radius = D.R_RM_Radius2;
+            barRRD.Class = D.R_DR_Class2;
+
+            barRRD.Prefix = D.R_DR_Prefix2;
+            barRRD.StartNumber = D.R_DR_StartNumber2;
+
+            var shapeRRD = new TSM.Polygon();
+
+            shapeRRD.Points.Add(new TSG.Point(rs.X, rs.Y, minZ));
+            shapeRRD.Points.Add(new TSG.Point(rs.X, rs.Y, D.R_DR_Splice1 + D.R_DR_Splice2));
+
+            barRRD.Polygon.Add(shapeRRD);
+
+            barRRD.StartOffsetValue = -D.DW_FootingDepth + D.R_DR_HookCorver;
+
+            barRRD.StartPoint = new TSG.Point(barRRM.StartPoint.X + KS.GetDiameter(Convert.ToDouble(D.R_RM_Size2)), barRRM.StartPoint.Y, barRRM.StartPoint.Z);
+            barRRD.EndPoint = new TSG.Point(barRRM.EndPoint.X + KS.GetDiameter(Convert.ToDouble(D.R_RM_Size2)), barRRM.EndPoint.Y, barRRM.EndPoint.Z);
+
+            barRRD.StartHookShape = TSM.RebarHookData.RebarHookShapeEnum.CUSTOM_HOOK;
+            barRRD.StartHookRadius = barRRM.Radius;
+
+            barRRD.StartHookLength = D.R_DR_HookLength - barRRD.Radius - KS.GetDiameter(Convert.ToDouble(barRRD.Size));
+
+            switch (D.R_RM_ExcludeType2)
+            {
+                case "없음":
+                    barRRD.ExcludeType = TSM.BaseRebarGroup.ExcludeTypeEnum.EXCLUDE_TYPE_NONE;
+                    break;
+                case "첫번째":
+                    barRRD.ExcludeType = TSM.BaseRebarGroup.ExcludeTypeEnum.EXCLUDE_TYPE_FIRST;
+                    break;
+                case "마지막":
+                    barRRD.ExcludeType = TSM.BaseRebarGroup.ExcludeTypeEnum.EXCLUDE_TYPE_LAST;
+                    break;
+                case "첫번째 및 마지막":
+                    barRRD.ExcludeType = TSM.BaseRebarGroup.ExcludeTypeEnum.EXCLUDE_TYPE_BOTH;
+                    break;
+                default:
+                    barRRD.ExcludeType = TSM.BaseRebarGroup.ExcludeTypeEnum.EXCLUDE_TYPE_NONE;
+                    break;
+            }
+
+            if (D.R_DR_HookInOut == "내")
+            {
+                barRRD.StartHookAngle = 90;
+            }
+            else if (D.DR_HookInOut == "외")
+            {
+                barRRD.StartHookAngle = -90;
+            }
+
+            switch (D.R_DW_UDA)
+            {
+                case "부재 UDA 정보 사용":
+                    barRRD.Building = buildingSt;
+                    barRRD.BuildingStorey = buildingStoreySt;
+                    break;
+                case "사용자 지정":
+                    barRRD.Building = D.R_DW_Building;
+                    barRRD.BuildingStorey = D.R_DW_Building_S;
+                    break;
+            }
+
+            switch (D.R_RM_SpacingType2)
+            {
+                case "사용자 지정":
+
+                    var list = new ArrayList();
+
+                    string st = D.R_RM_UserSpacing2;
+                    string[] ch = st.Split(' ');
+                    for (int i = 0; i < ch.Count(); i++)
+                    {
+                        list.Add(Convert.ToDouble(ch[i]));
+                    }
+                    barRRD.Spacing = list;
+
+                    break;
+
+                case "자동간격":
+
+                    double rightSpacingRD = D.R_Spacing;
+
+                    var lengthRD = new TSG.LineSegment(barRRD.StartPoint, barRRD.EndPoint).Length();
+
+                    var rightSpacingsRD = new Spacings();
+
+                    barRRD.Spacing = rightSpacingsRD.RightReinforcementSpacing3(ls, le, rs, re, lengthRD, rightSpacingRD, D.R_RM_Size2);
+                    //barR.Spacing = RSP;
+                    break;
+            }
+
+            if (D.R_DR_YesOrNo == "예" && D.R_RM_YesOrNo == "2단")
+            {
+                barRRD.Insert();
+            }
+            else if (D.R_DR_YesOrNo == "아니오")
+            {
+
+            }
+
+
+            #endregion
+
+            #region RLD
+
+            var barRLD = new Rebar();
+
+            barRLD.Name = D.R_DL_Name2;
+            barRLD.Grade = D.R_LM_Grade2;
+            barRLD.Size = D.R_LM_Size2;
+            barRLD.Radius = D.R_LM_Radius2;
+            barRLD.Class = D.R_DL_Class2;
+
+            barRLD.Prefix = D.R_DL_Prefix2;
+            barRLD.StartNumber = D.R_DL_StartNumber2;
+
+            var shapeRLD = new TSM.Polygon();
+
+            shapeRLD.Points.Add(new TSG.Point(ls.X, ls.Y, minZ));
+            shapeRLD.Points.Add(new TSG.Point(ls.X, ls.Y, D.R_DL_Splice1 + D.R_DL_Splice2));
+
+            barRLD.Polygon.Add(shapeRLD);
+
+            barRLD.StartOffsetValue = -D.DW_FootingDepth + D.R_DL_HookCorver;
+
+            barRLD.StartPoint = new TSG.Point(barRLM.StartPoint.X + KS.GetDiameter(Convert.ToDouble(D.R_LM_Size2)), barRLM.StartPoint.Y, barRLM.StartPoint.Z);
+            barRLD.EndPoint = new TSG.Point(barRLM.EndPoint.X + KS.GetDiameter(Convert.ToDouble(D.R_LM_Size2)), barRLM.EndPoint.Y, barRLM.EndPoint.Z);
+
+            barRLD.StartHookShape = TSM.RebarHookData.RebarHookShapeEnum.CUSTOM_HOOK;
+            barRLD.StartHookRadius = barRLM.Radius;
+
+            barRLD.StartHookLength = D.R_DL_HookLength - barRLD.Radius - KS.GetDiameter(Convert.ToDouble(barRLD.Size));
+
+            switch (D.R_LM_ExcludeType2)
+            {
+                case "없음":
+                    barRLD.ExcludeType = TSM.BaseRebarGroup.ExcludeTypeEnum.EXCLUDE_TYPE_NONE;
+                    break;
+                case "첫번째":
+                    barRLD.ExcludeType = TSM.BaseRebarGroup.ExcludeTypeEnum.EXCLUDE_TYPE_FIRST;
+                    break;
+                case "마지막":
+                    barRLD.ExcludeType = TSM.BaseRebarGroup.ExcludeTypeEnum.EXCLUDE_TYPE_LAST;
+                    break;
+                case "첫번째 및 마지막":
+                    barRLD.ExcludeType = TSM.BaseRebarGroup.ExcludeTypeEnum.EXCLUDE_TYPE_BOTH;
+                    break;
+                default:
+                    barRLD.ExcludeType = TSM.BaseRebarGroup.ExcludeTypeEnum.EXCLUDE_TYPE_NONE;
+                    break;
+            }
+
+            if (D.R_DL_HookInOut == "내")
+            {
+                barRLD.StartHookAngle = -90;
+            }
+            else if (D.DR_HookInOut == "외")
+            {
+                barRLD.StartHookAngle = 90;
+            }
+
+            switch (D.R_DW_UDA)
+            {
+                case "부재 UDA 정보 사용":
+                    barRLD.Building = buildingSt;
+                    barRLD.BuildingStorey = buildingStoreySt;
+                    break;
+                case "사용자 지정":
+                    barRLD.Building = D.R_DW_Building;
+                    barRLD.BuildingStorey = D.R_DW_Building_S;
+                    break;
+            }
+
+            switch (D.R_RM_SpacingType2)
+            {
+                case "사용자 지정":
+
+
+                    var list = new ArrayList();
+
+                    string st = D.R_LM_UserSpacing;
+                    string[] ch = st.Split(' ');
+                    for (int i = 0; i < ch.Count(); i++)
+                    {
+                        list.Add(Convert.ToDouble(ch[i]));
+                    }
+                    barRLD.Spacing = list;
+
+                    break;
+
+                case "자동간격":
+
+                    double rightSpacingLD = D.L_Spacing;
+
+                    var lengthLD = new TSG.LineSegment(barRLD.StartPoint, barRLD.EndPoint).Length();
+
+                    var rightSpacingsLD = new Spacings();
+
+                    barRLD.Spacing = rightSpacingsLD.LeftReinforcementSpacing3(ls, le, rs, re, lengthLD, rightSpacingLD, D.R_LM_Size2);
+                    //barR.Spacing = RSP;
+                    break;
+            }
+
+            if (D.R_DL_YesOrNo == "예" && D.R_LM_YesOrNo == "2단")
+            {
+                barRLD.Insert();
+            }
+            else if (D.R_DL_YesOrNo == "아니오")
+            {
+
+            }
+
+
+            #endregion
+
+
+        }
+
+        private void InsertShearBar(TSM.Beam beam, TSG.Point point1, TSG.Point point2, TSG.Point point3, TSG.Point point4)
+        {
+            var m = new TSM.Model();
+
+            #region 사용자정보
+
+            var buildingSt = string.Empty;
+            var building = beam.GetUserProperty("IFC_BUILDING", ref buildingSt);
+
+            var buildingStoreySt = string.Empty;
+            var buildingStorey = beam.GetUserProperty("IFC_BUILDING_STOREY", ref buildingStoreySt);
+
+            #endregion
+
+            #region 철근 공칭지름 관련 이동
+
+            var MoveXS = D.MoveXS;
+            var MoveXE = D.MoveXE;
+
+            var ksXS = Math.Max(KS.GetDiameter(Convert.ToDouble(D.R_Size)), KS.GetDiameter(Convert.ToDouble(D.L_Size)));
+            var ksXE = Math.Max(KS.GetDiameter(Convert.ToDouble(D.R_Size)), KS.GetDiameter(Convert.ToDouble(D.L_Size)));
+            var ksXS2 = Math.Max(KS.GetDiameter(Convert.ToDouble(D.R_Size)), KS.GetDiameter(Convert.ToDouble(D.L_Size))) / 2;
+            var ksXE2 = Math.Max(KS.GetDiameter(Convert.ToDouble(D.R_Size)), KS.GetDiameter(Convert.ToDouble(D.L_Size))) / 2;
+
+            var ksR = KS.GetDiameter(Convert.ToDouble(D.R_Size));
+            var ksR2 = KS.GetDiameter(Convert.ToDouble(D.R_Size)) / 2;
+
+            var ksL = KS.GetDiameter(Convert.ToDouble(D.L_Size));
+            var ksL2 = KS.GetDiameter(Convert.ToDouble(D.L_Size)) / 2;
+
+            var rightMoveY = D.R_MoveY;
+            var rightKsY = KS.GetDiameter(Convert.ToDouble(D.R_Size)) / 2;
+
+            var leftMoveY = D.L_MoveY;
+            var leftKsY = KS.GetDiameter(Convert.ToDouble(D.L_Size)) / 2;
+
+            var hMainBar = KS.GetDiameter2(D.H_RebarSize);
+            var sBar = KS.GetDiameter2(Convert.ToDouble(D.S_Size));
+
+
+            #endregion
+
+            #region 솔리드
+
+            var maxX = beam.GetSolid().MaximumPoint.X;
+            var maxY = beam.GetSolid().MaximumPoint.Y;
+            var maxZ = beam.GetSolid().MaximumPoint.Z;
+
+            var minX = beam.GetSolid().MinimumPoint.X;
+            var minY = beam.GetSolid().MinimumPoint.Y;
+            var minZ = beam.GetSolid().MinimumPoint.Z;
+
+            #endregion
+
+            #region 양단부 범위 설정
+
+            var startLine = new TSG.LineSegment();
+            startLine.Point1 = point1;
+            startLine.Point2 = point2;
+
+            var endLine = new TSG.LineSegment();
+            endLine.Point1 = point3;
+            endLine.Point2 = point4;
+
+            #endregion
+
+            #region 포인트
+
+            if (D.RebarS == "중심") ksXS2 = 0;
+            if (D.RebarE == "중심") ksXE2 = 0;
+
             if (MoveXS == 0) ksXS2 = 0;
             if (MoveXE == 0) ksXE2 = 0;
 
@@ -2040,7 +4474,11 @@ namespace YT.WallVerticalRebar
 
             #endregion
 
+            #region MyRegion
+            // 벽체 전체 길이
+            var length = new TSG.LineSegment(new TSG.Point(0, 0, minZ), new TSG.Point(0, 0, maxZ)).Length();
 
+            // 철근 피복 설정
             var rebar = 0.0;
 
             if (Convert.ToInt32(D.L_Size) <= Convert.ToInt32(D.R_Size))
@@ -2052,39 +4490,23 @@ namespace YT.WallVerticalRebar
                 rebar = KS.GetDiameter(Convert.ToDouble(D.L_Size));
             }
 
-            var spacing = D.S_SpacingX;
-
-            var size = KS.GetDiameter(Convert.ToDouble(D.S_Size));
-
+            // 철근 후크 피복
             var start = D.S_R_Offset;
             var end = D.S_L_Offset;
 
-            var movex = D.S_FirstX;
+            // 철근 사이즈
+            var size = KS.GetDiameter(Convert.ToDouble(D.S_Size));
 
-            var movex2 = D.S_SpacingX;
+            // 철근 X 간격
+            var spacing = D.S_SpacingX;
 
-            if (D.S_Type == "S")
-            {
-                movex2 = D.S_SpacingX;
-            }
-            else
-            {
-                movex2 = D.S_SpacingX * 2;
-            }
+            // 시작
+            var lss = new TSG.Point(ls.X, ls.Y, ls.Z);
+            var lee = new TSG.Point(le.X, le.Y, le.Z);
+            var rss = new TSG.Point(rs.X, rs.Y, rs.Z);
+            var ree = new TSG.Point(re.X, re.Y, re.Z);
 
-            //-size/2-rebar/2
-
-            var lss = new TSG.Point(ls.X + movex, ls.Y, ls.Z);
-            var lee = new TSG.Point(le.X + movex, le.Y, le.Z);
-            var rss = new TSG.Point(rs.X + movex, rs.Y, rs.Z);
-            var ree = new TSG.Point(re.X + movex, re.Y, re.Z);
-
-
-            var lss2 = new TSG.Point(ls.X + movex + movex2, ls.Y, ls.Z);
-            var lee2 = new TSG.Point(le.X + movex + movex2, le.Y, le.Z);
-            var rss2 = new TSG.Point(rs.X + movex + movex2, rs.Y, rs.Z);
-            var ree2 = new TSG.Point(re.X + movex + movex2, re.Y, re.Z);
-
+            // 정방향 전단근
 
             var startpoint = new TSG.Point();
             var endpoint = new TSG.Point();
@@ -2092,32 +4514,73 @@ namespace YT.WallVerticalRebar
             var poly = new TSM.Polygon();
 
             var points = new ShearBarPoints(startpoint, endpoint);
-            points.FirstPoints(lss, le, rss, re, beam, size, start, end);
+            //points.FirstPoints(lss, le, rss, re, beam, size, start, end);
+            points.FirstPoints(lss, lee, rss, ree, beam, size, start, end);
 
             poly.Points.Add(points.StartPoint);
             poly.Points.Add(points.Endpoint);
 
-            var bar1spacing = new Spacings();
+            // 역방향 전단근
+            var poly2 = new TSM.Polygon();
 
-            var list1 = new ArrayList();
+            var points2 = new ShearBarPoints(startpoint, endpoint);
+            //points2.SecondPoints(lss, le, rss, re, beam, size, start, end);
+            points2.SecondPoints(lss, lee, rss, ree, beam, size, start, end);
 
-            if (D.S_Type == "S")
-            {
-                list1 = bar1spacing.InsertShearBar3(lss, le, rss, re, spacing);
-            }
-            else if (D.S_Type == "S*2")
-            {
-                list1 = bar1spacing.InsertShearBar5(lss, le, rss, re, spacing);
-            }
+            poly2.Points.Add(points2.StartPoint);
+            poly2.Points.Add(points2.Endpoint);
+
+            // 수직근전체
+            var listV = new Spacings().MainShearBar(ls, le, rs, re, spacing);
+            // 보강근 전체
+            var listA = new Spacings().AddShearBar(ls, le, rs, re, spacing);
+
+            // 수직근
+            var listfm = new Spacings().FirstMainShearBar(ls, le, rs, re, spacing);
+            var listsm = new Spacings().SecondMainShearBar(ls, le, rs, re, spacing);
+
+            // 보강 1단
+            var listfa1 = new Spacings().FirstAddShearBar1(ls, le, rs, re, spacing);
+            var listsa1 = new Spacings().SecondAddShearBar1(ls, le, rs, re, spacing);
+
+            // 보강 2단 간격
+            var listfa2 = new Spacings().FirstAddShearBar2(ls, le, rs, re, spacing);
+            var listsa2 = new Spacings().SecondAddShearBar2(ls, le, rs, re, spacing);
+
+            var listfa3 = new Spacings().FirstAddShearBar3(ls, le, rs, re, spacing);
+            var listsa3 = new Spacings().SecondAddShearBar3(ls, le, rs, re, spacing);
+
+            #endregion
+
+            var length2 = length - D.S_RangeTop - D.S_BeamDepth;
+            var te2 = ((int)length2 - ((int)D.S_SpacingZ / 2)) % (int)D.S_SpacingZ;
+
+            var length3 = D.S_RangeBottom - (D.S_SpacingZ / 2);
+            var te3 = ((int)length3 % (int)D.S_SpacingZ);
 
             var bar1 = new TSM.RebarGroup();
             bar1.Polygons.Add(poly);
             bar1.SpacingType = TSM.RebarGroup.RebarGroupSpacingTypeEnum.SPACING_TYPE_EXACT_SPACINGS;
 
-            var ap = new ArrayList();
-            ap.Add(0.0);
+            if (D.S_RangeType == "전체")
+            {
+                bar1.Spacings = CopyArray(length - D.S_SpacingZ - D.S_BeamDepth, D.S_SpacingZ);
+            }
+            else if (D.S_RangeType == "상")
+            {
+                var el = length - D.S_RangeTop - D.S_BeamDepth - te2 + D.S_SpacingZ;
+                bar1.Spacings = CopyArray(length - el - D.S_BeamDepth - (D.S_SpacingZ / 2), D.S_SpacingZ);
 
-            bar1.Spacings = CopyArray(D.S_LengthY, D.S_SpacingY);
+            }
+            else if (D.S_RangeType == "하")
+            {
+                bar1.Spacings = CopyArray(D.S_RangeBottom - D.S_SpacingZ / 2 - te3, D.S_SpacingZ);
+            }
+            else if (D.S_RangeType == "상,하")
+            {
+                bar1.Spacings = CopyArray(D.S_RangeBottom - D.S_SpacingZ / 2 - te3, D.S_SpacingZ);
+            }
+
             bar1.ExcludeType = TSM.RebarGroup.ExcludeTypeEnum.EXCLUDE_TYPE_NONE;
             bar1.Father = beam;
             bar1.Name = D.S_Name;
@@ -2128,8 +4591,86 @@ namespace YT.WallVerticalRebar
             bar1.NumberingSeries.StartNumber = D.S_StartNumber;
             bar1.NumberingSeries.Prefix = D.S_Prefix;
 
-            bar1.StartHook.Shape = TSM.RebarHookData.RebarHookShapeEnum.HOOK_90_DEGREES;
-            bar1.EndHook.Shape = TSM.RebarHookData.RebarHookShapeEnum.HOOK_135_DEGREES;
+            switch (D.S_HookType)
+            {
+                case "90-90":
+
+                    if (D.S_HookLegType == "표준후크길이")
+                    {
+                        bar1.StartHook.Shape = TSM.RebarHookData.RebarHookShapeEnum.HOOK_90_DEGREES;
+                        bar1.EndHook.Shape = TSM.RebarHookData.RebarHookShapeEnum.HOOK_90_DEGREES;
+                    }
+                    else if (D.S_HookLegType == "사용자지정")
+                    {
+                        bar1.StartHook.Shape = TSM.RebarHookData.RebarHookShapeEnum.CUSTOM_HOOK;
+                        bar1.EndHook.Shape = TSM.RebarHookData.RebarHookShapeEnum.CUSTOM_HOOK;
+                        bar1.StartHook.Angle = 90;
+                        bar1.EndHook.Angle = 90;
+                        bar1.StartHook.Radius = D.S_Radius;
+                        bar1.EndHook.Radius = D.S_Radius;
+                        bar1.StartHook.Length = D.S_HookLegLength - D.S_Radius - size;
+                        bar1.EndHook.Length = D.S_HookLegLength - D.S_Radius - size;
+                    }
+                    break;
+
+                case "90-135":
+
+                    if (D.S_HookLegType == "표준후크길이")
+                    {
+                        bar1.StartHook.Shape = TSM.RebarHookData.RebarHookShapeEnum.HOOK_90_DEGREES;
+                        bar1.EndHook.Shape = TSM.RebarHookData.RebarHookShapeEnum.HOOK_135_DEGREES;
+                    }
+                    else if (D.S_HookLegType == "사용자지정")
+                    {
+                        bar1.StartHook.Shape = TSM.RebarHookData.RebarHookShapeEnum.CUSTOM_HOOK;
+                        bar1.EndHook.Shape = TSM.RebarHookData.RebarHookShapeEnum.CUSTOM_HOOK;
+                        bar1.StartHook.Angle = 90;
+                        bar1.EndHook.Angle = 135;
+                        bar1.StartHook.Radius = D.S_Radius;
+                        bar1.EndHook.Radius = D.S_Radius;
+                        bar1.StartHook.Length = D.S_HookLegLength - D.S_Radius - size;
+                        bar1.EndHook.Length = D.S_HookLegLength - D.S_Radius - size;
+                    }
+                    break;
+                case "135-90":
+
+                    if (D.S_HookLegType == "표준후크길이")
+                    {
+                        bar1.StartHook.Shape = TSM.RebarHookData.RebarHookShapeEnum.HOOK_135_DEGREES;
+                        bar1.EndHook.Shape = TSM.RebarHookData.RebarHookShapeEnum.HOOK_90_DEGREES;
+                    }
+                    else if (D.S_HookLegType == "사용자지정")
+                    {
+                        bar1.StartHook.Shape = TSM.RebarHookData.RebarHookShapeEnum.CUSTOM_HOOK;
+                        bar1.EndHook.Shape = TSM.RebarHookData.RebarHookShapeEnum.CUSTOM_HOOK;
+                        bar1.StartHook.Angle = 135;
+                        bar1.EndHook.Angle = 90;
+                        bar1.StartHook.Radius = D.S_Radius;
+                        bar1.EndHook.Radius = D.S_Radius;
+                        bar1.StartHook.Length = D.S_HookLegLength - D.S_Radius - size;
+                        bar1.EndHook.Length = D.S_HookLegLength - D.S_Radius - size;
+                    }
+                    break;
+                case "135-135":
+
+                    if (D.S_HookLegType == "표준후크길이")
+                    {
+                        bar1.StartHook.Shape = TSM.RebarHookData.RebarHookShapeEnum.HOOK_135_DEGREES;
+                        bar1.EndHook.Shape = TSM.RebarHookData.RebarHookShapeEnum.HOOK_135_DEGREES;
+                    }
+                    else if (D.S_HookLegType == "사용자지정")
+                    {
+                        bar1.StartHook.Shape = TSM.RebarHookData.RebarHookShapeEnum.CUSTOM_HOOK;
+                        bar1.EndHook.Shape = TSM.RebarHookData.RebarHookShapeEnum.CUSTOM_HOOK;
+                        bar1.StartHook.Angle = 135;
+                        bar1.EndHook.Angle = 135;
+                        bar1.StartHook.Radius = D.S_Radius;
+                        bar1.EndHook.Radius = D.S_Radius;
+                        bar1.StartHook.Length = D.S_HookLegLength - D.S_Radius - size;
+                        bar1.EndHook.Length = D.S_HookLegLength - D.S_Radius - size;
+                    }
+                    break;
+            }
 
             bar1.OnPlaneOffsets.Add(0.0);
             bar1.StartPointOffsetType = TSM.Reinforcement.RebarOffsetTypeEnum.OFFSET_TYPE_COVER_THICKNESS;
@@ -2137,48 +4678,212 @@ namespace YT.WallVerticalRebar
             bar1.EndPointOffsetType = TSM.Reinforcement.RebarOffsetTypeEnum.OFFSET_TYPE_COVER_THICKNESS;
             bar1.EndPointOffsetValue = 0;
             bar1.FromPlaneOffset = 0;
+
             bar1.StartPoint = new TSG.Point(minX, minY, minZ);
             bar1.EndPoint = new TSG.Point(minX, minY, minZ + spacing);
 
             if (D.S_YesOrNO == "예")
             {
-                bar1.Insert();
-                MoveX(bar1, -size, -rebar);
-                MoveZ(bar1, D.S_FirstY);
-                CopyX(bar1, list1);
-            }
+                if (D.S_RangeType == "전체")
+                {
+                    bar1.Insert();
+                    MoveX(bar1, -size, -rebar);
+                    MoveZ(bar1, D.S_SpacingZ / 2);
+                    MoveZ(bar1, (hMainBar / 2) + (sBar / 2));
 
+                    if (D.S_Type == "수직근")
+                    {
+                        CopyX(bar1, listfm);
+                    }
+                    else if (D.S_Type == "수직근+보강근1단")
+                    {
+                        CopyX(bar1, listV);
+                    }
+                    else if (D.S_Type == "수직근+보강근2단")
+                    {
+                        CopyX(bar1, listfm);
+
+                        var b = bar1;
+                        b.Insert();
+                        MoveX(b, -size, -rebar);
+                        MoveZ(b, D.S_SpacingZ / 2);
+                        MoveZ(b, (hMainBar / 2) + (sBar / 2));
+
+                        MoveX(b, spacing / 3 * 2);
+                        CopyX(b, listfa3);
+
+                        var c = bar1;
+                        c.Insert();
+                        MoveX(c, -size, -rebar);
+                        MoveZ(c, D.S_SpacingZ / 2);
+                        MoveZ(c, (hMainBar / 2) + (sBar / 2));
+
+                        MoveX(c, spacing / 3 + spacing);
+                        CopyX(c, listsa2);
+
+                    }
+                    else if (D.S_Type == "아니오")
+                    {
+
+                    }
+
+
+                }
+                else if (D.S_RangeType == "상")
+                {
+                    bar1.Insert();
+                    MoveX(bar1, -size, -rebar);
+                    MoveZ(bar1, (length - D.S_RangeTop - D.S_BeamDepth - te2 + D.S_SpacingZ));
+                    MoveZ(bar1, (hMainBar / 2) + (sBar / 2));
+
+                    if (D.S_Type == "수직근")
+                    {
+                        CopyX(bar1, listfm);
+                    }
+                    else if (D.S_Type == "수직근+보강근1단")
+                    {
+                        CopyX(bar1, listV);
+                    }
+                    else if (D.S_Type == "수직근+보강근2단")
+                    {
+                        CopyX(bar1, listfm);
+
+                        var b = bar1;
+                        b.Insert();
+                        MoveX(b, -size, -rebar);
+                        MoveZ(b, (length - D.S_RangeTop - D.S_BeamDepth - te2 + D.S_SpacingZ));
+                        MoveZ(b, (hMainBar / 2) + (sBar / 2));
+
+                        MoveX(b, spacing / 3 * 2);
+                        CopyX(b, listfa3);
+
+                        var c = bar1;
+                        c.Insert();
+                        MoveX(c, -size, -rebar);
+                        MoveZ(c, (length - D.S_RangeTop - D.S_BeamDepth - te2 + D.S_SpacingZ));
+                        MoveZ(c, (hMainBar / 2) + (sBar / 2));
+
+                        MoveX(c, spacing / 3 + spacing);
+                        CopyX(c, listsa2);
+                    }
+                    else if (D.S_Type == "아니오")
+                    {
+
+                    }
+
+                }
+                else if (D.S_RangeType == "하")
+                {
+                    bar1.Insert();
+                    MoveX(bar1, -size, -rebar);
+                    MoveZ(bar1, D.S_SpacingZ / 2);
+                    MoveZ(bar1, (hMainBar / 2) + (sBar / 2));
+
+                    if (D.S_Type == "수직근")
+                    {
+                        CopyX(bar1, listfm);
+                    }
+                    else if (D.S_Type == "수직근+보강근1단")
+                    {
+                        CopyX(bar1, listV);
+                    }
+                    else if (D.S_Type == "수직근+보강근2단")
+                    {
+                        CopyX(bar1, listfm);
+
+                        var b = bar1;
+                        b.Insert();
+                        MoveX(b, -size, -rebar);
+                        MoveZ(b, D.S_SpacingZ / 2);
+                        MoveZ(b, (hMainBar / 2) + (sBar / 2));
+
+                        MoveX(b, spacing / 3 * 2);
+                        CopyX(b, listfa3);
+
+                        var c = bar1;
+                        c.Insert();
+                        MoveX(c, -size, -rebar);
+                        MoveZ(c, D.S_SpacingZ / 2);
+                        MoveZ(c, (hMainBar / 2) + (sBar / 2));
+
+                        MoveX(c, spacing / 3 + spacing);
+                        CopyX(c, listsa2);
+
+                    }
+                    else if (D.S_Type == "아니오")
+                    {
+
+                    }
+                }
+                else if (D.S_RangeType == "상,하")
+                {
+                    bar1.Insert();
+                    MoveX(bar1, -size, -rebar);
+                    MoveZ(bar1, D.S_SpacingZ / 2);
+                    MoveZ(bar1, (hMainBar / 2) + (sBar / 2));
+
+                    if (D.S_Type == "수직근")
+                    {
+                        CopyX(bar1, listfm);
+                    }
+                    else if (D.S_Type == "수직근+보강근1단")
+                    {
+                        CopyX(bar1, listV);
+                    }
+                    else if (D.S_Type == "수직근+보강근2단")
+                    {
+                        CopyX(bar1, listfm);
+
+                        var b = bar1;
+                        b.Insert();
+                        MoveX(b, -size, -rebar);
+                        MoveZ(b, D.S_SpacingZ / 2);
+                        MoveZ(b, (hMainBar / 2) + (sBar / 2));
+
+                        MoveX(b, spacing / 3 * 2);
+                        CopyX(b, listfa3);
+
+                        var c = bar1;
+                        c.Insert();
+                        MoveX(c, -size, -rebar);
+                        MoveZ(c, D.S_SpacingZ / 2);
+                        MoveZ(c, (hMainBar / 2) + (sBar / 2));
+
+                        MoveX(c, spacing / 3 + spacing);
+                        CopyX(c, listsa2);
+                    }
+                    else if (D.S_Type == "아니오")
+                    {
+
+                    }
+                }
+
+            }
             /*-------------------------------*/
 
-            var poly2 = new TSM.Polygon();
-
-            var points2 = new ShearBarPoints(startpoint, endpoint);
-            points2.SecondPoints(lss2, le, rss2, re, beam, size, start, end);
-
-            poly2.Points.Add(points2.StartPoint);
-            poly2.Points.Add(points2.Endpoint);
-
-            var bar2spacing = new Spacings();
-
-            var list2 = new ArrayList();
-
-            if (D.S_Type == "S")
-            {
-                list2 = bar2spacing.InsertShearBar4(lss2, le, rss2, re, spacing);
-            }
-            else if (D.S_Type == "S*2")
-            {
-                list2 = bar2spacing.InsertShearBar6(lss2, le, rss2, re, spacing);
-            }
 
             var bar2 = new TSM.RebarGroup();
             bar2.Polygons.Add(poly2);
             bar2.SpacingType = TSM.RebarGroup.RebarGroupSpacingTypeEnum.SPACING_TYPE_EXACT_SPACINGS;
 
-            var ap2 = new ArrayList();
-            ap2.Add(0.0);
+            if (D.S_RangeType == "전체")
+            {
+                bar2.Spacings = CopyArray(length - D.S_SpacingZ - D.S_BeamDepth, D.S_SpacingZ);
+            }
+            else if (D.S_RangeType == "상")
+            {
+                var el = length - D.S_RangeTop - D.S_BeamDepth - te2 + D.S_SpacingZ;
+                bar2.Spacings = CopyArray(length - el - D.S_BeamDepth - (D.S_SpacingZ / 2), D.S_SpacingZ);
+            }
+            else if (D.S_RangeType == "하")
+            {
+                bar2.Spacings = CopyArray(D.S_RangeBottom - D.S_SpacingZ / 2 - te3, D.S_SpacingZ);
+            }
+            else if (D.S_RangeType == "상,하")
+            {
+                bar2.Spacings = CopyArray(D.S_RangeBottom - D.S_SpacingZ / 2 - te3, D.S_SpacingZ);
+            }
 
-            bar2.Spacings = CopyArray(D.S_LengthY, D.S_SpacingY);
             bar2.ExcludeType = TSM.RebarGroup.ExcludeTypeEnum.EXCLUDE_TYPE_NONE;
             bar2.Father = beam;
             bar2.Name = D.S_Name;
@@ -2189,8 +4894,85 @@ namespace YT.WallVerticalRebar
             bar2.NumberingSeries.StartNumber = D.S_StartNumber;
             bar2.NumberingSeries.Prefix = D.S_Prefix;
 
-            bar2.StartHook.Shape = TSM.RebarHookData.RebarHookShapeEnum.HOOK_90_DEGREES;
-            bar2.EndHook.Shape = TSM.RebarHookData.RebarHookShapeEnum.HOOK_135_DEGREES;
+            switch (D.S_HookType)
+            {
+                case "90-90":
+
+                    if (D.S_HookLegType == "표준후크길이")
+                    {
+                        bar2.StartHook.Shape = TSM.RebarHookData.RebarHookShapeEnum.HOOK_90_DEGREES;
+                        bar2.EndHook.Shape = TSM.RebarHookData.RebarHookShapeEnum.HOOK_90_DEGREES;
+                    }
+                    else if (D.S_HookLegType == "사용자지정")
+                    {
+                        bar2.StartHook.Shape = TSM.RebarHookData.RebarHookShapeEnum.CUSTOM_HOOK;
+                        bar2.EndHook.Shape = TSM.RebarHookData.RebarHookShapeEnum.CUSTOM_HOOK;
+                        bar2.StartHook.Angle = 90;
+                        bar2.EndHook.Angle = 90;
+                        bar2.StartHook.Radius = D.S_Radius;
+                        bar2.EndHook.Radius = D.S_Radius;
+                        bar2.StartHook.Length = D.S_HookLegLength - D.S_Radius - size;
+                        bar2.EndHook.Length = D.S_HookLegLength - D.S_Radius - size;
+                    }
+                    break;
+                case "90-135":
+
+                    if (D.S_HookLegType == "표준후크길이")
+                    {
+                        bar2.StartHook.Shape = TSM.RebarHookData.RebarHookShapeEnum.HOOK_90_DEGREES;
+                        bar2.EndHook.Shape = TSM.RebarHookData.RebarHookShapeEnum.HOOK_135_DEGREES;
+                    }
+                    else if (D.S_HookLegType == "사용자지정")
+                    {
+                        bar2.StartHook.Shape = TSM.RebarHookData.RebarHookShapeEnum.CUSTOM_HOOK;
+                        bar2.EndHook.Shape = TSM.RebarHookData.RebarHookShapeEnum.CUSTOM_HOOK;
+                        bar2.StartHook.Angle = 90;
+                        bar2.EndHook.Angle = 135;
+                        bar2.StartHook.Radius = D.S_Radius;
+                        bar2.EndHook.Radius = D.S_Radius;
+                        bar2.StartHook.Length = D.S_HookLegLength - D.S_Radius - size;
+                        bar2.EndHook.Length = D.S_HookLegLength - D.S_Radius - size;
+                    }
+                    break;
+                case "135-90":
+
+                    if (D.S_HookLegType == "표준후크길이")
+                    {
+                        bar2.StartHook.Shape = TSM.RebarHookData.RebarHookShapeEnum.HOOK_135_DEGREES;
+                        bar2.EndHook.Shape = TSM.RebarHookData.RebarHookShapeEnum.HOOK_90_DEGREES;
+                    }
+                    else if (D.S_HookLegType == "사용자지정")
+                    {
+                        bar2.StartHook.Shape = TSM.RebarHookData.RebarHookShapeEnum.CUSTOM_HOOK;
+                        bar2.EndHook.Shape = TSM.RebarHookData.RebarHookShapeEnum.CUSTOM_HOOK;
+                        bar2.StartHook.Angle = 135;
+                        bar2.EndHook.Angle = 90;
+                        bar2.StartHook.Radius = D.S_Radius;
+                        bar2.EndHook.Radius = D.S_Radius;
+                        bar2.StartHook.Length = D.S_HookLegLength - D.S_Radius - size;
+                        bar2.EndHook.Length = D.S_HookLegLength - D.S_Radius - size;
+                    }
+                    break;
+                case "135-135":
+
+                    if (D.S_HookLegType == "표준후크길이")
+                    {
+                        bar2.StartHook.Shape = TSM.RebarHookData.RebarHookShapeEnum.HOOK_135_DEGREES;
+                        bar2.EndHook.Shape = TSM.RebarHookData.RebarHookShapeEnum.HOOK_135_DEGREES;
+                    }
+                    else if (D.S_HookLegType == "사용자지정")
+                    {
+                        bar2.StartHook.Shape = TSM.RebarHookData.RebarHookShapeEnum.CUSTOM_HOOK;
+                        bar2.EndHook.Shape = TSM.RebarHookData.RebarHookShapeEnum.CUSTOM_HOOK;
+                        bar2.StartHook.Angle = 135;
+                        bar2.EndHook.Angle = 135;
+                        bar2.StartHook.Radius = D.S_Radius;
+                        bar2.EndHook.Radius = D.S_Radius;
+                        bar2.StartHook.Length = D.S_HookLegLength - D.S_Radius - size;
+                        bar2.EndHook.Length = D.S_HookLegLength - D.S_Radius - size;
+                    }
+                    break;
+            }
 
             bar2.OnPlaneOffsets.Add(0.0);
             bar2.StartPointOffsetType = TSM.Reinforcement.RebarOffsetTypeEnum.OFFSET_TYPE_COVER_THICKNESS;
@@ -2203,11 +4985,197 @@ namespace YT.WallVerticalRebar
 
             if (D.S_YesOrNO == "예")
             {
-                bar2.Insert();
-                MoveX(bar2, size, rebar);
-                MoveZ(bar2, D.S_FirstY);
-                CopyX(bar2, list2);
-            } 
+
+                if (D.S_RangeType == "전체")
+                {
+                    bar2.Insert();
+                    MoveX(bar2, size, rebar);
+                    MoveZ(bar2, D.S_SpacingZ / 2);
+                    MoveZ(bar2, (hMainBar / 2) + (sBar / 2));
+
+                    if (D.S_Type == "수직근")
+                    {
+                        MoveX(bar2, spacing);
+                        CopyX(bar2, listsm);
+                    }
+                    else if (D.S_Type == "수직근+보강근1단")
+                    {
+                        MoveX(bar2, spacing / 2);
+                        CopyX(bar2, listA);
+                    }
+                    else if (D.S_Type == "수직근+보강근2단")
+                    {
+                        MoveX(bar2, spacing);
+                        CopyX(bar2, listsm);
+
+                        var b = bar2;
+                        b.Insert();
+                        MoveX(b, size, rebar);
+                        MoveZ(b, D.S_SpacingZ / 2);
+                        MoveZ(b, (hMainBar / 2) + (sBar / 2));
+
+                        MoveX(b, spacing / 3 * 2 + spacing);
+                        CopyX(b, listsa3);
+
+                        var c = bar2;
+                        c.Insert();
+                        MoveX(c, size, rebar);
+                        MoveZ(c, D.S_SpacingZ / 2);
+                        MoveZ(c, (hMainBar / 2) + (sBar / 2));
+
+                        MoveX(c, spacing / 3);
+                        CopyX(c, listfa2);
+
+                    }
+                    else if (D.S_Type == "아니오")
+                    {
+
+                    }
+
+                }
+                else if (D.S_RangeType == "상")
+                {
+                    bar2.Insert();
+                    MoveX(bar2, size, rebar);
+                    MoveZ(bar2, (length - D.S_RangeTop - D.S_BeamDepth - te2 + D.S_SpacingZ));
+                    MoveZ(bar2, (hMainBar / 2) + (sBar / 2));
+
+                    if (D.S_Type == "수직근")
+                    {
+                        MoveX(bar2, spacing);
+                        CopyX(bar2, listsm);
+                    }
+                    else if (D.S_Type == "수직근+보강근1단")
+                    {
+                        MoveX(bar2, spacing / 2);
+                        CopyX(bar2, listA);
+                    }
+                    else if (D.S_Type == "수직근+보강근2단")
+                    {
+                        MoveX(bar2, spacing);
+                        CopyX(bar2, listsm);
+
+                        var b = bar2;
+                        b.Insert();
+                        MoveX(b, size, rebar);
+                        MoveZ(b, (length - D.S_RangeTop - D.S_BeamDepth - te2 + D.S_SpacingZ));
+                        MoveZ(b, (hMainBar / 2) + (sBar / 2));
+
+                        MoveX(b, spacing / 3 * 2 + spacing);
+                        CopyX(b, listsa3);
+
+                        var c = bar2;
+                        c.Insert();
+                        MoveX(c, size, rebar);
+                        MoveZ(c, (length - D.S_RangeTop - D.S_BeamDepth - te2 + D.S_SpacingZ));
+                        MoveZ(c, (hMainBar / 2) + (sBar / 2));
+
+                        MoveX(c, spacing / 3);
+                        CopyX(c, listfa2);
+
+
+                    }
+                    else if (D.S_Type == "아니오")
+                    {
+
+
+                    }
+                }
+                else if (D.S_RangeType == "하")
+                {
+                    bar2.Insert();
+                    MoveX(bar2, size, rebar);
+                    MoveZ(bar2, D.S_SpacingZ / 2);
+                    MoveZ(bar2, (hMainBar / 2) + (sBar / 2));
+
+                    if (D.S_Type == "수직근")
+                    {
+                        MoveX(bar2, spacing);
+                        CopyX(bar2, listsm);
+                    }
+                    else if (D.S_Type == "수직근+보강근1단")
+                    {
+                        MoveX(bar2, spacing / 2);
+                        CopyX(bar2, listA);
+                    }
+                    else if (D.S_Type == "수직근+보강근2단")
+                    {
+                        MoveX(bar2, spacing);
+                        CopyX(bar2, listsm);
+
+                        var b = bar2;
+                        b.Insert();
+                        MoveX(b, size, rebar);
+                        MoveZ(b, D.S_SpacingZ / 2);
+                        MoveZ(b, (hMainBar / 2) + (sBar / 2));
+
+                        MoveX(b, spacing / 3 * 2 + spacing);
+                        CopyX(b, listsa3);
+
+                        var c = bar2;
+                        c.Insert();
+                        MoveX(c, size, rebar);
+                        MoveZ(c, D.S_SpacingZ / 2);
+                        MoveZ(c, (hMainBar / 2) + (sBar / 2));
+
+                        MoveX(c, spacing / 3);
+                        CopyX(c, listfa2);
+
+
+                    }
+                    else if (D.S_Type == "아니오")
+                    {
+
+                    }
+                }
+                else if (D.S_RangeType == "상,하")
+                {
+                    bar2.Insert();
+                    MoveX(bar2, size, rebar);
+                    MoveZ(bar2, D.S_SpacingZ / 2);
+                    MoveZ(bar2, (hMainBar / 2) + (sBar / 2));
+
+                    if (D.S_Type == "수직근")
+                    {
+                        MoveX(bar2, spacing);
+                        CopyX(bar2, listsm);
+                    }
+                    else if (D.S_Type == "수직근+보강근1단")
+                    {
+                        MoveX(bar2, spacing / 2);
+                        CopyX(bar2, listA);
+                    }
+                    else if (D.S_Type == "수직근+보강근2단")
+                    {
+                        MoveX(bar2, spacing);
+                        CopyX(bar2, listsm);
+
+                        var b = bar2;
+                        b.Insert();
+                        MoveX(b, size, rebar);
+                        MoveZ(b, D.S_SpacingZ / 2);
+                        MoveZ(b, (hMainBar / 2) + (sBar / 2));
+
+                        MoveX(b, spacing / 3 * 2 + spacing);
+                        CopyX(b, listsa3);
+
+                        var c = bar2;
+                        c.Insert();
+                        MoveX(c, size, rebar);
+                        MoveZ(c, D.S_SpacingZ / 2);
+                        MoveZ(c, (hMainBar / 2) + (sBar / 2));
+
+                        MoveX(c, spacing / 3);
+                        CopyX(c, listfa2);
+
+
+                    }
+                    else if (D.S_Type == "아니오")
+                    {
+
+                    }
+                }
+            }
 
             /*-------------------------------*/
 
@@ -2215,10 +5183,24 @@ namespace YT.WallVerticalRebar
             bar3.Polygons.Add(poly);
             bar3.SpacingType = TSM.RebarGroup.RebarGroupSpacingTypeEnum.SPACING_TYPE_EXACT_SPACINGS;
 
-            var ap3 = new ArrayList();
-            ap3.Add(0.0);
+            if (D.S_RangeType == "전체")
+            {
+                bar3.Spacings = CopyArray2(length - D.S_SpacingZ - D.S_BeamDepth, D.S_SpacingZ);
+            }
+            else if (D.S_RangeType == "상")
+            {
+                var el = length - D.S_RangeTop - D.S_BeamDepth - te2 + D.S_SpacingZ;
+                bar3.Spacings = CopyArray(length - el - D.S_BeamDepth - (D.S_SpacingZ / 2) - D.S_SpacingZ, D.S_SpacingZ);
+            }
+            else if (D.S_RangeType == "하")
+            {
+                bar3.Spacings = CopyArray2(D.S_RangeBottom - (D.S_SpacingZ / 2) - te3, D.S_SpacingZ);
+            }
+            else if (D.S_RangeType == "상,하")
+            {
+                bar3.Spacings = CopyArray2(D.S_RangeBottom - (D.S_SpacingZ / 2) - te3, D.S_SpacingZ);
+            }
 
-            bar3.Spacings = CopyArray2(D.S_LengthY, D.S_SpacingY);
             bar3.ExcludeType = TSM.RebarGroup.ExcludeTypeEnum.EXCLUDE_TYPE_NONE;
             bar3.Father = beam;
             bar3.Name = D.S_Name;
@@ -2229,8 +5211,85 @@ namespace YT.WallVerticalRebar
             bar3.NumberingSeries.StartNumber = D.S_StartNumber;
             bar3.NumberingSeries.Prefix = D.S_Prefix;
 
-            bar3.StartHook.Shape = TSM.RebarHookData.RebarHookShapeEnum.HOOK_135_DEGREES;
-            bar3.EndHook.Shape = TSM.RebarHookData.RebarHookShapeEnum.HOOK_90_DEGREES;
+            switch (D.S_HookType)
+            {
+                case "90-90":
+
+                    if (D.S_HookLegType == "표준후크길이")
+                    {
+                        bar3.StartHook.Shape = TSM.RebarHookData.RebarHookShapeEnum.HOOK_90_DEGREES;
+                        bar3.EndHook.Shape = TSM.RebarHookData.RebarHookShapeEnum.HOOK_90_DEGREES;
+                    }
+                    else if (D.S_HookLegType == "사용자지정")
+                    {
+                        bar3.StartHook.Shape = TSM.RebarHookData.RebarHookShapeEnum.CUSTOM_HOOK;
+                        bar3.EndHook.Shape = TSM.RebarHookData.RebarHookShapeEnum.CUSTOM_HOOK;
+                        bar3.StartHook.Angle = 90;
+                        bar3.EndHook.Angle = 90;
+                        bar3.StartHook.Radius = D.S_Radius;
+                        bar3.EndHook.Radius = D.S_Radius;
+                        bar3.StartHook.Length = D.S_HookLegLength - D.S_Radius - size;
+                        bar3.EndHook.Length = D.S_HookLegLength - D.S_Radius - size;
+                    }
+                    break;
+                case "90-135":
+
+                    if (D.S_HookLegType == "표준후크길이")
+                    {
+                        bar3.StartHook.Shape = TSM.RebarHookData.RebarHookShapeEnum.HOOK_135_DEGREES;
+                        bar3.EndHook.Shape = TSM.RebarHookData.RebarHookShapeEnum.HOOK_90_DEGREES;
+                    }
+                    else if (D.S_HookLegType == "사용자지정")
+                    {
+                        bar3.StartHook.Shape = TSM.RebarHookData.RebarHookShapeEnum.CUSTOM_HOOK;
+                        bar3.EndHook.Shape = TSM.RebarHookData.RebarHookShapeEnum.CUSTOM_HOOK;
+                        bar3.StartHook.Angle = 135;
+                        bar3.EndHook.Angle = 90;
+                        bar3.StartHook.Radius = D.S_Radius;
+                        bar3.EndHook.Radius = D.S_Radius;
+                        bar3.StartHook.Length = D.S_HookLegLength - D.S_Radius - size;
+                        bar3.EndHook.Length = D.S_HookLegLength - D.S_Radius - size;
+                    }
+                    break;
+                case "135-90":
+
+                    if (D.S_HookLegType == "표준후크길이")
+                    {
+                        bar3.StartHook.Shape = TSM.RebarHookData.RebarHookShapeEnum.HOOK_90_DEGREES;
+                        bar3.EndHook.Shape = TSM.RebarHookData.RebarHookShapeEnum.HOOK_135_DEGREES;
+                    }
+                    else if (D.S_HookLegType == "사용자지정")
+                    {
+                        bar3.StartHook.Shape = TSM.RebarHookData.RebarHookShapeEnum.CUSTOM_HOOK;
+                        bar3.EndHook.Shape = TSM.RebarHookData.RebarHookShapeEnum.CUSTOM_HOOK;
+                        bar3.StartHook.Angle = 90;
+                        bar3.EndHook.Angle = 135;
+                        bar3.StartHook.Radius = D.S_Radius;
+                        bar3.EndHook.Radius = D.S_Radius;
+                        bar3.StartHook.Length = D.S_HookLegLength - D.S_Radius - size;
+                        bar3.EndHook.Length = D.S_HookLegLength - D.S_Radius - size;
+                    }
+                    break;
+                case "135-135":
+                    if (D.S_HookLegType == "표준후크길이")
+                    {
+                        bar3.StartHook.Shape = TSM.RebarHookData.RebarHookShapeEnum.HOOK_135_DEGREES;
+                        bar3.EndHook.Shape = TSM.RebarHookData.RebarHookShapeEnum.HOOK_135_DEGREES;
+                    }
+                    else if (D.S_HookLegType == "사용자지정")
+                    {
+                        bar3.StartHook.Shape = TSM.RebarHookData.RebarHookShapeEnum.CUSTOM_HOOK;
+                        bar3.EndHook.Shape = TSM.RebarHookData.RebarHookShapeEnum.CUSTOM_HOOK;
+                        bar3.StartHook.Angle = 135;
+                        bar3.EndHook.Angle = 135;
+                        bar3.StartHook.Radius = D.S_Radius;
+                        bar3.EndHook.Radius = D.S_Radius;
+                        bar3.StartHook.Length = D.S_HookLegLength - D.S_Radius - size;
+                        bar3.EndHook.Length = D.S_HookLegLength - D.S_Radius - size;
+                    }
+
+                    break;
+            }
 
             bar3.OnPlaneOffsets.Add(0.0);
             bar3.StartPointOffsetType = TSM.Reinforcement.RebarOffsetTypeEnum.OFFSET_TYPE_COVER_THICKNESS;
@@ -2243,11 +5302,178 @@ namespace YT.WallVerticalRebar
 
             if (D.S_YesOrNO == "예")
             {
-                bar3.Insert();
-                MoveX(bar3, -size, -rebar);
-                MoveZ(bar3, D.S_FirstY + Convert.ToDouble(bar3.Spacings[0]) / 2);
-                CopyX(bar3, list1);
-            } 
+
+                if (D.S_RangeType == "전체")
+                {
+                    bar3.Insert();
+                    MoveX(bar3, -size, -rebar);
+                    MoveZ(bar3, D.S_SpacingZ / 2 + Convert.ToDouble(bar3.Spacings[0]) / 2);
+                    MoveZ(bar3, (hMainBar / 2) + (sBar / 2));
+
+                    if (D.S_Type == "수직근")
+                    {
+                        CopyX(bar3, listfm);
+                    }
+                    else if (D.S_Type == "수직근+보강근1단")
+                    {
+                        CopyX(bar3, listV);
+                    }
+                    else if (D.S_Type == "수직근+보강근2단")
+                    {
+                        CopyX(bar3, listfm);
+
+                        var b = bar3;
+                        b.Insert();
+                        MoveX(b, -size, -rebar);
+                        MoveZ(b, D.S_SpacingZ / 2 + Convert.ToDouble(bar3.Spacings[0]) / 2);
+                        MoveZ(b, (hMainBar / 2) + (sBar / 2));
+
+                        MoveX(b, spacing / 3 * 2);
+                        CopyX(b, listfa3);
+
+                        var c = bar3;
+                        c.Insert();
+                        MoveX(c, -size, -rebar);
+                        MoveZ(c, D.S_SpacingZ / 2 + Convert.ToDouble(bar3.Spacings[0]) / 2);
+                        MoveZ(c, (hMainBar / 2) + (sBar / 2));
+
+                        MoveX(c, spacing / 3 + spacing);
+                        CopyX(c, listsa2);
+
+                    }
+                    else if (D.S_Type == "아니오")
+                    {
+
+                    }
+                }
+                else if (D.S_RangeType == "상")
+                {
+                    bar3.Insert();
+                    MoveX(bar3, -size, -rebar);
+                    MoveZ(bar3, Convert.ToDouble(bar3.Spacings[0]) / 2 + (length - D.S_RangeTop - D.S_BeamDepth - te2 + D.S_SpacingZ));
+                    MoveZ(bar3, (hMainBar / 2) + (sBar / 2));
+
+                    if (D.S_Type == "수직근")
+                    {
+                        CopyX(bar3, listfm);
+                    }
+                    else if (D.S_Type == "수직근+보강근1단")
+                    {
+                        CopyX(bar3, listV);
+                    }
+                    else if (D.S_Type == "수직근+보강근2단")
+                    {
+                        CopyX(bar3, listfm);
+
+                        var b = bar3;
+                        b.Insert();
+                        MoveX(b, -size, -rebar);
+                        MoveZ(b, Convert.ToDouble(bar3.Spacings[0]) / 2 + (length - D.S_RangeTop - D.S_BeamDepth - te2 + D.S_SpacingZ));
+                        MoveZ(b, (hMainBar / 2) + (sBar / 2));
+
+                        MoveX(b, spacing / 3 * 2);
+                        CopyX(b, listfa3);
+
+                        var c = bar3;
+                        c.Insert();
+                        MoveX(c, -size, -rebar);
+                        MoveZ(c, Convert.ToDouble(bar3.Spacings[0]) / 2 + (length - D.S_RangeTop - D.S_BeamDepth - te2 + D.S_SpacingZ));
+                        MoveZ(c, (hMainBar / 2) + (sBar / 2));
+
+                        MoveX(c, spacing / 3 + spacing);
+                        CopyX(c, listsa2);
+                    }
+                    else if (D.S_Type == "아니오")
+                    {
+
+                    }
+                }
+                else if (D.S_RangeType == "하")
+                {
+                    bar3.Insert();
+                    MoveX(bar3, -size, -rebar);
+                    MoveZ(bar3, D.S_SpacingZ / 2 + Convert.ToDouble(bar3.Spacings[0]) / 2);
+                    MoveZ(bar3, (hMainBar / 2) + (sBar / 2));
+
+                    if (D.S_Type == "수직근")
+                    {
+                        CopyX(bar3, listfm);
+                    }
+                    else if (D.S_Type == "수직근+보강근1단")
+                    {
+                        CopyX(bar3, listV);
+                    }
+                    else if (D.S_Type == "수직근+보강근2단")
+                    {
+                        CopyX(bar3, listfm);
+
+                        var b = bar3;
+                        b.Insert();
+                        MoveX(b, -size, -rebar);
+                        MoveZ(b, D.S_SpacingZ / 2 + Convert.ToDouble(bar3.Spacings[0]) / 2);
+                        MoveZ(b, (hMainBar / 2) + (sBar / 2));
+
+                        MoveX(b, spacing / 3 * 2);
+                        CopyX(b, listfa3);
+
+                        var c = bar3;
+                        c.Insert();
+                        MoveX(c, -size, -rebar);
+                        MoveZ(c, D.S_SpacingZ / 2 + Convert.ToDouble(bar3.Spacings[0]) / 2);
+                        MoveZ(c, (hMainBar / 2) + (sBar / 2));
+
+                        MoveX(c, spacing / 3 + spacing);
+                        CopyX(c, listsa2);
+                    }
+                    else if (D.S_Type == "아니오")
+                    {
+
+                    }
+                }
+                else if (D.S_RangeType == "상,하")
+                {
+                    bar3.Insert();
+                    MoveX(bar3, -size, -rebar);
+                    MoveZ(bar3, D.S_SpacingZ / 2 + Convert.ToDouble(bar3.Spacings[0]) / 2);
+                    MoveZ(bar3, (hMainBar / 2) + (sBar / 2));
+
+                    if (D.S_Type == "수직근")
+                    {
+                        CopyX(bar3, listfm);
+                    }
+                    else if (D.S_Type == "수직근+보강근1단")
+                    {
+                        CopyX(bar3, listV);
+                    }
+                    else if (D.S_Type == "수직근+보강근2단")
+                    {
+                        CopyX(bar3, listfm);
+
+                        var b = bar3;
+                        b.Insert();
+                        MoveX(b, -size, -rebar);
+                        MoveZ(b, D.S_SpacingZ / 2 + Convert.ToDouble(bar3.Spacings[0]) / 2);
+                        MoveZ(b, (hMainBar / 2) + (sBar / 2));
+
+                        MoveX(b, spacing / 3 * 2);
+                        CopyX(b, listfa3);
+
+                        var c = bar3;
+                        c.Insert();
+                        MoveX(c, -size, -rebar);
+                        MoveZ(c, D.S_SpacingZ / 2 + Convert.ToDouble(bar3.Spacings[0]) / 2);
+                        MoveZ(c, (hMainBar / 2) + (sBar / 2));
+
+                        MoveX(c, spacing / 3 + spacing);
+                        CopyX(c, listsa2);
+                    }
+                    else if (D.S_Type == "아니오")
+                    {
+
+                    }
+                }
+
+            }
 
             /*-------------------------------*/
 
@@ -2255,22 +5481,113 @@ namespace YT.WallVerticalRebar
             bar4.Polygons.Add(poly2);
             bar4.SpacingType = TSM.RebarGroup.RebarGroupSpacingTypeEnum.SPACING_TYPE_EXACT_SPACINGS;
 
-            var ap4 = new ArrayList();
-            ap4.Add(0.0);
+            if (D.S_RangeType == "전체")
+            {
+                bar4.Spacings = CopyArray2(length - D.S_SpacingZ - D.S_BeamDepth, D.S_SpacingZ);
+            }
+            else if (D.S_RangeType == "상")
+            {
+                var el = length - D.S_RangeTop - D.S_BeamDepth - te2 + D.S_SpacingZ;
+                bar4.Spacings = CopyArray(length - el - D.S_BeamDepth - (D.S_SpacingZ / 2) - D.S_SpacingZ, D.S_SpacingZ);
+            }
+            else if (D.S_RangeType == "하")
+            {
+                bar4.Spacings = CopyArray2(D.S_RangeBottom - (D.S_SpacingZ / 2) - te3, D.S_SpacingZ);
+            }
+            else if (D.S_RangeType == "상,하")
+            {
+                bar4.Spacings = CopyArray2(D.S_RangeBottom - (D.S_SpacingZ / 2) - te3, D.S_SpacingZ);
+            }
 
-            bar4.Spacings = CopyArray2(D.S_LengthY, D.S_SpacingY);
+
             bar4.ExcludeType = TSM.RebarGroup.ExcludeTypeEnum.EXCLUDE_TYPE_NONE;
             bar4.Father = beam;
             bar4.Name = D.S_Name;
-            bar4.Class = D.S_Class;
+            bar4.Class = D.S_Class ;
             bar4.Size = D.S_Size;
             bar4.Grade = D.S_Grade;
             bar4.RadiusValues.Add(D.S_Radius);
             bar4.NumberingSeries.StartNumber = D.S_StartNumber;
             bar4.NumberingSeries.Prefix = D.S_Prefix;
 
-            bar4.StartHook.Shape = TSM.RebarHookData.RebarHookShapeEnum.HOOK_90_DEGREES;
-            bar4.EndHook.Shape = TSM.RebarHookData.RebarHookShapeEnum.HOOK_135_DEGREES;
+            switch (D.S_HookType)
+            {
+                case "90-90":
+                    if (D.S_HookLegType == "표준후크길이")
+                    {
+                        bar4.StartHook.Shape = TSM.RebarHookData.RebarHookShapeEnum.HOOK_90_DEGREES;
+                        bar4.EndHook.Shape = TSM.RebarHookData.RebarHookShapeEnum.HOOK_90_DEGREES;
+                    }
+                    else if (D.S_HookLegType == "사용자지정")
+                    {
+                        bar4.StartHook.Shape = TSM.RebarHookData.RebarHookShapeEnum.CUSTOM_HOOK;
+                        bar4.EndHook.Shape = TSM.RebarHookData.RebarHookShapeEnum.CUSTOM_HOOK;
+                        bar4.StartHook.Angle = 90;
+                        bar4.EndHook.Angle = 90;
+                        bar4.StartHook.Radius = D.S_Radius;
+                        bar4.EndHook.Radius = D.S_Radius;
+                        bar4.StartHook.Length = D.S_HookLegLength - D.S_Radius - size;
+                        bar4.EndHook.Length = D.S_HookLegLength - D.S_Radius - size;
+                    }
+
+                    break;
+                case "90-135":
+                    if (D.S_HookLegType == "표준후크길이")
+                    {
+                        bar4.StartHook.Shape = TSM.RebarHookData.RebarHookShapeEnum.HOOK_135_DEGREES;
+                        bar4.EndHook.Shape = TSM.RebarHookData.RebarHookShapeEnum.HOOK_90_DEGREES;
+                    }
+                    else if (D.S_HookLegType == "사용자지정")
+                    {
+                        bar4.StartHook.Shape = TSM.RebarHookData.RebarHookShapeEnum.CUSTOM_HOOK;
+                        bar4.EndHook.Shape = TSM.RebarHookData.RebarHookShapeEnum.CUSTOM_HOOK;
+                        bar4.StartHook.Angle = 135;
+                        bar4.EndHook.Angle = 90;
+                        bar4.StartHook.Radius = D.S_Radius;
+                        bar4.EndHook.Radius = D.S_Radius;
+                        bar4.StartHook.Length = D.S_HookLegLength - D.S_Radius - size;
+                        bar4.EndHook.Length = D.S_HookLegLength - D.S_Radius - size;
+                    }
+
+                    break;
+                case "135-90":
+                    if (D.S_HookLegType == "표준후크길이")
+                    {
+                        bar4.StartHook.Shape = TSM.RebarHookData.RebarHookShapeEnum.HOOK_90_DEGREES;
+                        bar4.EndHook.Shape = TSM.RebarHookData.RebarHookShapeEnum.HOOK_135_DEGREES;
+                    }
+                    else if (D.S_HookLegType == "사용자지정")
+                    {
+                        bar4.StartHook.Shape = TSM.RebarHookData.RebarHookShapeEnum.CUSTOM_HOOK;
+                        bar4.EndHook.Shape = TSM.RebarHookData.RebarHookShapeEnum.CUSTOM_HOOK;
+                        bar4.StartHook.Angle = 90;
+                        bar4.EndHook.Angle = 135;
+                        bar4.StartHook.Radius = D.S_Radius;
+                        bar4.EndHook.Radius = D.S_Radius;
+                        bar4.StartHook.Length = D.S_HookLegLength - D.S_Radius - size;
+                        bar4.EndHook.Length = D.S_HookLegLength - D.S_Radius - size;
+                    }
+                    break;
+
+                case "135-135":
+                    if (D.S_HookLegType == "표준후크길이")
+                    {
+                        bar4.StartHook.Shape = TSM.RebarHookData.RebarHookShapeEnum.HOOK_135_DEGREES;
+                        bar4.EndHook.Shape = TSM.RebarHookData.RebarHookShapeEnum.HOOK_135_DEGREES;
+                    }
+                    else if (D.S_HookLegType == "사용자지정")
+                    {
+                        bar4.StartHook.Shape = TSM.RebarHookData.RebarHookShapeEnum.CUSTOM_HOOK;
+                        bar4.EndHook.Shape = TSM.RebarHookData.RebarHookShapeEnum.CUSTOM_HOOK;
+                        bar4.StartHook.Angle = 135;
+                        bar4.EndHook.Angle = 135;
+                        bar4.StartHook.Radius = D.S_Radius;
+                        bar4.EndHook.Radius = D.S_Radius;
+                        bar4.StartHook.Length = D.S_HookLegLength - D.S_Radius - size;
+                        bar4.EndHook.Length = D.S_HookLegLength - D.S_Radius - size;
+                    }
+                    break;
+            }
 
             bar4.OnPlaneOffsets.Add(0.0);
             bar4.StartPointOffsetType = TSM.Reinforcement.RebarOffsetTypeEnum.OFFSET_TYPE_COVER_THICKNESS;
@@ -2281,15 +5598,202 @@ namespace YT.WallVerticalRebar
             bar4.StartPoint = new TSG.Point(minX, minY, minZ);
             bar4.EndPoint = new TSG.Point(minX, minY, minZ + spacing);
 
-            if (D.S_YesOrNO == "예") 
+            if (D.S_YesOrNO == "예")
             {
-                bar4.Insert();
-                MoveX(bar4, size, rebar);
-                MoveZ(bar4, D.S_FirstY + Convert.ToDouble(bar4.Spacings[0]) / 2);
-                CopyX(bar4, list2);
-            }
 
-            m.CommitChanges();
+                if (D.S_RangeType == "전체")
+                {
+
+                    bar4.Insert();
+                    MoveX(bar4, size, rebar);
+                    MoveZ(bar4, D.S_SpacingZ / 2 + Convert.ToDouble(bar4.Spacings[0]) / 2);
+                    MoveZ(bar4, (hMainBar / 2) + (sBar / 2));
+
+                    if (D.S_Type == "수직근")
+                    {
+                        MoveX(bar4, spacing);
+                        CopyX(bar4, listsm);
+                    }
+                    else if (D.S_Type == "수직근+보강근1단")
+                    {
+                        MoveX(bar4, spacing / 2);
+                        CopyX(bar4, listA);
+                    }
+                    else if (D.S_Type == "수직근+보강근2단")
+                    {
+                        MoveX(bar4, spacing);
+                        CopyX(bar4, listsm);
+
+                        var b = bar4;
+                        b.Insert();
+
+                        MoveX(b, size, rebar);
+                        MoveZ(b, D.S_SpacingZ / 2 + Convert.ToDouble(bar4.Spacings[0]) / 2);
+                        MoveZ(b, (hMainBar / 2) + (sBar / 2));
+
+                        MoveX(b, spacing / 3 * 2 + spacing);
+                        CopyX(b, listsa3);
+
+                        var c = bar4;
+                        c.Insert();
+                        MoveX(c, size, rebar);
+                        MoveZ(c, D.S_SpacingZ / 2 + Convert.ToDouble(bar4.Spacings[0]) / 2);
+                        MoveZ(c, (hMainBar / 2) + (sBar / 2));
+
+                        MoveX(c, spacing / 3);
+                        CopyX(c, listfa2);
+
+
+                    }
+                    else if (D.S_Type == "아니오")
+                    {
+                        
+                    }
+                }
+                else if (D.S_RangeType == "상")
+                {
+                    bar4.Insert();
+                    MoveX(bar4, size, rebar);
+                    MoveZ(bar4, Convert.ToDouble(bar4.Spacings[0]) / 2 + (length - D.S_RangeTop - D.S_BeamDepth - te2 + D.S_SpacingZ));
+                    MoveZ(bar4, (hMainBar / 2) + (sBar / 2));
+
+                    if (D.S_Type == "수직근")
+                    {
+                        MoveX(bar4, spacing);
+                        CopyX(bar4, listsm);
+                    }
+                    else if (D.S_Type == "수직근+보강근1단")
+                    {
+                        MoveX(bar4, spacing / 2);
+                        CopyX(bar4, listA);
+                    }
+                    else if (D.S_Type == "수직근+보강근2단")
+                    {
+
+                        MoveX(bar4, spacing);
+                        CopyX(bar4, listsm);
+
+                        var b = bar4;
+                        b.Insert();
+
+                        MoveX(b, size, rebar);
+                        MoveZ(b, Convert.ToDouble(bar4.Spacings[0]) / 2 + (length - D.S_RangeTop - D.S_BeamDepth - te2 + D.S_SpacingZ));
+                        MoveZ(b, (hMainBar / 2) + (sBar / 2));
+
+                        MoveX(b, spacing / 3 * 2 + spacing );
+                        CopyX(b, listsa3);
+
+                        var c = bar4;
+                        c.Insert();
+                        MoveX(c, size, rebar);
+                        MoveZ(c, Convert.ToDouble(bar4.Spacings[0]) / 2 + (length - D.S_RangeTop - D.S_BeamDepth - te2 + D.S_SpacingZ));
+                        MoveZ(c, (hMainBar / 2) + (sBar / 2));
+
+                        MoveX(c, spacing / 3);
+                        CopyX(c, listfa2);
+
+
+                    }
+                    else if (D.S_Type == "아니오")
+                    {
+
+                    }
+                }
+                else if (D.S_RangeType == "하")
+                {
+                    bar4.Insert();
+                    MoveX(bar4, size, rebar);
+                    MoveZ(bar4, D.S_SpacingZ / 2 + Convert.ToDouble(bar4.Spacings[0]) / 2);
+                    MoveZ(bar4, (hMainBar / 2) + (sBar / 2));
+
+                    if (D.S_Type == "수직근")
+                    {
+                        MoveX(bar4, spacing);
+                        CopyX(bar4, listsm);
+                    }
+                    else if (D.S_Type == "수직근+보강근1단")
+                    {
+                        MoveX(bar4, spacing / 2);
+                        CopyX(bar4, listA);
+                    }
+                    else if (D.S_Type == "수직근+보강근2단")
+                    {
+
+                        MoveX(bar4, spacing);
+                        CopyX(bar4, listsm);
+
+                        var b = bar4;
+                        b.Insert();
+                        MoveX(b, size, rebar);
+                        MoveZ(b, D.S_SpacingZ / 2 + Convert.ToDouble(bar4.Spacings[0]) / 2);
+                        MoveZ(b, (hMainBar / 2) + (sBar / 2));
+
+                        MoveX(b, spacing / 3 * 2 + spacing);
+                        CopyX(b, listsa3);
+
+                        var c = bar4;
+                        c.Insert();
+                        MoveX(c, size, rebar);
+                        MoveZ(c, D.S_SpacingZ / 2 + Convert.ToDouble(bar4.Spacings[0]) / 2);
+                        MoveZ(c, (hMainBar / 2) + (sBar / 2));
+
+                        MoveX(c, spacing / 3);
+                        CopyX(c, listfa2);
+
+                    }
+                    else if (D.S_Type == "아니오")
+                    {
+
+                    }
+                }
+                else if (D.S_RangeType == "상,하")
+                {
+                    bar4.Insert();
+                    MoveX(bar4, size, rebar);
+                    MoveZ(bar4, D.S_SpacingZ / 2 + Convert.ToDouble(bar4.Spacings[0]) / 2);
+                    MoveZ(bar4, (hMainBar / 2) + (sBar / 2));
+
+                    if (D.S_Type == "수직근")
+                    {
+                        MoveX(bar4, spacing);
+                        CopyX(bar4, listsm);
+                    }
+                    else if (D.S_Type == "수직근+보강근1단")
+                    {
+                        MoveX(bar4, spacing / 2);
+                        CopyX(bar4, listA);
+                    }
+                    else if (D.S_Type == "수직근+보강근2단")
+                    {
+                        MoveX(bar4, spacing);
+                        CopyX(bar4, listsm);
+
+                        var b = bar4;
+                        b.Insert();
+                        MoveX(b, size, rebar);
+                        MoveZ(b, D.S_SpacingZ / 2 + Convert.ToDouble(bar4.Spacings[0]) / 2);
+                        MoveZ(b, (hMainBar / 2) + (sBar / 2));
+
+                        MoveX(b, spacing / 3 * 2 + spacing);
+                        CopyX(b, listsa3);
+
+                        var c = bar4;
+                        c.Insert();
+                        MoveX(c, size, rebar);
+                        MoveZ(c, D.S_SpacingZ / 2 + Convert.ToDouble(bar4.Spacings[0]) / 2);
+                        MoveZ(c, (hMainBar / 2) + (sBar / 2));
+
+                        MoveX(c, spacing / 3);
+                        CopyX(c, listfa2);
+
+                    }
+                    else if (D.S_Type == "아니오")
+                    {
+
+                    }
+                }
+
+            }
 
             switch (D.S_UDA)
             {
@@ -2325,20 +5829,865 @@ namespace YT.WallVerticalRebar
 
                     break;
             }
+
+
+            /*-----------------------------------------------------------------------------------------*/
+
+            #region 상부전용
+
+            var bar5 = new TSM.RebarGroup();
+            bar5.Polygons.Add(poly);
+            bar5.SpacingType = TSM.RebarGroup.RebarGroupSpacingTypeEnum.SPACING_TYPE_EXACT_SPACINGS;
+
+
+            if (D.S_RangeType == "전체")
+            {
+            }
+            else if (D.S_RangeType == "상")
+            {
+
+
+            }
+            else if (D.S_RangeType == "하")
+            {
+            }
+            else if (D.S_RangeType == "상,하")
+            {
+                var el = length - D.S_RangeTop - D.S_BeamDepth - te2 + D.S_SpacingZ;
+                bar5.Spacings = CopyArray(length - el - D.S_BeamDepth - (D.S_SpacingZ / 2), D.S_SpacingZ);
+
+            }
+
+            bar5.ExcludeType = TSM.RebarGroup.ExcludeTypeEnum.EXCLUDE_TYPE_NONE;
+            bar5.Father = beam;
+            bar5.Name = D.S_Name;
+            bar5.Class = D.S_Class;
+            bar5.Size = D.S_Size;
+            bar5.Grade = D.S_Grade;
+            bar5.RadiusValues.Add(D.S_Radius);
+            bar5.NumberingSeries.StartNumber = D.S_StartNumber;
+            bar5.NumberingSeries.Prefix = D.S_Prefix;
+
+            switch (D.S_HookType)
+            {
+                case "90-90":
+
+                    if (D.S_HookLegType == "표준후크길이")
+                    {
+                        bar5.StartHook.Shape = TSM.RebarHookData.RebarHookShapeEnum.HOOK_90_DEGREES;
+                        bar5.EndHook.Shape = TSM.RebarHookData.RebarHookShapeEnum.HOOK_90_DEGREES;
+                    }
+                    else if (D.S_HookLegType == "사용자지정")
+                    {
+                        bar5.StartHook.Shape = TSM.RebarHookData.RebarHookShapeEnum.CUSTOM_HOOK;
+                        bar5.EndHook.Shape = TSM.RebarHookData.RebarHookShapeEnum.CUSTOM_HOOK;
+                        bar5.StartHook.Angle = 90;
+                        bar5.EndHook.Angle = 90;
+                        bar5.StartHook.Radius = D.S_Radius;
+                        bar5.EndHook.Radius = D.S_Radius;
+                        bar5.StartHook.Length = D.S_HookLegLength - D.S_Radius - size;
+                        bar5.EndHook.Length = D.S_HookLegLength - D.S_Radius - size;
+                    }
+                    break;
+
+                case "90-135":
+
+                    if (D.S_HookLegType == "표준후크길이")
+                    {
+                        bar5.StartHook.Shape = TSM.RebarHookData.RebarHookShapeEnum.HOOK_90_DEGREES;
+                        bar5.EndHook.Shape = TSM.RebarHookData.RebarHookShapeEnum.HOOK_135_DEGREES;
+                    }
+                    else if (D.S_HookLegType == "사용자지정")
+                    {
+                        bar5.StartHook.Shape = TSM.RebarHookData.RebarHookShapeEnum.CUSTOM_HOOK;
+                        bar5.EndHook.Shape = TSM.RebarHookData.RebarHookShapeEnum.CUSTOM_HOOK;
+                        bar5.StartHook.Angle = 90;
+                        bar5.EndHook.Angle = 135;
+                        bar5.StartHook.Radius = D.S_Radius;
+                        bar5.EndHook.Radius = D.S_Radius;
+                        bar5.StartHook.Length = D.S_HookLegLength - D.S_Radius - size;
+                        bar5.EndHook.Length = D.S_HookLegLength - D.S_Radius - size;
+                    }
+                    break;
+                case "135-90":
+
+                    if (D.S_HookLegType == "표준후크길이")
+                    {
+                        bar5.StartHook.Shape = TSM.RebarHookData.RebarHookShapeEnum.HOOK_135_DEGREES;
+                        bar5.EndHook.Shape = TSM.RebarHookData.RebarHookShapeEnum.HOOK_90_DEGREES;
+                    }
+                    else if (D.S_HookLegType == "사용자지정")
+                    {
+                        bar5.StartHook.Shape = TSM.RebarHookData.RebarHookShapeEnum.CUSTOM_HOOK;
+                        bar5.EndHook.Shape = TSM.RebarHookData.RebarHookShapeEnum.CUSTOM_HOOK;
+                        bar5.StartHook.Angle = 135;
+                        bar5.EndHook.Angle = 90;
+                        bar5.StartHook.Radius = D.S_Radius;
+                        bar5.EndHook.Radius = D.S_Radius;
+                        bar5.StartHook.Length = D.S_HookLegLength - D.S_Radius - size;
+                        bar5.EndHook.Length = D.S_HookLegLength - D.S_Radius - size;
+                    }
+                    break;
+                case "135-135":
+
+                    if (D.S_HookLegType == "표준후크길이")
+                    {
+                        bar5.StartHook.Shape = TSM.RebarHookData.RebarHookShapeEnum.HOOK_135_DEGREES;
+                        bar5.EndHook.Shape = TSM.RebarHookData.RebarHookShapeEnum.HOOK_135_DEGREES;
+                    }
+                    else if (D.S_HookLegType == "사용자지정")
+                    {
+                        bar5.StartHook.Shape = TSM.RebarHookData.RebarHookShapeEnum.CUSTOM_HOOK;
+                        bar5.EndHook.Shape = TSM.RebarHookData.RebarHookShapeEnum.CUSTOM_HOOK;
+                        bar5.StartHook.Angle = 135;
+                        bar5.EndHook.Angle = 135;
+                        bar5.StartHook.Radius = D.S_Radius;
+                        bar5.EndHook.Radius = D.S_Radius;
+                        bar5.StartHook.Length = D.S_HookLegLength - D.S_Radius - size;
+                        bar5.EndHook.Length = D.S_HookLegLength - D.S_Radius - size;
+                    }
+                    break;
+            }
+
+            bar5.OnPlaneOffsets.Add(0.0);
+            bar5.StartPointOffsetType = TSM.Reinforcement.RebarOffsetTypeEnum.OFFSET_TYPE_COVER_THICKNESS;
+            bar5.StartPointOffsetValue = 0;
+            bar5.EndPointOffsetType = TSM.Reinforcement.RebarOffsetTypeEnum.OFFSET_TYPE_COVER_THICKNESS;
+            bar5.EndPointOffsetValue = 0;
+            bar5.FromPlaneOffset = 0;
+
+            bar5.StartPoint = new TSG.Point(minX, minY, minZ);
+            bar5.EndPoint = new TSG.Point(minX, minY, minZ + spacing);
+
+            if (D.S_YesOrNO == "예")
+            {
+
+                if (D.S_RangeType == "전체")
+                {
+
+                }
+                else if (D.S_RangeType == "상")
+                {
+
+
+                }
+                else if (D.S_RangeType == "하")
+                {
+
+                }
+                else if (D.S_RangeType == "상,하")
+                {
+                    bar5.Insert();
+                    MoveX(bar5, -size, -rebar);
+                    MoveZ(bar5, (length - D.S_RangeTop - D.S_BeamDepth - te2 + D.S_SpacingZ));
+                    MoveZ(bar5, (hMainBar / 2) + (sBar / 2));
+
+                    if (D.S_Type == "수직근")
+                    {
+                        CopyX(bar5, listfm);
+                    }
+                    else if (D.S_Type == "수직근+보강근1단")
+                    {
+                        CopyX(bar5, listV);
+                    }
+                    else if (D.S_Type == "수직근+보강근2단")
+                    {
+                        CopyX(bar5, listfm);
+
+                        var b = bar5;
+                        b.Insert();
+                        MoveX(b, -size, -rebar);
+                        MoveZ(b, (length - D.S_RangeTop - D.S_BeamDepth - te2 + D.S_SpacingZ));
+                        MoveZ(b, (hMainBar / 2) + (sBar / 2));
+
+                        MoveX(b, spacing / 3 * 2);
+                        CopyX(b, listfa3);
+
+                        var c = bar5;
+                        c.Insert();
+                        MoveX(c, -size, -rebar);
+                        MoveZ(c, (length - D.S_RangeTop - D.S_BeamDepth - te2 + D.S_SpacingZ));
+                        MoveZ(c, (hMainBar / 2) + (sBar / 2));
+
+                        MoveX(c, spacing / 3 + spacing);
+                        CopyX(c, listsa2);
+
+                    }
+                    else if (D.S_Type == "아니오")
+                    {
+
+                    }
+
+                }
+
+            }
+            /*-------------------------------*/
+
+
+            var bar6 = new TSM.RebarGroup();
+            bar6.Polygons.Add(poly2);
+            bar6.SpacingType = TSM.RebarGroup.RebarGroupSpacingTypeEnum.SPACING_TYPE_EXACT_SPACINGS;
+
+            if (D.S_RangeType == "전체")
+            {
+            }
+            else if (D.S_RangeType == "상")
+            {
+
+            }
+            else if (D.S_RangeType == "하")
+            {
+            }
+            else if (D.S_RangeType == "상,하")
+            {
+                var el = length - D.S_RangeTop - D.S_BeamDepth - te2 + D.S_SpacingZ;
+                bar6.Spacings = CopyArray(length - el - D.S_BeamDepth - (D.S_SpacingZ / 2), D.S_SpacingZ);
+            }
+
+            bar6.ExcludeType = TSM.RebarGroup.ExcludeTypeEnum.EXCLUDE_TYPE_NONE;
+            bar6.Father = beam;
+            bar6.Name = D.S_Name;
+            bar6.Class = D.S_Class;
+            bar6.Size = D.S_Size;
+            bar6.Grade = D.S_Grade;
+            bar6.RadiusValues.Add(D.S_Radius);
+            bar6.NumberingSeries.StartNumber = D.S_StartNumber;
+            bar6.NumberingSeries.Prefix = D.S_Prefix;
+
+            switch (D.S_HookType)
+            {
+                case "90-90":
+
+                    if (D.S_HookLegType == "표준후크길이")
+                    {
+                        bar6.StartHook.Shape = TSM.RebarHookData.RebarHookShapeEnum.HOOK_90_DEGREES;
+                        bar6.EndHook.Shape = TSM.RebarHookData.RebarHookShapeEnum.HOOK_90_DEGREES;
+                    }
+                    else if (D.S_HookLegType == "사용자지정")
+                    {
+                        bar6.StartHook.Shape = TSM.RebarHookData.RebarHookShapeEnum.CUSTOM_HOOK;
+                        bar6.EndHook.Shape = TSM.RebarHookData.RebarHookShapeEnum.CUSTOM_HOOK;
+                        bar6.StartHook.Angle = 90;
+                        bar6.EndHook.Angle = 90;
+                        bar6.StartHook.Radius = D.S_Radius;
+                        bar6.EndHook.Radius = D.S_Radius;
+                        bar6.StartHook.Length = D.S_HookLegLength - D.S_Radius - size;
+                        bar6.EndHook.Length = D.S_HookLegLength - D.S_Radius - size;
+                    }
+                    break;
+                case "90-135":
+
+                    if (D.S_HookLegType == "표준후크길이")
+                    {
+                        bar6.StartHook.Shape = TSM.RebarHookData.RebarHookShapeEnum.HOOK_90_DEGREES;
+                        bar6.EndHook.Shape = TSM.RebarHookData.RebarHookShapeEnum.HOOK_135_DEGREES;
+                    }
+                    else if (D.S_HookLegType == "사용자지정")
+                    {
+                        bar6.StartHook.Shape = TSM.RebarHookData.RebarHookShapeEnum.CUSTOM_HOOK;
+                        bar6.EndHook.Shape = TSM.RebarHookData.RebarHookShapeEnum.CUSTOM_HOOK;
+                        bar6.StartHook.Angle = 90;
+                        bar6.EndHook.Angle = 135;
+                        bar6.StartHook.Radius = D.S_Radius;
+                        bar6.EndHook.Radius = D.S_Radius;
+                        bar6.StartHook.Length = D.S_HookLegLength - D.S_Radius - size;
+                        bar6.EndHook.Length = D.S_HookLegLength - D.S_Radius - size;
+                    }
+                    break;
+                case "135-90":
+
+                    if (D.S_HookLegType == "표준후크길이")
+                    {
+                        bar6.StartHook.Shape = TSM.RebarHookData.RebarHookShapeEnum.HOOK_135_DEGREES;
+                        bar6.EndHook.Shape = TSM.RebarHookData.RebarHookShapeEnum.HOOK_90_DEGREES;
+                    }
+                    else if (D.S_HookLegType == "사용자지정")
+                    {
+                        bar6.StartHook.Shape = TSM.RebarHookData.RebarHookShapeEnum.CUSTOM_HOOK;
+                        bar6.EndHook.Shape = TSM.RebarHookData.RebarHookShapeEnum.CUSTOM_HOOK;
+                        bar6.StartHook.Angle = 135;
+                        bar6.EndHook.Angle = 90;
+                        bar6.StartHook.Radius = D.S_Radius;
+                        bar6.EndHook.Radius = D.S_Radius;
+                        bar6.StartHook.Length = D.S_HookLegLength - D.S_Radius - size;
+                        bar6.EndHook.Length = D.S_HookLegLength - D.S_Radius - size;
+                    }
+                    break;
+                case "135-135":
+
+                    if (D.S_HookLegType == "표준후크길이")
+                    {
+                        bar6.StartHook.Shape = TSM.RebarHookData.RebarHookShapeEnum.HOOK_135_DEGREES;
+                        bar6.EndHook.Shape = TSM.RebarHookData.RebarHookShapeEnum.HOOK_135_DEGREES;
+                    }
+                    else if (D.S_HookLegType == "사용자지정")
+                    {
+                        bar6.StartHook.Shape = TSM.RebarHookData.RebarHookShapeEnum.CUSTOM_HOOK;
+                        bar6.EndHook.Shape = TSM.RebarHookData.RebarHookShapeEnum.CUSTOM_HOOK;
+                        bar6.StartHook.Angle = 135;
+                        bar6.EndHook.Angle = 135;
+                        bar6.StartHook.Radius = D.S_Radius;
+                        bar6.EndHook.Radius = D.S_Radius;
+                        bar6.StartHook.Length = D.S_HookLegLength - D.S_Radius - size;
+                        bar6.EndHook.Length = D.S_HookLegLength - D.S_Radius - size;
+                    }
+                    break;
+            }
+
+            bar6.OnPlaneOffsets.Add(0.0);
+            bar6.StartPointOffsetType = TSM.Reinforcement.RebarOffsetTypeEnum.OFFSET_TYPE_COVER_THICKNESS;
+            bar6.StartPointOffsetValue = 0;
+            bar6.EndPointOffsetType = TSM.Reinforcement.RebarOffsetTypeEnum.OFFSET_TYPE_COVER_THICKNESS;
+            bar6.EndPointOffsetValue = 0;
+            bar6.FromPlaneOffset = 0;
+            bar6.StartPoint = new TSG.Point(minX, minY, minZ);
+            bar6.EndPoint = new TSG.Point(minX, minY, minZ + spacing);
+
+            if (D.S_YesOrNO == "예")
+            {
+
+                if (D.S_RangeType == "전체")
+                {
+                }
+                else if (D.S_RangeType == "상")
+                {
+
+                }
+                else if (D.S_RangeType == "하")
+                {
+                }
+                else if (D.S_RangeType == "상,하")
+                {
+                    bar6.Insert();
+                    MoveX(bar6, size, rebar);
+                    MoveZ(bar6, (length - D.S_RangeTop - D.S_BeamDepth - te2 + D.S_SpacingZ));
+                    MoveZ(bar6, (hMainBar / 2) + (sBar / 2));
+
+                    if (D.S_Type == "수직근")
+                    {
+                        MoveX(bar6, spacing);
+                        CopyX(bar6, listsm);
+                    }
+                    else if (D.S_Type == "수직근+보강근1단")
+                    {
+                        MoveX(bar6, spacing / 2);
+                        CopyX(bar6, listA);
+                    }
+                    else if (D.S_Type == "수직근+보강근2단")
+                    {
+                        MoveX(bar6, spacing);
+                        CopyX(bar6, listsm);
+
+                        var b = bar6;
+                        b.Insert();
+                        MoveX(b, size, rebar);
+                        MoveZ(b, (length - D.S_RangeTop - D.S_BeamDepth - te2 + D.S_SpacingZ));
+                        MoveZ(b, (hMainBar / 2) + (sBar / 2));
+
+                        MoveX(b, spacing / 3 * 2 + spacing);
+                        CopyX(b, listsa3);
+                        //b.Delete();
+
+                        var c = bar6;
+                        c.Insert();
+                        MoveX(c, size, rebar);
+                        MoveZ(c, (length - D.S_RangeTop - D.S_BeamDepth - te2 + D.S_SpacingZ));
+                        MoveZ(c, (hMainBar / 2) + (sBar / 2));
+
+                        MoveX(c, spacing / 3);
+                        CopyX(c, listfa2);
+
+
+
+                    }
+                    else if (D.S_Type == "아니오")
+                    {
+
+                    }
+
+                }
+            }
+
+            /*-------------------------------*/
+
+            var bar7 = new TSM.RebarGroup();
+            bar7.Polygons.Add(poly);
+            bar7.SpacingType = TSM.RebarGroup.RebarGroupSpacingTypeEnum.SPACING_TYPE_EXACT_SPACINGS;
+
+            if (D.S_RangeType == "전체")
+            {
+            }
+            else if (D.S_RangeType == "상")
+            {
+
+            }
+            else if (D.S_RangeType == "하")
+            {
+            }
+            else if (D.S_RangeType == "상,하")
+            {
+                var el = length - D.S_RangeTop - D.S_BeamDepth - te2 + D.S_SpacingZ;
+                bar7.Spacings = CopyArray(length - el - D.S_BeamDepth - (D.S_SpacingZ / 2) - D.S_SpacingZ, D.S_SpacingZ);
+            }
+
+            bar7.ExcludeType = TSM.RebarGroup.ExcludeTypeEnum.EXCLUDE_TYPE_NONE;
+            bar7.Father = beam;
+            bar7.Name = D.S_Name;
+            bar7.Class = D.S_Class;
+            bar7.Size = D.S_Size;
+            bar7.Grade = D.S_Grade;
+            bar7.RadiusValues.Add(D.S_Radius);
+            bar7.NumberingSeries.StartNumber = D.S_StartNumber;
+            bar7.NumberingSeries.Prefix = D.S_Prefix;
+
+            switch (D.S_HookType)
+            {
+                case "90-90":
+
+                    if (D.S_HookLegType == "표준후크길이")
+                    {
+                        bar7.StartHook.Shape = TSM.RebarHookData.RebarHookShapeEnum.HOOK_90_DEGREES;
+                        bar7.EndHook.Shape = TSM.RebarHookData.RebarHookShapeEnum.HOOK_90_DEGREES;
+                    }
+                    else if (D.S_HookLegType == "사용자지정")
+                    {
+                        bar7.StartHook.Shape = TSM.RebarHookData.RebarHookShapeEnum.CUSTOM_HOOK;
+                        bar7.EndHook.Shape = TSM.RebarHookData.RebarHookShapeEnum.CUSTOM_HOOK;
+                        bar7.StartHook.Angle = 90;
+                        bar7.EndHook.Angle = 90;
+                        bar7.StartHook.Radius = D.S_Radius;
+                        bar7.EndHook.Radius = D.S_Radius;
+                        bar7.StartHook.Length = D.S_HookLegLength - D.S_Radius - size;
+                        bar7.EndHook.Length = D.S_HookLegLength - D.S_Radius - size;
+                    }
+                    break;
+                case "90-135":
+
+                    if (D.S_HookLegType == "표준후크길이")
+                    {
+                        bar7.StartHook.Shape = TSM.RebarHookData.RebarHookShapeEnum.HOOK_135_DEGREES;
+                        bar7.EndHook.Shape = TSM.RebarHookData.RebarHookShapeEnum.HOOK_90_DEGREES;
+                    }
+                    else if (D.S_HookLegType == "사용자지정")
+                    {
+                        bar7.StartHook.Shape = TSM.RebarHookData.RebarHookShapeEnum.CUSTOM_HOOK;
+                        bar7.EndHook.Shape = TSM.RebarHookData.RebarHookShapeEnum.CUSTOM_HOOK;
+                        bar7.StartHook.Angle = 135;
+                        bar7.EndHook.Angle = 90;
+                        bar7.StartHook.Radius = D.S_Radius;
+                        bar7.EndHook.Radius = D.S_Radius;
+                        bar7.StartHook.Length = D.S_HookLegLength - D.S_Radius - size;
+                        bar7.EndHook.Length = D.S_HookLegLength - D.S_Radius - size;
+                    }
+                    break;
+                case "135-90":
+
+                    if (D.S_HookLegType == "표준후크길이")
+                    {
+                        bar7.StartHook.Shape = TSM.RebarHookData.RebarHookShapeEnum.HOOK_90_DEGREES;
+                        bar7.EndHook.Shape = TSM.RebarHookData.RebarHookShapeEnum.HOOK_135_DEGREES;
+                    }
+                    else if (D.S_HookLegType == "사용자지정")
+                    {
+                        bar7.StartHook.Shape = TSM.RebarHookData.RebarHookShapeEnum.CUSTOM_HOOK;
+                        bar7.EndHook.Shape = TSM.RebarHookData.RebarHookShapeEnum.CUSTOM_HOOK;
+                        bar7.StartHook.Angle = 90;
+                        bar7.EndHook.Angle = 135;
+                        bar7.StartHook.Radius = D.S_Radius;
+                        bar7.EndHook.Radius = D.S_Radius;
+                        bar7.StartHook.Length = D.S_HookLegLength - D.S_Radius - size;
+                        bar7.EndHook.Length = D.S_HookLegLength - D.S_Radius - size;
+                    }
+                    break;
+                case "135-135":
+                    if (D.S_HookLegType == "표준후크길이")
+                    {
+                        bar7.StartHook.Shape = TSM.RebarHookData.RebarHookShapeEnum.HOOK_135_DEGREES;
+                        bar7.EndHook.Shape = TSM.RebarHookData.RebarHookShapeEnum.HOOK_135_DEGREES;
+                    }
+                    else if (D.S_HookLegType == "사용자지정")
+                    {
+                        bar7.StartHook.Shape = TSM.RebarHookData.RebarHookShapeEnum.CUSTOM_HOOK;
+                        bar7.EndHook.Shape = TSM.RebarHookData.RebarHookShapeEnum.CUSTOM_HOOK;
+                        bar7.StartHook.Angle = 135;
+                        bar7.EndHook.Angle = 135;
+                        bar7.StartHook.Radius = D.S_Radius;
+                        bar7.EndHook.Radius = D.S_Radius;
+                        bar7.StartHook.Length = D.S_HookLegLength - D.S_Radius - size;
+                        bar7.EndHook.Length = D.S_HookLegLength - D.S_Radius - size;
+                    }
+
+                    break;
+            }
+
+            bar7.OnPlaneOffsets.Add(0.0);
+            bar7.StartPointOffsetType = TSM.Reinforcement.RebarOffsetTypeEnum.OFFSET_TYPE_COVER_THICKNESS;
+            bar7.StartPointOffsetValue = 0;
+            bar7.EndPointOffsetType = TSM.Reinforcement.RebarOffsetTypeEnum.OFFSET_TYPE_COVER_THICKNESS;
+            bar7.EndPointOffsetValue = 0;
+            bar7.FromPlaneOffset = 0;
+            bar7.StartPoint = new TSG.Point(minX, minY, minZ);
+            bar7.EndPoint = new TSG.Point(minX, minY, minZ + spacing);
+
+            if (D.S_YesOrNO == "예")
+            {
+
+                if (D.S_RangeType == "전체")
+                {
+                }
+                else if (D.S_RangeType == "상")
+                {
+
+                }
+                else if (D.S_RangeType == "하")
+                {
+                }
+                else if (D.S_RangeType == "상,하")
+                {
+                    bar7.Insert();
+                    MoveX(bar7, -size, -rebar);
+                    MoveZ(bar7, Convert.ToDouble(bar7.Spacings[0]) / 2 + (length - D.S_RangeTop - D.S_BeamDepth - te2 + D.S_SpacingZ));
+                    MoveZ(bar7, (hMainBar / 2) + (sBar / 2));
+
+                    if (D.S_Type == "수직근")
+                    {
+                        CopyX(bar7, listfm);
+                    }
+                    else if (D.S_Type == "수직근+보강근1단")
+                    {
+                        CopyX(bar7, listV);
+                    }
+                    else if (D.S_Type == "수직근+보강근2단")
+                    {
+                        CopyX(bar7, listfm);
+
+                        var b = bar7;
+                        b.Insert();
+                        MoveX(b, -size, -rebar);
+                        MoveZ(b, Convert.ToDouble(bar7.Spacings[0]) / 2 + (length - D.S_RangeTop - D.S_BeamDepth - te2 + D.S_SpacingZ));
+                        MoveZ(b, (hMainBar / 2) + (sBar / 2));
+
+                        MoveX(b, spacing / 3 * 2);
+                        CopyX(b, listfa3);
+
+                        var c = bar7;
+                        c.Insert();
+                        MoveX(c, -size, -rebar);
+                        MoveZ(c, Convert.ToDouble(bar7.Spacings[0]) / 2 + (length - D.S_RangeTop - D.S_BeamDepth - te2 + D.S_SpacingZ));
+                        MoveZ(c, (hMainBar / 2) + (sBar / 2));
+
+                        MoveX(c, spacing / 3 + spacing);
+                        CopyX(c, listsa2);
+                    }
+                    else if (D.S_Type == "아니오")
+                    {
+
+                    }
+
+                }
+
+            }
+
+            /*-------------------------------*/
+
+            var bar8 = new TSM.RebarGroup();
+            bar8.Polygons.Add(poly2);
+            bar8.SpacingType = TSM.RebarGroup.RebarGroupSpacingTypeEnum.SPACING_TYPE_EXACT_SPACINGS;
+
+            if (D.S_RangeType == "전체")
+            {
+            }
+            else if (D.S_RangeType == "상")
+            {
+
+            }
+            else if (D.S_RangeType == "하")
+            {
+            }
+            else if (D.S_RangeType == "상,하")
+            {
+                var el = length - D.S_RangeTop - D.S_BeamDepth - te2 + D.S_SpacingZ;
+                bar8.Spacings = CopyArray(length - el - D.S_BeamDepth - (D.S_SpacingZ / 2) - D.S_SpacingZ, D.S_SpacingZ);
+            }
+
+
+            bar8.ExcludeType = TSM.RebarGroup.ExcludeTypeEnum.EXCLUDE_TYPE_NONE;
+            bar8.Father = beam;
+            bar8.Name = D.S_Name;
+            bar8.Class = D.S_Class ;
+            bar8.Size = D.S_Size;
+            bar8.Grade = D.S_Grade;
+            bar8.RadiusValues.Add(D.S_Radius);
+            bar8.NumberingSeries.StartNumber = D.S_StartNumber;
+            bar8.NumberingSeries.Prefix = D.S_Prefix;
+
+            switch (D.S_HookType)
+            {
+                case "90-90":
+                    if (D.S_HookLegType == "표준후크길이")
+                    {
+                        bar8.StartHook.Shape = TSM.RebarHookData.RebarHookShapeEnum.HOOK_90_DEGREES;
+                        bar8.EndHook.Shape = TSM.RebarHookData.RebarHookShapeEnum.HOOK_90_DEGREES;
+                    }
+                    else if (D.S_HookLegType == "사용자지정")
+                    {
+                        bar8.StartHook.Shape = TSM.RebarHookData.RebarHookShapeEnum.CUSTOM_HOOK;
+                        bar8.EndHook.Shape = TSM.RebarHookData.RebarHookShapeEnum.CUSTOM_HOOK;
+                        bar8.StartHook.Angle = 90;
+                        bar8.EndHook.Angle = 90;
+                        bar8.StartHook.Radius = D.S_Radius;
+                        bar8.EndHook.Radius = D.S_Radius;
+                        bar8.StartHook.Length = D.S_HookLegLength - D.S_Radius - size;
+                        bar8.EndHook.Length = D.S_HookLegLength - D.S_Radius - size;
+                    }
+
+                    break;
+                case "90-135":
+                    if (D.S_HookLegType == "표준후크길이")
+                    {
+                        bar8.StartHook.Shape = TSM.RebarHookData.RebarHookShapeEnum.HOOK_135_DEGREES;
+                        bar8.EndHook.Shape = TSM.RebarHookData.RebarHookShapeEnum.HOOK_90_DEGREES;
+                    }
+                    else if (D.S_HookLegType == "사용자지정")
+                    {
+                        bar8.StartHook.Shape = TSM.RebarHookData.RebarHookShapeEnum.CUSTOM_HOOK;
+                        bar8.EndHook.Shape = TSM.RebarHookData.RebarHookShapeEnum.CUSTOM_HOOK;
+                        bar8.StartHook.Angle = 135;
+                        bar8.EndHook.Angle = 90;
+                        bar8.StartHook.Radius = D.S_Radius;
+                        bar8.EndHook.Radius = D.S_Radius;
+                        bar8.StartHook.Length = D.S_HookLegLength - D.S_Radius - size;
+                        bar8.EndHook.Length = D.S_HookLegLength - D.S_Radius - size;
+                    }
+
+                    break;
+                case "135-90":
+                    if (D.S_HookLegType == "표준후크길이")
+                    {
+                        bar8.StartHook.Shape = TSM.RebarHookData.RebarHookShapeEnum.HOOK_90_DEGREES;
+                        bar8.EndHook.Shape = TSM.RebarHookData.RebarHookShapeEnum.HOOK_135_DEGREES;
+                    }
+                    else if (D.S_HookLegType == "사용자지정")
+                    {
+                        bar8.StartHook.Shape = TSM.RebarHookData.RebarHookShapeEnum.CUSTOM_HOOK;
+                        bar8.EndHook.Shape = TSM.RebarHookData.RebarHookShapeEnum.CUSTOM_HOOK;
+                        bar8.StartHook.Angle = 90;
+                        bar8.EndHook.Angle = 135;
+                        bar8.StartHook.Radius = D.S_Radius;
+                        bar8.EndHook.Radius = D.S_Radius;
+                        bar8.StartHook.Length = D.S_HookLegLength - D.S_Radius - size;
+                        bar8.EndHook.Length = D.S_HookLegLength - D.S_Radius - size;
+                    }
+                    break;
+
+                case "135-135":
+                    if (D.S_HookLegType == "표준후크길이")
+                    {
+                        bar8.StartHook.Shape = TSM.RebarHookData.RebarHookShapeEnum.HOOK_135_DEGREES;
+                        bar8.EndHook.Shape = TSM.RebarHookData.RebarHookShapeEnum.HOOK_135_DEGREES;
+                    }
+                    else if (D.S_HookLegType == "사용자지정")
+                    {
+                        bar8.StartHook.Shape = TSM.RebarHookData.RebarHookShapeEnum.CUSTOM_HOOK;
+                        bar8.EndHook.Shape = TSM.RebarHookData.RebarHookShapeEnum.CUSTOM_HOOK;
+                        bar8.StartHook.Angle = 135;
+                        bar8.EndHook.Angle = 135;
+                        bar8.StartHook.Radius = D.S_Radius;
+                        bar8.EndHook.Radius = D.S_Radius;
+                        bar8.StartHook.Length = D.S_HookLegLength - D.S_Radius - size;
+                        bar8.EndHook.Length = D.S_HookLegLength - D.S_Radius - size;
+                    }
+                    break;
+            }
+
+            bar8.OnPlaneOffsets.Add(0.0);
+            bar8.StartPointOffsetType = TSM.Reinforcement.RebarOffsetTypeEnum.OFFSET_TYPE_COVER_THICKNESS;
+            bar8.StartPointOffsetValue = 0;
+            bar8.EndPointOffsetType = TSM.Reinforcement.RebarOffsetTypeEnum.OFFSET_TYPE_COVER_THICKNESS;
+            bar8.EndPointOffsetValue = 0;
+            bar8.FromPlaneOffset = 0;
+            bar8.StartPoint = new TSG.Point(minX, minY, minZ);
+            bar8.EndPoint = new TSG.Point(minX, minY, minZ + spacing);
+
+            if (D.S_YesOrNO == "예")
+            {
+
+                if (D.S_RangeType == "전체")
+                {
+                }
+                else if (D.S_RangeType == "상")
+                {
+
+                }
+                else if (D.S_RangeType == "하")
+                {
+                }
+                else if (D.S_RangeType == "상,하")
+                {
+                    bar8.Insert();
+                    MoveX(bar8, size, rebar);
+                    MoveZ(bar8, Convert.ToDouble(bar8.Spacings[0]) / 2 + (length - D.S_RangeTop - D.S_BeamDepth - te2 + D.S_SpacingZ));
+                    MoveZ(bar8, (hMainBar / 2) + (sBar / 2));
+
+                    if (D.S_Type == "수직근")
+                    {
+                        MoveX(bar8, spacing);
+                        CopyX(bar8, listsm);
+                    }
+                    else if (D.S_Type == "수직근+보강근1단")
+                    {
+                        MoveX(bar8, spacing / 2);
+                        CopyX(bar8, listA);
+                    }
+                    else if (D.S_Type == "수직근+보강근2단")
+                    {
+                        MoveX(bar8, spacing);
+                        CopyX(bar8, listsm);
+
+                        var b = bar8;
+                        b.Insert();
+                        MoveX(b, size, rebar);
+                        MoveZ(b, Convert.ToDouble(bar8.Spacings[0]) / 2 + (length - D.S_RangeTop - D.S_BeamDepth - te2 + D.S_SpacingZ));
+                        MoveZ(b, (hMainBar / 2) + (sBar / 2));
+
+                        MoveX(b, spacing / 3 * 2 + spacing);
+                        CopyX(b, listsa3);
+
+                        var c = bar8;
+                        c.Insert();
+                        MoveX(c, size, rebar);
+                        MoveZ(c, Convert.ToDouble(bar8.Spacings[0]) / 2 + (length - D.S_RangeTop - D.S_BeamDepth - te2 + D.S_SpacingZ));
+                        MoveZ(c, (hMainBar / 2) + (sBar / 2));
+
+                        MoveX(c, spacing / 3);
+                        CopyX(c, listfa2);
+
+
+                    }
+                    else if (D.S_Type == "아니오")
+                    {
+
+                    }
+
+                }
+
+            }
+
+            switch (D.S_UDA)
+            {
+                case "부재 UDA 정보 사용":
+
+                    bar5.SetUserProperty("USER_FIELD_1", buildingSt);
+                    bar5.SetUserProperty("USER_FIELD_2", buildingStoreySt);
+
+                    bar6.SetUserProperty("USER_FIELD_1", buildingSt);
+                    bar6.SetUserProperty("USER_FIELD_2", buildingStoreySt);
+
+                    bar7.SetUserProperty("USER_FIELD_1", buildingSt);
+                    bar7.SetUserProperty("USER_FIELD_2", buildingStoreySt);
+
+                    bar8.SetUserProperty("USER_FIELD_1", buildingSt);
+                    bar8.SetUserProperty("USER_FIELD_2", buildingStoreySt);
+
+                    break;
+
+                case "사용자 지정":
+
+                    bar5.SetUserProperty("USER_FIELD_1", D.S_Building);
+                    bar5.SetUserProperty("USER_FIELD_2", D.S_Building_S);
+
+                    bar6.SetUserProperty("USER_FIELD_1", D.S_Building);
+                    bar6.SetUserProperty("USER_FIELD_2", D.S_Building_S);
+
+                    bar7.SetUserProperty("USER_FIELD_1", D.S_Building);
+                    bar7.SetUserProperty("USER_FIELD_2", D.S_Building_S);
+
+                    bar8.SetUserProperty("USER_FIELD_1", D.S_Building);
+                    bar8.SetUserProperty("USER_FIELD_2", D.S_Building_S);
+
+                    break;
+            }
+            #endregion
+
+
+            m.CommitChanges();
         }
 
         private ArrayList CopyArray(double length, double spacing)
         {
             var list = new ArrayList();
 
-            var ea = Math.Truncate(length / (spacing * 2));
+            var ea1 = (int)length / ((int)spacing * 2);
+            var te1 = (int)length % ((int)spacing * 2);
 
-            var sp = length / ea;
+            var ea2 = ((int)length - (int)spacing) / ((int)spacing * 2);
+            var te2 = ((int)length - (int)spacing) % ((int)spacing * 2);
 
-            for (int i = 0; i < ea; i++)
+            for (int i = 0; i < ea1 - 1; i++)
             {
-                list.Add(sp);
+                list.Add(spacing * 2);
             }
+
+            if (te1 == 0 && te2 == 0)
+            {
+            }
+            else if (te1 < spacing && te2 == 0)
+            {
+            }
+            else if (te1 > spacing && te2 == 0)
+            {
+            }
+            else if (te1 == spacing && te2 == 0)
+            {
+                list.Add(spacing * 2); ////////
+            }
+
+
+
+            else if (te1 == 0 && te2 < spacing)
+            {
+            }
+            else if (te1 < spacing && te2 < spacing)
+            {
+            }
+            else if (te1 > spacing && te2 < spacing)
+            {
+                list.Add(spacing * 2);
+                list.Add(te1); //////////////
+            }
+            else if (te1 == spacing && te2 < spacing)
+            {
+            }
+
+
+            else if (te1 == 0 && te2 > spacing)
+            {
+            }
+            else if (te1 < spacing && te2 > spacing)
+            {
+                list.Add(spacing * 2); ////////////////////
+            }
+            else if (te1 > spacing && te2 > spacing)
+            {
+            }
+            else if (te1 == spacing && te2 > spacing)
+            {
+            }
+
+            else if (te1 == 0 && te2 == spacing)
+            {
+                list.Add(spacing * 2); ////
+            }
+            else if (te1 < spacing && te2 == spacing)
+            {
+            }
+            else if (te1 > spacing && te2 == spacing)
+            {
+            }
+            else if (te1 == spacing && te2 == spacing)
+            {
+            }
+
 
             return list;
         }
@@ -2347,13 +6696,78 @@ namespace YT.WallVerticalRebar
         {
             var list = new ArrayList();
 
-            var ea = Math.Truncate(length / (spacing * 2));
+            var ea1 = (int)length / ((int)spacing * 2);
+            var te1 = (int)length % ((int)spacing * 2);
 
-            var sp = length / ea;
+            var ea2 = ((int)length - (int)spacing) / ((int)spacing * 2);
+            var te2 = ((int)length - (int)spacing) % ((int)spacing * 2);
 
-            for (int i = 0; i < ea - 1; i++)
+            for (int i = 0; i < ea2 - 1; i++)
             {
-                list.Add(sp);
+                list.Add(spacing * 2);
+            }
+
+
+            if (te1 == 0 && te2 == 0)
+            {
+            }
+            else if (te1 < spacing && te2 == 0)
+            {
+            }
+            else if (te1 > spacing && te2 == 0)
+            {
+            }
+            else if (te1 == spacing && te2 == 0)
+            {
+                list.Add(spacing * 2); ////
+            }
+
+
+            else if (te1 == 0 && te2 < spacing)
+            {
+            }
+            else if (te1 < spacing && te2 < spacing)
+            {
+            }
+            else if (te1 > spacing && te2 < spacing)
+            {
+                //list.Add(spacing + (te1/2)); ///////// 
+                list.Add(spacing * 2);
+            }
+            else if (te1 == spacing && te2 < spacing)
+            {
+            }
+
+
+            else if (te1 == 0 && te2 > spacing)
+            {
+            }
+            else if (te1 < spacing && te2 > spacing)
+            {
+                list.Add(spacing * 2);
+                list.Add(te2); //////
+            }
+            else if (te1 > spacing && te2 > spacing)
+            {
+            }
+            else if (te1 == spacing && te2 > spacing)
+            {
+            }
+
+
+
+            else if (te1 == 0 && te2 == spacing)
+            {
+                list.Add(spacing * 2); ///////
+            }
+            else if (te1 < spacing && te2 == spacing)
+            {
+            }
+            else if (te1 > spacing && te2 == spacing)
+            {
+            }
+            else if (te1 == spacing && te2 == spacing)
+            {
             }
 
             return list;
@@ -2386,7 +6800,14 @@ namespace YT.WallVerticalRebar
         {
             var ob = bar as TSM.ModelObject;
 
-            TSM.Operations.Operation.MoveObject(bar, new TSG.Vector( (R/2)  + (X / 2), 0, 0));
+            TSM.Operations.Operation.MoveObject(bar, new TSG.Vector((R / 2) + (X / 2), 0, 0));
+        }
+
+        private void MoveX(TSM.RebarGroup bar, double X)
+        {
+            var ob = bar as TSM.ModelObject;
+
+            TSM.Operations.Operation.MoveObject(bar, new TSG.Vector(X, 0, 0));
         }
     }
 }

@@ -31,6 +31,10 @@ namespace TEST
         {
             this.WallVericalRebarTest = new System.Windows.Forms.Button();
             this.ArrayTest = new System.Windows.Forms.Button();
+            this.Coupler = new System.Windows.Forms.Button();
+            this.test = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
+            this.SingleSlab = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // WallVericalRebarTest
@@ -53,11 +57,55 @@ namespace TEST
             this.ArrayTest.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             this.ArrayTest.UseVisualStyleBackColor = true;
             // 
+            // Coupler
+            // 
+            this.Coupler.Location = new System.Drawing.Point(31, 139);
+            this.Coupler.Name = "Coupler";
+            this.Coupler.Size = new System.Drawing.Size(146, 23);
+            this.Coupler.TabIndex = 7;
+            this.Coupler.Text = "Coupler";
+            this.Coupler.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.Coupler.UseVisualStyleBackColor = true;
+            // 
+            // test
+            // 
+            this.test.Location = new System.Drawing.Point(31, 211);
+            this.test.Name = "test";
+            this.test.Size = new System.Drawing.Size(146, 23);
+            this.test.TabIndex = 8;
+            this.test.Text = "test";
+            this.test.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.test.UseVisualStyleBackColor = true;
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(31, 279);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(146, 23);
+            this.button1.TabIndex = 9;
+            this.button1.Text = "button1";
+            this.button1.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.button1.UseVisualStyleBackColor = true;
+            // 
+            // SingleSlab
+            // 
+            this.SingleSlab.Location = new System.Drawing.Point(31, 348);
+            this.SingleSlab.Name = "SingleSlab";
+            this.SingleSlab.Size = new System.Drawing.Size(146, 23);
+            this.SingleSlab.TabIndex = 10;
+            this.SingleSlab.Text = "SingleSlab";
+            this.SingleSlab.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.SingleSlab.UseVisualStyleBackColor = true;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.SingleSlab);
+            this.Controls.Add(this.button1);
+            this.Controls.Add(this.test);
+            this.Controls.Add(this.Coupler);
             this.Controls.Add(this.ArrayTest);
             this.Controls.Add(this.WallVericalRebarTest);
             this.Name = "Form1";
@@ -69,6 +117,10 @@ namespace TEST
         #endregion
         private System.Windows.Forms.Button WallVericalRebarTest;
         private System.Windows.Forms.Button ArrayTest;
+        private System.Windows.Forms.Button Coupler;
+        private System.Windows.Forms.Button test;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button SingleSlab;
     }
 }
 

@@ -39,6 +39,11 @@ namespace YT.COM
             var a = new KS().KSMainbar().Where(x => x.Size.Equals(item)).FirstOrDefault();
             return a == null ? 30 : a.Radius;
         }
+        public static double GetDiameter2(double item)
+        {
+            var a = new KS().KSMainbar().Where(x => x.Size.Equals(item)).FirstOrDefault();
+            return a == null ? 0 : a.Diameter;
+        }
         #endregion
 
         #region PRIVATE
