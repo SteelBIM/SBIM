@@ -215,6 +215,9 @@ namespace YT.WallVerticalRebar
         protected override string LoadValuesPath(string fileName)
         {
             #region 메인공통
+            this.SetAttributeValue(this.LR_Change, "기본");
+            this.SetAttributeValue(this.DW_Operation, "일반");
+
             this.SetAttributeValue(this.W_UDA, "부재 UDA 정보 사용");
             this.SetAttributeValue(this.W_Building, "");
             this.SetAttributeValue(this.W_Building_Storey, "");
@@ -232,7 +235,7 @@ namespace YT.WallVerticalRebar
             #region 우측메인수직
             //ExcludeType
             this.SetAttributeValue(this.R_Name, "W_V");
-            this.SetAttributeValue(this.R_Grade, "SD500");
+            this.SetAttributeValue(this.R_Grade, "SD600");
             this.SetAttributeValue(this.R_Size, "16");
             this.SetAttributeValue(this.R_Radius, 50.00);
             this.SetAttributeValue(this.R_Class, 2);
@@ -258,7 +261,7 @@ namespace YT.WallVerticalRebar
             #region 좌측메인수직
 
             this.SetAttributeValue(this.L_Name, "W_V");
-            this.SetAttributeValue(this.L_Grade, "SD500");
+            this.SetAttributeValue(this.L_Grade, "SD600");
             this.SetAttributeValue(this.L_Size, "16");
             this.SetAttributeValue(this.L_Radius, 50.00);
             this.SetAttributeValue(this.L_Class, 2);
@@ -690,7 +693,7 @@ namespace YT.WallVerticalRebar
             this.SetAttributeValue(this.S_HookLegType, "표준후크길이");
             this.SetAttributeValue(this.S_HookLegLength, 300.0);
 
-            this.SetAttributeValue(this.S_RangeType, "전체");
+            this.SetAttributeValue(this.S_RangeType, "상");
 
             this.SetAttributeValue(this.S_RangeBottom, 2500.0);
             this.SetAttributeValue(this.S_RangeTop, 3000.0);

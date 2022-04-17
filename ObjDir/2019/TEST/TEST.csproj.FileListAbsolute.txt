@@ -29,3 +29,5 @@ D:\조한솔\00. 프로젝트\00. SBIM\ObjDir\2019\TEST\TEST.exe
 D:\조한솔\00. 프로젝트\00. SBIM\ObjDir\2019\TEST\TEST.pdb
 D:\조한솔\00. 프로젝트\00. SBIM\TEST\bin\Debug\YT.WallVerticalRebar.dll
 D:\조한솔\00. 프로젝트\00. SBIM\TEST\bin\Debug\YT.WallVerticalRebar.pdb
+D:\조한솔\00. 프로젝트\00. SBIM\TEST\bin\Debug\Z.BulkOperations.dll
+D:\조한솔\00. 프로젝트\00. SBIM\TEST\bin\Debug\Z.BulkOperations.xml

@@ -1,19 +1,12 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
 using YT.COM;
-
 using TS = Tekla.Structures;
-using TSM = Tekla.Structures.Model;
-using TSD = Tekla.Structures.Dialog;
 using TSG = Tekla.Structures.Geometry3d;
-using TSC = Tekla.Structures.Catalogs;
+using TSM = Tekla.Structures.Model;
 using TSP = Tekla.Structures.Plugins;
-using TST = Tekla.Structures.Datatype;
-using System.Collections;
 
 namespace YT.WallVerticalRebar
 {
@@ -126,6 +119,89 @@ namespace YT.WallVerticalRebar
         private void InsertMainRebar(TSM.Beam beam, TSG.Point point1, TSG.Point point2, TSG.Point point3, TSG.Point point4)
         {
             var m = new TSM.Model();
+
+            if (D.LR_Change == "좌우변경")
+            {
+                var name = D.R_Name;
+                D.R_Name = D.L_Name;
+                D.L_Name = name;
+
+                var grade = D.R_Grade;
+                D.R_Grade = D.L_Grade;
+                D.L_Grade = grade;
+
+                var size = D.R_Size;
+                D.R_Size = D.L_Size;
+                D.L_Size = size;
+
+                var radius = D.R_Radius;
+                D.R_Radius = D.L_Radius;
+                D.L_Radius = radius;
+
+                var classs = D.R_Class;
+                D.R_Class = D.L_Class;
+                D.L_Class = classs;
+
+                var prefix = D.R_Prefix;
+                D.R_Prefix = D.L_Prefix;
+                D.L_Prefix = prefix;
+
+                var num = D.R_StartNumber;
+                D.R_StartNumber = D.L_StartNumber;
+                D.L_StartNumber = num;
+
+                var movey = D.R_MoveY;
+                D.R_MoveY = D.L_MoveY;
+                D.L_MoveY = movey;
+
+                var exclude = D.R_ExcludeType;
+                D.R_ExcludeType = D.L_ExcludeType;
+                D.L_ExcludeType = exclude;
+
+                var splice = D.R_SpliceType;
+                D.R_SpliceType = D.L_SpliceType;
+                D.L_SpliceType = splice;
+
+                var splcie1 = D.R_Splice1;
+                D.R_Splice1 = D.L_Splice1;
+                D.L_Splice1 = splcie1;
+
+                var splice2 = D.R_Splice2;
+                D.R_Splice2 = D.L_Splice2;
+                D.L_Splice2 = splice2;
+
+                var bent = D.R_Bent;
+                D.R_Bent = D.L_Bent;
+                D.L_Bent = bent;
+
+                var hookvorver = D.R_HookCorver;
+                D.R_HookCorver = D.L_HookCorver;
+                D.L_HookCorver = hookvorver;
+
+                var hooklength = D.R_HookLength;
+                D.R_HookLength = D.L_HookLength;
+                D.L_HookLength = hooklength;
+
+                var hookinout = D.R_HookInOut;
+                D.R_HookInOut = D.L_HookInOut;
+                D.L_HookInOut = hookinout;
+
+                var spacingtype = D.R_SpacingType;
+                D.R_SpacingType = D.L_SpacingType;
+                D.L_SpacingType = spacingtype;
+
+                var userspacing = D.R_UserSpacing;
+                D.R_UserSpacing = D.L_UserSpacing;
+                D.L_UserSpacing = userspacing;
+
+                var spacing = D.R_Spacing;
+                D.R_Spacing = D.L_Spacing;
+                D.L_Spacing = spacing;
+
+                var yesno = D.R_YesOrNo;
+                D.R_YesOrNo = D.L_YesOrNo;
+                D.L_YesOrNo = yesno;
+            }
 
             #region 사용자정보
 
@@ -246,6 +322,8 @@ namespace YT.WallVerticalRebar
 
             var barR = new Rebar();
 
+            barR.Father = beam;
+
             barR.Name = D.R_Name;
             barR.Grade = D.R_Grade;
             barR.Size = D.R_Size;
@@ -298,7 +376,7 @@ namespace YT.WallVerticalRebar
             barR.StartPoint = new TSG.Point(rs.X, rs.Y, rs.Z);
             barR.EndPoint = new TSG.Point(re.X, re.Y, re.Z);
 
-            barR.Father = beam;
+
 
             switch (D.R_SpacingType)
             {
@@ -510,6 +588,8 @@ namespace YT.WallVerticalRebar
             pp.Insert();
             pp.Delete();
 
+            m.CommitChanges();
+
         }
 
         private void InsertDowelRebar(TSM.Beam beam, TSG.Point point1, TSG.Point point2, TSG.Point point3, TSG.Point point4)
@@ -622,9 +702,57 @@ namespace YT.WallVerticalRebar
 
             #endregion
 
+            if (D.LR_Change == "좌우변경")
+            {
+                var name = D.DR_Name;
+                D.DR_Name = D.DL_Name;
+                D.DL_Name = name;
+
+
+                var classs = D.DR_Class;
+                D.DR_Class = D.DL_Class;
+                D.DL_Class = classs;
+
+                var prefix = D.DR_Prefix;
+                D.DR_Prefix = D.DL_Prefix;
+                D.DL_Prefix = prefix;
+
+                var num = D.DR_StartNumber;
+                D.DR_StartNumber = D.DL_StartNumber;
+                D.DL_StartNumber = num;
+
+                var yesno = D.DR_YesOrNo;
+                D.DR_YesOrNo = D.DL_YesOrNo;
+                D.DL_YesOrNo = yesno;
+
+                var splice1 = D.DR_Splice1;
+                D.DR_Splice1 = D.DL_Splice1;
+                D.DL_Splice1 = splice1;
+
+                var splice2 = D.DR_Splice2;
+                D.DR_Splice2 = D.DL_Splice2;
+                D.DL_Splice2 = splice2;
+
+                var hookcorver = D.DR_HookCorver;
+                D.DR_HookCorver = D.DL_HookCorver;
+                D.DL_HookCorver = hookcorver;
+
+                var hooklength = D.DR_HookLength;
+                D.DR_HookLength = D.DL_HookLength;
+                D.DL_HookLength = hooklength;
+
+                var hookinout = D.DR_HookInOut;
+                D.DR_HookInOut = D.DL_HookInOut;
+                D.DL_HookInOut = hookinout;
+
+
+            }
+
             #region 우측다월
 
             var barRD = new Rebar();
+
+            barRD.Father = beam;
 
             barRD.Name = D.DR_Name;
             barRD.Grade = D.R_Grade;
@@ -634,31 +762,75 @@ namespace YT.WallVerticalRebar
 
             barRD.Prefix = D.DR_Prefix;
             barRD.StartNumber = D.DR_StartNumber;
+            barRD.StartOffsetValue = -D.DW_FootingDepth + D.DR_HookCorver;
+
+            var Rhooklength = 0.0;
+            double Rlength = 0.0;
+
+            if (D.DW_FootingSpacing + D.DW_FootingSplice > D.DR_HookLength)
+            {
+                Rhooklength = D.DW_FootingSpacing + D.DW_FootingSplice - barRD.Radius - KS.GetDiameter(Convert.ToDouble(barRD.Size));
+                Rlength = Math.Abs(barRD.StartOffsetValue) + D.DR_Splice1 + D.DR_Splice2 + D.DW_FootingSpacing + D.DW_FootingSplice;
+            }
+            else
+            {
+                Rhooklength = D.DR_HookLength - barRD.Radius - KS.GetDiameter(Convert.ToDouble(barRD.Size));
+                Rlength = Math.Abs(barRD.StartOffsetValue) + D.DR_Splice1 + D.DR_Splice2 + D.DR_HookLength;
+            }
+
+            var Rplus = 0.0;
+
+            if (D.DW_Operation == "100 단위")
+            {
+                var te = Rlength % 100;
+                Rplus = 100 - te;
+
+            }
+            else if (D.DW_Operation == "300,500,700 단위")
+            {
+                var te = Rlength % 1000;
+
+                if (te > 0 && te <= 300)
+                {
+                    Rplus = 300 - te;
+                }
+                else if (te > 300 && te <= 500)
+                {
+                    Rplus = 500 - te ;
+                }
+                else if (te > 500 && te <= 700)
+                {
+                    Rplus = 700 - te ;
+                }
+                else if (te > 700)
+                {
+                    Rplus = 1000 - te ;
+                }
+                else if (te == 0)
+                {
+                    Rplus = 0;
+                }
+            }
+            else
+            {
+                Rplus = 0;
+            }
+
+
 
             var shapeR = new TSM.Polygon();
 
             shapeR.Points.Add(new TSG.Point(rs.X + ksR, rs.Y, minZ));
-            shapeR.Points.Add(new TSG.Point(rs.X + ksR, rs.Y, D.DR_Splice1 + D.DR_Splice2));
+            shapeR.Points.Add(new TSG.Point(rs.X + ksR, rs.Y, D.DR_Splice1 + D.DR_Splice2 + Rplus));
 
             barRD.Polygon.Add(shapeR);
-
-            barRD.StartOffsetValue = -D.DW_FootingDepth + D.DR_HookCorver;
 
             barRD.StartPoint = new TSG.Point(rs.X + ksR, rs.Y, rs.Z);
             barRD.EndPoint = new TSG.Point(re.X + ksR, re.Y, re.Z);
 
             barRD.StartHookShape = TSM.RebarHookData.RebarHookShapeEnum.CUSTOM_HOOK;
             barRD.StartHookRadius = barRD.Radius;
-
-            if (D.DW_FootingSpacing + D.DW_FootingSplice > D.DR_HookLength)
-            {
-                barRD.StartHookLength = D.DW_FootingSpacing + D.DW_FootingSplice - barRD.Radius - KS.GetDiameter(Convert.ToDouble(barRD.Size));
-            }
-            else
-            {
-                barRD.StartHookLength = D.DR_HookLength - barRD.Radius - KS.GetDiameter(Convert.ToDouble(barRD.Size));
-            }
-
+            barRD.StartHookLength = Rhooklength;
 
             switch (D.R_ExcludeType)
             {
@@ -733,10 +905,7 @@ namespace YT.WallVerticalRebar
                     var rightSpacings = new Spacings();
 
                     barRD.Spacing = rightSpacings.RightDoWelSpacing(ls, le, rs, re, lengthR, rightSpacing, rebar, barRD.Size);
-                    //barR.Spacing = RSP;
                     break;
-
-
 
             }
 
@@ -755,6 +924,8 @@ namespace YT.WallVerticalRebar
 
             var barLD = new Rebar();
 
+            barLD.Father = beam;
+
             barLD.Name = D.DL_Name;
             barLD.Grade = D.L_Grade;
             barLD.Size = D.L_Size;
@@ -763,31 +934,72 @@ namespace YT.WallVerticalRebar
 
             barLD.Prefix = D.DL_Prefix;
             barLD.StartNumber = D.DL_StartNumber;
+            barLD.StartOffsetValue = -D.DW_FootingDepth + D.DL_HookCorver;
+
+            var Lhooklength = 0.0;
+            double Llength = 0.0;
+
+            if (D.DW_FootingSpacing + D.DW_FootingSplice > D.DL_HookLength)
+            {
+                Lhooklength = D.DW_FootingSpacing + D.DW_FootingSplice - barLD.Radius - KS.GetDiameter(Convert.ToDouble(barLD.Size));
+                Llength = Math.Abs(barLD.StartOffsetValue) + D.DL_Splice1 + D.DL_Splice2 + D.DW_FootingSpacing + D.DW_FootingSplice;
+            }
+            else
+            {
+                Lhooklength = D.DL_HookLength - barLD.Radius - KS.GetDiameter(Convert.ToDouble(barLD.Size));
+                Llength = Math.Abs(barLD.StartOffsetValue) + D.DL_Splice1 + D.DL_Splice2 + D.DL_HookLength;
+            }
+
+            var Lplus = 0.0;
+
+            if (D.DW_Operation == "100 단위")
+            {
+                var te = Rlength % 100;
+                Lplus = 100 - te;
+
+            }
+            else if (D.DW_Operation == "300,500,700 단위")
+            {
+                var te = Llength % 1000;
+
+                if (te > 0 && te <= 300)
+                {
+                    Lplus = 300 - te ;
+                }
+                else if (te > 300 && te <= 500)
+                {
+                    Lplus = 500 - te ;
+                }
+                else if (te > 500 && te <= 700)
+                {
+                    Lplus = 700 - te ;
+                }
+                else if (te > 700)
+                {
+                    Lplus = 1000 - te ;
+                }
+                else if (te == 0)
+                {
+                    Lplus = 0;
+                }
+            }
+            else
+            {
+                Rplus = 0;
+            }
 
             var shapeL = new TSM.Polygon();
 
             shapeL.Points.Add(new TSG.Point(ls.X + ksL, ls.Y, minZ));
-            shapeL.Points.Add(new TSG.Point(ls.X + ksL, ls.Y, D.DL_Splice1 + D.DL_Splice2));
+            shapeL.Points.Add(new TSG.Point(ls.X + ksL, ls.Y, D.DL_Splice1 + D.DL_Splice2 + Lplus));
             barLD.Polygon.Add(shapeL);
-
-            barLD.StartOffsetValue = -D.DW_FootingDepth + D.DL_HookCorver;
 
             barLD.StartPoint = new TSG.Point(ls.X + ksL, ls.Y, ls.Z);
             barLD.EndPoint = new TSG.Point(le.X + ksL, le.Y, le.Z);
 
-
             barLD.StartHookShape = TSM.RebarHookData.RebarHookShapeEnum.CUSTOM_HOOK;
             barLD.StartHookRadius = barLD.Radius;
-
-            if (D.DW_FootingSpacing + D.DW_FootingSplice > D.DL_HookLength)
-            {
-                barLD.StartHookLength = D.DW_FootingSpacing + D.DW_FootingSplice - barLD.Radius - KS.GetDiameter(Convert.ToDouble(barLD.Size));
-            }
-            else
-            {
-                barLD.StartHookLength = D.DL_HookLength - barLD.Radius - KS.GetDiameter(Convert.ToDouble(barLD.Size));
-            }
-
+            barLD.StartHookLength = Lhooklength;
 
             switch (D.L_ExcludeType)
             {
@@ -942,6 +1154,235 @@ namespace YT.WallVerticalRebar
 
             #endregion
 
+            if (D.LR_Change == "좌우변경")
+            {
+                var name = D.R_RB_Name;
+                D.R_RB_Name = D.R_LB_Name;
+                D.R_LB_Name = name;
+
+                var grade = D.R_RB_Grade;
+                D.R_RB_Grade = D.R_LB_Grade;
+                D.R_LB_Grade = grade;
+
+                var size = D.R_RB_Size;
+                D.R_RB_Size = D.R_LB_Size;
+                D.R_LB_Size = size;
+
+                var radius = D.R_RB_Radius;
+                D.R_RB_Radius = D.R_LB_Radius;
+                D.R_LB_Radius = radius;
+
+                var classs = D.R_RB_Class;
+                D.R_RB_Class = D.R_LB_Class;
+                D.R_LB_Class = classs;
+
+                var prefix = D.R_RB_Prefix;
+                D.R_RB_Prefix = D.R_LB_Prefix;
+                D.R_LB_Prefix = prefix;
+
+                var startnum = D.R_RB_StartNumber;
+                D.R_RB_StartNumber = D.R_LB_StartNumber;
+                D.R_LB_StartNumber = startnum;
+
+                var spcingtype = D.R_RB_SpacingType;
+                D.R_RB_SpacingType = D.R_LB_SpacingType;
+                D.R_LB_SpacingType = spcingtype;
+
+                var userspacing = D.R_RB_UserSpacing;
+                D.R_RB_UserSpacing = D.R_LB_UserSpacing;
+                D.R_LB_UserSpacing = userspacing;
+
+                var exclude = D.R_RB_ExcludeType;
+                D.R_RB_ExcludeType = D.R_LB_ExcludeType;
+                D.R_LB_ExcludeType = exclude;
+
+                /////////
+
+                var yesno = D.R_RB_YesOrNo;
+                D.R_RB_YesOrNo = D.R_LB_YesOrNo;
+                D.R_LB_YesOrNo = yesno;
+
+                var splice1 = D.R_RB_Splice1;
+                D.R_RB_Splice1 = D.R_LB_Splice1;
+                D.R_LB_Splice1 = splice1;
+
+                var splice2 = D.R_RB_Splice2;
+                D.R_RB_Splice2 = D.R_LB_Splice2;
+                D.R_LB_Splice2 = splice2;
+
+                var type = D.R_RB_Type;
+                D.R_RB_Type = D.R_LB_Type;
+                D.R_LB_Type = type;
+
+                var hooklength = D.R_RB_HookLength;
+                D.R_RB_HookLength = D.R_LB_HookLength;
+                D.R_LB_HookLength = hooklength;
+
+                var hookinout = D.R_RB_HookInOut;
+                D.R_RB_HookInOut = D.R_LB_HookInOut;
+                D.R_LB_HookInOut = hookinout;
+            }
+
+            if (D.LR_Change == "좌우변경")
+            {
+                var name = D.R_RM_Name;
+                D.R_RM_Name = D.R_LM_Name;
+                D.R_LM_Name = name;
+
+                var grade = D.R_RM_Grade;
+                D.R_RM_Grade = D.R_LM_Grade;
+                D.R_LM_Grade = grade;
+
+                var size = D.R_RM_Size;
+                D.R_RM_Size = D.R_LM_Size;
+                D.R_LM_Size = size;
+
+                var radius = D.R_RM_Radius;
+                D.R_RM_Radius = D.R_LM_Radius;
+                D.R_LM_Radius = radius;
+
+                var classs = D.R_RM_Class;
+                D.R_RM_Class = D.R_LM_Class;
+                D.R_LM_Class = classs;
+
+                var prefix = D.R_RM_Prefix;
+                D.R_RM_Prefix = D.R_LM_Prefix;
+                D.R_LM_Prefix = prefix;
+
+                var startnum = D.R_RM_StartNumber;
+                D.R_RM_StartNumber = D.R_LM_StartNumber;
+                D.R_LM_StartNumber = startnum;
+
+                var spcingtype = D.R_RM_SpacingType;
+                D.R_RM_SpacingType = D.R_LM_SpacingType;
+                D.R_LM_SpacingType = spcingtype;
+
+                var userspacing = D.R_RM_UserSpacing;
+                D.R_RM_UserSpacing = D.R_LM_UserSpacing;
+                D.R_LM_UserSpacing = userspacing;
+
+                var exclude = D.R_RM_ExcludeType;
+                D.R_RM_ExcludeType = D.R_LM_ExcludeType;
+                D.R_LM_ExcludeType = exclude;
+
+                /////////
+
+                var yesno = D.R_RM_YesOrNo;
+                D.R_RM_YesOrNo = D.R_LM_YesOrNo;
+                D.R_LM_YesOrNo = yesno;
+
+                var splice1 = D.R_RM_Splice1;
+                D.R_RM_Splice1 = D.R_LM_Splice1;
+                D.R_LM_Splice1 = splice1;
+
+                var splice2 = D.R_RM_Splice2;
+                D.R_RM_Splice2 = D.R_LM_Splice2;
+                D.R_LM_Splice2 = splice2;
+
+                var dowell = D.R_RM_ChangeDowel;
+                D.R_RM_ChangeDowel = D.R_LM_ChangeDowel;
+                D.R_LM_ChangeDowel = dowell;
+
+                var splicetype = D.R_RM_SpliceType;
+                D.R_RM_SpliceType = D.R_LM_SpliceType;
+                D.R_LM_SpliceType = splicetype;
+
+                var bent = D.R_RM_Bent;
+                D.R_RM_Bent = D.R_LM_Bent;
+                D.R_LM_Bent = bent;
+
+                var hookcorver = D.R_RM_HookCorver;
+                D.R_RM_HookCorver = D.R_LM_HookCorver;
+                D.R_LM_HookCorver = hookcorver;
+
+                var hooklength = D.R_RM_HookLength;
+                D.R_RM_HookLength = D.R_LM_HookLength;
+                D.R_LM_HookLength = hooklength;
+
+                var hookinout = D.R_RM_HookInOut;
+                D.R_RM_HookInOut = D.R_LM_HookInOut;
+                D.R_LM_HookInOut = hookinout;
+
+            }
+
+            if (D.LR_Change == "좌우변경")
+            {
+                var name = D.R_RT_Name;
+                D.R_RT_Name = D.R_LT_Name;
+                D.R_LT_Name = name;
+
+                var grade = D.R_RT_Grade;
+                D.R_RT_Grade = D.R_LT_Grade;
+                D.R_LT_Grade = grade;
+
+                var size = D.R_RT_Size;
+                D.R_RT_Size = D.R_LT_Size;
+                D.R_LT_Size = size;
+
+                var radius = D.R_RT_Radius;
+                D.R_RT_Radius = D.R_LT_Radius;
+                D.R_LT_Radius = radius;
+
+                var classs = D.R_RT_Class;
+                D.R_RT_Class = D.R_LT_Class;
+                D.R_LT_Class = classs;
+
+                var prefix = D.R_RT_Prefix;
+                D.R_RT_Prefix = D.R_LT_Prefix;
+                D.R_LT_Prefix = prefix;
+
+                var startnum = D.R_RT_StartNumber;
+                D.R_RT_StartNumber = D.R_LT_StartNumber;
+                D.R_LT_StartNumber = startnum;
+
+                var spcingtype = D.R_RT_SpacingType;
+                D.R_RT_SpacingType = D.R_LT_SpacingType;
+                D.R_LT_SpacingType = spcingtype;
+
+                var userspacing = D.R_RT_UserSpacing;
+                D.R_RT_UserSpacing = D.R_LT_UserSpacing;
+                D.R_LT_UserSpacing = userspacing;
+
+                var exclude = D.R_RT_ExcludeType;
+                D.R_RT_ExcludeType = D.R_LT_ExcludeType;
+                D.R_LT_ExcludeType = exclude;
+
+                /////////
+
+                var yesno = D.R_RT_YesOrNo;
+                D.R_RT_YesOrNo = D.R_LT_YesOrNo;
+                D.R_LT_YesOrNo = yesno;
+
+                var splice1 = D.R_RT_Splice1;
+                D.R_RT_Splice1 = D.R_LT_Splice1;
+                D.R_LT_Splice1 = splice1;
+
+                var splice2 = D.R_RT_Splice2;
+                D.R_RT_Splice2 = D.R_LT_Splice2;
+                D.R_LT_Splice2 = splice2;
+
+                var splicetype = D.R_RT_SpliceType;
+                D.R_RT_SpliceType = D.R_LT_SpliceType;
+                D.R_LT_SpliceType = splicetype;
+
+                var bent = D.R_RT_Bent;
+                D.R_RT_Bent = D.R_LT_Bent;
+                D.R_LT_Bent = bent;
+
+                var hookcorver = D.R_RT_HookCorver;
+                D.R_RT_HookCorver = D.R_LT_HookCorver;
+                D.R_LT_HookCorver = hookcorver;
+
+                var hooklength = D.R_RT_HookLength;
+                D.R_RT_HookLength = D.R_LT_HookLength;
+                D.R_LT_HookLength = hooklength;
+
+                var hookinout = D.R_RT_HookInOut;
+                D.R_RT_HookInOut = D.R_LT_HookInOut;
+                D.R_LT_HookInOut = hookinout;
+
+            }
+
             #region 포인트
 
             if (D.RebarS == "중심") ksXS2 = 0;
@@ -993,10 +1434,11 @@ namespace YT.WallVerticalRebar
             #region RRB 
             var barRRB = new Rebar();
 
+            barRRB.Father = beam;
+
             barRRB.Name = D.R_RB_Name;
             barRRB.Grade = D.R_RB_Grade;
             barRRB.Size = D.R_RB_Size;
-
 
             barRRB.Radius = D.R_RB_Radius;
             barRRB.Class = D.R_RB_Class;
@@ -1015,11 +1457,10 @@ namespace YT.WallVerticalRebar
 
             double rightSpacing = D.R_Spacing;
 
-            var s = (double)ls.X - (double)rs.X;
+            var s = Math.Round((double)ls.X - (double)rs.X, 2);
             var sa = s / 2;
 
             var rightSpacings = new Spacings();
-
 
             if (s > 0 && s <= rightSpacing * 2 && s > rightSpacing)
             {
@@ -1131,6 +1572,8 @@ namespace YT.WallVerticalRebar
 
             #region RLB
             var barRLB = new Rebar();
+
+            barRLB.Father = beam;
 
             barRLB.Name = D.R_LB_Name;
             barRLB.Grade = D.R_LB_Grade;
@@ -1261,12 +1704,14 @@ namespace YT.WallVerticalRebar
             {
 
             }
-            m.CommitChanges();
+
             #endregion
 
             #region RRM
 
             var barRRM = new Rebar();
+
+            barRRM.Father = beam;
 
             barRRM.Name = D.R_RM_Name;
             barRRM.Grade = D.R_RM_Grade;
@@ -1322,7 +1767,7 @@ namespace YT.WallVerticalRebar
 
             double rightSpacingM = D.R_Spacing;
 
-            var sM = (double)ls.X - (double)rs.X;
+            var sM = Math.Round((double)ls.X - (double)rs.X, 2);
             var saM = sM / 2;
 
             var rightSpacingsM = new Spacings();
@@ -1417,6 +1862,8 @@ namespace YT.WallVerticalRebar
 
             #region RLM
             var barRLM = new Rebar();
+
+            barRLM.Father = beam;
 
             barRLM.Name = D.R_LM_Name;
             barRLM.Grade = D.R_LM_Grade;
@@ -1558,12 +2005,14 @@ namespace YT.WallVerticalRebar
             {
 
             }
-            m.CommitChanges();
+
             #endregion
 
             #region RRT
 
             var barRRT = new Rebar();
+
+            barRRT.Father = beam;
 
             barRRT.Name = D.R_RT_Name;
             barRRT.Grade = D.R_RT_Grade;
@@ -1694,6 +2143,8 @@ namespace YT.WallVerticalRebar
 
             var barRLT = new Rebar();
 
+            barRLT.Father = beam;
+
             barRLT.Name = D.R_LT_Name;
             barRLT.Grade = D.R_LT_Grade;
             barRLT.Size = D.R_LT_Size;
@@ -1814,13 +2265,15 @@ namespace YT.WallVerticalRebar
 
             }
 
-            m.CommitChanges();
+
 
             #endregion
 
             #region RRD
 
             var barRRD = new Rebar();
+
+            barRRD.Father = beam;
 
             barRRD.Name = D.R_DR_Name;
             barRRD.Grade = D.R_RM_Grade;
@@ -1830,15 +2283,55 @@ namespace YT.WallVerticalRebar
 
             barRRD.Prefix = D.R_DR_Prefix;
             barRRD.StartNumber = D.R_DR_StartNumber;
+            barRRD.StartOffsetValue = -D.DW_FootingDepth + D.R_DR_HookCorver;
+
+            barRRD.StartHookLength = D.R_DR_HookLength - barRRD.Radius - KS.GetDiameter(Convert.ToDouble(barRRD.Size));
+            var Rlength = Math.Abs(barRRD.StartOffsetValue) + D.R_DR_Splice1 + D.R_DR_Splice2 + D.R_DR_HookLength;
+
+            var Rplus = 0.0;
+
+            if (D.DW_Operation == "100 단위")
+            {
+                var te = Rlength % 100;
+                Rplus = 100 - te;
+
+            }
+            else if (D.DW_Operation == "300,500,700 단위")
+            {
+                var te = Rlength % 1000;
+
+                if (te > 0 && te <= 300)
+                {
+                    Rplus = 300 - te ;
+                }
+                else if (te > 300 && te <= 500)
+                {
+                    Rplus = 500 - te ;
+                }
+                else if (te > 500 && te <= 700)
+                {
+                    Rplus = 700 - te ;
+                }
+                else if (te > 700)
+                {
+                    Rplus = 1000 - te ;
+                }
+                else if (te == 0)
+                {
+                    Rplus = 0;
+                }
+            }
+            else
+            {
+                Rplus = 0;
+            }
 
             var shapeRRD = new TSM.Polygon();
 
             shapeRRD.Points.Add(new TSG.Point(rs.X, rs.Y, minZ));
-            shapeRRD.Points.Add(new TSG.Point(rs.X, rs.Y, D.R_DR_Splice1 + D.R_DR_Splice2));
+            shapeRRD.Points.Add(new TSG.Point(rs.X, rs.Y, D.R_DR_Splice1 + D.R_DR_Splice2 + Rplus));
 
             barRRD.Polygon.Add(shapeRRD);
-
-            barRRD.StartOffsetValue = -D.DW_FootingDepth + D.R_DR_HookCorver;
 
             barRRD.StartPoint = new TSG.Point(barRRM.StartPoint.X + KS.GetDiameter(Convert.ToDouble(D.R_RM_Size)), barRRM.StartPoint.Y, barRRM.StartPoint.Z);
             barRRD.EndPoint = new TSG.Point(barRRM.EndPoint.X + KS.GetDiameter(Convert.ToDouble(D.R_RM_Size)), barRRM.EndPoint.Y, barRRM.EndPoint.Z);
@@ -1846,7 +2339,7 @@ namespace YT.WallVerticalRebar
             barRRD.StartHookShape = TSM.RebarHookData.RebarHookShapeEnum.CUSTOM_HOOK;
             barRRD.StartHookRadius = barRRM.Radius;
 
-            barRRD.StartHookLength = D.R_DR_HookLength - barRRD.Radius - KS.GetDiameter(Convert.ToDouble(barRRD.Size));
+
 
             switch (D.R_RM_ExcludeType)
             {
@@ -1934,6 +2427,8 @@ namespace YT.WallVerticalRebar
 
             var barRLD = new Rebar();
 
+            barRLD.Father = beam;
+
             barRLD.Name = D.R_DL_Name;
             barRLD.Grade = D.R_LM_Grade;
             barRLD.Size = D.R_LM_Size;
@@ -1942,15 +2437,56 @@ namespace YT.WallVerticalRebar
 
             barRLD.Prefix = D.R_DL_Prefix;
             barRLD.StartNumber = D.R_DL_StartNumber;
+            barRLD.StartOffsetValue = -D.DW_FootingDepth + D.R_DL_HookCorver;
+
+            barRLD.StartHookLength = D.R_DL_HookLength - barRLD.Radius - KS.GetDiameter(Convert.ToDouble(barRLD.Size));
+            var Llength = Math.Abs(barRLD.StartOffsetValue) + D.R_DL_Splice1 + D.R_DL_Splice2 + D.R_DL_HookLength;
+
+            var Lplus = 0.0;
+
+            if (D.DW_Operation == "100 단위")
+            {
+                var te = Llength % 100;
+                Lplus = 100 - te;
+
+            }
+            else if (D.DW_Operation == "300,500,700 단위")
+            {
+                var te = Llength % 1000;
+
+                if (te > 0 && te <= 300)
+                {
+                    Lplus = 300 - te ;
+                }
+                else if (te > 300 && te <= 500)
+                {
+                    Lplus = 500 - te ;
+                }
+                else if (te > 500 && te <= 700)
+                {
+                    Lplus = 700 - te ;
+                }
+                else if (te > 700)
+                {
+                    Lplus = 1000 - te;
+                }
+                else if (te == 0)
+                {
+                    Lplus = 0;
+                }
+            }
+            else
+            {
+                Lplus = 0;
+            }
+
 
             var shapeRLD = new TSM.Polygon();
 
             shapeRLD.Points.Add(new TSG.Point(ls.X, ls.Y, minZ));
-            shapeRLD.Points.Add(new TSG.Point(ls.X, ls.Y, D.R_DL_Splice1 + D.R_DL_Splice2));
+            shapeRLD.Points.Add(new TSG.Point(ls.X, ls.Y, D.R_DL_Splice1 + D.R_DL_Splice2 + Lplus));
 
             barRLD.Polygon.Add(shapeRLD);
-
-            barRLD.StartOffsetValue = -D.DW_FootingDepth + D.R_DL_HookCorver;
 
             barRLD.StartPoint = new TSG.Point(barRLM.StartPoint.X + KS.GetDiameter(Convert.ToDouble(D.R_LM_Size)), barRLM.StartPoint.Y, barRLM.StartPoint.Z);
             barRLD.EndPoint = new TSG.Point(barRLM.EndPoint.X + KS.GetDiameter(Convert.ToDouble(D.R_LM_Size)), barRLM.EndPoint.Y, barRLM.EndPoint.Z);
@@ -1958,7 +2494,7 @@ namespace YT.WallVerticalRebar
             barRLD.StartHookShape = TSM.RebarHookData.RebarHookShapeEnum.CUSTOM_HOOK;
             barRLD.StartHookRadius = barRLM.Radius;
 
-            barRLD.StartHookLength = D.R_DL_HookLength - barRLD.Radius - KS.GetDiameter(Convert.ToDouble(barRLD.Size));
+
 
             switch (D.R_LM_ExcludeType)
             {
@@ -2042,6 +2578,7 @@ namespace YT.WallVerticalRebar
 
             #endregion
 
+            m.CommitChanges();
 
         }
 
@@ -2107,6 +2644,237 @@ namespace YT.WallVerticalRebar
 
             #endregion
 
+            #region MyRegion
+            //if (D.LR_Change == "좌우변경")
+            //{
+            //    var name = D.R_RB_Name;
+            //    D.R_RB_Name = D.R_LB_Name;
+            //    D.R_LB_Name = name;
+
+            //    var grade = D.R_RB_Grade;
+            //    D.R_RB_Grade = D.R_LB_Grade;
+            //    D.R_LB_Grade = grade;
+
+            //    var size = D.R_RB_Size;
+            //    D.R_RB_Size = D.R_LB_Size;
+            //    D.R_LB_Size = size;
+
+            //    var radius = D.R_RB_Radius;
+            //    D.R_RB_Radius = D.R_LB_Radius;
+            //    D.R_LB_Radius = radius;
+
+            //    var classs = D.R_RB_Class;
+            //    D.R_RB_Class = D.R_LB_Class;
+            //    D.R_LB_Class = classs;
+
+            //    var prefix = D.R_RB_Prefix;
+            //    D.R_RB_Prefix = D.R_LB_Prefix;
+            //    D.R_LB_Prefix = prefix;
+
+            //    var startnum = D.R_RB_StartNumber;
+            //    D.R_RB_StartNumber = D.R_LB_StartNumber;
+            //    D.R_LB_StartNumber = startnum;
+
+            //    var spcingtype = D.R_RB_SpacingType;
+            //    D.R_RB_SpacingType = D.R_LB_SpacingType;
+            //    D.R_LB_SpacingType = spcingtype;
+
+            //    var userspacing = D.R_RB_UserSpacing;
+            //    D.R_RB_UserSpacing = D.R_LB_UserSpacing;
+            //    D.R_LB_UserSpacing = userspacing;
+
+            //    var exclude = D.R_RB_ExcludeType;
+            //    D.R_RB_ExcludeType = D.R_LB_ExcludeType;
+            //    D.R_LB_ExcludeType = exclude;
+
+            //    /////////
+
+            //    var yesno = D.R_RB_YesOrNo;
+            //    D.R_RB_YesOrNo = D.R_LB_YesOrNo;
+            //    D.R_LB_YesOrNo = yesno;
+
+            //    var splice1 = D.R_RB_Splice1;
+            //    D.R_RB_Splice1 = D.R_LB_Splice1;
+            //    D.R_LB_Splice1 = splice1;
+
+            //    var splice2 = D.R_RB_Splice2;
+            //    D.R_RB_Splice2 = D.R_LB_Splice2;
+            //    D.R_LB_Splice2 = splice2;
+
+            //    var type = D.R_RB_Type;
+            //    D.R_RB_Type = D.R_LB_Type;
+            //    D.R_LB_Type = type;
+
+            //    var hooklength = D.R_RB_HookLength;
+            //    D.R_RB_HookLength = D.R_LB_HookLength;
+            //    D.R_LB_HookLength = hooklength;
+
+            //    var hookinout = D.R_RB_HookInOut;
+            //    D.R_RB_HookInOut = D.R_LB_HookInOut;
+            //    D.R_LB_HookInOut = hookinout;
+            //}
+
+            //if (D.LR_Change == "좌우변경")
+            //{
+            //    var name = D.R_RM_Name;
+            //    D.R_RM_Name = D.R_LM_Name;
+            //    D.R_LM_Name = name;
+
+            //    var grade = D.R_RM_Grade;
+            //    D.R_RM_Grade = D.R_LM_Grade;
+            //    D.R_LM_Grade = grade;
+
+            //    var size = D.R_RM_Size;
+            //    D.R_RM_Size = D.R_LM_Size;
+            //    D.R_LM_Size = size;
+
+            //    var radius = D.R_RM_Radius;
+            //    D.R_RM_Radius = D.R_LM_Radius;
+            //    D.R_LM_Radius = radius;
+
+            //    var classs = D.R_RM_Class;
+            //    D.R_RM_Class = D.R_LM_Class;
+            //    D.R_LM_Class = classs;
+
+            //    var prefix = D.R_RM_Prefix;
+            //    D.R_RM_Prefix = D.R_LM_Prefix;
+            //    D.R_LM_Prefix = prefix;
+
+            //    var startnum = D.R_RM_StartNumber;
+            //    D.R_RM_StartNumber = D.R_LM_StartNumber;
+            //    D.R_LM_StartNumber = startnum;
+
+            //    var spcingtype = D.R_RM_SpacingType;
+            //    D.R_RM_SpacingType = D.R_LM_SpacingType;
+            //    D.R_LM_SpacingType = spcingtype;
+
+            //    var userspacing = D.R_RM_UserSpacing;
+            //    D.R_RM_UserSpacing = D.R_LM_UserSpacing;
+            //    D.R_LM_UserSpacing = userspacing;
+
+            //    var exclude = D.R_RM_ExcludeType;
+            //    D.R_RM_ExcludeType = D.R_LM_ExcludeType;
+            //    D.R_LM_ExcludeType = exclude;
+
+            //    /////////
+
+            //    var yesno = D.R_RM_YesOrNo;
+            //    D.R_RM_YesOrNo = D.R_LM_YesOrNo;
+            //    D.R_LM_YesOrNo = yesno;
+
+            //    var splice1 = D.R_RM_Splice1;
+            //    D.R_RM_Splice1 = D.R_LM_Splice1;
+            //    D.R_LM_Splice1 = splice1;
+
+            //    var splice2 = D.R_RM_Splice2;
+            //    D.R_RM_Splice2 = D.R_LM_Splice2;
+            //    D.R_LM_Splice2 = splice2;
+
+            //    var dowell = D.R_RM_ChangeDowel;
+            //    D.R_RM_ChangeDowel = D.R_LM_ChangeDowel;
+            //    D.R_LM_ChangeDowel = dowell;
+
+            //    var splicetype = D.R_RM_SpliceType;
+            //    D.R_RM_SpliceType = D.R_LM_SpliceType;
+            //    D.R_LM_SpliceType = splicetype;
+
+            //    var bent = D.R_RM_Bent;
+            //    D.R_RM_Bent = D.R_LM_Bent;
+            //    D.R_LM_Bent = bent;
+
+            //    var hookcorver = D.R_RM_HookCorver;
+            //    D.R_RM_HookCorver = D.R_LM_HookCorver;
+            //    D.R_LM_HookCorver = hookcorver;
+
+            //    var hooklength = D.R_RM_HookLength;
+            //    D.R_RM_HookLength = D.R_LM_HookLength;
+            //    D.R_LM_HookLength = hooklength;
+
+            //    var hookinout = D.R_RM_HookInOut;
+            //    D.R_RM_HookInOut = D.R_LM_HookInOut;
+            //    D.R_LM_HookInOut = hookinout;
+
+            //}
+
+            //if (D.LR_Change == "좌우변경")
+            //{
+            //    var name = D.R_RT_Name;
+            //    D.R_RT_Name = D.R_LT_Name;
+            //    D.R_LT_Name = name;
+
+            //    var grade = D.R_RT_Grade;
+            //    D.R_RT_Grade = D.R_LT_Grade;
+            //    D.R_LT_Grade = grade;
+
+            //    var size = D.R_RT_Size;
+            //    D.R_RT_Size = D.R_LT_Size;
+            //    D.R_LT_Size = size;
+
+            //    var radius = D.R_RT_Radius;
+            //    D.R_RT_Radius = D.R_LT_Radius;
+            //    D.R_LT_Radius = radius;
+
+            //    var classs = D.R_RT_Class;
+            //    D.R_RT_Class = D.R_LT_Class;
+            //    D.R_LT_Class = classs;
+
+            //    var prefix = D.R_RT_Prefix;
+            //    D.R_RT_Prefix = D.R_LT_Prefix;
+            //    D.R_LT_Prefix = prefix;
+
+            //    var startnum = D.R_RT_StartNumber;
+            //    D.R_RT_StartNumber = D.R_LT_StartNumber;
+            //    D.R_LT_StartNumber = startnum;
+
+            //    var spcingtype = D.R_RT_SpacingType;
+            //    D.R_RT_SpacingType = D.R_LT_SpacingType;
+            //    D.R_LT_SpacingType = spcingtype;
+
+            //    var userspacing = D.R_RT_UserSpacing;
+            //    D.R_RT_UserSpacing = D.R_LT_UserSpacing;
+            //    D.R_LT_UserSpacing = userspacing;
+
+            //    var exclude = D.R_RT_ExcludeType;
+            //    D.R_RT_ExcludeType = D.R_LT_ExcludeType;
+            //    D.R_LT_ExcludeType = exclude;
+
+            //    /////////
+
+            //    var yesno = D.R_RT_YesOrNo;
+            //    D.R_RT_YesOrNo = D.R_LT_YesOrNo;
+            //    D.R_LT_YesOrNo = yesno;
+
+            //    var splice1 = D.R_RT_Splice1;
+            //    D.R_RT_Splice1 = D.R_LT_Splice1;
+            //    D.R_LT_Splice1 = splice1;
+
+            //    var splice2 = D.R_RT_Splice2;
+            //    D.R_RT_Splice2 = D.R_LT_Splice2;
+            //    D.R_LT_Splice2 = splice2;
+
+            //    var splicetype = D.R_RT_SpliceType;
+            //    D.R_RT_SpliceType = D.R_LT_SpliceType;
+            //    D.R_LT_SpliceType = splicetype;
+
+            //    var bent = D.R_RT_Bent;
+            //    D.R_RT_Bent = D.R_LT_Bent;
+            //    D.R_LT_Bent = bent;
+
+            //    var hookcorver = D.R_RT_HookCorver;
+            //    D.R_RT_HookCorver = D.R_LT_HookCorver;
+            //    D.R_LT_HookCorver = hookcorver;
+
+            //    var hooklength = D.R_RT_HookLength;
+            //    D.R_RT_HookLength = D.R_LT_HookLength;
+            //    D.R_LT_HookLength = hooklength;
+
+            //    var hookinout = D.R_RT_HookInOut;
+            //    D.R_RT_HookInOut = D.R_LT_HookInOut;
+            //    D.R_LT_HookInOut = hookinout;
+
+            //} 
+            #endregion
+
             #region 포인트
 
             if (D.RebarS == "중심") ksXS2 = 0;
@@ -2158,10 +2926,11 @@ namespace YT.WallVerticalRebar
             #region RRB 
             var barRRB = new Rebar();
 
+            barRRB.Father = beam;
+
             barRRB.Name = D.R_RB_Name;
             barRRB.Grade = D.R_RB_Grade;
             barRRB.Size = D.R_RB_Size;
-
 
             barRRB.Radius = D.R_RB_Radius;
             barRRB.Class = D.R_RB_Class;
@@ -2180,7 +2949,7 @@ namespace YT.WallVerticalRebar
 
             double rightSpacing = D.R_Spacing;
 
-            var s = (double)ls.X - (double)rs.X;
+            var s = Math.Round((double)ls.X - (double)rs.X, 2);
             var sa = s / 2;
 
             var rightSpacings = new Spacings();
@@ -2296,6 +3065,8 @@ namespace YT.WallVerticalRebar
 
             #region RLB
             var barRLB = new Rebar();
+
+            barRLB.Father = beam;
 
             barRLB.Name = D.R_LB_Name;
             barRLB.Grade = D.R_LB_Grade;
@@ -2433,6 +3204,8 @@ namespace YT.WallVerticalRebar
 
             var barRRM = new Rebar();
 
+            barRRM.Father = beam;
+
             barRRM.Name = D.R_RM_Name;
             barRRM.Grade = D.R_RM_Grade;
             barRRM.Size = D.R_RM_Size;
@@ -2487,7 +3260,7 @@ namespace YT.WallVerticalRebar
 
             double rightSpacingM = D.R_Spacing;
 
-            var sM = (double)ls.X - (double)rs.X;
+            var sM = Math.Round((double)ls.X - (double)rs.X, 2);
             var saM = sM / 2;
 
             var rightSpacingsM = new Spacings();
@@ -2582,6 +3355,8 @@ namespace YT.WallVerticalRebar
 
             #region RLM
             var barRLM = new Rebar();
+
+            barRLM.Father = beam;
 
             barRLM.Name = D.R_LM_Name;
             barRLM.Grade = D.R_LM_Grade;
@@ -2730,6 +3505,8 @@ namespace YT.WallVerticalRebar
 
             var barRRT = new Rebar();
 
+            barRRT.Father = beam;
+
             barRRT.Name = D.R_RT_Name;
             barRRT.Grade = D.R_RT_Grade;
             barRRT.Size = D.R_RT_Size;
@@ -2859,6 +3636,9 @@ namespace YT.WallVerticalRebar
 
             var barRLT = new Rebar();
 
+            barRLT.Father = beam;
+
+
             barRLT.Name = D.R_LT_Name;
             barRLT.Grade = D.R_LT_Grade;
             barRLT.Size = D.R_LT_Size;
@@ -2987,6 +3767,8 @@ namespace YT.WallVerticalRebar
 
             var barRRD = new Rebar();
 
+            barRRD.Father = beam;
+
             barRRD.Name = D.R_DR_Name;
             barRRD.Grade = D.R_RM_Grade;
             barRRD.Size = D.R_RM_Size;
@@ -2995,15 +3777,57 @@ namespace YT.WallVerticalRebar
 
             barRRD.Prefix = D.R_DR_Prefix;
             barRRD.StartNumber = D.R_DR_StartNumber;
+            barRRD.StartOffsetValue = -D.DW_FootingDepth + D.R_DR_HookCorver;
+
+            barRRD.StartHookLength = D.R_DR_HookLength - barRRD.Radius - KS.GetDiameter(Convert.ToDouble(barRRD.Size));
+            var Rlength = Math.Abs(barRRD.StartOffsetValue) + D.R_DR_Splice1 + D.R_DR_Splice2 + D.R_DR_HookLength;
+
+            var Rplus = 0.0;
+
+            if (D.DW_Operation == "100 단위림")
+            {
+                var te = Rlength % 100;
+                Rplus = 100 - te;
+
+            }
+            else if (D.DW_Operation == "300,500,700 단위")
+            {
+                var te = Rlength % 1000;
+
+                if (te > 0 && te <= 300)
+                {
+                    Rplus = 300 - te;
+                }
+                else if (te > 300 && te <= 500)
+                {
+                    Rplus = 500 - te ;
+                }
+                else if (te > 500 && te <= 700)
+                {
+                    Rplus = 700 - te ;
+                }
+                else if (te > 700)
+                {
+                    Rplus = 1000 - te ;
+                }
+                else if (te == 0)
+                {
+                    Rplus = 0;
+                }
+            }
+            else
+            {
+                Rplus = 0;
+            }
 
             var shapeRRD = new TSM.Polygon();
 
             shapeRRD.Points.Add(new TSG.Point(rs.X, rs.Y, minZ));
-            shapeRRD.Points.Add(new TSG.Point(rs.X, rs.Y, D.R_DR_Splice1 + D.R_DR_Splice2));
+            shapeRRD.Points.Add(new TSG.Point(rs.X, rs.Y, D.R_DR_Splice1 + D.R_DR_Splice2 + Rplus));
 
             barRRD.Polygon.Add(shapeRRD);
 
-            barRRD.StartOffsetValue = -D.DW_FootingDepth + D.R_DR_HookCorver;
+
 
             barRRD.StartPoint = new TSG.Point(barRRM.StartPoint.X + KS.GetDiameter(Convert.ToDouble(D.R_RM_Size)), barRRM.StartPoint.Y, barRRM.StartPoint.Z);
             barRRD.EndPoint = new TSG.Point(barRRM.EndPoint.X + KS.GetDiameter(Convert.ToDouble(D.R_RM_Size)), barRRM.EndPoint.Y, barRRM.EndPoint.Z);
@@ -3011,7 +3835,7 @@ namespace YT.WallVerticalRebar
             barRRD.StartHookShape = TSM.RebarHookData.RebarHookShapeEnum.CUSTOM_HOOK;
             barRRD.StartHookRadius = barRRM.Radius;
 
-            barRRD.StartHookLength = D.R_DR_HookLength - barRRD.Radius - KS.GetDiameter(Convert.ToDouble(barRRD.Size));
+
 
             switch (D.R_RM_ExcludeType)
             {
@@ -3099,6 +3923,8 @@ namespace YT.WallVerticalRebar
 
             var barRLD = new Rebar();
 
+            barRLD.Father = beam;
+
             barRLD.Name = D.R_DL_Name;
             barRLD.Grade = D.R_LM_Grade;
             barRLD.Size = D.R_LM_Size;
@@ -3107,15 +3933,58 @@ namespace YT.WallVerticalRebar
 
             barRLD.Prefix = D.R_DL_Prefix;
             barRLD.StartNumber = D.R_DL_StartNumber;
+            barRLD.StartOffsetValue = -D.DW_FootingDepth + D.R_DL_HookCorver;
+
+            barRLD.StartHookLength = D.R_DL_HookLength - barRLD.Radius - KS.GetDiameter(Convert.ToDouble(barRLD.Size));
+            var Llength = Math.Abs(barRLD.StartOffsetValue) + D.R_DL_Splice1 + D.R_DL_Splice2 + D.R_DL_HookLength;
+
+            var Lplus = 0.0;
+
+            if (D.DW_Operation == "100 단위")
+            {
+                var te = Llength % 100;
+                Lplus = 100 - te;
+
+            }
+            else if (D.DW_Operation == "300,500,700 단위")
+            {
+                var te = Llength % 1000;
+
+                if (te > 0 && te <= 300)
+                {
+                    Lplus = 300 - te ;
+                }
+                else if (te > 300 && te <= 500)
+                {
+                    Lplus = 500 - te ;
+                }
+                else if (te > 500 && te <= 700)
+                {
+                    Lplus = 700 - te ;
+                }
+                else if (te > 700)
+                {
+                    Lplus = 1000 - te ;
+                }
+                else if (te == 0)
+                {
+                    Lplus = 0;
+                }
+            }
+            else
+            {
+                Lplus = 0;
+            }
+
 
             var shapeRLD = new TSM.Polygon();
 
             shapeRLD.Points.Add(new TSG.Point(ls.X, ls.Y, minZ));
-            shapeRLD.Points.Add(new TSG.Point(ls.X, ls.Y, D.R_DL_Splice1 + D.R_DL_Splice2));
+            shapeRLD.Points.Add(new TSG.Point(ls.X, ls.Y, D.R_DL_Splice1 + D.R_DL_Splice2 + Lplus));
 
             barRLD.Polygon.Add(shapeRLD);
 
-            barRLD.StartOffsetValue = -D.DW_FootingDepth + D.R_DL_HookCorver;
+
 
             barRLD.StartPoint = new TSG.Point(barRLM.StartPoint.X + KS.GetDiameter(Convert.ToDouble(D.R_LM_Size)), barRLM.StartPoint.Y, barRLM.StartPoint.Z);
             barRLD.EndPoint = new TSG.Point(barRLM.EndPoint.X + KS.GetDiameter(Convert.ToDouble(D.R_LM_Size)), barRLM.EndPoint.Y, barRLM.EndPoint.Z);
@@ -3123,7 +3992,7 @@ namespace YT.WallVerticalRebar
             barRLD.StartHookShape = TSM.RebarHookData.RebarHookShapeEnum.CUSTOM_HOOK;
             barRLD.StartHookRadius = barRLM.Radius;
 
-            barRLD.StartHookLength = D.R_DL_HookLength - barRLD.Radius - KS.GetDiameter(Convert.ToDouble(barRLD.Size));
+
 
             switch (D.R_LM_ExcludeType)
             {
@@ -3272,6 +4141,235 @@ namespace YT.WallVerticalRebar
 
             #endregion
 
+            if (D.LR_Change == "좌우변경")
+            {
+                var name = D.R_RB_Name2;
+                D.R_RB_Name2 = D.R_LB_Name2;
+                D.R_LB_Name2 = name;
+
+                var grade = D.R_RB_Grade2;
+                D.R_RB_Grade2 = D.R_LB_Grade2;
+                D.R_LB_Grade2 = grade;
+
+                var size = D.R_RB_Size2;
+                D.R_RB_Size2 = D.R_LB_Size2;
+                D.R_LB_Size2 = size;
+
+                var radius = D.R_RB_Radius2;
+                D.R_RB_Radius2 = D.R_LB_Radius2;
+                D.R_LB_Radius2 = radius;
+
+                var classs = D.R_RB_Class2;
+                D.R_RB_Class2 = D.R_LB_Class2;
+                D.R_LB_Class2 = classs;
+
+                var prefix = D.R_RB_Prefix2;
+                D.R_RB_Prefix2 = D.R_LB_Prefix2;
+                D.R_LB_Prefix2 = prefix;
+
+                var startnum = D.R_RB_StartNumber2;
+                D.R_RB_StartNumber2 = D.R_LB_StartNumber2;
+                D.R_LB_StartNumber2 = startnum;
+
+                var spcingtype = D.R_RB_SpacingType2;
+                D.R_RB_SpacingType2 = D.R_LB_SpacingType2;
+                D.R_LB_SpacingType2 = spcingtype;
+
+                var userspacing = D.R_RB_UserSpacing2;
+                D.R_RB_UserSpacing2 = D.R_LB_UserSpacing2;
+                D.R_LB_UserSpacing2 = userspacing;
+
+                var exclude = D.R_RB_ExcludeType2;
+                D.R_RB_ExcludeType2 = D.R_LB_ExcludeType2;
+                D.R_LB_ExcludeType2 = exclude;
+
+                /////////
+
+                //var yesno = D.R_RB_YesOrNo;
+                //D.R_RB_YesOrNo = D.R_LB_YesOrNo;
+                //D.R_LB_YesOrNo = yesno;
+
+                //var splice1 = D.R_RB_Splice1;
+                //D.R_RB_Splice1 = D.R_LB_Splice1;
+                //D.R_LB_Splice1 = splice1;
+
+                //var splice2 = D.R_RB_Splice2;
+                //D.R_RB_Splice2 = D.R_LB_Splice2;
+                //D.R_LB_Splice2 = splice2;
+
+                //var type = D.R_RB_Type;
+                //D.R_RB_Type = D.R_LB_Type;
+                //D.R_LB_Type = type;
+
+                //var hooklength = D.R_RB_HookLength;
+                //D.R_RB_HookLength = D.R_LB_HookLength;
+                //D.R_LB_HookLength = hooklength;
+
+                //var hookinout = D.R_RB_HookInOut;
+                //D.R_RB_HookInOut = D.R_LB_HookInOut;
+                //D.R_LB_HookInOut = hookinout;
+            }
+
+            if (D.LR_Change == "좌우변경")
+            {
+                var name = D.R_RM_Name2;
+                D.R_RM_Name2 = D.R_LM_Name2;
+                D.R_LM_Name2 = name;
+
+                var grade = D.R_RM_Grade2;
+                D.R_RM_Grade2 = D.R_LM_Grade2;
+                D.R_LM_Grade2 = grade;
+
+                var size = D.R_RM_Size2;
+                D.R_RM_Size2 = D.R_LM_Size2;
+                D.R_LM_Size2 = size;
+
+                var radius = D.R_RM_Radius2;
+                D.R_RM_Radius2 = D.R_LM_Radius2;
+                D.R_LM_Radius2 = radius;
+
+                var classs = D.R_RM_Class2;
+                D.R_RM_Class2 = D.R_LM_Class2;
+                D.R_LM_Class2 = classs;
+
+                var prefix = D.R_RM_Prefix2;
+                D.R_RM_Prefix2 = D.R_LM_Prefix2;
+                D.R_LM_Prefix2 = prefix;
+
+                var startnum = D.R_RM_StartNumber2;
+                D.R_RM_StartNumber2 = D.R_LM_StartNumber2;
+                D.R_LM_StartNumber2 = startnum;
+
+                var spcingtype = D.R_RM_SpacingType2;
+                D.R_RM_SpacingType2 = D.R_LM_SpacingType2;
+                D.R_LM_SpacingType2 = spcingtype;
+
+                var userspacing = D.R_RM_UserSpacing2;
+                D.R_RM_UserSpacing2 = D.R_LM_UserSpacing2;
+                D.R_LM_UserSpacing2 = userspacing;
+
+                var exclude = D.R_RM_ExcludeType2;
+                D.R_RM_ExcludeType2 = D.R_LM_ExcludeType2;
+                D.R_LM_ExcludeType2 = exclude;
+
+                /////////
+
+                //var yesno = D.R_RM_YesOrNo;
+                //D.R_RM_YesOrNo = D.R_LM_YesOrNo;
+                //D.R_LM_YesOrNo = yesno;
+
+                //var splice1 = D.R_RM_Splice1;
+                //D.R_RM_Splice1 = D.R_LM_Splice1;
+                //D.R_LM_Splice1 = splice1;
+
+                //var splice2 = D.R_RM_Splice2;
+                //D.R_RM_Splice2 = D.R_LM_Splice2;
+                //D.R_LM_Splice2 = splice2;
+
+                //var dowell = D.R_RM_ChangeDowel;
+                //D.R_RM_ChangeDowel = D.R_LM_ChangeDowel;
+                //D.R_LM_ChangeDowel = dowell;
+
+                //var splicetype = D.R_RM_SpliceType;
+                //D.R_RM_SpliceType = D.R_LM_SpliceType;
+                //D.R_LM_SpliceType = splicetype;
+
+                //var bent = D.R_RM_Bent;
+                //D.R_RM_Bent = D.R_LM_Bent;
+                //D.R_LM_Bent = bent;
+
+                //var hookcorver = D.R_RM_HookCorver;
+                //D.R_RM_HookCorver = D.R_LM_HookCorver;
+                //D.R_LM_HookCorver = hookcorver;
+
+                //var hooklength = D.R_RM_HookLength;
+                //D.R_RM_HookLength = D.R_LM_HookLength;
+                //D.R_LM_HookLength = hooklength;
+
+                //var hookinout = D.R_RM_HookInOut;
+                //D.R_RM_HookInOut = D.R_LM_HookInOut;
+                //D.R_LM_HookInOut = hookinout;
+
+            }
+
+            if (D.LR_Change == "좌우변경")
+            {
+                var name = D.R_RT_Name2;
+                D.R_RT_Name2 = D.R_LT_Name2;
+                D.R_LT_Name2 = name;
+
+                var grade = D.R_RT_Grade2;
+                D.R_RT_Grade2 = D.R_LT_Grade2;
+                D.R_LT_Grade2 = grade;
+
+                var size = D.R_RT_Size2;
+                D.R_RT_Size2 = D.R_LT_Size2;
+                D.R_LT_Size2 = size;
+
+                var radius = D.R_RT_Radius2;
+                D.R_RT_Radius2 = D.R_LT_Radius2;
+                D.R_LT_Radius2 = radius;
+
+                var classs = D.R_RT_Class2;
+                D.R_RT_Class2 = D.R_LT_Class2;
+                D.R_LT_Class2 = classs;
+
+                var prefix = D.R_RT_Prefix2;
+                D.R_RT_Prefix2 = D.R_LT_Prefix2;
+                D.R_LT_Prefix2 = prefix;
+
+                var startnum = D.R_RT_StartNumber2;
+                D.R_RT_StartNumber2 = D.R_LT_StartNumber2;
+                D.R_LT_StartNumber2 = startnum;
+
+                var spcingtype = D.R_RT_SpacingType2;
+                D.R_RT_SpacingType2 = D.R_LT_SpacingType2;
+                D.R_LT_SpacingType2 = spcingtype;
+
+                var userspacing = D.R_RT_UserSpacing2;
+                D.R_RT_UserSpacing2 = D.R_LT_UserSpacing2;
+                D.R_LT_UserSpacing2 = userspacing;
+
+                var exclude = D.R_RT_ExcludeType2;
+                D.R_RT_ExcludeType2 = D.R_LT_ExcludeType2;
+                D.R_LT_ExcludeType2 = exclude;
+
+                /////////
+
+                //var yesno = D.R_RT_YesOrNo;
+                //D.R_RT_YesOrNo = D.R_LT_YesOrNo;
+                //D.R_LT_YesOrNo = yesno;
+
+                //var splice1 = D.R_RT_Splice1;
+                //D.R_RT_Splice1 = D.R_LT_Splice1;
+                //D.R_LT_Splice1 = splice1;
+
+                //var splice2 = D.R_RT_Splice2;
+                //D.R_RT_Splice2 = D.R_LT_Splice2;
+                //D.R_LT_Splice2 = splice2;
+
+                //var splicetype = D.R_RT_SpliceType;
+                //D.R_RT_SpliceType = D.R_LT_SpliceType;
+                //D.R_LT_SpliceType = splicetype;
+
+                //var bent = D.R_RT_Bent;
+                //D.R_RT_Bent = D.R_LT_Bent;
+                //D.R_LT_Bent = bent;
+
+                //var hookcorver = D.R_RT_HookCorver;
+                //D.R_RT_HookCorver = D.R_LT_HookCorver;
+                //D.R_LT_HookCorver = hookcorver;
+
+                //var hooklength = D.R_RT_HookLength;
+                //D.R_RT_HookLength = D.R_LT_HookLength;
+                //D.R_LT_HookLength = hooklength;
+
+                //var hookinout = D.R_RT_HookInOut;
+                //D.R_RT_HookInOut = D.R_LT_HookInOut;
+                //D.R_LT_HookInOut = hookinout;
+
+            }
+
             #region 포인트
 
             if (D.RebarS == "중심") ksXS2 = 0;
@@ -3323,6 +4421,8 @@ namespace YT.WallVerticalRebar
             #region RRB 
             var barRRB = new Rebar();
 
+            barRRB.Father = beam;
+
             barRRB.Name = D.R_RB_Name2;
             barRRB.Grade = D.R_RB_Grade2;
             barRRB.Size = D.R_RB_Size2;
@@ -3343,7 +4443,7 @@ namespace YT.WallVerticalRebar
 
             double rightSpacing = D.R_Spacing;
 
-            var s = (double)ls.X - (double)rs.X;
+            var s = Math.Round((double)ls.X - (double)rs.X, 2);
             var sa = s / 2;
 
             var rightSpacings = new Spacings();
@@ -3459,6 +4559,8 @@ namespace YT.WallVerticalRebar
 
             #region RLB
             var barRLB = new Rebar();
+
+            barRLB.Father = beam;
 
             barRLB.Name = D.R_LB_Name2;
             barRLB.Grade = D.R_LB_Grade2;
@@ -3596,6 +4698,8 @@ namespace YT.WallVerticalRebar
 
             var barRRM = new Rebar();
 
+            barRRM.Father = beam;
+
             barRRM.Name = D.R_RM_Name2;
             barRRM.Grade = D.R_RM_Grade2;
             barRRM.Size = D.R_RM_Size2;
@@ -3650,7 +4754,7 @@ namespace YT.WallVerticalRebar
 
             double rightSpacingM = D.R_Spacing;
 
-            var sM = (double)ls.X - (double)rs.X;
+            var sM = Math.Round((double)ls.X - (double)rs.X, 2);
             var saM = sM / 2;
 
             var rightSpacingsM = new Spacings();
@@ -3744,6 +4848,8 @@ namespace YT.WallVerticalRebar
 
             #region RLM
             var barRLM = new Rebar();
+
+            barRLM.Father = beam;
 
             barRLM.Name = D.R_LM_Name2;
             barRLM.Grade = D.R_LM_Grade2;
@@ -3890,6 +4996,8 @@ namespace YT.WallVerticalRebar
 
             var barRRT = new Rebar();
 
+            barRRT.Father = beam;
+
             barRRT.Name = D.R_RT_Name2;
             barRRT.Grade = D.R_RT_Grade2;
             barRRT.Size = D.R_RT_Size2;
@@ -4019,6 +5127,8 @@ namespace YT.WallVerticalRebar
 
             var barRLT = new Rebar();
 
+            barRLT.Father = beam;
+
             barRLT.Name = D.R_LT_Name2;
             barRLT.Grade = D.R_LT_Grade2;
             barRLT.Size = D.R_LT_Size2;
@@ -4147,6 +5257,8 @@ namespace YT.WallVerticalRebar
 
             var barRRD = new Rebar();
 
+            barRRD.Father = beam;
+
             barRRD.Name = D.R_DR_Name2;
             barRRD.Grade = D.R_RM_Grade2;
             barRRD.Size = D.R_RM_Size2;
@@ -4155,15 +5267,57 @@ namespace YT.WallVerticalRebar
 
             barRRD.Prefix = D.R_DR_Prefix2;
             barRRD.StartNumber = D.R_DR_StartNumber2;
+            barRRD.StartOffsetValue = -D.DW_FootingDepth + D.R_DR_HookCorver;
+
+            barRRD.StartHookLength = D.R_DR_HookLength - barRRD.Radius - KS.GetDiameter(Convert.ToDouble(barRRD.Size));
+            var Rlength = Math.Abs(barRRD.StartOffsetValue) + D.R_DR_Splice1 + D.R_DR_Splice2 + D.R_DR_HookLength;
+
+            var Rplus = 0.0;
+
+            if (D.DW_Operation == "100 단위")
+            {
+                var te = Rlength % 100;
+                Rplus = 100 - te;
+
+            }
+            else if (D.DW_Operation == "300,500,700 단위")
+            {
+                var te = Rlength % 1000;
+
+                if (te > 0 && te <= 300)
+                {
+                    Rplus = 300 - te ;
+                }
+                else if (te > 300 && te <= 500)
+                {
+                    Rplus = 500 - te ;
+                }
+                else if (te > 500 && te <= 700)
+                {
+                    Rplus = 700 - te ;
+                }
+                else if (te > 700)
+                {
+                    Rplus = 1000 - te ;
+                }
+                else if (te == 0)
+                {
+                    Rplus = 0;
+                }
+            }
+            else
+            {
+                Rplus = 0;
+            }
 
             var shapeRRD = new TSM.Polygon();
 
             shapeRRD.Points.Add(new TSG.Point(rs.X, rs.Y, minZ));
-            shapeRRD.Points.Add(new TSG.Point(rs.X, rs.Y, D.R_DR_Splice1 + D.R_DR_Splice2));
+            shapeRRD.Points.Add(new TSG.Point(rs.X, rs.Y, D.R_DR_Splice1 + D.R_DR_Splice2 + Rplus));
 
             barRRD.Polygon.Add(shapeRRD);
 
-            barRRD.StartOffsetValue = -D.DW_FootingDepth + D.R_DR_HookCorver;
+
 
             barRRD.StartPoint = new TSG.Point(barRRM.StartPoint.X + KS.GetDiameter(Convert.ToDouble(D.R_RM_Size2)), barRRM.StartPoint.Y, barRRM.StartPoint.Z);
             barRRD.EndPoint = new TSG.Point(barRRM.EndPoint.X + KS.GetDiameter(Convert.ToDouble(D.R_RM_Size2)), barRRM.EndPoint.Y, barRRM.EndPoint.Z);
@@ -4171,7 +5325,7 @@ namespace YT.WallVerticalRebar
             barRRD.StartHookShape = TSM.RebarHookData.RebarHookShapeEnum.CUSTOM_HOOK;
             barRRD.StartHookRadius = barRRM.Radius;
 
-            barRRD.StartHookLength = D.R_DR_HookLength - barRRD.Radius - KS.GetDiameter(Convert.ToDouble(barRRD.Size));
+
 
             switch (D.R_RM_ExcludeType2)
             {
@@ -4258,6 +5412,8 @@ namespace YT.WallVerticalRebar
 
             var barRLD = new Rebar();
 
+            barRLD.Father = beam;
+
             barRLD.Name = D.R_DL_Name2;
             barRLD.Grade = D.R_LM_Grade2;
             barRLD.Size = D.R_LM_Size2;
@@ -4266,15 +5422,57 @@ namespace YT.WallVerticalRebar
 
             barRLD.Prefix = D.R_DL_Prefix2;
             barRLD.StartNumber = D.R_DL_StartNumber2;
+            barRLD.StartOffsetValue = -D.DW_FootingDepth + D.R_DL_HookCorver;
+
+            barRLD.StartHookLength = D.R_DL_HookLength - barRLD.Radius - KS.GetDiameter(Convert.ToDouble(barRLD.Size));
+            var Llength = Math.Abs(barRLD.StartOffsetValue) + D.R_DL_Splice1 + D.R_DL_Splice2 + D.R_DL_HookLength;
+
+            var Lplus = 0.0;
+
+            if (D.DW_Operation == "100 단위")
+            {
+                var te = Llength % 100;
+                Lplus = 100 - te;
+
+            }
+            else if (D.DW_Operation == "300,500,700 단위")
+            {
+                var te = Llength % 1000;
+
+                if (te > 0 && te <= 300)
+                {
+                    Lplus = 300 - te ;
+                }
+                else if (te > 300 && te <= 500)
+                {
+                    Lplus = 500 - te ;
+                }
+                else if (te > 500 && te <= 700)
+                {
+                    Lplus = 700 - te ;
+                }
+                else if (te > 700)
+                {
+                    Lplus = 1000 - te ;
+                }
+                else if (te == 0)
+                {
+                    Lplus = 0;
+                }
+            }
+            else
+            {
+                Lplus = 0;
+            }
 
             var shapeRLD = new TSM.Polygon();
 
             shapeRLD.Points.Add(new TSG.Point(ls.X, ls.Y, minZ));
-            shapeRLD.Points.Add(new TSG.Point(ls.X, ls.Y, D.R_DL_Splice1 + D.R_DL_Splice2));
+            shapeRLD.Points.Add(new TSG.Point(ls.X, ls.Y, D.R_DL_Splice1 + D.R_DL_Splice2 + Lplus));
 
             barRLD.Polygon.Add(shapeRLD);
 
-            barRLD.StartOffsetValue = -D.DW_FootingDepth + D.R_DL_HookCorver;
+
 
             barRLD.StartPoint = new TSG.Point(barRLM.StartPoint.X + KS.GetDiameter(Convert.ToDouble(D.R_LM_Size2)), barRLM.StartPoint.Y, barRLM.StartPoint.Z);
             barRLD.EndPoint = new TSG.Point(barRLM.EndPoint.X + KS.GetDiameter(Convert.ToDouble(D.R_LM_Size2)), barRLM.EndPoint.Y, barRLM.EndPoint.Z);
@@ -4282,7 +5480,7 @@ namespace YT.WallVerticalRebar
             barRLD.StartHookShape = TSM.RebarHookData.RebarHookShapeEnum.CUSTOM_HOOK;
             barRLD.StartHookRadius = barRLM.Radius;
 
-            barRLD.StartHookLength = D.R_DL_HookLength - barRLD.Radius - KS.GetDiameter(Convert.ToDouble(barRLD.Size));
+
 
             switch (D.R_LM_ExcludeType2)
             {
@@ -4552,8 +5750,15 @@ namespace YT.WallVerticalRebar
 
             #endregion
 
-            var length2 = length - D.S_RangeTop - D.S_BeamDepth;
+            var length2 = length - D.S_RangeTop;// - D.S_BeamDepth;
+            //var length2 = length - D.S_RangeTop;
             var te2 = ((int)length2 - ((int)D.S_SpacingZ / 2)) % (int)D.S_SpacingZ;
+
+            var tee = D.S_SpacingZ;
+            if (te2 == 0)
+            {
+                tee = 0;
+            }
 
             var length3 = D.S_RangeBottom - (D.S_SpacingZ / 2);
             var te3 = ((int)length3 % (int)D.S_SpacingZ);
@@ -4564,21 +5769,24 @@ namespace YT.WallVerticalRebar
 
             if (D.S_RangeType == "전체")
             {
-                bar1.Spacings = CopyArray(length - D.S_SpacingZ - D.S_BeamDepth, D.S_SpacingZ);
+                bar1.Spacings = CopyArrayB(length - D.S_SpacingZ - D.S_BeamDepth, D.S_SpacingZ);
             }
             else if (D.S_RangeType == "상")
             {
-                var el = length - D.S_RangeTop - D.S_BeamDepth - te2 + D.S_SpacingZ;
-                bar1.Spacings = CopyArray(length - el - D.S_BeamDepth - (D.S_SpacingZ / 2), D.S_SpacingZ);
+                //var el = length - D.S_RangeTop - D.S_BeamDepth - te2 + D.S_SpacingZ;
+                //var el = length - D.S_RangeTop - te2 + D.S_SpacingZ;
+                var el = length - D.S_RangeTop - te2 + tee;
+                //bar1.Spacings = CopyArrayB(length - el - D.S_BeamDepth - (D.S_SpacingZ / 2), D.S_SpacingZ);
+                bar1.Spacings = CopyArrayT(length - el - D.S_BeamDepth - (D.S_SpacingZ / 2), D.S_SpacingZ);
 
             }
             else if (D.S_RangeType == "하")
             {
-                bar1.Spacings = CopyArray(D.S_RangeBottom - D.S_SpacingZ / 2 - te3, D.S_SpacingZ);
+                bar1.Spacings = CopyArrayB(D.S_RangeBottom - D.S_SpacingZ / 2 - te3, D.S_SpacingZ);
             }
             else if (D.S_RangeType == "상,하")
             {
-                bar1.Spacings = CopyArray(D.S_RangeBottom - D.S_SpacingZ / 2 - te3, D.S_SpacingZ);
+                bar1.Spacings = CopyArrayB(D.S_RangeBottom - D.S_SpacingZ / 2 - te3, D.S_SpacingZ);
             }
 
             bar1.ExcludeType = TSM.RebarGroup.ExcludeTypeEnum.EXCLUDE_TYPE_NONE;
@@ -4729,11 +5937,14 @@ namespace YT.WallVerticalRebar
 
 
                 }
+
                 else if (D.S_RangeType == "상")
                 {
                     bar1.Insert();
                     MoveX(bar1, -size, -rebar);
-                    MoveZ(bar1, (length - D.S_RangeTop - D.S_BeamDepth - te2 + D.S_SpacingZ));
+                    //MoveZ(bar1, (length - D.S_RangeTop - D.S_BeamDepth - te2 + D.S_SpacingZ));
+                    //MoveZ(bar1, (length - D.S_RangeTop - te2 + D.S_SpacingZ));
+                    MoveZ(bar1, (length - D.S_RangeTop - te2 + tee));
                     MoveZ(bar1, (hMainBar / 2) + (sBar / 2));
 
                     if (D.S_Type == "수직근")
@@ -4751,7 +5962,9 @@ namespace YT.WallVerticalRebar
                         var b = bar1;
                         b.Insert();
                         MoveX(b, -size, -rebar);
-                        MoveZ(b, (length - D.S_RangeTop - D.S_BeamDepth - te2 + D.S_SpacingZ));
+                        //MoveZ(b, (length - D.S_RangeTop - D.S_BeamDepth - te2 + D.S_SpacingZ));
+                        //MoveZ(b, (length - D.S_RangeTop - te2 + D.S_SpacingZ));
+                        MoveZ(b, (length - D.S_RangeTop - te2 + tee));
                         MoveZ(b, (hMainBar / 2) + (sBar / 2));
 
                         MoveX(b, spacing / 3 * 2);
@@ -4760,7 +5973,9 @@ namespace YT.WallVerticalRebar
                         var c = bar1;
                         c.Insert();
                         MoveX(c, -size, -rebar);
-                        MoveZ(c, (length - D.S_RangeTop - D.S_BeamDepth - te2 + D.S_SpacingZ));
+                        //MoveZ(c, (length - D.S_RangeTop - D.S_BeamDepth - te2 + D.S_SpacingZ));
+                        //MoveZ(c, (length - D.S_RangeTop - te2 + D.S_SpacingZ));
+                        MoveZ(c, (length - D.S_RangeTop - te2 + tee));
                         MoveZ(c, (hMainBar / 2) + (sBar / 2));
 
                         MoveX(c, spacing / 3 + spacing);
@@ -4772,6 +5987,7 @@ namespace YT.WallVerticalRebar
                     }
 
                 }
+
                 else if (D.S_RangeType == "하")
                 {
                     bar1.Insert();
@@ -4815,6 +6031,7 @@ namespace YT.WallVerticalRebar
 
                     }
                 }
+
                 else if (D.S_RangeType == "상,하")
                 {
                     bar1.Insert();
@@ -4859,6 +6076,7 @@ namespace YT.WallVerticalRebar
                 }
 
             }
+
             /*-------------------------------*/
 
 
@@ -4868,20 +6086,24 @@ namespace YT.WallVerticalRebar
 
             if (D.S_RangeType == "전체")
             {
-                bar2.Spacings = CopyArray(length - D.S_SpacingZ - D.S_BeamDepth, D.S_SpacingZ);
+                bar2.Spacings = CopyArrayB(length - D.S_SpacingZ - D.S_BeamDepth, D.S_SpacingZ);
             }
             else if (D.S_RangeType == "상")
             {
-                var el = length - D.S_RangeTop - D.S_BeamDepth - te2 + D.S_SpacingZ;
-                bar2.Spacings = CopyArray(length - el - D.S_BeamDepth - (D.S_SpacingZ / 2), D.S_SpacingZ);
+                //var el = length - D.S_RangeTop - D.S_BeamDepth - te2 + D.S_SpacingZ;
+                //var el = length - D.S_RangeTop - te2 + D.S_SpacingZ;
+                var el = length - D.S_RangeTop - te2 + tee;
+                //bar2.Spacings = CopyArrayB(length - el - D.S_BeamDepth - (D.S_SpacingZ / 2), D.S_SpacingZ);
+                bar2.Spacings = CopyArrayT(length - el - D.S_BeamDepth - (D.S_SpacingZ / 2), D.S_SpacingZ);
+
             }
             else if (D.S_RangeType == "하")
             {
-                bar2.Spacings = CopyArray(D.S_RangeBottom - D.S_SpacingZ / 2 - te3, D.S_SpacingZ);
+                bar2.Spacings = CopyArrayB(D.S_RangeBottom - D.S_SpacingZ / 2 - te3, D.S_SpacingZ);
             }
             else if (D.S_RangeType == "상,하")
             {
-                bar2.Spacings = CopyArray(D.S_RangeBottom - D.S_SpacingZ / 2 - te3, D.S_SpacingZ);
+                bar2.Spacings = CopyArrayB(D.S_RangeBottom - D.S_SpacingZ / 2 - te3, D.S_SpacingZ);
             }
 
             bar2.ExcludeType = TSM.RebarGroup.ExcludeTypeEnum.EXCLUDE_TYPE_NONE;
@@ -5033,11 +6255,14 @@ namespace YT.WallVerticalRebar
                     }
 
                 }
+
                 else if (D.S_RangeType == "상")
                 {
                     bar2.Insert();
                     MoveX(bar2, size, rebar);
-                    MoveZ(bar2, (length - D.S_RangeTop - D.S_BeamDepth - te2 + D.S_SpacingZ));
+                    //MoveZ(bar2, (length - D.S_RangeTop - D.S_BeamDepth - te2 + D.S_SpacingZ));
+                    //MoveZ(bar2, (length - D.S_RangeTop - te2 + D.S_SpacingZ));
+                    MoveZ(bar2, (length - D.S_RangeTop - te2 + tee));
                     MoveZ(bar2, (hMainBar / 2) + (sBar / 2));
 
                     if (D.S_Type == "수직근")
@@ -5058,7 +6283,9 @@ namespace YT.WallVerticalRebar
                         var b = bar2;
                         b.Insert();
                         MoveX(b, size, rebar);
-                        MoveZ(b, (length - D.S_RangeTop - D.S_BeamDepth - te2 + D.S_SpacingZ));
+                        //MoveZ(b, (length - D.S_RangeTop - D.S_BeamDepth - te2 + D.S_SpacingZ));
+                        //MoveZ(b, (length - D.S_RangeTop - te2 + D.S_SpacingZ));
+                        MoveZ(b, (length - D.S_RangeTop - te2 + tee));
                         MoveZ(b, (hMainBar / 2) + (sBar / 2));
 
                         MoveX(b, spacing / 3 * 2 + spacing);
@@ -5067,7 +6294,9 @@ namespace YT.WallVerticalRebar
                         var c = bar2;
                         c.Insert();
                         MoveX(c, size, rebar);
-                        MoveZ(c, (length - D.S_RangeTop - D.S_BeamDepth - te2 + D.S_SpacingZ));
+                        //MoveZ(c, (length - D.S_RangeTop - D.S_BeamDepth - te2 + D.S_SpacingZ));
+                        //MoveZ(c, (length - D.S_RangeTop - te2 + D.S_SpacingZ));
+                        MoveZ(c, (length - D.S_RangeTop - te2 + tee));
                         MoveZ(c, (hMainBar / 2) + (sBar / 2));
 
                         MoveX(c, spacing / 3);
@@ -5128,6 +6357,7 @@ namespace YT.WallVerticalRebar
 
                     }
                 }
+
                 else if (D.S_RangeType == "상,하")
                 {
                     bar2.Insert();
@@ -5185,20 +6415,23 @@ namespace YT.WallVerticalRebar
 
             if (D.S_RangeType == "전체")
             {
-                bar3.Spacings = CopyArray2(length - D.S_SpacingZ - D.S_BeamDepth, D.S_SpacingZ);
+                bar3.Spacings = CopyArrayB2(length - D.S_SpacingZ - D.S_BeamDepth, D.S_SpacingZ);
             }
             else if (D.S_RangeType == "상")
             {
-                var el = length - D.S_RangeTop - D.S_BeamDepth - te2 + D.S_SpacingZ;
-                bar3.Spacings = CopyArray(length - el - D.S_BeamDepth - (D.S_SpacingZ / 2) - D.S_SpacingZ, D.S_SpacingZ);
+                //var el = length - D.S_RangeTop - D.S_BeamDepth - te2 + D.S_SpacingZ;
+                //var el = length - D.S_RangeTop - te2 + D.S_SpacingZ;
+                var el = length - D.S_RangeTop - te2 + tee;
+                //bar3.Spacings = CopyArrayB(length - el - D.S_BeamDepth - (D.S_SpacingZ / 2) - D.S_SpacingZ, D.S_SpacingZ);
+                bar3.Spacings = CopyArrayT2(length - el - D.S_BeamDepth - (D.S_SpacingZ / 2) - D.S_SpacingZ, D.S_SpacingZ);
             }
             else if (D.S_RangeType == "하")
             {
-                bar3.Spacings = CopyArray2(D.S_RangeBottom - (D.S_SpacingZ / 2) - te3, D.S_SpacingZ);
+                bar3.Spacings = CopyArrayB2(D.S_RangeBottom - (D.S_SpacingZ / 2) - te3, D.S_SpacingZ);
             }
             else if (D.S_RangeType == "상,하")
             {
-                bar3.Spacings = CopyArray2(D.S_RangeBottom - (D.S_SpacingZ / 2) - te3, D.S_SpacingZ);
+                bar3.Spacings = CopyArrayB2(D.S_RangeBottom - (D.S_SpacingZ / 2) - te3, D.S_SpacingZ);
             }
 
             bar3.ExcludeType = TSM.RebarGroup.ExcludeTypeEnum.EXCLUDE_TYPE_NONE;
@@ -5346,11 +6579,14 @@ namespace YT.WallVerticalRebar
 
                     }
                 }
+
                 else if (D.S_RangeType == "상")
                 {
                     bar3.Insert();
                     MoveX(bar3, -size, -rebar);
-                    MoveZ(bar3, Convert.ToDouble(bar3.Spacings[0]) / 2 + (length - D.S_RangeTop - D.S_BeamDepth - te2 + D.S_SpacingZ));
+                    //MoveZ(bar3, Convert.ToDouble(bar3.Spacings[0]) / 2 + (length - D.S_RangeTop - D.S_BeamDepth - te2 + D.S_SpacingZ));
+                    //MoveZ(bar3, Convert.ToDouble(bar3.Spacings[0]) / 2 + (length - D.S_RangeTop - te2 + D.S_SpacingZ));
+                    MoveZ(bar3, Convert.ToDouble(bar3.Spacings[0]) / 2 + (length - D.S_RangeTop - te2 + tee));
                     MoveZ(bar3, (hMainBar / 2) + (sBar / 2));
 
                     if (D.S_Type == "수직근")
@@ -5368,7 +6604,8 @@ namespace YT.WallVerticalRebar
                         var b = bar3;
                         b.Insert();
                         MoveX(b, -size, -rebar);
-                        MoveZ(b, Convert.ToDouble(bar3.Spacings[0]) / 2 + (length - D.S_RangeTop - D.S_BeamDepth - te2 + D.S_SpacingZ));
+                        //MoveZ(b, Convert.ToDouble(bar3.Spacings[0]) / 2 + (length - D.S_RangeTop - D.S_BeamDepth - te2 + D.S_SpacingZ));
+                        MoveZ(b, Convert.ToDouble(bar3.Spacings[0]) / 2 + (length - D.S_RangeTop - te2 + D.S_SpacingZ));
                         MoveZ(b, (hMainBar / 2) + (sBar / 2));
 
                         MoveX(b, spacing / 3 * 2);
@@ -5377,7 +6614,9 @@ namespace YT.WallVerticalRebar
                         var c = bar3;
                         c.Insert();
                         MoveX(c, -size, -rebar);
-                        MoveZ(c, Convert.ToDouble(bar3.Spacings[0]) / 2 + (length - D.S_RangeTop - D.S_BeamDepth - te2 + D.S_SpacingZ));
+                        //MoveZ(c, Convert.ToDouble(bar3.Spacings[0]) / 2 + (length - D.S_RangeTop - D.S_BeamDepth - te2 + D.S_SpacingZ));
+                        //MoveZ(c, Convert.ToDouble(bar3.Spacings[0]) / 2 + (length - D.S_RangeTop - te2 + D.S_SpacingZ));
+                        MoveZ(c, Convert.ToDouble(bar3.Spacings[0]) / 2 + (length - D.S_RangeTop - te2 + tee));
                         MoveZ(c, (hMainBar / 2) + (sBar / 2));
 
                         MoveX(c, spacing / 3 + spacing);
@@ -5430,6 +6669,7 @@ namespace YT.WallVerticalRebar
 
                     }
                 }
+
                 else if (D.S_RangeType == "상,하")
                 {
                     bar3.Insert();
@@ -5483,27 +6723,30 @@ namespace YT.WallVerticalRebar
 
             if (D.S_RangeType == "전체")
             {
-                bar4.Spacings = CopyArray2(length - D.S_SpacingZ - D.S_BeamDepth, D.S_SpacingZ);
+                bar4.Spacings = CopyArrayB2(length - D.S_SpacingZ - D.S_BeamDepth, D.S_SpacingZ);
             }
             else if (D.S_RangeType == "상")
             {
-                var el = length - D.S_RangeTop - D.S_BeamDepth - te2 + D.S_SpacingZ;
-                bar4.Spacings = CopyArray(length - el - D.S_BeamDepth - (D.S_SpacingZ / 2) - D.S_SpacingZ, D.S_SpacingZ);
+                //var el = length - D.S_RangeTop - D.S_BeamDepth - te2 + D.S_SpacingZ;
+                //var el = length - D.S_RangeTop - te2 + D.S_SpacingZ;
+                var el = length - D.S_RangeTop - te2 + tee;
+                //bar4.Spacings = CopyArrayB(length - el - D.S_BeamDepth - (D.S_SpacingZ / 2) - D.S_SpacingZ, D.S_SpacingZ);
+                bar4.Spacings = CopyArrayT2(length - el - D.S_BeamDepth - (D.S_SpacingZ / 2) - D.S_SpacingZ, D.S_SpacingZ);
             }
             else if (D.S_RangeType == "하")
             {
-                bar4.Spacings = CopyArray2(D.S_RangeBottom - (D.S_SpacingZ / 2) - te3, D.S_SpacingZ);
+                bar4.Spacings = CopyArrayB2(D.S_RangeBottom - (D.S_SpacingZ / 2) - te3, D.S_SpacingZ);
             }
             else if (D.S_RangeType == "상,하")
             {
-                bar4.Spacings = CopyArray2(D.S_RangeBottom - (D.S_SpacingZ / 2) - te3, D.S_SpacingZ);
+                bar4.Spacings = CopyArrayB2(D.S_RangeBottom - (D.S_SpacingZ / 2) - te3, D.S_SpacingZ);
             }
 
 
             bar4.ExcludeType = TSM.RebarGroup.ExcludeTypeEnum.EXCLUDE_TYPE_NONE;
             bar4.Father = beam;
             bar4.Name = D.S_Name;
-            bar4.Class = D.S_Class ;
+            bar4.Class = D.S_Class;
             bar4.Size = D.S_Size;
             bar4.Grade = D.S_Grade;
             bar4.RadiusValues.Add(D.S_Radius);
@@ -5647,14 +6890,17 @@ namespace YT.WallVerticalRebar
                     }
                     else if (D.S_Type == "아니오")
                     {
-                        
+
                     }
                 }
+
                 else if (D.S_RangeType == "상")
                 {
                     bar4.Insert();
                     MoveX(bar4, size, rebar);
-                    MoveZ(bar4, Convert.ToDouble(bar4.Spacings[0]) / 2 + (length - D.S_RangeTop - D.S_BeamDepth - te2 + D.S_SpacingZ));
+                    //MoveZ(bar4, Convert.ToDouble(bar4.Spacings[0]) / 2 + (length - D.S_RangeTop - D.S_BeamDepth - te2 + D.S_SpacingZ));
+                    //MoveZ(bar4, Convert.ToDouble(bar4.Spacings[0]) / 2 + (length - D.S_RangeTop - te2 + D.S_SpacingZ));
+                    MoveZ(bar4, Convert.ToDouble(bar4.Spacings[0]) / 2 + (length - D.S_RangeTop - te2 + tee));
                     MoveZ(bar4, (hMainBar / 2) + (sBar / 2));
 
                     if (D.S_Type == "수직근")
@@ -5677,16 +6923,20 @@ namespace YT.WallVerticalRebar
                         b.Insert();
 
                         MoveX(b, size, rebar);
-                        MoveZ(b, Convert.ToDouble(bar4.Spacings[0]) / 2 + (length - D.S_RangeTop - D.S_BeamDepth - te2 + D.S_SpacingZ));
+                        //MoveZ(b, Convert.ToDouble(bar4.Spacings[0]) / 2 + (length - D.S_RangeTop - D.S_BeamDepth - te2 + D.S_SpacingZ));
+                        //MoveZ(b, Convert.ToDouble(bar4.Spacings[0]) / 2 + (length - D.S_RangeTop - te2 + D.S_SpacingZ));
+                        MoveZ(b, Convert.ToDouble(bar4.Spacings[0]) / 2 + (length - D.S_RangeTop - te2 + tee));
                         MoveZ(b, (hMainBar / 2) + (sBar / 2));
 
-                        MoveX(b, spacing / 3 * 2 + spacing );
+                        MoveX(b, spacing / 3 * 2 + spacing);
                         CopyX(b, listsa3);
 
                         var c = bar4;
                         c.Insert();
                         MoveX(c, size, rebar);
-                        MoveZ(c, Convert.ToDouble(bar4.Spacings[0]) / 2 + (length - D.S_RangeTop - D.S_BeamDepth - te2 + D.S_SpacingZ));
+                        //MoveZ(c, Convert.ToDouble(bar4.Spacings[0]) / 2 + (length - D.S_RangeTop - D.S_BeamDepth - te2 + D.S_SpacingZ));
+                        //MoveZ(c, Convert.ToDouble(bar4.Spacings[0]) / 2 + (length - D.S_RangeTop - te2 + D.S_SpacingZ));
+                        MoveZ(c, Convert.ToDouble(bar4.Spacings[0]) / 2 + (length - D.S_RangeTop - te2 + tee));
                         MoveZ(c, (hMainBar / 2) + (sBar / 2));
 
                         MoveX(c, spacing / 3);
@@ -5699,6 +6949,7 @@ namespace YT.WallVerticalRebar
 
                     }
                 }
+
                 else if (D.S_RangeType == "하")
                 {
                     bar4.Insert();
@@ -5746,6 +6997,7 @@ namespace YT.WallVerticalRebar
 
                     }
                 }
+
                 else if (D.S_RangeType == "상,하")
                 {
                     bar4.Insert();
@@ -5853,8 +7105,11 @@ namespace YT.WallVerticalRebar
             }
             else if (D.S_RangeType == "상,하")
             {
-                var el = length - D.S_RangeTop - D.S_BeamDepth - te2 + D.S_SpacingZ;
-                bar5.Spacings = CopyArray(length - el - D.S_BeamDepth - (D.S_SpacingZ / 2), D.S_SpacingZ);
+                //var el = length - D.S_RangeTop - D.S_BeamDepth - te2 + D.S_SpacingZ;
+                //var el = length - D.S_RangeTop - te2 + D.S_SpacingZ;
+                var el = length - D.S_RangeTop - te2 + tee;
+                bar5.Spacings = CopyArrayB(length - el - D.S_BeamDepth - (D.S_SpacingZ / 2), D.S_SpacingZ);
+
 
             }
 
@@ -5979,7 +7234,8 @@ namespace YT.WallVerticalRebar
                 {
                     bar5.Insert();
                     MoveX(bar5, -size, -rebar);
-                    MoveZ(bar5, (length - D.S_RangeTop - D.S_BeamDepth - te2 + D.S_SpacingZ));
+                    //MoveZ(bar5, (length - D.S_RangeTop - D.S_BeamDepth - te2 + D.S_SpacingZ));
+                    MoveZ(bar5, (length - D.S_RangeTop - te2 + tee));
                     MoveZ(bar5, (hMainBar / 2) + (sBar / 2));
 
                     if (D.S_Type == "수직근")
@@ -5997,7 +7253,8 @@ namespace YT.WallVerticalRebar
                         var b = bar5;
                         b.Insert();
                         MoveX(b, -size, -rebar);
-                        MoveZ(b, (length - D.S_RangeTop - D.S_BeamDepth - te2 + D.S_SpacingZ));
+                        //MoveZ(b, (length - D.S_RangeTop - D.S_BeamDepth - te2 + D.S_SpacingZ));
+                        MoveZ(b, (length - D.S_RangeTop - te2 + tee));
                         MoveZ(b, (hMainBar / 2) + (sBar / 2));
 
                         MoveX(b, spacing / 3 * 2);
@@ -6006,7 +7263,8 @@ namespace YT.WallVerticalRebar
                         var c = bar5;
                         c.Insert();
                         MoveX(c, -size, -rebar);
-                        MoveZ(c, (length - D.S_RangeTop - D.S_BeamDepth - te2 + D.S_SpacingZ));
+                        //MoveZ(c, (length - D.S_RangeTop - D.S_BeamDepth - te2 + D.S_SpacingZ));
+                        MoveZ(c, (length - D.S_RangeTop - te2 + tee));
                         MoveZ(c, (hMainBar / 2) + (sBar / 2));
 
                         MoveX(c, spacing / 3 + spacing);
@@ -6040,8 +7298,11 @@ namespace YT.WallVerticalRebar
             }
             else if (D.S_RangeType == "상,하")
             {
-                var el = length - D.S_RangeTop - D.S_BeamDepth - te2 + D.S_SpacingZ;
-                bar6.Spacings = CopyArray(length - el - D.S_BeamDepth - (D.S_SpacingZ / 2), D.S_SpacingZ);
+                //var el = length - D.S_RangeTop - D.S_BeamDepth - te2 + D.S_SpacingZ;
+                //var el = length - D.S_RangeTop - te2 + D.S_SpacingZ;
+                var el = length - D.S_RangeTop - te2 + tee;
+                bar6.Spacings = CopyArrayB(length - el - D.S_BeamDepth - (D.S_SpacingZ / 2), D.S_SpacingZ);
+
             }
 
             bar6.ExcludeType = TSM.RebarGroup.ExcludeTypeEnum.EXCLUDE_TYPE_NONE;
@@ -6160,7 +7421,8 @@ namespace YT.WallVerticalRebar
                 {
                     bar6.Insert();
                     MoveX(bar6, size, rebar);
-                    MoveZ(bar6, (length - D.S_RangeTop - D.S_BeamDepth - te2 + D.S_SpacingZ));
+                    //MoveZ(bar6, (length - D.S_RangeTop - D.S_BeamDepth - te2 + D.S_SpacingZ));
+                    MoveZ(bar6, (length - D.S_RangeTop - te2 + tee));
                     MoveZ(bar6, (hMainBar / 2) + (sBar / 2));
 
                     if (D.S_Type == "수직근")
@@ -6181,7 +7443,8 @@ namespace YT.WallVerticalRebar
                         var b = bar6;
                         b.Insert();
                         MoveX(b, size, rebar);
-                        MoveZ(b, (length - D.S_RangeTop - D.S_BeamDepth - te2 + D.S_SpacingZ));
+                        //MoveZ(b, (length - D.S_RangeTop - D.S_BeamDepth - te2 + D.S_SpacingZ));
+                        MoveZ(b, (length - D.S_RangeTop - te2 + tee));
                         MoveZ(b, (hMainBar / 2) + (sBar / 2));
 
                         MoveX(b, spacing / 3 * 2 + spacing);
@@ -6191,7 +7454,8 @@ namespace YT.WallVerticalRebar
                         var c = bar6;
                         c.Insert();
                         MoveX(c, size, rebar);
-                        MoveZ(c, (length - D.S_RangeTop - D.S_BeamDepth - te2 + D.S_SpacingZ));
+                        //MoveZ(c, (length - D.S_RangeTop - D.S_BeamDepth - te2 + D.S_SpacingZ));
+                        MoveZ(c, (length - D.S_RangeTop - te2 + tee));
                         MoveZ(c, (hMainBar / 2) + (sBar / 2));
 
                         MoveX(c, spacing / 3);
@@ -6226,8 +7490,11 @@ namespace YT.WallVerticalRebar
             }
             else if (D.S_RangeType == "상,하")
             {
-                var el = length - D.S_RangeTop - D.S_BeamDepth - te2 + D.S_SpacingZ;
-                bar7.Spacings = CopyArray(length - el - D.S_BeamDepth - (D.S_SpacingZ / 2) - D.S_SpacingZ, D.S_SpacingZ);
+                //var el = length - D.S_RangeTop - D.S_BeamDepth - te2 + D.S_SpacingZ;
+                //var el = length - D.S_RangeTop - te2 + D.S_SpacingZ;
+                var el = length - D.S_RangeTop - te2 + tee;
+                bar7.Spacings = CopyArrayB(length - el - D.S_BeamDepth - (D.S_SpacingZ / 2) - D.S_SpacingZ, D.S_SpacingZ);
+
             }
 
             bar7.ExcludeType = TSM.RebarGroup.ExcludeTypeEnum.EXCLUDE_TYPE_NONE;
@@ -6346,7 +7613,8 @@ namespace YT.WallVerticalRebar
                 {
                     bar7.Insert();
                     MoveX(bar7, -size, -rebar);
-                    MoveZ(bar7, Convert.ToDouble(bar7.Spacings[0]) / 2 + (length - D.S_RangeTop - D.S_BeamDepth - te2 + D.S_SpacingZ));
+                    //MoveZ(bar7, Convert.ToDouble(bar7.Spacings[0]) / 2 + (length - D.S_RangeTop - D.S_BeamDepth - te2 + D.S_SpacingZ));
+                    MoveZ(bar7, Convert.ToDouble(bar7.Spacings[0]) / 2 + (length - D.S_RangeTop - te2 + tee));
                     MoveZ(bar7, (hMainBar / 2) + (sBar / 2));
 
                     if (D.S_Type == "수직근")
@@ -6364,7 +7632,8 @@ namespace YT.WallVerticalRebar
                         var b = bar7;
                         b.Insert();
                         MoveX(b, -size, -rebar);
-                        MoveZ(b, Convert.ToDouble(bar7.Spacings[0]) / 2 + (length - D.S_RangeTop - D.S_BeamDepth - te2 + D.S_SpacingZ));
+                        //MoveZ(b, Convert.ToDouble(bar7.Spacings[0]) / 2 + (length - D.S_RangeTop - D.S_BeamDepth - te2 + D.S_SpacingZ));
+                        MoveZ(b, Convert.ToDouble(bar7.Spacings[0]) / 2 + (length - D.S_RangeTop - te2 + tee));
                         MoveZ(b, (hMainBar / 2) + (sBar / 2));
 
                         MoveX(b, spacing / 3 * 2);
@@ -6373,7 +7642,8 @@ namespace YT.WallVerticalRebar
                         var c = bar7;
                         c.Insert();
                         MoveX(c, -size, -rebar);
-                        MoveZ(c, Convert.ToDouble(bar7.Spacings[0]) / 2 + (length - D.S_RangeTop - D.S_BeamDepth - te2 + D.S_SpacingZ));
+                        //MoveZ(c, Convert.ToDouble(bar7.Spacings[0]) / 2 + (length - D.S_RangeTop - D.S_BeamDepth - te2 + D.S_SpacingZ));
+                        MoveZ(c, Convert.ToDouble(bar7.Spacings[0]) / 2 + (length - D.S_RangeTop - te2 + tee));
                         MoveZ(c, (hMainBar / 2) + (sBar / 2));
 
                         MoveX(c, spacing / 3 + spacing);
@@ -6406,15 +7676,18 @@ namespace YT.WallVerticalRebar
             }
             else if (D.S_RangeType == "상,하")
             {
-                var el = length - D.S_RangeTop - D.S_BeamDepth - te2 + D.S_SpacingZ;
-                bar8.Spacings = CopyArray(length - el - D.S_BeamDepth - (D.S_SpacingZ / 2) - D.S_SpacingZ, D.S_SpacingZ);
+                //var el = length - D.S_RangeTop - D.S_BeamDepth - te2 + D.S_SpacingZ;
+                //var el = length - D.S_RangeTop - te2 + D.S_SpacingZ;
+                var el = length - D.S_RangeTop - te2 + tee;
+                bar8.Spacings = CopyArrayB(length - el - D.S_BeamDepth - (D.S_SpacingZ / 2) - D.S_SpacingZ, D.S_SpacingZ);
+
             }
 
 
             bar8.ExcludeType = TSM.RebarGroup.ExcludeTypeEnum.EXCLUDE_TYPE_NONE;
             bar8.Father = beam;
             bar8.Name = D.S_Name;
-            bar8.Class = D.S_Class ;
+            bar8.Class = D.S_Class;
             bar8.Size = D.S_Size;
             bar8.Grade = D.S_Grade;
             bar8.RadiusValues.Add(D.S_Radius);
@@ -6526,7 +7799,8 @@ namespace YT.WallVerticalRebar
                 {
                     bar8.Insert();
                     MoveX(bar8, size, rebar);
-                    MoveZ(bar8, Convert.ToDouble(bar8.Spacings[0]) / 2 + (length - D.S_RangeTop - D.S_BeamDepth - te2 + D.S_SpacingZ));
+                    //MoveZ(bar8, Convert.ToDouble(bar8.Spacings[0]) / 2 + (length - D.S_RangeTop - D.S_BeamDepth - te2 + D.S_SpacingZ));
+                    MoveZ(bar8, Convert.ToDouble(bar8.Spacings[0]) / 2 + (length - D.S_RangeTop - te2 + tee));
                     MoveZ(bar8, (hMainBar / 2) + (sBar / 2));
 
                     if (D.S_Type == "수직근")
@@ -6547,7 +7821,8 @@ namespace YT.WallVerticalRebar
                         var b = bar8;
                         b.Insert();
                         MoveX(b, size, rebar);
-                        MoveZ(b, Convert.ToDouble(bar8.Spacings[0]) / 2 + (length - D.S_RangeTop - D.S_BeamDepth - te2 + D.S_SpacingZ));
+                        //MoveZ(b, Convert.ToDouble(bar8.Spacings[0]) / 2 + (length - D.S_RangeTop - D.S_BeamDepth - te2 + D.S_SpacingZ));
+                        MoveZ(b, Convert.ToDouble(bar8.Spacings[0]) / 2 + (length - D.S_RangeTop - te2 + tee));
                         MoveZ(b, (hMainBar / 2) + (sBar / 2));
 
                         MoveX(b, spacing / 3 * 2 + spacing);
@@ -6556,7 +7831,8 @@ namespace YT.WallVerticalRebar
                         var c = bar8;
                         c.Insert();
                         MoveX(c, size, rebar);
-                        MoveZ(c, Convert.ToDouble(bar8.Spacings[0]) / 2 + (length - D.S_RangeTop - D.S_BeamDepth - te2 + D.S_SpacingZ));
+                        //MoveZ(c, Convert.ToDouble(bar8.Spacings[0]) / 2 + (length - D.S_RangeTop - D.S_BeamDepth - te2 + D.S_SpacingZ));
+                        MoveZ(c, Convert.ToDouble(bar8.Spacings[0]) / 2 + (length - D.S_RangeTop - te2 + tee));
                         MoveZ(c, (hMainBar / 2) + (sBar / 2));
 
                         MoveX(c, spacing / 3);
@@ -6613,7 +7889,7 @@ namespace YT.WallVerticalRebar
             m.CommitChanges();
         }
 
-        private ArrayList CopyArray(double length, double spacing)
+        private ArrayList CopyArrayB(double length, double spacing)
         {
             var list = new ArrayList();
 
@@ -6692,7 +7968,7 @@ namespace YT.WallVerticalRebar
             return list;
         }
 
-        private ArrayList CopyArray2(double length, double spacing)
+        private ArrayList CopyArrayB2(double length, double spacing)
         {
             var list = new ArrayList();
 
@@ -6773,6 +8049,130 @@ namespace YT.WallVerticalRebar
             return list;
         }
 
+        private ArrayList CopyArrayT(double length, double spacing)
+        {
+            var list = new ArrayList();
+
+            var ea1 = (int)length / ((int)spacing * 2);
+            var te1 = (int)length % ((int)spacing * 2);
+            //var te1 = (int)length % ((int)spacing);
+
+            //var ea2 = ((int)length - (int)spacing) / ((int)spacing * 2);
+            ////var te2 = ((int)length - (int)spacing) % ((int)spacing * 2);
+            //var te2 = ((int)length - (int)spacing) % ((int)spacing);
+
+            for (int i = 0; i < ea1 - 1; i++)
+            {
+                list.Add(spacing * 2);
+            }
+
+            if (ea1 % 2 == 0 && te1 != 0 && te1 > spacing) // 짝
+            {
+                list.Add(spacing * 2);
+                list.Add(te1);
+            }
+            else if (ea1 % 2 == 1 && te1 != 0 && te1 > spacing) // 홀
+            {
+                list.Add(spacing * 2);
+                list.Add(te1);
+            }
+
+            else if (ea1 % 2 == 0 && te1 != 0 && te1 <= spacing) // 짝
+            {
+                list.Add(spacing * 2);
+            }
+            else if (ea1 % 2 == 1 && te1 != 0 && te1 <= spacing) // 홀
+            {
+                list.Add(spacing * 2);
+            }
+
+            else if (ea1 % 2 == 0 && te1 == 0 && te1 > spacing) // 짝
+            {
+
+            }
+            else if (ea1 % 2 == 1 && te1 == 0 && te1 > spacing) // 홀
+            {
+            }
+            else if (ea1 % 2 == 0 && te1 == 0 && te1 <= spacing) // 짝
+            {
+                list.Add(spacing * 2);
+            }
+            else if (ea1 % 2 == 1 && te1 == 0 && te1 <= spacing) // 홀
+            {
+                list.Add(spacing * 2);
+            }
+            else
+            {
+                    
+            }
+           
+
+            return list;
+        }
+
+        private ArrayList CopyArrayT2(double length, double spacing)
+        {
+            var list = new ArrayList();
+
+            var ea1 = (int)length / ((int)spacing * 2);
+            var te1 = (int)length % ((int)spacing * 2);
+            //var te1 = (int)length % ((int)spacing);
+
+            //var ea2 = ((int)length - (int)spacing) / ((int)spacing * 2);
+            ////var te2 = ((int)length - (int)spacing) % ((int)spacing * 2);
+            //var te2 = ((int)length - (int)spacing) % ((int)spacing);
+
+            for (int i = 0; i < ea1 - 1; i++)
+            {
+                list.Add(spacing * 2);
+            }
+
+            if (ea1 % 2 == 0 && te1 != 0&&te1 > spacing) // 짝
+            {
+                list.Add(spacing * 2);
+                list.Add(te1);
+            }
+
+            else if (ea1 % 2 == 1 && te1 != 0&&te1 > spacing) // 홀
+            {
+                list.Add(spacing * 2);
+                list.Add(te1);
+            }
+            else if (ea1 % 2 == 0 && te1 != 0 && te1 <= spacing) // 짝
+            {
+                list.Add(spacing * 2);
+            }
+
+            else if (ea1 % 2 == 1 && te1 != 0 && te1 <= spacing) // 홀
+            {
+                list.Add(spacing * 2);
+            }
+
+            else if (ea1 % 2 == 0 && te1 == 0&&te1 > spacing) // 짝
+            {
+
+            }
+            else if (ea1 % 2 == 1 && te1 == 0&&te1 > spacing) // 홀
+            {
+            }
+            else if (ea1 % 2 == 0 && te1 == 0 && te1 <= spacing) // 짝
+            {
+                list.Add(spacing * 2);
+            }
+            else if (ea1 % 2 == 1 && te1 == 0 && te1 <= spacing) // 홀
+            {
+                list.Add(spacing * 2);
+            }
+            else
+            {
+
+            }
+
+
+
+            return list;
+        }
+
         private void CopyX(TSM.RebarGroup bar, ArrayList list)
         {
             var ob = bar as TSM.ModelObject;
@@ -6809,5 +8209,8 @@ namespace YT.WallVerticalRebar
 
             TSM.Operations.Operation.MoveObject(bar, new TSG.Vector(X, 0, 0));
         }
+
+
+
     }
 }

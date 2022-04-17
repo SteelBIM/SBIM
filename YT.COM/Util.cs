@@ -24,7 +24,7 @@ namespace YT.COM
             /// 부재 시작점 기준 좌표 설정
             /// </summary>
             /// <param name="part"></param>
-            public static void ChangeCoordinatesStart(TSM.Beam part)   
+            public static void ChangeCoordinatesStart(TSM.Beam part)
             {
                 var model = new TSM.Model();
                 var lcs = part.GetCoordinateSystem();
@@ -135,8 +135,12 @@ namespace YT.COM
                 var crosspoint = cross.Point1;
 
                 return crosspoint;
+
             }
         }
+       
 
     }
+
+
 }

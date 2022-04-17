@@ -35,6 +35,7 @@ namespace YT.COM
         public TSG.Point EndPoint { get; set; }
 
         // 종속
+        //public TSM.ModelObject Father { get; set; }b
         public TSM.Beam Father { get; set; }
 
         // 일반
@@ -77,6 +78,10 @@ namespace YT.COM
         public TSM.BaseRebarGroup.ExcludeTypeEnum ExcludeType { get; set; } = TSM.BaseRebarGroup.ExcludeTypeEnum.EXCLUDE_TYPE_NONE;
 
         //
+        //public double LENGTH { get; set; }
+
+
+        //
         public string Building { get; set; }
         public string BuildingStorey { get; set; }
         //
@@ -87,6 +92,9 @@ namespace YT.COM
             var m = new TSM.Model();
 
             var bar = new TSM.RebarGroup();
+
+            //종속
+            bar.Father = Father;
 
             //형상
             bar.Polygons = Polygon;
@@ -134,14 +142,34 @@ namespace YT.COM
             // 생성
             bar.ExcludeType = ExcludeType;
 
+
             //Insert
             bar.Insert();
             m.CommitChanges();
 
+            //UDA
             bar.SetUserProperty("USER_FIELD_1", Building);
             bar.SetUserProperty("USER_FIELD_2", BuildingStorey);
 
+            ////Length
+            //var a = 0.0;
+            ////var length =  bar.GetReportProperty("LENGTH", ref a);
+            //bar.GetReportProperty("LENGTH", ref a);
+            ////a = LENGTH;
+            //LENGTH = a;
+
         }
+
+        //public void Modify()
+        //{
+        //    var m = new TSM.Model();
+
+        //    var bar = new TSM.RebarGroup();
+
+        //    bar.Modify();
+
+        //    m.CommitChanges();
+        //}
 
 
     }

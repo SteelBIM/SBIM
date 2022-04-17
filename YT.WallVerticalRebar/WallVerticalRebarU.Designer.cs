@@ -34,6 +34,10 @@ namespace YT.WallVerticalRebar
             this.saveLoad1 = new Tekla.Structures.Dialog.UIControls.SaveLoad();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.groupBox116 = new System.Windows.Forms.GroupBox();
+            this.label213 = new System.Windows.Forms.Label();
+            this.LR_Change = new System.Windows.Forms.ComboBox();
+            this.checkBox173 = new System.Windows.Forms.CheckBox();
             this.groupBox94 = new System.Windows.Forms.GroupBox();
             this.checkBox234 = new System.Windows.Forms.CheckBox();
             this.label234 = new System.Windows.Forms.Label();
@@ -196,6 +200,10 @@ namespace YT.WallVerticalRebar
             this.checkBox8 = new System.Windows.Forms.CheckBox();
             this.label16 = new System.Windows.Forms.Label();
             this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.groupBox117 = new System.Windows.Forms.GroupBox();
+            this.label302 = new System.Windows.Forms.Label();
+            this.DW_Operation = new System.Windows.Forms.ComboBox();
+            this.checkBox304 = new System.Windows.Forms.CheckBox();
             this.groupBox23 = new System.Windows.Forms.GroupBox();
             this.label71 = new System.Windows.Forms.Label();
             this.DW_FootingSplice = new System.Windows.Forms.TextBox();
@@ -1099,6 +1107,7 @@ namespace YT.WallVerticalRebar
             this.S_Building = new System.Windows.Forms.TextBox();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
+            this.groupBox116.SuspendLayout();
             this.groupBox94.SuspendLayout();
             this.groupBox14.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -1117,6 +1126,7 @@ namespace YT.WallVerticalRebar
             this.groupBox11.SuspendLayout();
             this.groupBox9.SuspendLayout();
             this.tabPage3.SuspendLayout();
+            this.groupBox117.SuspendLayout();
             this.groupBox23.SuspendLayout();
             this.groupBox22.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -1298,6 +1308,7 @@ namespace YT.WallVerticalRebar
             this.structuresExtender.SetAttributeName(this.tabPage1, null);
             this.structuresExtender.SetAttributeTypeName(this.tabPage1, null);
             this.structuresExtender.SetBindPropertyName(this.tabPage1, null);
+            this.tabPage1.Controls.Add(this.groupBox116);
             this.tabPage1.Controls.Add(this.groupBox94);
             this.tabPage1.Controls.Add(this.groupBox14);
             this.tabPage1.Controls.Add(this.groupBox3);
@@ -1310,6 +1321,63 @@ namespace YT.WallVerticalRebar
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "수직근";
             this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // groupBox116
+            // 
+            this.structuresExtender.SetAttributeName(this.groupBox116, null);
+            this.structuresExtender.SetAttributeTypeName(this.groupBox116, null);
+            this.structuresExtender.SetBindPropertyName(this.groupBox116, null);
+            this.groupBox116.Controls.Add(this.label213);
+            this.groupBox116.Controls.Add(this.LR_Change);
+            this.groupBox116.Controls.Add(this.checkBox173);
+            this.groupBox116.Location = new System.Drawing.Point(496, 11);
+            this.groupBox116.Name = "groupBox116";
+            this.groupBox116.Size = new System.Drawing.Size(214, 64);
+            this.groupBox116.TabIndex = 84;
+            this.groupBox116.TabStop = false;
+            this.groupBox116.Text = "좌우 철근 속성 변경";
+            // 
+            // label213
+            // 
+            this.structuresExtender.SetAttributeName(this.label213, null);
+            this.structuresExtender.SetAttributeTypeName(this.label213, null);
+            this.label213.AutoSize = true;
+            this.structuresExtender.SetBindPropertyName(this.label213, null);
+            this.label213.Location = new System.Drawing.Point(47, 17);
+            this.label213.Name = "label213";
+            this.label213.Size = new System.Drawing.Size(53, 12);
+            this.label213.TabIndex = 49;
+            this.label213.Text = "변경여부";
+            // 
+            // LR_Change
+            // 
+            this.structuresExtender.SetAttributeName(this.LR_Change, "LR_Change");
+            this.structuresExtender.SetAttributeTypeName(this.LR_Change, "String");
+            this.structuresExtender.SetBindPropertyName(this.LR_Change, "Text");
+            this.LR_Change.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.LR_Change.FormattingEnabled = true;
+            this.LR_Change.Items.AddRange(new object[] {
+            "기본",
+            "좌우변경"});
+            this.LR_Change.Location = new System.Drawing.Point(29, 37);
+            this.LR_Change.Name = "LR_Change";
+            this.LR_Change.Size = new System.Drawing.Size(97, 20);
+            this.LR_Change.TabIndex = 49;
+            // 
+            // checkBox173
+            // 
+            this.structuresExtender.SetAttributeName(this.checkBox173, "LR_Change");
+            this.structuresExtender.SetAttributeTypeName(this.checkBox173, null);
+            this.checkBox173.AutoSize = true;
+            this.structuresExtender.SetBindPropertyName(this.checkBox173, "Checked");
+            this.checkBox173.Checked = true;
+            this.checkBox173.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.structuresExtender.SetIsFilter(this.checkBox173, true);
+            this.checkBox173.Location = new System.Drawing.Point(6, 40);
+            this.checkBox173.Name = "checkBox173";
+            this.checkBox173.Size = new System.Drawing.Size(15, 14);
+            this.checkBox173.TabIndex = 50;
+            this.checkBox173.UseVisualStyleBackColor = true;
             // 
             // groupBox94
             // 
@@ -3534,16 +3602,75 @@ namespace YT.WallVerticalRebar
             this.structuresExtender.SetAttributeName(this.tabPage3, null);
             this.structuresExtender.SetAttributeTypeName(this.tabPage3, null);
             this.structuresExtender.SetBindPropertyName(this.tabPage3, null);
+            this.tabPage3.Controls.Add(this.groupBox117);
             this.tabPage3.Controls.Add(this.groupBox23);
             this.tabPage3.Controls.Add(this.groupBox22);
             this.tabPage3.Controls.Add(this.groupBox1);
             this.tabPage3.Controls.Add(this.groupBox17);
             this.tabPage3.Location = new System.Drawing.Point(4, 22);
             this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Size = new System.Drawing.Size(723, 882);
+            this.tabPage3.Size = new System.Drawing.Size(723, 898);
             this.tabPage3.TabIndex = 1;
             this.tabPage3.Text = "다월";
             this.tabPage3.UseVisualStyleBackColor = true;
+            // 
+            // groupBox117
+            // 
+            this.structuresExtender.SetAttributeName(this.groupBox117, null);
+            this.structuresExtender.SetAttributeTypeName(this.groupBox117, null);
+            this.structuresExtender.SetBindPropertyName(this.groupBox117, null);
+            this.groupBox117.Controls.Add(this.label302);
+            this.groupBox117.Controls.Add(this.DW_Operation);
+            this.groupBox117.Controls.Add(this.checkBox304);
+            this.groupBox117.Location = new System.Drawing.Point(366, 11);
+            this.groupBox117.Name = "groupBox117";
+            this.groupBox117.Size = new System.Drawing.Size(214, 64);
+            this.groupBox117.TabIndex = 85;
+            this.groupBox117.TabStop = false;
+            this.groupBox117.Text = "다월 길이 설정";
+            // 
+            // label302
+            // 
+            this.structuresExtender.SetAttributeName(this.label302, null);
+            this.structuresExtender.SetAttributeTypeName(this.label302, null);
+            this.label302.AutoSize = true;
+            this.structuresExtender.SetBindPropertyName(this.label302, null);
+            this.label302.Location = new System.Drawing.Point(74, 17);
+            this.label302.Name = "label302";
+            this.label302.Size = new System.Drawing.Size(57, 12);
+            this.label302.TabIndex = 35;
+            this.label302.Text = "길이 설정";
+            // 
+            // DW_Operation
+            // 
+            this.structuresExtender.SetAttributeName(this.DW_Operation, "DW_Operation");
+            this.structuresExtender.SetAttributeTypeName(this.DW_Operation, "String");
+            this.structuresExtender.SetBindPropertyName(this.DW_Operation, "Text");
+            this.DW_Operation.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.DW_Operation.FormattingEnabled = true;
+            this.DW_Operation.Items.AddRange(new object[] {
+            "일반",
+            "100 단위",
+            "300,500,700 단위"});
+            this.DW_Operation.Location = new System.Drawing.Point(30, 37);
+            this.DW_Operation.Name = "DW_Operation";
+            this.DW_Operation.Size = new System.Drawing.Size(135, 20);
+            this.DW_Operation.TabIndex = 81;
+            // 
+            // checkBox304
+            // 
+            this.structuresExtender.SetAttributeName(this.checkBox304, "DW_Operation");
+            this.structuresExtender.SetAttributeTypeName(this.checkBox304, null);
+            this.checkBox304.AutoSize = true;
+            this.structuresExtender.SetBindPropertyName(this.checkBox304, "Checked");
+            this.checkBox304.Checked = true;
+            this.checkBox304.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.structuresExtender.SetIsFilter(this.checkBox304, true);
+            this.checkBox304.Location = new System.Drawing.Point(7, 40);
+            this.checkBox304.Name = "checkBox304";
+            this.checkBox304.Size = new System.Drawing.Size(15, 14);
+            this.checkBox304.TabIndex = 82;
+            this.checkBox304.UseVisualStyleBackColor = true;
             // 
             // groupBox23
             // 
@@ -3559,9 +3686,9 @@ namespace YT.WallVerticalRebar
             this.groupBox23.Controls.Add(this.label70);
             this.groupBox23.Controls.Add(this.DW_FootingDepth);
             this.groupBox23.Controls.Add(this.checkBox58);
-            this.groupBox23.Location = new System.Drawing.Point(365, 10);
+            this.groupBox23.Location = new System.Drawing.Point(5, 81);
             this.groupBox23.Name = "groupBox23";
-            this.groupBox23.Size = new System.Drawing.Size(326, 65);
+            this.groupBox23.Size = new System.Drawing.Size(355, 65);
             this.groupBox23.TabIndex = 66;
             this.groupBox23.TabStop = false;
             this.groupBox23.Text = "기초";
@@ -3823,7 +3950,7 @@ namespace YT.WallVerticalRebar
             this.groupBox1.Controls.Add(this.groupBox15);
             this.groupBox1.Controls.Add(this.groupBox16);
             this.groupBox1.Controls.Add(this.groupBox19);
-            this.groupBox1.Location = new System.Drawing.Point(5, 80);
+            this.groupBox1.Location = new System.Drawing.Point(5, 152);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(690, 165);
             this.groupBox1.TabIndex = 67;
@@ -4297,7 +4424,7 @@ namespace YT.WallVerticalRebar
             this.groupBox17.Controls.Add(this.groupBox18);
             this.groupBox17.Controls.Add(this.groupBox20);
             this.groupBox17.Controls.Add(this.groupBox21);
-            this.groupBox17.Location = new System.Drawing.Point(5, 250);
+            this.groupBox17.Location = new System.Drawing.Point(5, 322);
             this.groupBox17.Name = "groupBox17";
             this.groupBox17.Size = new System.Drawing.Size(690, 165);
             this.groupBox17.TabIndex = 66;
@@ -4773,7 +4900,7 @@ namespace YT.WallVerticalRebar
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(723, 882);
+            this.tabPage2.Size = new System.Drawing.Size(723, 898);
             this.tabPage2.TabIndex = 2;
             this.tabPage2.Text = "하부 보강근";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -7493,7 +7620,7 @@ namespace YT.WallVerticalRebar
             this.tabPage4.Location = new System.Drawing.Point(4, 22);
             this.tabPage4.Name = "tabPage4";
             this.tabPage4.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage4.Size = new System.Drawing.Size(723, 882);
+            this.tabPage4.Size = new System.Drawing.Size(723, 898);
             this.tabPage4.TabIndex = 3;
             this.tabPage4.Text = "중앙부 보강근";
             this.tabPage4.UseVisualStyleBackColor = true;
@@ -10374,7 +10501,7 @@ namespace YT.WallVerticalRebar
             this.tabPage5.Location = new System.Drawing.Point(4, 22);
             this.tabPage5.Name = "tabPage5";
             this.tabPage5.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage5.Size = new System.Drawing.Size(723, 882);
+            this.tabPage5.Size = new System.Drawing.Size(723, 898);
             this.tabPage5.TabIndex = 4;
             this.tabPage5.Text = "중앙부 다월";
             this.tabPage5.UseVisualStyleBackColor = true;
@@ -11901,7 +12028,7 @@ namespace YT.WallVerticalRebar
             this.tabPage6.Location = new System.Drawing.Point(4, 22);
             this.tabPage6.Name = "tabPage6";
             this.tabPage6.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage6.Size = new System.Drawing.Size(723, 882);
+            this.tabPage6.Size = new System.Drawing.Size(723, 898);
             this.tabPage6.TabIndex = 5;
             this.tabPage6.Text = "상부 보강근";
             this.tabPage6.UseVisualStyleBackColor = true;
@@ -14781,7 +14908,7 @@ namespace YT.WallVerticalRebar
             this.tabPage7.Location = new System.Drawing.Point(4, 22);
             this.tabPage7.Name = "tabPage7";
             this.tabPage7.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage7.Size = new System.Drawing.Size(723, 882);
+            this.tabPage7.Size = new System.Drawing.Size(723, 898);
             this.tabPage7.TabIndex = 6;
             this.tabPage7.Text = "전단근";
             this.tabPage7.UseVisualStyleBackColor = true;
@@ -15928,6 +16055,8 @@ namespace YT.WallVerticalRebar
             this.Text = "YT.RWV.Rebar";
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
+            this.groupBox116.ResumeLayout(false);
+            this.groupBox116.PerformLayout();
             this.groupBox94.ResumeLayout(false);
             this.groupBox94.PerformLayout();
             this.groupBox14.ResumeLayout(false);
@@ -15961,6 +16090,8 @@ namespace YT.WallVerticalRebar
             this.groupBox9.ResumeLayout(false);
             this.groupBox9.PerformLayout();
             this.tabPage3.ResumeLayout(false);
+            this.groupBox117.ResumeLayout(false);
+            this.groupBox117.PerformLayout();
             this.groupBox23.ResumeLayout(false);
             this.groupBox23.PerformLayout();
             this.groupBox22.ResumeLayout(false);
@@ -17246,5 +17377,13 @@ namespace YT.WallVerticalRebar
         private System.Windows.Forms.GroupBox groupBox91;
         private System.Windows.Forms.Label label209;
         private System.Windows.Forms.CheckBox checkBox148;
+        private System.Windows.Forms.CheckBox checkBox173;
+        private System.Windows.Forms.ComboBox LR_Change;
+        private System.Windows.Forms.GroupBox groupBox116;
+        private System.Windows.Forms.Label label213;
+        private System.Windows.Forms.GroupBox groupBox117;
+        private System.Windows.Forms.Label label302;
+        private System.Windows.Forms.ComboBox DW_Operation;
+        private System.Windows.Forms.CheckBox checkBox304;
     }
 }

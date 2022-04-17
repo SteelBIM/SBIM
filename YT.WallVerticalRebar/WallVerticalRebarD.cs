@@ -23,7 +23,8 @@ namespace YT.WallVerticalRebar
 
         [TSP.StructuresField("RebarAllYesOrNo")] public string RebarAllYesOrNo;
 
-        //[TSP.StructuresField("W_Coordination")] public string W_Coordination;
+        [TSP.StructuresField("LR_Change")] public string LR_Change;
+
         [TSP.StructuresField("W_Building")] public string W_Building;
         [TSP.StructuresField("W_Building_Storey")] public string W_Building_Storey;
         [TSP.StructuresField("W_UDA")] public string W_UDA;
@@ -33,6 +34,8 @@ namespace YT.WallVerticalRebar
 
         [TSP.StructuresField("RebarS")] public string RebarS;//시작평면
         [TSP.StructuresField("RebarE")] public string RebarE;//시작평면
+
+
         #endregion
 
         #region 우측메인
@@ -109,6 +112,8 @@ namespace YT.WallVerticalRebar
 
         #region 다월공통
 
+        [TSP.StructuresField("DW_Operation")] public string DW_Operation;
+        
         [TSP.StructuresField("DW_Building")] public string DW_Building;
         [TSP.StructuresField("DW_Building_Storey")] public string DW_Building_Storey;
         [TSP.StructuresField("DW_UDA")] public string DW_UDA;
@@ -211,6 +216,7 @@ namespace YT.WallVerticalRebar
         #endregion
 
         #region 좌측 하부 보강근
+
         //1단
         [TSP.StructuresField("R_LB_Name")] public string R_LB_Name;
         [TSP.StructuresField("R_LB_Grade")] public string R_LB_Grade;
@@ -555,6 +561,7 @@ namespace YT.WallVerticalRebar
         [TSP.StructuresField("H_RebarSize")] public double H_RebarSize;
 
         #endregion
+
 
     }
 }

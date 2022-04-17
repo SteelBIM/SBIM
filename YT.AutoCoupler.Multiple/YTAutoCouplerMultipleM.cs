@@ -16,7 +16,7 @@ using System.Collections;
 
 namespace YT.AutoCoupler.Multiple
 {
-    [TSP.Plugin("YT.AutoCoupler,Multiple")]
+    [TSP.Plugin("YT.AutoCoupler.Multiple")]
     [TSP.PluginUserInterface("YT.AutoCoupler.Multiple.YTAutoCouplerMultipleU")] // Form 결합
 
     public class YTAutoCouplerMultipleM : TSP.PluginBase
@@ -29,19 +29,27 @@ namespace YT.AutoCoupler.Multiple
         }
 
 
-        public override List<InputDefinition> DefineInput()
+        public override List<InputDefinition> DefineInput() 
         {
-            List<InputDefinition> list = new List<InputDefinition>();
+            TSM.ModelObjectEnumerator.AutoFetch = true;
 
             var a = new TSM.UI.Picker().PickObjects(TSM.UI.Picker.PickObjectsEnum.PICK_N_OBJECTS);
 
+            insert(a);
+
+            return null;
+
+        }
+
+        public void insert(TSM.ModelObjectEnumerator a)
+        {
             while (a.MoveNext())
             {
                 var bar = a.Current as TSM.Reinforcement;
 
                 TSM.Component com = new TSM.Component();
                 com.Name = "YT.AutoCoupler";
-                com.Number = -100000; 
+                com.Number = -100000;
 
                 TSM.ComponentInput cominput = new TSM.ComponentInput();
                 cominput.AddInputObject(bar);
@@ -49,16 +57,13 @@ namespace YT.AutoCoupler.Multiple
                 //com.LoadAttributesFromFile(null);
                 com.SetComponentInput(cominput);
                 com.Insert();
-
             }
-
-            return list;
         }
+             
 
         public override bool Run(List<InputDefinition> Input)
         {
-
-            return true;
+            return false;
         }
     }
 

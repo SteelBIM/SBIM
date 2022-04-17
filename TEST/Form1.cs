@@ -39,12 +39,14 @@ namespace TEST
 
         private void SingleSlab_Click(object sender, EventArgs e)
         {
-            var m = new TSM.Model();
+
+            //var a = Math.Abs(-10);
+            //var m = new TSM.Model();
 
 
-            var beam = new TSM.Beam(new TSG.Point(15000, 3000, 0), new TSG.Point(21000, 3000, 0));
-            beam.Profile.ProfileString = "400x400";
-            beam.Insert();
+            //var beam = new TSM.Beam(new TSG.Point(15000, 3000, 0), new TSG.Point(21000, 3000, 0));
+            //beam.Profile.ProfileString = "400x400";
+            //beam.Insert();
 
             //var beam2 = new TSM.Beam(new TSG.Point(15000, 3000, 0), new TSG.Point(21000, 3000, 0));
             //beam2.Profile.ProfileString = "400x400";
@@ -73,22 +75,22 @@ namespace TEST
             //brep.Profile.ProfileString = "Default" ;
             //bool result = brep.Insert();
 
-            var contour1 = new TSM.Contour();
-            contour1.AddContourPoint(new TSM.ContourPoint(new TSG.Point(6000.0, 8500.0, 0.0), null));
-            contour1.AddContourPoint(new TSM.ContourPoint(new TSG.Point(6000.0, 6000.0, 0.0), null));
-            contour1.AddContourPoint(new TSM.ContourPoint(new TSG.Point(12000.0, 6000.0, 0.0), null));
-            contour1.AddContourPoint(new TSM.ContourPoint(new TSG.Point(12000.0, 8500.0, 0.0), null));
-            var geometry = new TSM.ConnectiveGeometry(contour1);
+            //var contour1 = new TSM.Contour();
+            //contour1.AddContourPoint(new TSM.ContourPoint(new TSG.Point(6000.0, 8500.0, 0.0), null));
+            //contour1.AddContourPoint(new TSM.ContourPoint(new TSG.Point(6000.0, 6000.0, 0.0), null));
+            //contour1.AddContourPoint(new TSM.ContourPoint(new TSG.Point(12000.0, 6000.0, 0.0), null));
+            //contour1.AddContourPoint(new TSM.ContourPoint(new TSG.Point(12000.0, 8500.0, 0.0), null));
+            //var geometry = new TSM.ConnectiveGeometry(contour1);
 
-            var contour2 = new TSM.Contour();
-            contour2.AddContourPoint(new TSM.ContourPoint(new TSG.Point(15000.0, 8500.0, 1000.0), null));
-            contour2.AddContourPoint(new TSM.ContourPoint(new TSG.Point(15000.0, 6000.0, 1000.0), null));
-            contour2.AddContourPoint(new TSM.ContourPoint(new TSG.Point(19600.0, 6000.0, 3500.0), null));
-            contour2.AddContourPoint(new TSM.ContourPoint(new TSG.Point(19600.0, 8500.0, 3500.0), null));
+            //var contour2 = new TSM.Contour();
+            //contour2.AddContourPoint(new TSM.ContourPoint(new TSG.Point(15000.0, 8500.0, 1000.0), null));
+            //contour2.AddContourPoint(new TSM.ContourPoint(new TSG.Point(15000.0, 6000.0, 1000.0), null));
+            //contour2.AddContourPoint(new TSM.ContourPoint(new TSG.Point(19600.0, 6000.0, 3500.0), null));
+            //contour2.AddContourPoint(new TSM.ContourPoint(new TSG.Point(19600.0, 8500.0, 3500.0), null));
 
-            var radius = 2000.0;
-            var bentPlateGeometrySolver = new TSM.BentPlateGeometrySolver();
-            var newGeometry = bentPlateGeometrySolver.AddLeg(geometry, contour2, radius);
+            //var radius = 2000.0;
+            //var bentPlateGeometrySolver = new TSM.BentPlateGeometrySolver();
+            //var newGeometry = bentPlateGeometrySolver.AddLeg(geometry, contour2, radius);
 
 
             ////var xlist = new List<double>();
@@ -100,7 +102,34 @@ namespace TEST
             //var bottomlist = new List<TSG.Point>();
 
 
-            //var pick = new TSM.UI.Picker().PickObjects(TSM.UI.Picker.PickObjectsEnum.PICK_N_OBJECTS);
+            var pick = new TSM.UI.Picker().PickObjects(TSM.UI.Picker.PickObjectsEnum.PICK_N_OBJECTS);
+
+            while (pick.MoveNext())
+            {
+                var bar = pick.Current as TSM.RebarGroup;
+
+                //var bargeo = bar.GetRebarGeometries(TSM.Reinforcement.RebarGeometryOptionEnum.HOOKS);
+
+                //var bargeo1 = bargeo[0] as TSM.RebarGeometry;
+
+                //var p = bargeo1.Shape.Points[0];
+
+
+                //var ss = bargeo1.point
+
+                //var dd = new TSG.LineSegment(bargeo1.sh, bargeo1[1] as TSG.Point);
+
+                //var ss = dd.Length();
+
+                var aa = 0.0;
+                //var aa = 0.0;
+                bar.GetReportProperty("LENGTH", ref aa);
+                var aaaa = aa;
+
+            }
+
+
+            //var a = bar.getlen
 
 
             //var pickline = new TSM.UI.Picker().PickLine();
@@ -167,7 +196,7 @@ namespace TEST
             //var bottom = bottomlist.Distinct().OrderBy(x => x.X).ThenBy(y => y.Y).ToList();
             //var bottomY = bottomlist.Distinct().OrderBy(x => x.Y).ToList();
 
-            m.CommitChanges();
+            //   m.CommitChanges();
         }
 
         private void Button1_Click(object sender, EventArgs e)
@@ -278,6 +307,9 @@ namespace TEST
 
         private void Test_Click(object sender, EventArgs e)
         {
+            var m = new TSM.Model();
+            TSM.WorkPlaneHandler workPlanHandler = m.GetWorkPlaneHandler();
+            TSM.TransformationPlane currentPlane = workPlanHandler.GetCurrentTransformationPlane();
 
             //var pick = new TSM.UI.Picker().PickObject(TSM.UI.Picker.PickObjectEnum.PICK_ONE_OBJECT);
 
@@ -299,17 +331,58 @@ namespace TEST
 
             while (pick.MoveNext())
             {
-                var bar = pick.Current as TSM.Reinforcement;
+                //var bar = pick.Current as TSM.Reinforcement;
+
+                //TSM.Component com = new TSM.Component();
+                //com.Name = "YT.AutoCoupler";
+                //com.Number = -100000;
+
+                //TSM.ComponentInput cominput = new TSM.ComponentInput();
+                //cominput.AddInputObject(bar);
+
+                //com.SetComponentInput(cominput);
+                //com.Insert();
+
+                var beam = pick.Current as TSM.Beam;
+                var lcs = beam.GetCoordinateSystem();
+
+                // 부재 시작점 좌표
+                var s_ucs_op = beam.StartPoint;
+                var s_ucs_ax = lcs.AxisX.GetNormal();
+                var s_ucs_ay = lcs.AxisX.Cross(lcs.AxisY).GetNormal() * -1;
+                var s_ucs_tp = new TSM.TransformationPlane(s_ucs_op, s_ucs_ax, s_ucs_ay);
+
+                //var ucs_tp = new TSM.TransformationPlane();
+
+                //ucs_tp = s_ucs_tp;
+
+                //m.GetWorkPlaneHandler().SetCurrentTransformationPlane(ucs_tp);
+                m.GetWorkPlaneHandler().SetCurrentTransformationPlane(s_ucs_tp);
+
+                var minX = beam.GetSolid().MinimumPoint.X;
+                var minY = beam.GetSolid().MinimumPoint.Y;
+                var minZ = beam.GetSolid().MinimumPoint.Z;
+
+                var maxX = beam.GetSolid().MaximumPoint.X;
+                var maxY = beam.GetSolid().MaximumPoint.Y;
+                var maxZ = beam.GetSolid().MaximumPoint.Z;
 
                 TSM.Component com = new TSM.Component();
-                com.Name = "YT.AutoCoupler";
+                com.Name = "YT.RWV.Rebar";
                 com.Number = -100000;
 
                 TSM.ComponentInput cominput = new TSM.ComponentInput();
-                cominput.AddInputObject(bar);
+                cominput.AddInputObject(beam);
+
+                cominput.AddOneInputPosition(new TSG.Point(minX, minY, maxZ));
+                cominput.AddOneInputPosition(new TSG.Point(minX, maxY, maxZ));
+                cominput.AddOneInputPosition(new TSG.Point(maxX, minY, maxZ));
+                cominput.AddOneInputPosition(new TSG.Point(maxX, maxY, maxZ));
+
 
                 com.SetComponentInput(cominput);
                 com.Insert();
+
             }
 
 
@@ -319,81 +392,96 @@ namespace TEST
         private void Coupler_Click(object sender, EventArgs e)
         {
 
-            var a = new TSM.UI.Picker().PickObject(TSM.UI.Picker.PickObjectEnum.PICK_ONE_REINFORCEMENT);
-            //var a = new TSM.UI.Picker().PickObjects(TSM.UI.Picker.PickObjectsEnum.PICK_N_OBJECTS);
-            //if (a != null)
-            //{
-            //    while (a.MoveNext())
-            //    {
-            //        var bar = a.Current as TSM.RebarGroup;
+            var a = new TSM.UI.Picker().PickObjects(TSM.UI.Picker.PickObjectsEnum.PICK_N_OBJECTS);
 
-            //        Util.Coordination.ChangeCoordinates(bar.StartPoint, bar.EndPoint);
-
-            //        var geo = bar.GetRebarGeometries(TSM.Reinforcement.RebarGeometryOptionEnum.LENGTH_ADJUSTMENTS);
+            while (a.MoveNext())
+            {
+                var bar = a.Current as TSM.Reinforcement;
 
 
-            //        //var sadff = 0;
-            //        //var asdf = 0;
+                TSM.Component com = new TSM.Component();
+                com.Name = "YT.AutoCoupler";
+                com.Number = -100000;
 
+                TSM.ComponentInput cominput = new TSM.ComponentInput();
+                cominput.AddInputObject(bar);
 
-            //        for (int i = 0; i < geo.Count; i++)
-            //        {
-            //            var p = geo[i] as TSM.RebarGeometry;
+                //com.LoadAttributesFromFile(null);
+                com.SetComponentInput(cominput);
+                com.Insert();
 
-            //            var sp = p.Shape.Points[0] as TSG.Point;
-            //            var ep = p.Shape.Points[1] as TSG.Point;
-
-
-            //            var minX = Math.Min(sp.X, ep.X);
-            //            var minY = Math.Min(sp.Y, ep.Y);
-            //            var minZ = Math.Min(sp.Z,ep.Z);
-
-            //            var maxX = Math.Max(sp.X, ep.X);
-            //            var maxY = Math.Max(sp.Y, ep.Y);
-            //            var maxZ = Math.Max(sp.Z, ep.Z);
-
-            //            var length = 100 / 2;
-
-            //            var coupler = new TSM.Beam(TSM.Beam.BeamTypeEnum.COLUMN);
-
-            //            coupler.Name = "Coulpler";
-            //            coupler.Profile.ProfileString = "D22";
-            //            coupler.Material.MaterialString = "Steel_Undefined";
-            //            coupler.StartPoint = new TSG.Point(maxX, maxY, maxZ - length);
-            //            coupler.EndPoint = new TSG.Point(maxX, maxY, maxZ + length);
-            //            coupler.Position.Plane = TSM.Position.PlaneEnum.MIDDLE;
-            //            coupler.Position.Rotation = TSM.Position.RotationEnum.FRONT;
-            //            coupler.Position.Depth = TSM.Position.DepthEnum.MIDDLE;
-            //            coupler.Insert();
-
-
-            //            var coupler2 = new TSM.Beam(TSM.Beam.BeamTypeEnum.COLUMN);
-
-            //            coupler2.Name = "Coulpler";
-            //            coupler2.Profile.ProfileString = "D22";
-            //            coupler2.Material.MaterialString = "Steel_Undefined";
-            //            coupler2.StartPoint = new TSG.Point(maxX, maxY, minZ - length);
-            //            coupler2.EndPoint = new TSG.Point(maxX, maxY, minZ + length);
-            //            coupler2.Position.Plane = TSM.Position.PlaneEnum.MIDDLE;
-            //            coupler2.Position.Rotation = TSM.Position.RotationEnum.FRONT;
-            //            coupler2.Position.Depth = TSM.Position.DepthEnum.MIDDLE;
-            //            coupler2.Insert();
-            //        }
-            //    }
-
-            //}
+            }
         }
 
 
         private void ArrayTest_Click(object sender, EventArgs e)
         {
-            var a = MainShearBar(1350, 150);
-            var b = AddShearBar(1350, 150);
+            var a = CopyArrayT(775, 250);
+            var b = CopyArrayT2(775, 250);
 
-            var c = FirstMainShearBar(3173.44, 300);
-            var d = SecondMainShearBar(3173.44, 300);
+            //var c = FirstMainShearBar(3173.44, 300);
+            //var d = SecondMainShearBar(3173.44, 300);
+        }
+        private ArrayList CopyArrayT(double length, double spacing)
+        {
+            var list = new ArrayList();
+
+            var ea1 = (int)length / ((int)spacing * 2);
+            var te1 = (int)length % ((int)spacing * 2);
+
+            var ea2 = ((int)length - (int)spacing) / ((int)spacing * 2);
+            var te2 = ((int)length - (int)spacing) % ((int)spacing * 2);
+
+            for (int i = 0; i < ea1 - 1; i++)
+            {
+                list.Add(spacing * 2);
+            }
+            if (ea1 % 2 == 0 && te1 != 0)
+            {
+
+            }
+            else if (ea1 % 2 == 1 && te1 != 0)
+            {
+
+            }
+            else if (te1 == 0 && te1 != 0)
+            {
+
+            }
+
+            return list;
         }
 
+        private ArrayList CopyArrayT2(double length, double spacing)
+        {
+            var list = new ArrayList();
+
+            var ea1 = (int)length / ((int)spacing * 2);
+            var te1 = (int)length % ((int)spacing * 2);
+
+            var ea2 = ((int)length - (int)spacing) / ((int)spacing * 2);
+            var te2 = ((int)length - (int)spacing) % ((int)spacing * 2);
+
+            for (int i = 0; i < ea2 - 1; i++)
+            {
+                list.Add(spacing * 2);
+            }
+            if (ea2 % 2 == 0 && te2 != 0)
+            {
+                list.Add(spacing * 2);
+            }
+            else if (ea2 % 2 == 1 && te2 != 0)
+            {
+
+            }
+            else if (te2 == 0)
+            {
+
+            }
+
+
+            return list;
+        }
 
         private ArrayList MainShearBar(double length, double spacing)
         {
@@ -1550,44 +1638,6 @@ namespace TEST
             TSM.Operations.Operation.MoveObject(bar, new TSG.Vector(0, 0, z));
         }
 
-        private ArrayList OddArraySum(ArrayList list)
-        {
-            var tmp = 0D;
-
-            var list1 = new ArrayList();
-
-            for (int j = 0; j < list.Count; j++) // 0 1 2 3
-            {
-                if (j != list.Count - 1)
-                {
-                    if (j % 2 != 0) // 홀
-                    {
-                        tmp = tmp + Convert.ToDouble(list[j]);
-                        list1.Add(tmp);
-                    }
-                    else
-                    {
-                        tmp = Convert.ToDouble(list[j]);
-                    }
-                }
-                else
-                {
-                    if (j % 2 == 0) // 짝
-                    {
-                        tmp = Convert.ToDouble(list[j]);
-                        list1.Add(tmp);
-                    }
-                    else
-                    {
-                        tmp = tmp + Convert.ToDouble(list[j]);
-                        list1.Add(tmp);
-                    }
-
-                }
-            }
-            return list1;
-
-        }
 
 
         public class ConeMesh

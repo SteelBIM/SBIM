@@ -57,7 +57,8 @@ namespace YT.COM
                 {
                     list.Add(spac);
                 }
-                else if (te != 0 && te < spac && ea != 0)
+                //else if (te != 0 && te < spac && ea != 0)
+                else if (te != 0 && te <= spac && ea != 0)
                 {
                     list.Add((spac + te) / 2);
                     list.Add((spac + te) / 2);
@@ -93,7 +94,8 @@ namespace YT.COM
                 {
                     list.Add(spac);
                 }
-                else if (te1 != 0 && te1 < spac && ea1 != 0)
+                //else if (te1 != 0 && te1 < spac && ea1 != 0)
+                else if (te1 != 0 && te1 <= spac && ea1 != 0)
                 {
                     list.Add((spac + te1) / 2);
                     list.Add((spac + te1) / 2);
@@ -114,7 +116,8 @@ namespace YT.COM
                 {
                     list.Add(spac);
                 }
-                else if (te2 != 0 && te2 < spac && ea2 != 0)
+                //else if (te2 != 0 && te2 < spac && ea2 != 0)
+                else if (te2 != 0 && te2 <= spac && ea2 != 0)
                 {
                     list.Add((spac + te2) / 2);
                     list.Add((spac + te2) / 2);
@@ -141,7 +144,8 @@ namespace YT.COM
                 {
                     list.Add(spac);
                 }
-                else if (te != 0 && te < spac && ea != 0)
+                //else if (te != 0 && te < spac && ea != 0)
+                else if (te != 0 && te <= spac && ea != 0)
                 {
                     list.Add((spac + te) / 2);
                     list.Add((spac + te) / 2);
@@ -172,7 +176,8 @@ namespace YT.COM
                 {
                     list.Add(spac);
                 }
-                else if (te != 0 && te < spac && ea != 0)
+                else if (te != 0 && te <= spac && ea != 0)
+                //else if (te != 0 && te < spac && ea != 0)
                 {
                     list.Add((spac + te) / 2);
                     list.Add((spac + te) / 2);
@@ -214,7 +219,8 @@ namespace YT.COM
                 {
                     list.Add(spac);
                 }
-                else if (te1 != 0 && te1 < spac && ea1 != 0)
+                //else if (te1 != 0 && te1 < spac && ea1 != 0)
+                else if (te1 != 0 && te1 <= spac && ea1 != 0)
                 {
                     list.Add((spac + te1) / 2);
                     list.Add((spac + te1) / 2);
@@ -235,7 +241,8 @@ namespace YT.COM
                 {
                     list.Add(spac);
                 }
-                else if (te2 != 0 && te2 < spac && ea2 != 0)
+                //else if (te2 != 0 && te2 < spac && ea2 != 0)
+                else if (te2 != 0 && te2 <= spac && ea2 != 0)
                 {
                     list.Add((spac + te2) / 2);
                     list.Add((spac + te2) / 2);
@@ -266,7 +273,8 @@ namespace YT.COM
                 {
                     list.Add(spac);
                 }
-                else if (te != 0 && te < spac && ea != 0)
+                //else if (te != 0 && te < spac && ea != 0)
+                else if (te != 0 && te <= spac && ea != 0)
                 {
                     list.Add((spac + te) / 2);
                     list.Add((spac + te) / 2);
@@ -308,7 +316,8 @@ namespace YT.COM
                 {
                     list.Add(spac);
                 }
-                else if (te1 != 0 && te1 < spac && ea1 != 0)
+                //else if (te1 != 0 && te1 < spac && ea1 != 0)
+                else if (te1 != 0 && te1 <= spac && ea1 != 0)
                 {
                     list.Add((spac + te1) / 2);
                     list.Add((spac + te1) / 2);
@@ -329,7 +338,8 @@ namespace YT.COM
                 {
                     list.Add(spac);
                 }
-                else if (te2 != 0 && te2 < spac && ea2 != 0)
+                //else if (te2 != 0 && te2 < spac && ea2 != 0)
+                else if (te2 != 0 && te2 <= spac && ea2 != 0)
                 {
                     list.Add((spac + te2) / 2);
                     list.Add((spac + te2) / 2);
@@ -370,7 +380,8 @@ namespace YT.COM
                 {
                     list.Add(spac);
                 }
-                else if (te1 != 0 && te1 < spac && ea1 != 0)
+                //else if (te1 != 0 && te1 < spac && ea1 != 0)
+                else if (te1 != 0 && te1 <= spac && ea1 != 0)
                 {
                     list.Add((spac + te1) / 2);
                     list.Add((spac + te1) / 2);
@@ -391,7 +402,8 @@ namespace YT.COM
                 {
                     list.Add(spac);
                 }
-                else if (te2 != 0 && te2 < spac && ea2 != 0)
+                //else if (te2 != 0 && te2 < spac && ea2 != 0)
+                else if (te2 != 0 && te2 <= spac && ea2 != 0)
                 {
                     list.Add((spac + te2) / 2);
                     list.Add((spac + te2) / 2);
@@ -412,7 +424,8 @@ namespace YT.COM
                 {
                     list.Add(spac);
                 }
-                else if (te3 != 0 && te3 < spac && ea3 != 0)
+                //else if (te3 != 0 && te3 < spac && ea3 != 0)
+                else if (te3 != 0 && te3 <= spac && ea3 != 0)
                 {
                     list.Add((spac + te3) / 2);
                     list.Add((spac + te3) / 2);
@@ -450,7 +463,8 @@ namespace YT.COM
                 {
                     list.Add(spac);
                 }
-                else if (te1 != 0 && te1 < spac && ea1 != 0)
+                //else if (te1 != 0 && te1 < spac && ea1 != 0)
+                else if (te1 != 0 && te1 <= spac && ea1 != 0)
                 {
                     list.Add((spac + te1) / 2);
                     list.Add((spac + te1) / 2);
@@ -471,7 +485,8 @@ namespace YT.COM
                 {
                     list.Add(spac);
                 }
-                else if (te2 != 0 && te2 < spac && ea2 != 0)
+                //else if (te2 != 0 && te2 < spac && ea2 != 0)
+                else if (te2 != 0 && te2 <= spac && ea2 != 0)
                 {
                     list.Add((spac + te2) / 2);
                     list.Add((spac + te2) / 2);
@@ -516,7 +531,8 @@ namespace YT.COM
                 {
                     list.Add(spac);
                 }
-                else if (te != 0 && te < spac && ea != 0)
+                //else if (te != 0 && te < spac && ea != 0)
+                else if (te != 0 && te <= spac && ea != 0)
                 {
                     list.Add((spac + te) / 2);
                     list.Add((spac + te) / 2);
@@ -541,7 +557,8 @@ namespace YT.COM
                 {
                     list.Add(spac);
                 }
-                else if (te != 0 && te < spac && ea != 0)
+                //else if (te != 0 && te < spac && ea != 0)
+                else if (te != 0 && te <= spac && ea != 0)
                 {
                     list.Add((spac + te) / 2);
                     list.Add((spac + te) / 2);
@@ -575,7 +592,8 @@ namespace YT.COM
                 {
                     list.Add(spac);
                 }
-                else if (te1 != 0 && te1 < spac && ea1 != 0)
+                //else if (te1 != 0 && te1 < spac && ea1 != 0)
+                else if (te1 != 0 && te1 <= spac && ea1 != 0)
                 {
                     list.Add((spac + te1) / 2);
                     list.Add((spac + te1) / 2);
@@ -596,7 +614,8 @@ namespace YT.COM
                 {
                     list.Add(spac);
                 }
-                else if (te2 != 0 && te2 < spac && ea2 != 0)
+                //else if (te2 != 0 && te2 < spac && ea2 != 0)
+                else if (te2 != 0 && te2 <= spac && ea2 != 0)
                 {
                     list.Add((spac + te2) / 2);
                     list.Add((spac + te2) / 2);
@@ -633,7 +652,8 @@ namespace YT.COM
                 {
                     list.Add(spac);
                 }
-                else if (te1 != 0 && te1 < spac && ea1 != 0)
+                //else if (te1 != 0 && te1 < spac && ea1 != 0)
+                else if (te1 != 0 && te1 <= spac && ea1 != 0)
                 {
                     list.Add((spac + te1) / 2);
                     list.Add((spac + te1) / 2);
@@ -654,7 +674,8 @@ namespace YT.COM
                 {
                     list.Add(spac);
                 }
-                else if (te2 != 0 && te2 < spac && ea2 != 0)
+                //else if (te2 != 0 && te2 < spac && ea2 != 0)
+                else if (te2 != 0 && te2 <= spac && ea2 != 0)
                 {
                     list.Add((spac + te2) / 2);
                     list.Add((spac + te2) / 2);
@@ -693,7 +714,8 @@ namespace YT.COM
                 {
                     list.Add(spac);
                 }
-                else if (te1 != 0 && te1 < spac && ea1 != 0)
+                //else if (te1 != 0 && te1 < spac && ea1 != 0)
+                else if (te1 != 0 && te1 <= spac && ea1 != 0)
                 {
                     list.Add((spac + te1) / 2);
                     list.Add((spac + te1) / 2);
@@ -714,7 +736,8 @@ namespace YT.COM
                 {
                     list.Add(spac);
                 }
-                else if (te2 != 0 && te2 < spac && ea2 != 0)
+                //else if (te2 != 0 && te2 < spac && ea2 != 0)
+                else if (te2 != 0 && te2 <= spac && ea2 != 0)
                 {
                     list.Add((spac + te2) / 2);
                     list.Add((spac + te2) / 2);
@@ -755,7 +778,8 @@ namespace YT.COM
                 {
                     list.Add(spac);
                 }
-                else if (te1 != 0 && te1 < spac && ea1 != 0)
+                //else if (te1 != 0 && te1 < spac && ea1 != 0)
+                else if (te1 != 0 && te1 <= spac && ea1 != 0)
                 {
                     list.Add((spac + te1) / 2);
                     list.Add((spac + te1) / 2);
@@ -776,7 +800,8 @@ namespace YT.COM
                 {
                     list.Add(spac);
                 }
-                else if (te2 != 0 && te2 < spac && ea2 != 0)
+                //else if (te2 != 0 && te2 < spac && ea2 != 0)
+                else if (te2 != 0 && te2 <= spac && ea2 != 0)
                 {
                     list.Add((spac + te2) / 2);
                     list.Add((spac + te2) / 2);
@@ -797,7 +822,8 @@ namespace YT.COM
                 {
                     list.Add(spac);
                 }
-                else if (te3 != 0 && te3 < spac && ea3 != 0)
+                //else if (te3 != 0 && te3 < spac && ea3 != 0)
+                else if (te3 != 0 && te3 <= spac && ea3 != 0)
                 {
                     list.Add((spac + te3) / 2);
                     list.Add((spac + te3) / 2);
@@ -827,7 +853,8 @@ namespace YT.COM
                 {
                     list.Add(spac);
                 }
-                else if (te != 0 && te < spac && ea != 0)
+                //else if (te != 0 && te < spac && ea != 0)
+                else if (te != 0 && te <= spac && ea != 0)
                 {
                     list.Add((spac + te) / 2);
                     list.Add((spac + te) / 2);
@@ -854,7 +881,8 @@ namespace YT.COM
                 {
                     list.Add(spac);
                 }
-                else if (te != 0 && te < spac && ea != 0)
+                //else if (te != 0 && te < spac && ea != 0)
+                else if (te != 0 && te <= spac && ea != 0)
                 {
                     list.Add((spac + te) / 2);
                     list.Add((spac + te) / 2);
@@ -891,7 +919,8 @@ namespace YT.COM
                 {
                     list.Add(spac);
                 }
-                else if (te1 != 0 && te1 < spac && ea1 != 0)
+                //else if (te1 != 0 && te1 < spac && ea1 != 0)
+                else if (te1 != 0 && te1 <= spac && ea1 != 0)
                 {
                     list.Add((spac + te1) / 2);
                     list.Add((spac + te1) / 2);
@@ -912,7 +941,8 @@ namespace YT.COM
                 {
                     list.Add(spac);
                 }
-                else if (te2 != 0 && te2 < spac && ea2 != 0)
+                //else if (te2 != 0 && te2 < spac && ea2 != 0)
+                else if (te2 != 0 && te2 <= spac && ea2 != 0)
                 {
                     list.Add((spac + te2) / 2);
                     list.Add((spac + te2) / 2);
@@ -10929,6 +10959,7 @@ namespace YT.COM
                     else if (LeaA % 2 == 1)
                     {
                         list.Add(spac * 2);
+                        list.Add(spac * 2); /////////////////////
                     }
 
                 }
@@ -10966,6 +10997,7 @@ namespace YT.COM
                     else if (LeaA % 2 == 1)
                     {
                         list.Add(spac * 2);
+                        list.Add(spac * 2); /////////////////////
                     }
 
                 }
@@ -11002,6 +11034,7 @@ namespace YT.COM
                     else if (ReaA % 2 == 1)
                     {
                         list.Add(spac * 2);
+                        list.Add(spac * 2); /////////////////////
                     }
 
                 }
@@ -11042,6 +11075,7 @@ namespace YT.COM
                     else if (LeaA % 2 == 1)
                     {
                         list.Add(spac * 2);
+                        list.Add(spac * 2); /////////////////////
                     }
 
                 }
@@ -11124,6 +11158,7 @@ namespace YT.COM
                     else if (LeaA % 2 == 1)
                     {
                         list.Add(spac * 2);
+                        list.Add(spac * 2); /////////////////////
                     }
 
                 }
@@ -11163,6 +11198,7 @@ namespace YT.COM
                     else if (LeaA % 2 == 1)
                     {
                         list.Add(spac * 2);
+                        list.Add(spac * 2); /////////////////////
                     }
 
                 }
@@ -11200,6 +11236,7 @@ namespace YT.COM
                     else if (LeaA % 2 == 1)
                     {
                         list.Add(spac * 2);
+                        list.Add(spac * 2); /////////////////////
                     }
 
                 }
@@ -12960,7 +12997,7 @@ namespace YT.COM
 
                 for (int i = 0; i < eaD - 1; i++)
                 {
-                    list.Add(spac* 2);
+                    list.Add(spac * 2);
                 }
 
                 if (teA == 0)

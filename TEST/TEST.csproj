@@ -74,6 +74,9 @@
     <Reference Include="Tekla.Structures.Plugins, Version=2020.0.0.0, Culture=neutral, PublicKeyToken=2f04dbe497b71114, processorArchitecture=MSIL">
       <HintPath>..\packages\TeklaOpenAPI.2020.0.3\lib\Tekla.Structures.Plugins.dll</HintPath>
     </Reference>
+    <Reference Include="Z.BulkOperations, Version=3.0.55.0, Culture=neutral, PublicKeyToken=59b66d028979105b, processorArchitecture=MSIL">
+      <HintPath>..\packages\Z.BulkOperations.3.0.55\lib\net45\Z.BulkOperations.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Form1.cs">
