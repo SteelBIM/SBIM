@@ -35,6 +35,37 @@ namespace TEST
 
             button1.Click += Button1_Click;
             SingleSlab.Click += SingleSlab_Click;
+            btnOpen.Click += BtnOpen_Click;
+        }
+
+        private void BtnOpen_Click(object sender, EventArgs e)
+        {
+            ShowfileOpenDialog();
+        }
+
+        public void ShowfileOpenDialog()
+        {
+            var model = new TSM.Model();
+
+
+            var modelpath = model.GetInfo().ModelPath;
+
+            OpenFileDialog folder = new OpenFileDialog();
+
+            folder.Title = "Open Path";
+
+            folder.InitialDirectory = @modelpath + "\\attributes";
+
+            DialogResult folderview = folder.ShowDialog();
+
+            if (folderview != DialogResult.OK) return;
+
+           tboxOpen.Text = folder.SafeFileName;
+
+            var a = tboxOpen.Text;
+            string[] b = a.Split('.');
+            var c = b[0];
+
         }
 
         private void SingleSlab_Click(object sender, EventArgs e)

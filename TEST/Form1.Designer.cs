@@ -35,6 +35,8 @@ namespace TEST
             this.test = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.SingleSlab = new System.Windows.Forms.Button();
+            this.btnOpen = new System.Windows.Forms.Button();
+            this.tboxOpen = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // WallVericalRebarTest
@@ -97,11 +99,29 @@ namespace TEST
             this.SingleSlab.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             this.SingleSlab.UseVisualStyleBackColor = true;
             // 
+            // btnOpen
+            // 
+            this.btnOpen.Location = new System.Drawing.Point(247, 33);
+            this.btnOpen.Name = "btnOpen";
+            this.btnOpen.Size = new System.Drawing.Size(155, 23);
+            this.btnOpen.TabIndex = 11;
+            this.btnOpen.Text = "btnOpen";
+            this.btnOpen.UseVisualStyleBackColor = true;
+            // 
+            // tboxOpen
+            // 
+            this.tboxOpen.Location = new System.Drawing.Point(404, 108);
+            this.tboxOpen.Name = "tboxOpen";
+            this.tboxOpen.Size = new System.Drawing.Size(100, 21);
+            this.tboxOpen.TabIndex = 12;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.tboxOpen);
+            this.Controls.Add(this.btnOpen);
             this.Controls.Add(this.SingleSlab);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.test);
@@ -111,6 +131,7 @@ namespace TEST
             this.Name = "Form1";
             this.Text = "Form1";
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -121,6 +142,8 @@ namespace TEST
         private System.Windows.Forms.Button test;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button SingleSlab;
+        private System.Windows.Forms.Button btnOpen;
+        private System.Windows.Forms.TextBox tboxOpen;
     }
 }
 

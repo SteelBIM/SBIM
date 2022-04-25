@@ -18,17 +18,22 @@ namespace YT.WallVerticalRebar.Multiple
     [TSP.Plugin("YT.RWA.Rebar.Multiple")]
     [TSP.PluginUserInterface("YT.WallVerticalRebar.Multiple.WallVerticalRebarMultipleU")] // Form 결합
 
+
     public class WallVerticalRebarMultipleM : TSP.PluginBase
     {
+
+        public WallVerticalRebarMultipleD D { get; set; }
+
         public TSM.Model M { get; set; }
 
-        public WallVerticalRebarMultipleM()
+        public WallVerticalRebarMultipleM(WallVerticalRebarMultipleD data)
         {
             M = new TSM.Model();
+            D = data;
         }
+
         public override List<InputDefinition> DefineInput()
         {
-
             var m = new TSM.Model();
             TSM.WorkPlaneHandler workPlanHandler = m.GetWorkPlaneHandler();
             TSM.TransformationPlane currentPlane = workPlanHandler.GetCurrentTransformationPlane();
@@ -63,6 +68,7 @@ namespace YT.WallVerticalRebar.Multiple
                 com.Name = "YT.RWV.Rebar";
                 com.Number = -100000;
 
+
                 TSM.ComponentInput cominput = new TSM.ComponentInput();
                 cominput.AddInputObject(beam);
 
@@ -71,9 +77,13 @@ namespace YT.WallVerticalRebar.Multiple
                 cominput.AddOneInputPosition(new TSG.Point(maxX, minY, maxZ));
                 cominput.AddOneInputPosition(new TSG.Point(maxX, maxY, maxZ));
 
-
+                com.LoadAttributesFromFile(D.FilePath);
                 com.SetComponentInput(cominput);
                 com.Insert();
+
+                var plane = new TSM.TransformationPlane();
+                m.GetWorkPlaneHandler().SetCurrentTransformationPlane(plane);
+                m.CommitChanges();
 
             }
 

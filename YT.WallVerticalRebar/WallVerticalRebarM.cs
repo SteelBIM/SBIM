@@ -10,11 +10,12 @@ using TSP = Tekla.Structures.Plugins;
 
 namespace YT.WallVerticalRebar
 {
-    [TSP.Plugin("YT.RWV.Rebar")]  // Tekla에서 표시되는 PlugIn 이름
+    [TSP.Plugin(PluginName)]  // Tekla에서 표시되는 PlugIn 이름
     [TSP.PluginUserInterface("YT.WallVerticalRebar.WallVerticalRebarU")] // Form 결합
     //[TSP.AutoDirectionType(TS.AutoDirectionTypeEnum.AUTODIR_BASIC)]
     public class WallVerticalRebarM : TSP.PluginBase
     {
+        public const string PluginName = "YT.RWV.Rebar";
         public WallVerticalRebarD D { get; set; }
         public TSM.Model M { get; set; }
         public WallVerticalRebarM(WallVerticalRebarD data)

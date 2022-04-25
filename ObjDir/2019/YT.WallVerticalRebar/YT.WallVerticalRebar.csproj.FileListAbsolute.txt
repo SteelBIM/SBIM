@@ -49,3 +49,5 @@ D:\조한솔\00. 프로젝트\00. SBIM\ObjDir\2019\YT.WallVerticalRebar\YT.WallV
 D:\조한솔\00. 프로젝트\00. SBIM\ObjDir\2019\YT.WallVerticalRebar\YT.WallVerticalRebar.csproj.CopyComplete
 D:\조한솔\00. 프로젝트\00. SBIM\ObjDir\2019\YT.WallVerticalRebar\YT.WallVerticalRebar.dll
 D:\조한솔\00. 프로젝트\00. SBIM\ObjDir\2019\YT.WallVerticalRebar\YT.WallVerticalRebar.pdb
+D:\조한솔\00. 프로젝트\00. SBIM\YT.WallVerticalRebar\bin\Debug\Tekla.BIM.DirectManipulation.dll
+D:\조한솔\00. 프로젝트\00. SBIM\YT.WallVerticalRebar\bin\Debug\Tekla.BIM.DirectManipulation.xml
