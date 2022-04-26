@@ -37,6 +37,7 @@ namespace TEST
             this.SingleSlab = new System.Windows.Forms.Button();
             this.btnOpen = new System.Windows.Forms.Button();
             this.tboxOpen = new System.Windows.Forms.TextBox();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.SuspendLayout();
             // 
             // WallVericalRebarTest
@@ -115,11 +116,20 @@ namespace TEST
             this.tboxOpen.Size = new System.Drawing.Size(100, 21);
             this.tboxOpen.TabIndex = 12;
             // 
+            // comboBox1
+            // 
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Location = new System.Drawing.Point(363, 218);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(121, 20);
+            this.comboBox1.TabIndex = 13;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.comboBox1);
             this.Controls.Add(this.tboxOpen);
             this.Controls.Add(this.btnOpen);
             this.Controls.Add(this.SingleSlab);
@@ -144,6 +154,7 @@ namespace TEST
         private System.Windows.Forms.Button SingleSlab;
         private System.Windows.Forms.Button btnOpen;
         private System.Windows.Forms.TextBox tboxOpen;
+        private System.Windows.Forms.ComboBox comboBox1;
     }
 }
 

@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "cusRlq2d6e6WpmSQpzH5aFlS6H+DbhKP2vc/uGId9u4tMWCI9upXfEo2XuhPxy3KQWI4E16Z5tNcLpSvuMHnaw==",
+  "success": true,
+  "projectFilePath": "D:\\조한솔\\00. 프로젝트\\00. SBIM\\YT.COM\\YT.COM.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\hansol\\.nuget\\packages\\teklaopenapi\\2020.0.3\\teklaopenapi.2020.0.3.nupkg.sha512"
+  ],
+  "logs": []
+}

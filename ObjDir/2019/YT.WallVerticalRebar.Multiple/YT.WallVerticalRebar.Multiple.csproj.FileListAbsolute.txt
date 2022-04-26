@@ -47,8 +47,6 @@ D:\조한솔\00. 프로젝트\00. SBIM\YT.WallVerticalRebar.Multiple\bin\Debug\d
 D:\조한솔\00. 프로젝트\00. SBIM\YT.WallVerticalRebar.Multiple\bin\Debug\es\DevExpress.Pdf.v20.2.Core.resources.dll
 D:\조한솔\00. 프로젝트\00. SBIM\YT.WallVerticalRebar.Multiple\bin\Debug\ja\DevExpress.Pdf.v20.2.Core.resources.dll
 D:\조한솔\00. 프로젝트\00. SBIM\YT.WallVerticalRebar.Multiple\bin\Debug\ru\DevExpress.Pdf.v20.2.Core.resources.dll
-D:\조한솔\00. 프로젝트\00. SBIM\ObjDir\2019\YT.WallVerticalRebar.Multiple\YT.WallVerticalRebar.Multiple.WallVerticalRebarMultipleU.resources
-D:\조한솔\00. 프로젝트\00. SBIM\ObjDir\2019\YT.WallVerticalRebar.Multiple\YT.WallVerticalRebar.Multiple.csproj.GenerateResource.cache
 D:\조한솔\00. 프로젝트\00. SBIM\YT.WallVerticalRebar.Multiple\bin\Debug\YT.WallVerticalRebar.dll
 D:\조한솔\00. 프로젝트\00. SBIM\YT.WallVerticalRebar.Multiple\bin\Debug\YT.COM.dll
 D:\조한솔\00. 프로젝트\00. SBIM\YT.WallVerticalRebar.Multiple\bin\Debug\YT.WallVerticalRebar.pdb

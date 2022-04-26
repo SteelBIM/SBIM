@@ -18,6 +18,7 @@ using TSC = Tekla.Structures.Catalogs;
 using TSP = Tekla.Structures.Plugins;
 using TST = Tekla.Structures.Datatype;
 using System.Collections;
+using System.IO;
 
 namespace TEST
 {
@@ -38,9 +39,62 @@ namespace TEST
             btnOpen.Click += BtnOpen_Click;
         }
 
+     
+
         private void BtnOpen_Click(object sender, EventArgs e)
         {
-            ShowfileOpenDialog();
+            var m = new TSM.Model();
+            comboboxinit();
+            //m.GetClashCheckHandler();
+            //var aaaa = new Tekla.Structures.ModelInternal.PickerInternal.PickedObject();
+            //aaaa.GetType();
+
+            //comboboxinit();
+            //var a = comboBox1.SelectedIndex;
+            //ShowfileOpenDialog();
+        }
+
+        public void comboboxinit()
+        {
+            var model = new TSM.Model();
+
+            var modelpath = model.GetInfo().ModelPath + "\\attributes";
+
+            //OpenFileDialog folder = new OpenFileDialog();
+
+            //folder.Title = "Open Path";
+
+            //folder.Filter = "(*.xml)|*.YT.WallVerticalRebar.WallVerticalRebarU.xml";
+
+            //folder.InitialDirectory = @modelpath + "\\attributes";
+
+            List<string> list = new List<string>();
+
+            string filename = modelpath;
+            DirectoryInfo di = new DirectoryInfo(filename);
+            foreach (var File in di.GetFiles())
+            {
+                list.Add(File.ToString());
+            }
+
+            var qry = from data in list
+                      where data.Contains("YT.WallVerticalRebar.WallVerticalRebarU")
+                      select data;
+
+            List<string> list2 = new List<string>();
+
+            foreach (var item in qry)
+            {
+                var st = item;
+                string[] stlist = st.Split('.');
+                list2.Add(stlist[0]);
+                comboBox1.Items.Add(stlist[0]);
+            }
+
+
+            //string toaf = alist[0];
+
+            //string dd = new DirectoryInfo(Path.GetDirectoryName(filename)).Name;
         }
 
         public void ShowfileOpenDialog()
@@ -53,6 +107,9 @@ namespace TEST
             OpenFileDialog folder = new OpenFileDialog();
 
             folder.Title = "Open Path";
+
+            folder.Filter = "(*.xml)|*.YT.WallVerticalRebar.WallVerticalRebarU.xml";
+
 
             folder.InitialDirectory = @modelpath + "\\attributes";
 

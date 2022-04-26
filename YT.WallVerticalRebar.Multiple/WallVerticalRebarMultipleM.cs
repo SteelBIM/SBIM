@@ -77,7 +77,7 @@ namespace YT.WallVerticalRebar.Multiple
                 cominput.AddOneInputPosition(new TSG.Point(maxX, minY, maxZ));
                 cominput.AddOneInputPosition(new TSG.Point(maxX, maxY, maxZ));
 
-                com.LoadAttributesFromFile(D.FilePath);
+                //com.LoadAttributesFromFile(D.FilePath);
                 com.SetComponentInput(cominput);
                 com.Insert();
 
