@@ -5967,10 +5967,7 @@ namespace YT.WallVerticalRebar
             }
             else if (D.S_RangeType == "상")
             {
-                //var el = length - D.S_RangeTop - D.S_BeamDepth - te2 + D.S_SpacingZ;
-                //var el = length - D.S_RangeTop - te2 + D.S_SpacingZ;
                 var el = length - D.S_RangeTop - te2 + tee;
-                //bar1.Spacings = CopyArrayB(length - el - D.S_BeamDepth - (D.S_SpacingZ / 2), D.S_SpacingZ);
                 bar1.Spacings = CopyArrayT(length - el - D.S_BeamDepth - (D.S_SpacingZ / 2), D.S_SpacingZ);
 
             }
@@ -6088,143 +6085,48 @@ namespace YT.WallVerticalRebar
             {
                 if (D.S_RangeType == "전체")
                 {
-                    bar1.Insert();
-                    MoveX(bar1, -size, -rebar);
-                    MoveZ(bar1, D.S_SpacingZ / 2);
-                    MoveZ(bar1, (hMainBar / 2) + (sBar / 2));
-
-                    switch (D.S_UDA)
-                    {
-                        case "부재 UDA 정보 사용":
-
-                            bar1.SetUserProperty("USER_FIELD_1", buildingSt);
-                            bar1.SetUserProperty("USER_FIELD_2", buildingStoreySt);
-
-                            break;
-
-                        case "사용자 지정":
-
-                            bar1.SetUserProperty("USER_FIELD_1", buildingSt);
-                            bar1.SetUserProperty("USER_FIELD_2", D.S_Building_S);
-
-                            break;
-                    }
-
                     if (D.S_Type == "수직근")
                     {
-                        switch (D.S_UDA)
-                        {
-                            case "부재 UDA 정보 사용":
-
-                                bar1.SetUserProperty("USER_FIELD_1", buildingSt);
-                                bar1.SetUserProperty("USER_FIELD_2", buildingStoreySt);
-
-                                break;
-
-                            case "사용자 지정":
-
-                                bar1.SetUserProperty("USER_FIELD_1", buildingSt);
-                                bar1.SetUserProperty("USER_FIELD_2", D.S_Building_S);
-
-                                break;
-                        }
-                        CopyX(bar1, listfm);
+                        var bar1a = InsertUserProperty(bar1, buildingSt, buildingStoreySt);
+                        MoveX(bar1a, -size, -rebar);
+                        MoveZ(bar1a, D.S_SpacingZ / 2);
+                        MoveZ(bar1a, (hMainBar / 2) + (sBar / 2));
+                        //CopyX(bar1, listfm);
+                        CopyXUerProperty(bar1a, listfm, buildingSt, buildingStoreySt);
                     }
                     else if (D.S_Type == "수직근+보강근1단")
                     {
-                        switch (D.S_UDA)
-                        {
-                            case "부재 UDA 정보 사용":
-
-                                bar1.SetUserProperty("USER_FIELD_1", buildingSt);
-                                bar1.SetUserProperty("USER_FIELD_2", buildingStoreySt);
-
-                                break;
-
-                            case "사용자 지정":
-
-                                bar1.SetUserProperty("USER_FIELD_1", buildingSt);
-                                bar1.SetUserProperty("USER_FIELD_2", D.S_Building_S);
-
-                                break;
-                        }
-                        CopyX(bar1, listV);
+                        var bar1a = InsertUserProperty(bar1, buildingSt, buildingStoreySt);
+                        MoveX(bar1a, -size, -rebar);
+                        MoveZ(bar1a, D.S_SpacingZ / 2);
+                        MoveZ(bar1a, (hMainBar / 2) + (sBar / 2));
+                        //CopyX(bar1, listV);
+                        CopyXUerProperty(bar1a, listV, buildingSt, buildingStoreySt);
                     }
                     else if (D.S_Type == "수직근+보강근2단")
                     {
-                        switch (D.S_UDA)
-                        {
-                            case "부재 UDA 정보 사용":
+                        var a = InsertUserProperty(bar1, buildingSt, buildingStoreySt);
+                        MoveX(a, -size, -rebar);
+                        MoveZ(a, D.S_SpacingZ / 2);
+                        MoveZ(a, (hMainBar / 2) + (sBar / 2));
+                        //CopyX(bar1, listfm);
+                        CopyXUerProperty(a, listfm, buildingSt, buildingStoreySt);
 
-                                bar1.SetUserProperty("USER_FIELD_1", buildingSt);
-                                bar1.SetUserProperty("USER_FIELD_2", buildingStoreySt);
-
-                                break;
-
-                            case "사용자 지정":
-
-                                bar1.SetUserProperty("USER_FIELD_1", buildingSt);
-                                bar1.SetUserProperty("USER_FIELD_2", D.S_Building_S);
-
-                                break;
-                        }
-                        CopyX(bar1, listfm);
-
-                        var b = bar1;
-                        b.Insert();
-
+                        var b = InsertUserProperty(bar1, buildingSt, buildingStoreySt);
                         MoveX(b, -size, -rebar);
                         MoveZ(b, D.S_SpacingZ / 2);
                         MoveZ(b, (hMainBar / 2) + (sBar / 2));
-
                         MoveX(b, spacing / 3 * 2);
+                        //CopyX(b, listfa3);
+                        CopyXUerProperty(b, listfa3, buildingSt, buildingStoreySt);
 
-                        switch (D.S_UDA)
-                        {
-                            case "부재 UDA 정보 사용":
-
-                                b.SetUserProperty("USER_FIELD_1", buildingSt);
-                                b.SetUserProperty("USER_FIELD_2", buildingStoreySt);
-
-                                break;
-
-                            case "사용자 지정":
-
-                                b.SetUserProperty("USER_FIELD_1", buildingSt);
-                                b.SetUserProperty("USER_FIELD_2", D.S_Building_S);
-
-                                break;
-                        }
-
-                        CopyX(b, listfa3);
-
-                        var c = bar1;
-                        c.Insert();
+                        var c = InsertUserProperty(bar1, buildingSt, buildingStoreySt);
                         MoveX(c, -size, -rebar);
                         MoveZ(c, D.S_SpacingZ / 2);
                         MoveZ(c, (hMainBar / 2) + (sBar / 2));
-
                         MoveX(c, spacing / 3 + spacing);
-
-                        switch (D.S_UDA)
-                        {
-                            case "부재 UDA 정보 사용":
-
-                                c.SetUserProperty("USER_FIELD_1", buildingSt);
-                                c.SetUserProperty("USER_FIELD_2", buildingStoreySt);
-
-                                break;
-
-                            case "사용자 지정":
-
-                                c.SetUserProperty("USER_FIELD_1", buildingSt);
-                                c.SetUserProperty("USER_FIELD_2", D.S_Building_S);
-
-                                break;
-                        }
-
-                        CopyX(c, listsa2);
-
+                        //CopyX(c, listsa2);
+                        CopyXUerProperty(c, listsa2, buildingSt, buildingStoreySt);
 
                     }
                     else if (D.S_Type == "아니오")
@@ -6232,154 +6134,53 @@ namespace YT.WallVerticalRebar
 
                     }
 
-
                 }
 
                 else if (D.S_RangeType == "상")
                 {
-                    bar1.Insert();
-                    MoveX(bar1, -size, -rebar);
-                    //MoveZ(bar1, (length - D.S_RangeTop - D.S_BeamDepth - te2 + D.S_SpacingZ));
-                    //MoveZ(bar1, (length - D.S_RangeTop - te2 + D.S_SpacingZ));
-                    MoveZ(bar1, (length - D.S_RangeTop - te2 + tee));
-                    MoveZ(bar1, (hMainBar / 2) + (sBar / 2));
-
-                    switch (D.S_UDA)
-                    {
-                        case "부재 UDA 정보 사용":
-
-                            bar1.SetUserProperty("USER_FIELD_1", buildingSt);
-                            bar1.SetUserProperty("USER_FIELD_2", buildingStoreySt);
-
-                            break;
-
-                        case "사용자 지정":
-
-                            bar1.SetUserProperty("USER_FIELD_1", buildingSt);
-                            bar1.SetUserProperty("USER_FIELD_2", D.S_Building_S);
-
-                            break;
-                    }
 
                     if (D.S_Type == "수직근")
                     {
-                        switch (D.S_UDA)
-                        {
-                            case "부재 UDA 정보 사용":
-
-                                bar1.SetUserProperty("USER_FIELD_1", buildingSt);
-                                bar1.SetUserProperty("USER_FIELD_2", buildingStoreySt);
-
-                                break;
-
-                            case "사용자 지정":
-
-                                bar1.SetUserProperty("USER_FIELD_1", buildingSt);
-                                bar1.SetUserProperty("USER_FIELD_2", D.S_Building_S);
-
-                                break;
-                        }
-                        CopyX(bar1, listfm);
+                        var bar1a = InsertUserProperty(bar1, buildingSt, buildingStoreySt);
+                        MoveX(bar1a, -size, -rebar);
+                        MoveZ(bar1a, (length - D.S_RangeTop - te2 + tee));
+                        MoveZ(bar1a, (hMainBar / 2) + (sBar / 2));
+                        //CopyX(bar1, listfm);
+                        CopyXUerProperty(bar1a, listfm, buildingSt, buildingStoreySt);
                     }
                     else if (D.S_Type == "수직근+보강근1단")
                     {
-                        switch (D.S_UDA)
-                        {
-                            case "부재 UDA 정보 사용":
-
-                                bar1.SetUserProperty("USER_FIELD_1", buildingSt);
-                                bar1.SetUserProperty("USER_FIELD_2", buildingStoreySt);
-
-                                break;
-
-                            case "사용자 지정":
-
-                                bar1.SetUserProperty("USER_FIELD_1", buildingSt);
-                                bar1.SetUserProperty("USER_FIELD_2", D.S_Building_S);
-
-                                break;
-                        }
-                        CopyX(bar1, listV);
+                        var bar1a = InsertUserProperty(bar1, buildingSt, buildingStoreySt);
+                        MoveX(bar1a, -size, -rebar);
+                        MoveZ(bar1a, (length - D.S_RangeTop - te2 + tee));
+                        MoveZ(bar1a, (hMainBar / 2) + (sBar / 2));
+                        //CopyX(bar1, listV);
+                        CopyXUerProperty(bar1a, listV, buildingSt, buildingStoreySt);
                     }
                     else if (D.S_Type == "수직근+보강근2단")
                     {
-                        switch (D.S_UDA)
-                        {
-                            case "부재 UDA 정보 사용":
+                        var a = InsertUserProperty(bar1, buildingSt, buildingStoreySt);
+                        MoveX(a, -size, -rebar);
+                        MoveZ(a, (length - D.S_RangeTop - te2 + tee));
+                        MoveZ(a, (hMainBar / 2) + (sBar / 2));
+                        //CopyX(bar1, listfm);
+                        CopyXUerProperty(a, listfm, buildingSt, buildingStoreySt);
 
-                                bar1.SetUserProperty("USER_FIELD_1", buildingSt);
-                                bar1.SetUserProperty("USER_FIELD_2", buildingStoreySt);
-
-                                break;
-
-                            case "사용자 지정":
-
-                                bar1.SetUserProperty("USER_FIELD_1", buildingSt);
-                                bar1.SetUserProperty("USER_FIELD_2", D.S_Building_S);
-
-                                break;
-                        }
-                        CopyX(bar1, listfm);
-
-                        var b = bar1;
-                        b.Insert();
-
+                        var b = InsertUserProperty(bar1, buildingSt, buildingStoreySt);
                         MoveX(b, -size, -rebar);
-                        //MoveZ(b, (length - D.S_RangeTop - D.S_BeamDepth - te2 + D.S_SpacingZ));
-                        //MoveZ(b, (length - D.S_RangeTop - te2 + D.S_SpacingZ));
                         MoveZ(b, (length - D.S_RangeTop - te2 + tee));
                         MoveZ(b, (hMainBar / 2) + (sBar / 2));
-
                         MoveX(b, spacing / 3 * 2);
+                        //CopyX(b, listfa3);
+                        CopyXUerProperty(b, listfa3, buildingSt, buildingStoreySt);
 
-                        switch (D.S_UDA)
-                        {
-                            case "부재 UDA 정보 사용":
-
-                                b.SetUserProperty("USER_FIELD_1", buildingSt);
-                                b.SetUserProperty("USER_FIELD_2", buildingStoreySt);
-
-                                break;
-
-                            case "사용자 지정":
-
-                                b.SetUserProperty("USER_FIELD_1", buildingSt);
-                                b.SetUserProperty("USER_FIELD_2", D.S_Building_S);
-
-                                break;
-                        }
-
-                        CopyX(b, listfa3);
-
-                        var c = bar1;
-                        c.Insert();
+                        var c = InsertUserProperty(bar1, buildingSt, buildingStoreySt);
                         MoveX(c, -size, -rebar);
-                        //MoveZ(c, (length - D.S_RangeTop - D.S_BeamDepth - te2 + D.S_SpacingZ));
-                        //MoveZ(c, (length - D.S_RangeTop - te2 + D.S_SpacingZ));
                         MoveZ(c, (length - D.S_RangeTop - te2 + tee));
                         MoveZ(c, (hMainBar / 2) + (sBar / 2));
-
                         MoveX(c, spacing / 3 + spacing);
-
-                        switch (D.S_UDA)
-                        {
-                            case "부재 UDA 정보 사용":
-
-                                c.SetUserProperty("USER_FIELD_1", buildingSt);
-                                c.SetUserProperty("USER_FIELD_2", buildingStoreySt);
-
-                                break;
-
-                            case "사용자 지정":
-
-                                c.SetUserProperty("USER_FIELD_1", buildingSt);
-                                c.SetUserProperty("USER_FIELD_2", D.S_Building_S);
-
-                                break;
-                        }
-
-                        CopyX(c, listsa2);
-
+                        //CopyX(c, listsa2);
+                        CopyXUerProperty(c, listsa2, buildingSt, buildingStoreySt);
 
                     }
                     else if (D.S_Type == "아니오")
@@ -6391,143 +6192,48 @@ namespace YT.WallVerticalRebar
 
                 else if (D.S_RangeType == "하")
                 {
-                    bar1.Insert();
-                    MoveX(bar1, -size, -rebar);
-                    MoveZ(bar1, D.S_SpacingZ / 2);
-                    MoveZ(bar1, (hMainBar / 2) + (sBar / 2));
-
-                    switch (D.S_UDA)
-                    {
-                        case "부재 UDA 정보 사용":
-
-                            bar1.SetUserProperty("USER_FIELD_1", buildingSt);
-                            bar1.SetUserProperty("USER_FIELD_2", buildingStoreySt);
-
-                            break;
-
-                        case "사용자 지정":
-
-                            bar1.SetUserProperty("USER_FIELD_1", buildingSt);
-                            bar1.SetUserProperty("USER_FIELD_2", D.S_Building_S);
-
-                            break;
-                    }
-
                     if (D.S_Type == "수직근")
                     {
-                        switch (D.S_UDA)
-                        {
-                            case "부재 UDA 정보 사용":
-
-                                bar1.SetUserProperty("USER_FIELD_1", buildingSt);
-                                bar1.SetUserProperty("USER_FIELD_2", buildingStoreySt);
-
-                                break;
-
-                            case "사용자 지정":
-
-                                bar1.SetUserProperty("USER_FIELD_1", buildingSt);
-                                bar1.SetUserProperty("USER_FIELD_2", D.S_Building_S);
-
-                                break;
-                        }
-                        CopyX(bar1, listfm);
+                        var bar1a = InsertUserProperty(bar1, buildingSt, buildingStoreySt);
+                        MoveX(bar1a, -size, -rebar);
+                        MoveZ(bar1a, D.S_SpacingZ / 2);
+                        MoveZ(bar1a, (hMainBar / 2) + (sBar / 2));
+                        //CopyX(bar1, listfm);
+                        CopyXUerProperty(bar1a, listfm, buildingSt, buildingStoreySt);
                     }
                     else if (D.S_Type == "수직근+보강근1단")
                     {
-                        switch (D.S_UDA)
-                        {
-                            case "부재 UDA 정보 사용":
-
-                                bar1.SetUserProperty("USER_FIELD_1", buildingSt);
-                                bar1.SetUserProperty("USER_FIELD_2", buildingStoreySt);
-
-                                break;
-
-                            case "사용자 지정":
-
-                                bar1.SetUserProperty("USER_FIELD_1", buildingSt);
-                                bar1.SetUserProperty("USER_FIELD_2", D.S_Building_S);
-
-                                break;
-                        }
-                        CopyX(bar1, listV);
+                        var bar1a = InsertUserProperty(bar1, buildingSt, buildingStoreySt);
+                        MoveX(bar1a, -size, -rebar);
+                        MoveZ(bar1a, D.S_SpacingZ / 2);
+                        MoveZ(bar1a, (hMainBar / 2) + (sBar / 2));
+                        //CopyX(bar1, listV);
+                        CopyXUerProperty(bar1a, listV, buildingSt, buildingStoreySt);
                     }
                     else if (D.S_Type == "수직근+보강근2단")
                     {
-                        switch (D.S_UDA)
-                        {
-                            case "부재 UDA 정보 사용":
+                        var a = InsertUserProperty(bar1, buildingSt, buildingStoreySt);
+                        MoveX(a, -size, -rebar);
+                        MoveZ(a, D.S_SpacingZ / 2);
+                        MoveZ(a, (hMainBar / 2) + (sBar / 2));
+                        //CopyX(bar1, listfm);
+                        CopyXUerProperty(a, listfm, buildingSt, buildingStoreySt);
 
-                                bar1.SetUserProperty("USER_FIELD_1", buildingSt);
-                                bar1.SetUserProperty("USER_FIELD_2", buildingStoreySt);
-
-                                break;
-
-                            case "사용자 지정":
-
-                                bar1.SetUserProperty("USER_FIELD_1", buildingSt);
-                                bar1.SetUserProperty("USER_FIELD_2", D.S_Building_S);
-
-                                break;
-                        }
-                        CopyX(bar1, listfm);
-
-                        var b = bar1;
-                        b.Insert();
-
+                        var b = InsertUserProperty(bar1, buildingSt, buildingStoreySt);
                         MoveX(b, -size, -rebar);
                         MoveZ(b, D.S_SpacingZ / 2);
                         MoveZ(b, (hMainBar / 2) + (sBar / 2));
-
                         MoveX(b, spacing / 3 * 2);
+                        //CopyX(b, listfa3);
+                        CopyXUerProperty(b, listfa3, buildingSt, buildingStoreySt);
 
-                        switch (D.S_UDA)
-                        {
-                            case "부재 UDA 정보 사용":
-
-                                b.SetUserProperty("USER_FIELD_1", buildingSt);
-                                b.SetUserProperty("USER_FIELD_2", buildingStoreySt);
-
-                                break;
-
-                            case "사용자 지정":
-
-                                b.SetUserProperty("USER_FIELD_1", buildingSt);
-                                b.SetUserProperty("USER_FIELD_2", D.S_Building_S);
-
-                                break;
-                        }
-
-                        CopyX(b, listfa3);
-
-                        var c = bar1;
-                        c.Insert();
+                        var c = InsertUserProperty(bar1, buildingSt, buildingStoreySt);
                         MoveX(c, -size, -rebar);
                         MoveZ(c, D.S_SpacingZ / 2);
                         MoveZ(c, (hMainBar / 2) + (sBar / 2));
-
                         MoveX(c, spacing / 3 + spacing);
-
-                        switch (D.S_UDA)
-                        {
-                            case "부재 UDA 정보 사용":
-
-                                c.SetUserProperty("USER_FIELD_1", buildingSt);
-                                c.SetUserProperty("USER_FIELD_2", buildingStoreySt);
-
-                                break;
-
-                            case "사용자 지정":
-
-                                c.SetUserProperty("USER_FIELD_1", buildingSt);
-                                c.SetUserProperty("USER_FIELD_2", D.S_Building_S);
-
-                                break;
-                        }
-
-                        CopyX(c, listsa2);
-
+                        //CopyX(c, listsa2);
+                        CopyXUerProperty(c, listsa2, buildingSt, buildingStoreySt);
 
                     }
                     else if (D.S_Type == "아니오")
@@ -6538,148 +6244,53 @@ namespace YT.WallVerticalRebar
 
                 else if (D.S_RangeType == "상,하")
                 {
-                    bar1.Insert();
-                    MoveX(bar1, -size, -rebar);
-                    MoveZ(bar1, D.S_SpacingZ / 2);
-                    MoveZ(bar1, (hMainBar / 2) + (sBar / 2));
-
-                    switch (D.S_UDA)
-                    {
-                        case "부재 UDA 정보 사용":
-
-                            bar1.SetUserProperty("USER_FIELD_1", buildingSt);
-                            bar1.SetUserProperty("USER_FIELD_2", buildingStoreySt);
-
-                            break;
-
-                        case "사용자 지정":
-
-                            bar1.SetUserProperty("USER_FIELD_1", buildingSt);
-                            bar1.SetUserProperty("USER_FIELD_2", D.S_Building_S);
-
-                            break;
-                    }
-
                     if (D.S_Type == "수직근")
                     {
-                        switch (D.S_UDA)
-                        {
-                            case "부재 UDA 정보 사용":
-
-                                bar1.SetUserProperty("USER_FIELD_1", buildingSt);
-                                bar1.SetUserProperty("USER_FIELD_2", buildingStoreySt);
-
-                                break;
-
-                            case "사용자 지정":
-
-                                bar1.SetUserProperty("USER_FIELD_1", buildingSt);
-                                bar1.SetUserProperty("USER_FIELD_2", D.S_Building_S);
-
-                                break;
-                        }
-                        CopyX(bar1, listfm);
+                        var bar1a = InsertUserProperty(bar1, buildingSt, buildingStoreySt);
+                        MoveX(bar1a, -size, -rebar);
+                        MoveZ(bar1a, D.S_SpacingZ / 2);
+                        MoveZ(bar1a, (hMainBar / 2) + (sBar / 2));
+                        //CopyX(bar1, listfm);
+                        CopyXUerProperty(bar1a, listfm, buildingSt, buildingStoreySt);
                     }
                     else if (D.S_Type == "수직근+보강근1단")
                     {
-                        switch (D.S_UDA)
-                        {
-                            case "부재 UDA 정보 사용":
-
-                                bar1.SetUserProperty("USER_FIELD_1", buildingSt);
-                                bar1.SetUserProperty("USER_FIELD_2", buildingStoreySt);
-
-                                break;
-
-                            case "사용자 지정":
-
-                                bar1.SetUserProperty("USER_FIELD_1", buildingSt);
-                                bar1.SetUserProperty("USER_FIELD_2", D.S_Building_S);
-
-                                break;
-                        }
-                        CopyX(bar1, listV);
+                        var bar1a = InsertUserProperty(bar1, buildingSt, buildingStoreySt);
+                        MoveX(bar1a, -size, -rebar);
+                        MoveZ(bar1a, D.S_SpacingZ / 2);
+                        MoveZ(bar1a, (hMainBar / 2) + (sBar / 2));
+                        //CopyX(bar1, listV);
+                        CopyXUerProperty(bar1a, listV, buildingSt, buildingStoreySt);
                     }
                     else if (D.S_Type == "수직근+보강근2단")
                     {
-                        switch (D.S_UDA)
-                        {
-                            case "부재 UDA 정보 사용":
+                        var a = InsertUserProperty(bar1, buildingSt, buildingStoreySt);
+                        MoveX(a, -size, -rebar);
+                        MoveZ(a, D.S_SpacingZ / 2);
+                        MoveZ(a, (hMainBar / 2) + (sBar / 2));
+                        //CopyX(bar1, listfm);
+                        CopyXUerProperty(a, listfm, buildingSt, buildingStoreySt);
 
-                                bar1.SetUserProperty("USER_FIELD_1", buildingSt);
-                                bar1.SetUserProperty("USER_FIELD_2", buildingStoreySt);
-
-                                break;
-
-                            case "사용자 지정":
-
-                                bar1.SetUserProperty("USER_FIELD_1", buildingSt);
-                                bar1.SetUserProperty("USER_FIELD_2", D.S_Building_S);
-
-                                break;
-                        }
-                        CopyX(bar1, listfm);
-
-                        var b = bar1;
-                        b.Insert();
-
+                        var b = InsertUserProperty(bar1, buildingSt, buildingStoreySt);
                         MoveX(b, -size, -rebar);
                         MoveZ(b, D.S_SpacingZ / 2);
                         MoveZ(b, (hMainBar / 2) + (sBar / 2));
-
                         MoveX(b, spacing / 3 * 2);
+                        //CopyX(b, listfa3);
+                        CopyXUerProperty(b, listfa3, buildingSt, buildingStoreySt);
 
-                        switch (D.S_UDA)
-                        {
-                            case "부재 UDA 정보 사용":
-
-                                b.SetUserProperty("USER_FIELD_1", buildingSt);
-                                b.SetUserProperty("USER_FIELD_2", buildingStoreySt);
-
-                                break;
-
-                            case "사용자 지정":
-
-                                b.SetUserProperty("USER_FIELD_1", buildingSt);
-                                b.SetUserProperty("USER_FIELD_2", D.S_Building_S);
-
-                                break;
-                        }
-
-                        CopyX(b, listfa3);
-
-                        var c = bar1;
-                        c.Insert();
+                        var c = InsertUserProperty(bar1, buildingSt, buildingStoreySt);
                         MoveX(c, -size, -rebar);
                         MoveZ(c, D.S_SpacingZ / 2);
                         MoveZ(c, (hMainBar / 2) + (sBar / 2));
-
                         MoveX(c, spacing / 3 + spacing);
-
-                        switch (D.S_UDA)
-                        {
-                            case "부재 UDA 정보 사용":
-
-                                c.SetUserProperty("USER_FIELD_1", buildingSt);
-                                c.SetUserProperty("USER_FIELD_2", buildingStoreySt);
-
-                                break;
-
-                            case "사용자 지정":
-
-                                c.SetUserProperty("USER_FIELD_1", buildingSt);
-                                c.SetUserProperty("USER_FIELD_2", D.S_Building_S);
-
-                                break;
-                        }
-
-                        CopyX(c, listsa2);
+                        //CopyX(c, listsa2);
+                        CopyXUerProperty(c, listsa2, buildingSt, buildingStoreySt);
                     }
                     else if (D.S_Type == "아니오")
                     {
 
                     }
-
 
                 }
 
@@ -6699,10 +6310,7 @@ namespace YT.WallVerticalRebar
             }
             else if (D.S_RangeType == "상")
             {
-                //var el = length - D.S_RangeTop - D.S_BeamDepth - te2 + D.S_SpacingZ;
-                //var el = length - D.S_RangeTop - te2 + D.S_SpacingZ;
                 var el = length - D.S_RangeTop - te2 + tee;
-                //bar2.Spacings = CopyArrayB(length - el - D.S_BeamDepth - (D.S_SpacingZ / 2), D.S_SpacingZ);
                 bar2.Spacings = CopyArrayT(length - el - D.S_BeamDepth - (D.S_SpacingZ / 2), D.S_SpacingZ);
 
             }
@@ -6816,148 +6424,54 @@ namespace YT.WallVerticalRebar
 
             if (D.S_YesOrNO == "예")
             {
-
                 if (D.S_RangeType == "전체")
                 {
-                    bar2.Insert();
-                    MoveX(bar2, size, rebar);
-                    MoveZ(bar2, D.S_SpacingZ / 2);
-                    MoveZ(bar2, (hMainBar / 2) + (sBar / 2));
-
-                    switch (D.S_UDA)
-                    {
-                        case "부재 UDA 정보 사용":
-
-                            bar2.SetUserProperty("USER_FIELD_1", buildingSt);
-                            bar2.SetUserProperty("USER_FIELD_2", buildingStoreySt);
-
-                            break;
-
-                        case "사용자 지정":
-
-                            bar2.SetUserProperty("USER_FIELD_1", buildingSt);
-                            bar2.SetUserProperty("USER_FIELD_2", D.S_Building_S);
-
-                            break;
-                    }
-
                     if (D.S_Type == "수직근")
                     {
-                        switch (D.S_UDA)
-                        {
-                            case "부재 UDA 정보 사용":
-
-                                bar2.SetUserProperty("USER_FIELD_1", buildingSt);
-                                bar2.SetUserProperty("USER_FIELD_2", buildingStoreySt);
-
-                                break;
-
-                            case "사용자 지정":
-
-                                bar2.SetUserProperty("USER_FIELD_1", buildingSt);
-                                bar2.SetUserProperty("USER_FIELD_2", D.S_Building_S);
-
-                                break;
-                        }
-                        MoveX(bar2, spacing);
-                        CopyX(bar2, listsm);
+                        var bar2a = InsertUserProperty(bar2, buildingSt, buildingStoreySt);
+                        MoveX(bar2a, size, rebar);
+                        MoveZ(bar2a, D.S_SpacingZ / 2);
+                        MoveZ(bar2a, (hMainBar / 2) + (sBar / 2));
+                        MoveX(bar2a, spacing);
+                        //CopyX(bar2, listsm);
+                        CopyXUerProperty(bar2a, listsm, buildingSt, buildingStoreySt);
                     }
                     else if (D.S_Type == "수직근+보강근1단")
                     {
-                        switch (D.S_UDA)
-                        {
-                            case "부재 UDA 정보 사용":
-
-                                bar2.SetUserProperty("USER_FIELD_1", buildingSt);
-                                bar2.SetUserProperty("USER_FIELD_2", buildingStoreySt);
-
-                                break;
-
-                            case "사용자 지정":
-
-                                bar2.SetUserProperty("USER_FIELD_1", buildingSt);
-                                bar2.SetUserProperty("USER_FIELD_2", D.S_Building_S);
-
-                                break;
-                        }
-                        MoveX(bar2, spacing / 2);
-                        CopyX(bar2, listA);
+                        var bar2a = InsertUserProperty(bar2, buildingSt, buildingStoreySt);
+                        MoveX(bar2a, size, rebar);
+                        MoveZ(bar2a, D.S_SpacingZ / 2);
+                        MoveZ(bar2a, (hMainBar / 2) + (sBar / 2));
+                        MoveX(bar2a, spacing / 2);
+                        //CopyX(bar2, listA);
+                        CopyXUerProperty(bar2a, listA, buildingSt, buildingStoreySt);
                     }
                     else if (D.S_Type == "수직근+보강근2단")
                     {
-                        switch (D.S_UDA)
-                        {
-                            case "부재 UDA 정보 사용":
 
-                                bar2.SetUserProperty("USER_FIELD_1", buildingSt);
-                                bar2.SetUserProperty("USER_FIELD_2", buildingStoreySt);
+                        var a = InsertUserProperty(bar2, buildingSt, buildingStoreySt);
+                        MoveX(a, size, rebar);
+                        MoveZ(a, D.S_SpacingZ / 2);
+                        MoveZ(a, (hMainBar / 2) + (sBar / 2));
+                        MoveX(a, spacing);
+                        //CopyX(a, listsm);
+                        CopyXUerProperty(a, listsm, buildingSt, buildingStoreySt);
 
-                                break;
-
-                            case "사용자 지정":
-
-                                bar2.SetUserProperty("USER_FIELD_1", buildingSt);
-                                bar2.SetUserProperty("USER_FIELD_2", D.S_Building_S);
-
-                                break;
-                        }
-                        MoveX(bar2, spacing);
-                        CopyX(bar2, listsm);
-
-                        var b = bar2;
-                        b.Insert();
+                        var b = InsertUserProperty(bar2, buildingSt, buildingStoreySt);
                         MoveX(b, size, rebar);
                         MoveZ(b, D.S_SpacingZ / 2);
                         MoveZ(b, (hMainBar / 2) + (sBar / 2));
-
                         MoveX(b, spacing / 3 * 2 + spacing);
+                        //CopyX(b, listsa3);
+                        CopyXUerProperty(b, listsa3, buildingSt, buildingStoreySt);
 
-                        switch (D.S_UDA)
-                        {
-                            case "부재 UDA 정보 사용":
-
-                                b.SetUserProperty("USER_FIELD_1", buildingSt);
-                                b.SetUserProperty("USER_FIELD_2", buildingStoreySt);
-
-                                break;
-
-                            case "사용자 지정":
-
-                                b.SetUserProperty("USER_FIELD_1", buildingSt);
-                                b.SetUserProperty("USER_FIELD_2", D.S_Building_S);
-
-                                break;
-                        }
-
-                        CopyX(b, listsa3);
-
-                        var c = bar2;
-                        c.Insert();
+                        var c = InsertUserProperty(bar2, buildingSt, buildingStoreySt);
                         MoveX(c, size, rebar);
                         MoveZ(c, D.S_SpacingZ / 2);
                         MoveZ(c, (hMainBar / 2) + (sBar / 2));
-
                         MoveX(c, spacing / 3);
-
-                        switch (D.S_UDA)
-                        {
-                            case "부재 UDA 정보 사용":
-
-                                c.SetUserProperty("USER_FIELD_1", buildingSt);
-                                c.SetUserProperty("USER_FIELD_2", buildingStoreySt);
-
-                                break;
-
-                            case "사용자 지정":
-
-                                c.SetUserProperty("USER_FIELD_1", buildingSt);
-                                c.SetUserProperty("USER_FIELD_2", D.S_Building_S);
-
-                                break;
-                        }
-
-                        CopyX(c, listfa2);
-
+                        //CopyX(c, listfa2);
+                        CopyXUerProperty(c, listfa2, buildingSt, buildingStoreySt);
 
                     }
                     else if (D.S_Type == "아니오")
@@ -6969,150 +6483,52 @@ namespace YT.WallVerticalRebar
 
                 else if (D.S_RangeType == "상")
                 {
-                    bar2.Insert();
-                    MoveX(bar2, size, rebar);
-                    //MoveZ(bar2, (length - D.S_RangeTop - D.S_BeamDepth - te2 + D.S_SpacingZ));
-                    //MoveZ(bar2, (length - D.S_RangeTop - te2 + D.S_SpacingZ));
-                    MoveZ(bar2, (length - D.S_RangeTop - te2 + tee));
-                    MoveZ(bar2, (hMainBar / 2) + (sBar / 2));
-
-                    switch (D.S_UDA)
-                    {
-                        case "부재 UDA 정보 사용":
-
-                            bar2.SetUserProperty("USER_FIELD_1", buildingSt);
-                            bar2.SetUserProperty("USER_FIELD_2", buildingStoreySt);
-
-                            break;
-
-                        case "사용자 지정":
-
-                            bar2.SetUserProperty("USER_FIELD_1", buildingSt);
-                            bar2.SetUserProperty("USER_FIELD_2", D.S_Building_S);
-
-                            break;
-                    }
 
                     if (D.S_Type == "수직근")
                     {
-                        switch (D.S_UDA)
-                        {
-                            case "부재 UDA 정보 사용":
-
-                                bar2.SetUserProperty("USER_FIELD_1", buildingSt);
-                                bar2.SetUserProperty("USER_FIELD_2", buildingStoreySt);
-
-                                break;
-
-                            case "사용자 지정":
-
-                                bar2.SetUserProperty("USER_FIELD_1", buildingSt);
-                                bar2.SetUserProperty("USER_FIELD_2", D.S_Building_S);
-
-                                break;
-                        }
-                        MoveX(bar2, spacing);
-                        CopyX(bar2, listsm);
+                        var bar2a = InsertUserProperty(bar2, buildingSt, buildingStoreySt);
+                        MoveX(bar2a, size, rebar);
+                        MoveZ(bar2a, (length - D.S_RangeTop - te2 + tee));
+                        MoveZ(bar2a, (hMainBar / 2) + (sBar / 2));
+                        MoveX(bar2a, spacing);
+                        //CopyX(bar2a, listsm);
+                        CopyXUerProperty(bar2a, listsm, buildingSt, buildingStoreySt);
                     }
                     else if (D.S_Type == "수직근+보강근1단")
                     {
-                        switch (D.S_UDA)
-                        {
-                            case "부재 UDA 정보 사용":
-
-                                bar2.SetUserProperty("USER_FIELD_1", buildingSt);
-                                bar2.SetUserProperty("USER_FIELD_2", buildingStoreySt);
-
-                                break;
-
-                            case "사용자 지정":
-
-                                bar2.SetUserProperty("USER_FIELD_1", buildingSt);
-                                bar2.SetUserProperty("USER_FIELD_2", D.S_Building_S);
-
-                                break;
-                        }
-                        MoveX(bar2, spacing / 2);
-                        CopyX(bar2, listA);
+                        var bar2a = InsertUserProperty(bar2, buildingSt, buildingStoreySt);
+                        MoveX(bar2a, size, rebar);
+                        MoveZ(bar2a, (length - D.S_RangeTop - te2 + tee));
+                        MoveZ(bar2a, (hMainBar / 2) + (sBar / 2));
+                        MoveX(bar2a, spacing / 2);
+                        //CopyX(bar2, listA);
+                        CopyXUerProperty(bar2a, listA, buildingSt, buildingStoreySt);
                     }
                     else if (D.S_Type == "수직근+보강근2단")
                     {
-                        switch (D.S_UDA)
-                        {
-                            case "부재 UDA 정보 사용":
-
-                                bar2.SetUserProperty("USER_FIELD_1", buildingSt);
-                                bar2.SetUserProperty("USER_FIELD_2", buildingStoreySt);
-
-                                break;
-
-                            case "사용자 지정":
-
-                                bar2.SetUserProperty("USER_FIELD_1", buildingSt);
-                                bar2.SetUserProperty("USER_FIELD_2", D.S_Building_S);
-
-                                break;
-                        }
+                        var a = InsertUserProperty(bar2, buildingSt, buildingStoreySt);
+                        MoveX(a, size, rebar);
+                        MoveZ(a, (length - D.S_RangeTop - te2 + tee));
+                        MoveZ(a, (hMainBar / 2) + (sBar / 2));
                         MoveX(bar2, spacing);
-                        CopyX(bar2, listsm);
+                        //CopyX(bar2, listsm);
+                        CopyXUerProperty(a, listsm, buildingSt, buildingStoreySt);
 
-                        var b = bar2;
-                        b.Insert();
+                        var b = InsertUserProperty(bar2, buildingSt, buildingStoreySt);
                         MoveX(b, size, rebar);
-                        //MoveZ(b, (length - D.S_RangeTop - D.S_BeamDepth - te2 + D.S_SpacingZ));
-                        //MoveZ(b, (length - D.S_RangeTop - te2 + D.S_SpacingZ));
                         MoveZ(b, (length - D.S_RangeTop - te2 + tee));
                         MoveZ(b, (hMainBar / 2) + (sBar / 2));
-
                         MoveX(b, spacing / 3 * 2 + spacing);
+                        //CopyX(b, listsa3);
+                        CopyXUerProperty(b, listsa3, buildingSt, buildingStoreySt);
 
-                        switch (D.S_UDA)
-                        {
-                            case "부재 UDA 정보 사용":
-
-                                b.SetUserProperty("USER_FIELD_1", buildingSt);
-                                b.SetUserProperty("USER_FIELD_2", buildingStoreySt);
-
-                                break;
-
-                            case "사용자 지정":
-
-                                b.SetUserProperty("USER_FIELD_1", buildingSt);
-                                b.SetUserProperty("USER_FIELD_2", D.S_Building_S);
-
-                                break;
-                        }
-
-                        CopyX(b, listsa3);
-
-                        var c = bar2;
-                        c.Insert();
+                        var c = InsertUserProperty(bar2, buildingSt, buildingStoreySt);
                         MoveX(c, size, rebar);
-                        //MoveZ(c, (length - D.S_RangeTop - D.S_BeamDepth - te2 + D.S_SpacingZ));
-                        //MoveZ(c, (length - D.S_RangeTop - te2 + D.S_SpacingZ));
                         MoveZ(c, (length - D.S_RangeTop - te2 + tee));
                         MoveZ(c, (hMainBar / 2) + (sBar / 2));
-
                         MoveX(c, spacing / 3);
-
-                        switch (D.S_UDA)
-                        {
-                            case "부재 UDA 정보 사용":
-
-                                c.SetUserProperty("USER_FIELD_1", buildingSt);
-                                c.SetUserProperty("USER_FIELD_2", buildingStoreySt);
-
-                                break;
-
-                            case "사용자 지정":
-
-                                c.SetUserProperty("USER_FIELD_1", buildingSt);
-                                c.SetUserProperty("USER_FIELD_2", D.S_Building_S);
-
-                                break;
-                        }
-
-                        CopyX(c, listfa2);
+                        //CopyX(c, listfa2);
+                        CopyXUerProperty(c, listfa2, buildingSt, buildingStoreySt);
 
                     }
                     else if (D.S_Type == "아니오")
@@ -7123,146 +6539,52 @@ namespace YT.WallVerticalRebar
                 }
                 else if (D.S_RangeType == "하")
                 {
-                    bar2.Insert();
-                    MoveX(bar2, size, rebar);
-                    MoveZ(bar2, D.S_SpacingZ / 2);
-                    MoveZ(bar2, (hMainBar / 2) + (sBar / 2));
-
-                    switch (D.S_UDA)
-                    {
-                        case "부재 UDA 정보 사용":
-
-                            bar2.SetUserProperty("USER_FIELD_1", buildingSt);
-                            bar2.SetUserProperty("USER_FIELD_2", buildingStoreySt);
-
-                            break;
-
-                        case "사용자 지정":
-
-                            bar2.SetUserProperty("USER_FIELD_1", buildingSt);
-                            bar2.SetUserProperty("USER_FIELD_2", D.S_Building_S);
-
-                            break;
-                    }
 
                     if (D.S_Type == "수직근")
                     {
-                        switch (D.S_UDA)
-                        {
-                            case "부재 UDA 정보 사용":
-
-                                bar2.SetUserProperty("USER_FIELD_1", buildingSt);
-                                bar2.SetUserProperty("USER_FIELD_2", buildingStoreySt);
-
-                                break;
-
-                            case "사용자 지정":
-
-                                bar2.SetUserProperty("USER_FIELD_1", buildingSt);
-                                bar2.SetUserProperty("USER_FIELD_2", D.S_Building_S);
-
-                                break;
-                        }
-                        MoveX(bar2, spacing);
-                        CopyX(bar2, listsm);
+                        var bar2a = InsertUserProperty(bar2, buildingSt, buildingStoreySt);
+                        MoveX(bar2a, size, rebar);
+                        MoveZ(bar2a, D.S_SpacingZ / 2);
+                        MoveZ(bar2a, (hMainBar / 2) + (sBar / 2));
+                        MoveX(bar2a, spacing);
+                        //CopyX(bar2, listsm);
+                        CopyXUerProperty(bar2a, listsm, buildingSt, buildingStoreySt);
                     }
                     else if (D.S_Type == "수직근+보강근1단")
                     {
-                        switch (D.S_UDA)
-                        {
-                            case "부재 UDA 정보 사용":
-
-                                bar2.SetUserProperty("USER_FIELD_1", buildingSt);
-                                bar2.SetUserProperty("USER_FIELD_2", buildingStoreySt);
-
-                                break;
-
-                            case "사용자 지정":
-
-                                bar2.SetUserProperty("USER_FIELD_1", buildingSt);
-                                bar2.SetUserProperty("USER_FIELD_2", D.S_Building_S);
-
-                                break;
-                        }
-                        MoveX(bar2, spacing / 2);
-                        CopyX(bar2, listA);
+                        var bar2a = InsertUserProperty(bar2, buildingSt, buildingStoreySt);
+                        MoveX(bar2a, size, rebar);
+                        MoveZ(bar2a, D.S_SpacingZ / 2);
+                        MoveZ(bar2a, (hMainBar / 2) + (sBar / 2));
+                        MoveX(bar2a, spacing / 2);
+                        //CopyX(bar2, listA);
+                        CopyXUerProperty(bar2a, listA, buildingSt, buildingStoreySt);
                     }
                     else if (D.S_Type == "수직근+보강근2단")
                     {
-                        switch (D.S_UDA)
-                        {
-                            case "부재 UDA 정보 사용":
+                        var a = InsertUserProperty(bar2, buildingSt, buildingStoreySt);
+                        MoveX(a, size, rebar);
+                        MoveZ(a, D.S_SpacingZ / 2);
+                        MoveZ(a, (hMainBar / 2) + (sBar / 2));
+                        MoveX(a, spacing);
+                        //CopyX(bar2, listsm);
+                        CopyXUerProperty(a, listsm, buildingSt, buildingStoreySt);
 
-                                bar2.SetUserProperty("USER_FIELD_1", buildingSt);
-                                bar2.SetUserProperty("USER_FIELD_2", buildingStoreySt);
-
-                                break;
-
-                            case "사용자 지정":
-
-                                bar2.SetUserProperty("USER_FIELD_1", buildingSt);
-                                bar2.SetUserProperty("USER_FIELD_2", D.S_Building_S);
-
-                                break;
-                        }
-                        MoveX(bar2, spacing);
-                        CopyX(bar2, listsm);
-
-                        var b = bar2;
-                        b.Insert();
+                        var b = InsertUserProperty(bar2, buildingSt, buildingStoreySt);
                         MoveX(b, size, rebar);
                         MoveZ(b, D.S_SpacingZ / 2);
                         MoveZ(b, (hMainBar / 2) + (sBar / 2));
-
                         MoveX(b, spacing / 3 * 2 + spacing);
+                        //CopyX(b, listsa3);
+                        CopyXUerProperty(b, listsa3, buildingSt, buildingStoreySt);
 
-                        switch (D.S_UDA)
-                        {
-                            case "부재 UDA 정보 사용":
-
-                                b.SetUserProperty("USER_FIELD_1", buildingSt);
-                                b.SetUserProperty("USER_FIELD_2", buildingStoreySt);
-
-                                break;
-
-                            case "사용자 지정":
-
-                                b.SetUserProperty("USER_FIELD_1", buildingSt);
-                                b.SetUserProperty("USER_FIELD_2", D.S_Building_S);
-
-                                break;
-                        }
-
-                        CopyX(b, listsa3);
-
-                        var c = bar2;
-                        c.Insert();
+                        var c = InsertUserProperty(bar2, buildingSt, buildingStoreySt);
                         MoveX(c, size, rebar);
                         MoveZ(c, D.S_SpacingZ / 2);
                         MoveZ(c, (hMainBar / 2) + (sBar / 2));
-
                         MoveX(c, spacing / 3);
-
-                        switch (D.S_UDA)
-                        {
-                            case "부재 UDA 정보 사용":
-
-                                c.SetUserProperty("USER_FIELD_1", buildingSt);
-                                c.SetUserProperty("USER_FIELD_2", buildingStoreySt);
-
-                                break;
-
-                            case "사용자 지정":
-
-                                c.SetUserProperty("USER_FIELD_1", buildingSt);
-                                c.SetUserProperty("USER_FIELD_2", D.S_Building_S);
-
-                                break;
-                        }
-
-                        CopyX(c, listfa2);
-
-
+                        //CopyX(c, listfa2);
+                        CopyXUerProperty(c, listfa2, buildingSt, buildingStoreySt);
 
                     }
                     else if (D.S_Type == "아니오")
@@ -7273,145 +6595,52 @@ namespace YT.WallVerticalRebar
 
                 else if (D.S_RangeType == "상,하")
                 {
-                    bar2.Insert();
-                    MoveX(bar2, size, rebar);
-                    MoveZ(bar2, D.S_SpacingZ / 2);
-                    MoveZ(bar2, (hMainBar / 2) + (sBar / 2));
-
-                    switch (D.S_UDA)
-                    {
-                        case "부재 UDA 정보 사용":
-
-                            bar2.SetUserProperty("USER_FIELD_1", buildingSt);
-                            bar2.SetUserProperty("USER_FIELD_2", buildingStoreySt);
-
-                            break;
-
-                        case "사용자 지정":
-
-                            bar2.SetUserProperty("USER_FIELD_1", buildingSt);
-                            bar2.SetUserProperty("USER_FIELD_2", D.S_Building_S);
-
-                            break;
-                    }
 
                     if (D.S_Type == "수직근")
                     {
-                        switch (D.S_UDA)
-                        {
-                            case "부재 UDA 정보 사용":
-
-                                bar2.SetUserProperty("USER_FIELD_1", buildingSt);
-                                bar2.SetUserProperty("USER_FIELD_2", buildingStoreySt);
-
-                                break;
-
-                            case "사용자 지정":
-
-                                bar2.SetUserProperty("USER_FIELD_1", buildingSt);
-                                bar2.SetUserProperty("USER_FIELD_2", D.S_Building_S);
-
-                                break;
-                        }
-                        MoveX(bar2, spacing);
-                        CopyX(bar2, listsm);
+                        var bar2a = InsertUserProperty(bar2, buildingSt, buildingStoreySt);
+                        MoveX(bar2a, size, rebar);
+                        MoveZ(bar2a, D.S_SpacingZ / 2);
+                        MoveZ(bar2a, (hMainBar / 2) + (sBar / 2));
+                        MoveX(bar2a, spacing);
+                        //CopyX(bar2, listsm);
+                        CopyXUerProperty(bar2a, listsm, buildingSt, buildingStoreySt);
                     }
                     else if (D.S_Type == "수직근+보강근1단")
                     {
-                        switch (D.S_UDA)
-                        {
-                            case "부재 UDA 정보 사용":
-
-                                bar2.SetUserProperty("USER_FIELD_1", buildingSt);
-                                bar2.SetUserProperty("USER_FIELD_2", buildingStoreySt);
-
-                                break;
-
-                            case "사용자 지정":
-
-                                bar2.SetUserProperty("USER_FIELD_1", buildingSt);
-                                bar2.SetUserProperty("USER_FIELD_2", D.S_Building_S);
-
-                                break;
-                        }
-                        MoveX(bar2, spacing / 2);
-                        CopyX(bar2, listA);
+                        var bar2a = InsertUserProperty(bar2, buildingSt, buildingStoreySt);
+                        MoveX(bar2a, size, rebar);
+                        MoveZ(bar2a, D.S_SpacingZ / 2);
+                        MoveZ(bar2a, (hMainBar / 2) + (sBar / 2));
+                        MoveX(bar2a, spacing / 2);
+                        //CopyX(bar2, listA);
+                        CopyXUerProperty(bar2a, listA, buildingSt, buildingStoreySt);
                     }
                     else if (D.S_Type == "수직근+보강근2단")
                     {
-                        switch (D.S_UDA)
-                        {
-                            case "부재 UDA 정보 사용":
+                        var a = InsertUserProperty(bar2, buildingSt, buildingStoreySt);
+                        MoveX(a, size, rebar);
+                        MoveZ(a, D.S_SpacingZ / 2);
+                        MoveZ(a, (hMainBar / 2) + (sBar / 2));
+                        MoveX(a, spacing);
+                        //CopyX(bar2, listsm);
+                        CopyXUerProperty(a, listsm, buildingSt, buildingStoreySt);
 
-                                bar2.SetUserProperty("USER_FIELD_1", buildingSt);
-                                bar2.SetUserProperty("USER_FIELD_2", buildingStoreySt);
-
-                                break;
-
-                            case "사용자 지정":
-
-                                bar2.SetUserProperty("USER_FIELD_1", buildingSt);
-                                bar2.SetUserProperty("USER_FIELD_2", D.S_Building_S);
-
-                                break;
-                        }
-                        MoveX(bar2, spacing);
-                        CopyX(bar2, listsm);
-
-                        var b = bar2;
-                        b.Insert();
+                        var b = InsertUserProperty(bar2, buildingSt, buildingStoreySt);
                         MoveX(b, size, rebar);
                         MoveZ(b, D.S_SpacingZ / 2);
                         MoveZ(b, (hMainBar / 2) + (sBar / 2));
-
                         MoveX(b, spacing / 3 * 2 + spacing);
+                        //CopyX(b, listsa3);
+                        CopyXUerProperty(b, listsa3, buildingSt, buildingStoreySt);
 
-                        switch (D.S_UDA)
-                        {
-                            case "부재 UDA 정보 사용":
-
-                                b.SetUserProperty("USER_FIELD_1", buildingSt);
-                                b.SetUserProperty("USER_FIELD_2", buildingStoreySt);
-
-                                break;
-
-                            case "사용자 지정":
-
-                                b.SetUserProperty("USER_FIELD_1", buildingSt);
-                                b.SetUserProperty("USER_FIELD_2", D.S_Building_S);
-
-                                break;
-                        }
-
-                        CopyX(b, listsa3);
-
-                        var c = bar2;
-                        c.Insert();
+                        var c = InsertUserProperty(bar2, buildingSt, buildingStoreySt);
                         MoveX(c, size, rebar);
                         MoveZ(c, D.S_SpacingZ / 2);
                         MoveZ(c, (hMainBar / 2) + (sBar / 2));
-
                         MoveX(c, spacing / 3);
-
-                        switch (D.S_UDA)
-                        {
-                            case "부재 UDA 정보 사용":
-
-                                c.SetUserProperty("USER_FIELD_1", buildingSt);
-                                c.SetUserProperty("USER_FIELD_2", buildingStoreySt);
-
-                                break;
-
-                            case "사용자 지정":
-
-                                c.SetUserProperty("USER_FIELD_1", buildingSt);
-                                c.SetUserProperty("USER_FIELD_2", D.S_Building_S);
-
-                                break;
-                        }
-
-                        CopyX(c, listfa2);
-
+                        //CopyX(c, listfa2);
+                        CopyXUerProperty(c, listfa2, buildingSt, buildingStoreySt);
 
                     }
                     else if (D.S_Type == "아니오")
@@ -7436,10 +6665,7 @@ namespace YT.WallVerticalRebar
             }
             else if (D.S_RangeType == "상")
             {
-                //var el = length - D.S_RangeTop - D.S_BeamDepth - te2 + D.S_SpacingZ;
-                //var el = length - D.S_RangeTop - te2 + D.S_SpacingZ;
                 var el = length - D.S_RangeTop - te2 + tee;
-                //bar3.Spacings = CopyArrayB(length - el - D.S_BeamDepth - (D.S_SpacingZ / 2) - D.S_SpacingZ, D.S_SpacingZ);
                 bar3.Spacings = CopyArrayT2(length - el - D.S_BeamDepth - (D.S_SpacingZ / 2) - D.S_SpacingZ, D.S_SpacingZ);
             }
             else if (D.S_RangeType == "하")
@@ -7555,142 +6781,48 @@ namespace YT.WallVerticalRebar
 
                 if (D.S_RangeType == "전체")
                 {
-                    bar3.Insert();
-                    MoveX(bar3, -size, -rebar);
-                    MoveZ(bar3, D.S_SpacingZ / 2 + Convert.ToDouble(bar3.Spacings[0]) / 2);
-                    MoveZ(bar3, (hMainBar / 2) + (sBar / 2));
-
-                    switch (D.S_UDA)
-                    {
-                        case "부재 UDA 정보 사용":
-
-                            bar3.SetUserProperty("USER_FIELD_1", buildingSt);
-                            bar3.SetUserProperty("USER_FIELD_2", buildingStoreySt);
-
-                            break;
-
-                        case "사용자 지정":
-
-                            bar3.SetUserProperty("USER_FIELD_1", buildingSt);
-                            bar3.SetUserProperty("USER_FIELD_2", D.S_Building_S);
-
-                            break;
-                    }
-
                     if (D.S_Type == "수직근")
                     {
-                        switch (D.S_UDA)
-                        {
-                            case "부재 UDA 정보 사용":
-
-                                bar3.SetUserProperty("USER_FIELD_1", buildingSt);
-                                bar3.SetUserProperty("USER_FIELD_2", buildingStoreySt);
-
-                                break;
-
-                            case "사용자 지정":
-
-                                bar3.SetUserProperty("USER_FIELD_1", buildingSt);
-                                bar3.SetUserProperty("USER_FIELD_2", D.S_Building_S);
-
-                                break;
-                        }
-                        CopyX(bar3, listfm);
+                        var bar3a = InsertUserProperty(bar3, buildingSt, buildingStoreySt);
+                        MoveX(bar3a, -size, -rebar);
+                        MoveZ(bar3a, D.S_SpacingZ / 2 + Convert.ToDouble(bar3.Spacings[0]) / 2);
+                        MoveZ(bar3a, (hMainBar / 2) + (sBar / 2));
+                        //CopyX(bar3, listfm);
+                        CopyXUerProperty(bar3a, listfm, buildingSt, buildingStoreySt);
                     }
                     else if (D.S_Type == "수직근+보강근1단")
                     {
-                        switch (D.S_UDA)
-                        {
-                            case "부재 UDA 정보 사용":
-
-                                bar3.SetUserProperty("USER_FIELD_1", buildingSt);
-                                bar3.SetUserProperty("USER_FIELD_2", buildingStoreySt);
-
-                                break;
-
-                            case "사용자 지정":
-
-                                bar3.SetUserProperty("USER_FIELD_1", buildingSt);
-                                bar3.SetUserProperty("USER_FIELD_2", D.S_Building_S);
-
-                                break;
-                        }
-                        CopyX(bar3, listV);
+                        var bar3a = InsertUserProperty(bar3, buildingSt, buildingStoreySt);
+                        MoveX(bar3a, -size, -rebar);
+                        MoveZ(bar3a, D.S_SpacingZ / 2 + Convert.ToDouble(bar3.Spacings[0]) / 2);
+                        MoveZ(bar3a, (hMainBar / 2) + (sBar / 2));
+                        //CopyX(bar3, listV);
+                        CopyXUerProperty(bar3a, listV, buildingSt, buildingStoreySt);
                     }
                     else if (D.S_Type == "수직근+보강근2단")
                     {
-                        switch (D.S_UDA)
-                        {
-                            case "부재 UDA 정보 사용":
+                        var a = InsertUserProperty(bar3, buildingSt, buildingStoreySt);
+                        MoveX(a, -size, -rebar);
+                        MoveZ(a, D.S_SpacingZ / 2 + Convert.ToDouble(bar3.Spacings[0]) / 2);
+                        MoveZ(a, (hMainBar / 2) + (sBar / 2));
+                        //CopyX(bar3, listfm);
+                        CopyXUerProperty(a, listfm, buildingSt, buildingStoreySt);
 
-                                bar3.SetUserProperty("USER_FIELD_1", buildingSt);
-                                bar3.SetUserProperty("USER_FIELD_2", buildingStoreySt);
-
-                                break;
-
-                            case "사용자 지정":
-
-                                bar3.SetUserProperty("USER_FIELD_1", buildingSt);
-                                bar3.SetUserProperty("USER_FIELD_2", D.S_Building_S);
-
-                                break;
-                        }
-                        CopyX(bar3, listfm);
-
-                        var b = bar3;
-                        b.Insert();
+                        var b = InsertUserProperty(bar3, buildingSt, buildingStoreySt);
                         MoveX(b, -size, -rebar);
                         MoveZ(b, D.S_SpacingZ / 2 + Convert.ToDouble(bar3.Spacings[0]) / 2);
                         MoveZ(b, (hMainBar / 2) + (sBar / 2));
-
                         MoveX(b, spacing / 3 * 2);
+                        //CopyX(b, listfa3);
+                        CopyXUerProperty(b, listfa3, buildingSt, buildingStoreySt);
 
-                        switch (D.S_UDA)
-                        {
-                            case "부재 UDA 정보 사용":
-
-                                b.SetUserProperty("USER_FIELD_1", buildingSt);
-                                b.SetUserProperty("USER_FIELD_2", buildingStoreySt);
-
-                                break;
-
-                            case "사용자 지정":
-
-                                b.SetUserProperty("USER_FIELD_1", buildingSt);
-                                b.SetUserProperty("USER_FIELD_2", D.S_Building_S);
-
-                                break;
-                        }
-
-                        CopyX(b, listfa3);
-
-                        var c = bar3;
-                        c.Insert();
+                        var c = InsertUserProperty(bar3, buildingSt, buildingStoreySt);
                         MoveX(c, -size, -rebar);
                         MoveZ(c, D.S_SpacingZ / 2 + Convert.ToDouble(bar3.Spacings[0]) / 2);
                         MoveZ(c, (hMainBar / 2) + (sBar / 2));
-
                         MoveX(c, spacing / 3 + spacing);
-
-                        switch (D.S_UDA)
-                        {
-                            case "부재 UDA 정보 사용":
-
-                                c.SetUserProperty("USER_FIELD_1", buildingSt);
-                                c.SetUserProperty("USER_FIELD_2", buildingStoreySt);
-
-                                break;
-
-                            case "사용자 지정":
-
-                                c.SetUserProperty("USER_FIELD_1", buildingSt);
-                                c.SetUserProperty("USER_FIELD_2", D.S_Building_S);
-
-                                break;
-                        }
-
-                        CopyX(c, listsa2);
-
+                        //CopyX(c, listsa2);
+                        CopyXUerProperty(c, listsa2, buildingSt, buildingStoreySt);
 
                     }
                     else if (D.S_Type == "아니오")
@@ -7701,147 +6833,49 @@ namespace YT.WallVerticalRebar
 
                 else if (D.S_RangeType == "상")
                 {
-                    bar3.Insert();
-                    MoveX(bar3, -size, -rebar);
-                    //MoveZ(bar3, Convert.ToDouble(bar3.Spacings[0]) / 2 + (length - D.S_RangeTop - D.S_BeamDepth - te2 + D.S_SpacingZ));
-                    //MoveZ(bar3, Convert.ToDouble(bar3.Spacings[0]) / 2 + (length - D.S_RangeTop - te2 + D.S_SpacingZ));
-                    MoveZ(bar3, Convert.ToDouble(bar3.Spacings[0]) / 2 + (length - D.S_RangeTop - te2 + tee));
-                    MoveZ(bar3, (hMainBar / 2) + (sBar / 2));
-
-                    switch (D.S_UDA)
-                    {
-                        case "부재 UDA 정보 사용":
-
-                            bar3.SetUserProperty("USER_FIELD_1", buildingSt);
-                            bar3.SetUserProperty("USER_FIELD_2", buildingStoreySt);
-
-                            break;
-
-                        case "사용자 지정":
-
-                            bar3.SetUserProperty("USER_FIELD_1", buildingSt);
-                            bar3.SetUserProperty("USER_FIELD_2", D.S_Building_S);
-
-                            break;
-                    }
 
                     if (D.S_Type == "수직근")
                     {
-                        switch (D.S_UDA)
-                        {
-                            case "부재 UDA 정보 사용":
-
-                                bar3.SetUserProperty("USER_FIELD_1", buildingSt);
-                                bar3.SetUserProperty("USER_FIELD_2", buildingStoreySt);
-
-                                break;
-
-                            case "사용자 지정":
-
-                                bar3.SetUserProperty("USER_FIELD_1", buildingSt);
-                                bar3.SetUserProperty("USER_FIELD_2", D.S_Building_S);
-
-                                break;
-                        }
-                        CopyX(bar3, listfm);
+                        var bar3a = InsertUserProperty(bar3, buildingSt, buildingStoreySt);
+                        MoveX(bar3a, -size, -rebar);
+                        MoveZ(bar3a, Convert.ToDouble(bar3.Spacings[0]) / 2 + (length - D.S_RangeTop - te2 + tee));
+                        MoveZ(bar3a, (hMainBar / 2) + (sBar / 2));
+                        //CopyX(bar3, listfm);
+                        CopyXUerProperty(bar3a, listfm, buildingSt, buildingStoreySt);
                     }
                     else if (D.S_Type == "수직근+보강근1단")
                     {
-                        switch (D.S_UDA)
-                        {
-                            case "부재 UDA 정보 사용":
-
-                                bar3.SetUserProperty("USER_FIELD_1", buildingSt);
-                                bar3.SetUserProperty("USER_FIELD_2", buildingStoreySt);
-
-                                break;
-
-                            case "사용자 지정":
-
-                                bar3.SetUserProperty("USER_FIELD_1", buildingSt);
-                                bar3.SetUserProperty("USER_FIELD_2", D.S_Building_S);
-
-                                break;
-                        }
-                        CopyX(bar3, listV);
+                        var bar3a = InsertUserProperty(bar3, buildingSt, buildingStoreySt);
+                        MoveX(bar3a, -size, -rebar);
+                        MoveZ(bar3a, Convert.ToDouble(bar3.Spacings[0]) / 2 + (length - D.S_RangeTop - te2 + tee));
+                        MoveZ(bar3a, (hMainBar / 2) + (sBar / 2));
+                        //CopyX(bar3, listV);
+                        CopyXUerProperty(bar3a, listV, buildingSt, buildingStoreySt);
                     }
                     else if (D.S_Type == "수직근+보강근2단")
                     {
-                        switch (D.S_UDA)
-                        {
-                            case "부재 UDA 정보 사용":
+                        var a = InsertUserProperty(bar3, buildingSt, buildingStoreySt);
+                        MoveX(a, -size, -rebar);
+                        MoveZ(a, Convert.ToDouble(bar3.Spacings[0]) / 2 + (length - D.S_RangeTop - te2 + tee));
+                        MoveZ(a, (hMainBar / 2) + (sBar / 2));
+                        //CopyX(bar3, listfm);
+                        CopyXUerProperty(a, listfm, buildingSt, buildingStoreySt);
 
-                                bar3.SetUserProperty("USER_FIELD_1", buildingSt);
-                                bar3.SetUserProperty("USER_FIELD_2", buildingStoreySt);
-
-                                break;
-
-                            case "사용자 지정":
-
-                                bar3.SetUserProperty("USER_FIELD_1", buildingSt);
-                                bar3.SetUserProperty("USER_FIELD_2", D.S_Building_S);
-
-                                break;
-                        }
-                        CopyX(bar3, listfm);
-
-                        var b = bar3;
-                        b.Insert();
+                        var b = InsertUserProperty(bar3, buildingSt, buildingStoreySt);
                         MoveX(b, -size, -rebar);
-                        //MoveZ(b, Convert.ToDouble(bar3.Spacings[0]) / 2 + (length - D.S_RangeTop - D.S_BeamDepth - te2 + D.S_SpacingZ));
                         MoveZ(b, Convert.ToDouble(bar3.Spacings[0]) / 2 + (length - D.S_RangeTop - te2 + D.S_SpacingZ));
                         MoveZ(b, (hMainBar / 2) + (sBar / 2));
-
                         MoveX(b, spacing / 3 * 2);
+                        //CopyX(b, listfa3);
+                        CopyXUerProperty(b, listfa3, buildingSt, buildingStoreySt);
 
-                        switch (D.S_UDA)
-                        {
-                            case "부재 UDA 정보 사용":
-
-                                b.SetUserProperty("USER_FIELD_1", buildingSt);
-                                b.SetUserProperty("USER_FIELD_2", buildingStoreySt);
-
-                                break;
-
-                            case "사용자 지정":
-
-                                b.SetUserProperty("USER_FIELD_1", buildingSt);
-                                b.SetUserProperty("USER_FIELD_2", D.S_Building_S);
-
-                                break;
-                        }
-
-                        CopyX(b, listfa3);
-
-                        var c = bar3;
-                        c.Insert();
+                        var c = InsertUserProperty(bar3, buildingSt, buildingStoreySt);
                         MoveX(c, -size, -rebar);
-                        //MoveZ(c, Convert.ToDouble(bar3.Spacings[0]) / 2 + (length - D.S_RangeTop - D.S_BeamDepth - te2 + D.S_SpacingZ));
-                        //MoveZ(c, Convert.ToDouble(bar3.Spacings[0]) / 2 + (length - D.S_RangeTop - te2 + D.S_SpacingZ));
                         MoveZ(c, Convert.ToDouble(bar3.Spacings[0]) / 2 + (length - D.S_RangeTop - te2 + tee));
                         MoveZ(c, (hMainBar / 2) + (sBar / 2));
-
                         MoveX(c, spacing / 3 + spacing);
-
-                        switch (D.S_UDA)
-                        {
-                            case "부재 UDA 정보 사용":
-
-                                c.SetUserProperty("USER_FIELD_1", buildingSt);
-                                c.SetUserProperty("USER_FIELD_2", buildingStoreySt);
-
-                                break;
-
-                            case "사용자 지정":
-
-                                c.SetUserProperty("USER_FIELD_1", buildingSt);
-                                c.SetUserProperty("USER_FIELD_2", D.S_Building_S);
-
-                                break;
-                        }
-
-                        CopyX(c, listsa2);
-
+                        //CopyX(c, listsa2);
+                        CopyXUerProperty(c, listsa2, buildingSt, buildingStoreySt);
 
                     }
                     else if (D.S_Type == "아니오")
@@ -7851,142 +6885,49 @@ namespace YT.WallVerticalRebar
                 }
                 else if (D.S_RangeType == "하")
                 {
-                    bar3.Insert();
-                    MoveX(bar3, -size, -rebar);
-                    MoveZ(bar3, D.S_SpacingZ / 2 + Convert.ToDouble(bar3.Spacings[0]) / 2);
-                    MoveZ(bar3, (hMainBar / 2) + (sBar / 2));
-
-                    switch (D.S_UDA)
-                    {
-                        case "부재 UDA 정보 사용":
-
-                            bar3.SetUserProperty("USER_FIELD_1", buildingSt);
-                            bar3.SetUserProperty("USER_FIELD_2", buildingStoreySt);
-
-                            break;
-
-                        case "사용자 지정":
-
-                            bar3.SetUserProperty("USER_FIELD_1", buildingSt);
-                            bar3.SetUserProperty("USER_FIELD_2", D.S_Building_S);
-
-                            break;
-                    }
 
                     if (D.S_Type == "수직근")
                     {
-                        switch (D.S_UDA)
-                        {
-                            case "부재 UDA 정보 사용":
-
-                                bar3.SetUserProperty("USER_FIELD_1", buildingSt);
-                                bar3.SetUserProperty("USER_FIELD_2", buildingStoreySt);
-
-                                break;
-
-                            case "사용자 지정":
-
-                                bar3.SetUserProperty("USER_FIELD_1", buildingSt);
-                                bar3.SetUserProperty("USER_FIELD_2", D.S_Building_S);
-
-                                break;
-                        }
-                        CopyX(bar3, listfm);
+                        var bar3a = InsertUserProperty(bar3, buildingSt, buildingStoreySt);
+                        MoveX(bar3a, -size, -rebar);
+                        MoveZ(bar3a, D.S_SpacingZ / 2 + Convert.ToDouble(bar3.Spacings[0]) / 2);
+                        MoveZ(bar3a, (hMainBar / 2) + (sBar / 2));
+                        //CopyX(bar3, listfm);
+                        CopyXUerProperty(bar3a, listfm, buildingSt, buildingStoreySt);
                     }
                     else if (D.S_Type == "수직근+보강근1단")
                     {
-                        switch (D.S_UDA)
-                        {
-                            case "부재 UDA 정보 사용":
-
-                                bar3.SetUserProperty("USER_FIELD_1", buildingSt);
-                                bar3.SetUserProperty("USER_FIELD_2", buildingStoreySt);
-
-                                break;
-
-                            case "사용자 지정":
-
-                                bar3.SetUserProperty("USER_FIELD_1", buildingSt);
-                                bar3.SetUserProperty("USER_FIELD_2", D.S_Building_S);
-
-                                break;
-                        }
-                        CopyX(bar3, listV);
+                        var bar3a = InsertUserProperty(bar3, buildingSt, buildingStoreySt);
+                        MoveX(bar3a, -size, -rebar);
+                        MoveZ(bar3a, D.S_SpacingZ / 2 + Convert.ToDouble(bar3.Spacings[0]) / 2);
+                        MoveZ(bar3a, (hMainBar / 2) + (sBar / 2));
+                        //CopyX(bar3, listV);
+                        CopyXUerProperty(bar3a, listV, buildingSt, buildingStoreySt);
                     }
                     else if (D.S_Type == "수직근+보강근2단")
                     {
-                        switch (D.S_UDA)
-                        {
-                            case "부재 UDA 정보 사용":
+                        var a = InsertUserProperty(bar3, buildingSt, buildingStoreySt);
+                        MoveX(a, -size, -rebar);
+                        MoveZ(a, D.S_SpacingZ / 2 + Convert.ToDouble(bar3.Spacings[0]) / 2);
+                        MoveZ(a, (hMainBar / 2) + (sBar / 2));
+                        //CopyX(bar3, listfm);
+                        CopyXUerProperty(a, listfm, buildingSt, buildingStoreySt);
 
-                                bar3.SetUserProperty("USER_FIELD_1", buildingSt);
-                                bar3.SetUserProperty("USER_FIELD_2", buildingStoreySt);
-
-                                break;
-
-                            case "사용자 지정":
-
-                                bar3.SetUserProperty("USER_FIELD_1", buildingSt);
-                                bar3.SetUserProperty("USER_FIELD_2", D.S_Building_S);
-
-                                break;
-                        }
-                        CopyX(bar3, listfm);
-
-                        var b = bar3;
-                        b.Insert();
+                        var b = InsertUserProperty(bar3, buildingSt, buildingStoreySt);
                         MoveX(b, -size, -rebar);
                         MoveZ(b, D.S_SpacingZ / 2 + Convert.ToDouble(bar3.Spacings[0]) / 2);
                         MoveZ(b, (hMainBar / 2) + (sBar / 2));
-
                         MoveX(b, spacing / 3 * 2);
+                        //CopyX(b, listfa3);
+                        CopyXUerProperty(b, listfa3, buildingSt, buildingStoreySt);
 
-                        switch (D.S_UDA)
-                        {
-                            case "부재 UDA 정보 사용":
-
-                                b.SetUserProperty("USER_FIELD_1", buildingSt);
-                                b.SetUserProperty("USER_FIELD_2", buildingStoreySt);
-
-                                break;
-
-                            case "사용자 지정":
-
-                                b.SetUserProperty("USER_FIELD_1", buildingSt);
-                                b.SetUserProperty("USER_FIELD_2", D.S_Building_S);
-
-                                break;
-                        }
-
-                        CopyX(b, listfa3);
-
-                        var c = bar3;
-                        c.Insert();
+                        var c = InsertUserProperty(bar3, buildingSt, buildingStoreySt);
                         MoveX(c, -size, -rebar);
                         MoveZ(c, D.S_SpacingZ / 2 + Convert.ToDouble(bar3.Spacings[0]) / 2);
                         MoveZ(c, (hMainBar / 2) + (sBar / 2));
-
                         MoveX(c, spacing / 3 + spacing);
-
-                        switch (D.S_UDA)
-                        {
-                            case "부재 UDA 정보 사용":
-
-                                c.SetUserProperty("USER_FIELD_1", buildingSt);
-                                c.SetUserProperty("USER_FIELD_2", buildingStoreySt);
-
-                                break;
-
-                            case "사용자 지정":
-
-                                c.SetUserProperty("USER_FIELD_1", buildingSt);
-                                c.SetUserProperty("USER_FIELD_2", D.S_Building_S);
-
-                                break;
-                        }
-
-                        CopyX(c, listsa2);
-
+                        //CopyX(c, listsa2);
+                        CopyXUerProperty(c, listsa2, buildingSt, buildingStoreySt);
 
                     }
                     else if (D.S_Type == "아니오")
@@ -7997,142 +6938,49 @@ namespace YT.WallVerticalRebar
 
                 else if (D.S_RangeType == "상,하")
                 {
-                    bar3.Insert();
-                    MoveX(bar3, -size, -rebar);
-                    MoveZ(bar3, D.S_SpacingZ / 2 + Convert.ToDouble(bar3.Spacings[0]) / 2);
-                    MoveZ(bar3, (hMainBar / 2) + (sBar / 2));
-
-                    switch (D.S_UDA)
-                    {
-                        case "부재 UDA 정보 사용":
-
-                            bar3.SetUserProperty("USER_FIELD_1", buildingSt);
-                            bar3.SetUserProperty("USER_FIELD_2", buildingStoreySt);
-
-                            break;
-
-                        case "사용자 지정":
-
-                            bar3.SetUserProperty("USER_FIELD_1", buildingSt);
-                            bar3.SetUserProperty("USER_FIELD_2", D.S_Building_S);
-
-                            break;
-                    }
 
                     if (D.S_Type == "수직근")
                     {
-                        switch (D.S_UDA)
-                        {
-                            case "부재 UDA 정보 사용":
-
-                                bar3.SetUserProperty("USER_FIELD_1", buildingSt);
-                                bar3.SetUserProperty("USER_FIELD_2", buildingStoreySt);
-
-                                break;
-
-                            case "사용자 지정":
-
-                                bar3.SetUserProperty("USER_FIELD_1", buildingSt);
-                                bar3.SetUserProperty("USER_FIELD_2", D.S_Building_S);
-
-                                break;
-                        }
-                        CopyX(bar3, listfm);
+                        var bar3a = InsertUserProperty(bar3, buildingSt, buildingStoreySt);
+                        MoveX(bar3a, -size, -rebar);
+                        MoveZ(bar3a, D.S_SpacingZ / 2 + Convert.ToDouble(bar3.Spacings[0]) / 2);
+                        MoveZ(bar3a, (hMainBar / 2) + (sBar / 2));
+                        //CopyX(bar3, listfm);
+                        CopyXUerProperty(bar3a, listfm, buildingSt, buildingStoreySt);
                     }
                     else if (D.S_Type == "수직근+보강근1단")
                     {
-                        switch (D.S_UDA)
-                        {
-                            case "부재 UDA 정보 사용":
-
-                                bar3.SetUserProperty("USER_FIELD_1", buildingSt);
-                                bar3.SetUserProperty("USER_FIELD_2", buildingStoreySt);
-
-                                break;
-
-                            case "사용자 지정":
-
-                                bar3.SetUserProperty("USER_FIELD_1", buildingSt);
-                                bar3.SetUserProperty("USER_FIELD_2", D.S_Building_S);
-
-                                break;
-                        }
-                        CopyX(bar3, listV);
+                        var bar3a = InsertUserProperty(bar3, buildingSt, buildingStoreySt);
+                        MoveX(bar3a, -size, -rebar);
+                        MoveZ(bar3a, D.S_SpacingZ / 2 + Convert.ToDouble(bar3.Spacings[0]) / 2);
+                        MoveZ(bar3a, (hMainBar / 2) + (sBar / 2));
+                        //CopyX(bar3, listV);
+                        CopyXUerProperty(bar3a, listV, buildingSt, buildingStoreySt);
                     }
                     else if (D.S_Type == "수직근+보강근2단")
                     {
-                        switch (D.S_UDA)
-                        {
-                            case "부재 UDA 정보 사용":
+                        var a = InsertUserProperty(bar3, buildingSt, buildingStoreySt);
+                        MoveX(a, -size, -rebar);
+                        MoveZ(a, D.S_SpacingZ / 2 + Convert.ToDouble(bar3.Spacings[0]) / 2);
+                        MoveZ(a, (hMainBar / 2) + (sBar / 2));
+                        //CopyX(bar3, listfm);
+                        CopyXUerProperty(a, listfm, buildingSt, buildingStoreySt);
 
-                                bar3.SetUserProperty("USER_FIELD_1", buildingSt);
-                                bar3.SetUserProperty("USER_FIELD_2", buildingStoreySt);
-
-                                break;
-
-                            case "사용자 지정":
-
-                                bar3.SetUserProperty("USER_FIELD_1", buildingSt);
-                                bar3.SetUserProperty("USER_FIELD_2", D.S_Building_S);
-
-                                break;
-                        }
-                        CopyX(bar3, listfm);
-
-                        var b = bar3;
-                        b.Insert();
+                        var b = InsertUserProperty(bar3, buildingSt, buildingStoreySt);
                         MoveX(b, -size, -rebar);
                         MoveZ(b, D.S_SpacingZ / 2 + Convert.ToDouble(bar3.Spacings[0]) / 2);
                         MoveZ(b, (hMainBar / 2) + (sBar / 2));
-
                         MoveX(b, spacing / 3 * 2);
+                        //CopyX(b, listfa3);
+                        CopyXUerProperty(b, listfa3, buildingSt, buildingStoreySt);
 
-                        switch (D.S_UDA)
-                        {
-                            case "부재 UDA 정보 사용":
-
-                                b.SetUserProperty("USER_FIELD_1", buildingSt);
-                                b.SetUserProperty("USER_FIELD_2", buildingStoreySt);
-
-                                break;
-
-                            case "사용자 지정":
-
-                                b.SetUserProperty("USER_FIELD_1", buildingSt);
-                                b.SetUserProperty("USER_FIELD_2", D.S_Building_S);
-
-                                break;
-                        }
-
-                        CopyX(b, listfa3);
-
-                        var c = bar3;
-                        c.Insert();
+                        var c = InsertUserProperty(bar3, buildingSt, buildingStoreySt);
                         MoveX(c, -size, -rebar);
                         MoveZ(c, D.S_SpacingZ / 2 + Convert.ToDouble(bar3.Spacings[0]) / 2);
                         MoveZ(c, (hMainBar / 2) + (sBar / 2));
-
                         MoveX(c, spacing / 3 + spacing);
-
-                        switch (D.S_UDA)
-                        {
-                            case "부재 UDA 정보 사용":
-
-                                c.SetUserProperty("USER_FIELD_1", buildingSt);
-                                c.SetUserProperty("USER_FIELD_2", buildingStoreySt);
-
-                                break;
-
-                            case "사용자 지정":
-
-                                c.SetUserProperty("USER_FIELD_1", buildingSt);
-                                c.SetUserProperty("USER_FIELD_2", D.S_Building_S);
-
-                                break;
-                        }
-
-                        CopyX(c, listsa2);
-
+                        //CopyX(c, listsa2);
+                        CopyXUerProperty(c, listsa2, buildingSt, buildingStoreySt);
 
                     }
                     else if (D.S_Type == "아니오")
@@ -8158,10 +7006,7 @@ namespace YT.WallVerticalRebar
             }
             else if (D.S_RangeType == "상")
             {
-                //var el = length - D.S_RangeTop - D.S_BeamDepth - te2 + D.S_SpacingZ;
-                //var el = length - D.S_RangeTop - te2 + D.S_SpacingZ;
                 var el = length - D.S_RangeTop - te2 + tee;
-                //bar4.Spacings = CopyArrayB(length - el - D.S_BeamDepth - (D.S_SpacingZ / 2) - D.S_SpacingZ, D.S_SpacingZ);
                 bar4.Spacings = CopyArrayT2(length - el - D.S_BeamDepth - (D.S_SpacingZ / 2) - D.S_SpacingZ, D.S_SpacingZ);
             }
             else if (D.S_RangeType == "하")
@@ -8278,145 +7123,51 @@ namespace YT.WallVerticalRebar
                 if (D.S_RangeType == "전체")
                 {
 
-                    bar4.Insert();
-                    MoveX(bar4, size, rebar);
-                    MoveZ(bar4, D.S_SpacingZ / 2 + Convert.ToDouble(bar4.Spacings[0]) / 2);
-                    MoveZ(bar4, (hMainBar / 2) + (sBar / 2));
-
-                    switch (D.S_UDA)
-                    {
-                        case "부재 UDA 정보 사용":
-
-                            bar4.SetUserProperty("USER_FIELD_1", buildingSt);
-                            bar4.SetUserProperty("USER_FIELD_2", buildingStoreySt);
-
-                            break;
-
-                        case "사용자 지정":
-
-                            bar4.SetUserProperty("USER_FIELD_1", buildingSt);
-                            bar4.SetUserProperty("USER_FIELD_2", D.S_Building_S);
-
-                            break;
-                    }
-
                     if (D.S_Type == "수직근")
                     {
-                        switch (D.S_UDA)
-                        {
-                            case "부재 UDA 정보 사용":
-
-                                bar4.SetUserProperty("USER_FIELD_1", buildingSt);
-                                bar4.SetUserProperty("USER_FIELD_2", buildingStoreySt);
-
-                                break;
-
-                            case "사용자 지정":
-
-                                bar4.SetUserProperty("USER_FIELD_1", buildingSt);
-                                bar4.SetUserProperty("USER_FIELD_2", D.S_Building_S);
-
-                                break;
-                        }
-                        MoveX(bar4, spacing);
-                        CopyX(bar4, listsm);
+                        var bar4a = InsertUserProperty(bar4, buildingSt, buildingStoreySt);
+                        MoveX(bar4a, size, rebar);
+                        MoveZ(bar4a, D.S_SpacingZ / 2 + Convert.ToDouble(bar4.Spacings[0]) / 2);
+                        MoveZ(bar4a, (hMainBar / 2) + (sBar / 2));
+                        MoveX(bar4a, spacing);
+                        //CopyX(bar4, listsm);
+                        CopyXUerProperty(bar4a, listsm, buildingSt, buildingStoreySt);
                     }
                     else if (D.S_Type == "수직근+보강근1단")
                     {
-                        switch (D.S_UDA)
-                        {
-                            case "부재 UDA 정보 사용":
-
-                                bar4.SetUserProperty("USER_FIELD_1", buildingSt);
-                                bar4.SetUserProperty("USER_FIELD_2", buildingStoreySt);
-
-                                break;
-
-                            case "사용자 지정":
-
-                                bar4.SetUserProperty("USER_FIELD_1", buildingSt);
-                                bar4.SetUserProperty("USER_FIELD_2", D.S_Building_S);
-
-                                break;
-                        }
-                        MoveX(bar4, spacing / 2);
-                        CopyX(bar4, listA);
+                        var bar4a = InsertUserProperty(bar4, buildingSt, buildingStoreySt);
+                        MoveX(bar4a, size, rebar);
+                        MoveZ(bar4a, D.S_SpacingZ / 2 + Convert.ToDouble(bar4.Spacings[0]) / 2);
+                        MoveZ(bar4a, (hMainBar / 2) + (sBar / 2));
+                        MoveX(bar4a, spacing / 2);
+                        //CopyX(bar4, listA);
+                        CopyXUerProperty(bar4a, listA, buildingSt, buildingStoreySt);
                     }
                     else if (D.S_Type == "수직근+보강근2단")
                     {
-                        switch (D.S_UDA)
-                        {
-                            case "부재 UDA 정보 사용":
+                        var a = InsertUserProperty(bar4, buildingSt, buildingStoreySt);
+                        MoveX(a, size, rebar);
+                        MoveZ(a, D.S_SpacingZ / 2 + Convert.ToDouble(bar4.Spacings[0]) / 2);
+                        MoveZ(a, (hMainBar / 2) + (sBar / 2));
+                        MoveX(a, spacing);
+                        //CopyX(bar4, listsm);
+                        CopyXUerProperty(a, listsm, buildingSt, buildingStoreySt);
 
-                                bar4.SetUserProperty("USER_FIELD_1", buildingSt);
-                                bar4.SetUserProperty("USER_FIELD_2", buildingStoreySt);
-
-                                break;
-
-                            case "사용자 지정":
-
-                                bar4.SetUserProperty("USER_FIELD_1", buildingSt);
-                                bar4.SetUserProperty("USER_FIELD_2", D.S_Building_S);
-
-                                break;
-                        }
-                        MoveX(bar4, spacing);
-                        CopyX(bar4, listsm);
-
-                        var b = bar4;
-                        b.Insert();
-
+                        var b = InsertUserProperty(bar4, buildingSt, buildingStoreySt);
                         MoveX(b, size, rebar);
                         MoveZ(b, D.S_SpacingZ / 2 + Convert.ToDouble(bar4.Spacings[0]) / 2);
                         MoveZ(b, (hMainBar / 2) + (sBar / 2));
-
                         MoveX(b, spacing / 3 * 2 + spacing);
+                        //CopyX(b, listsa3);
+                        CopyXUerProperty(b, listsa3, buildingSt, buildingStoreySt);
 
-                        switch (D.S_UDA)
-                        {
-                            case "부재 UDA 정보 사용":
-
-                                b.SetUserProperty("USER_FIELD_1", buildingSt);
-                                b.SetUserProperty("USER_FIELD_2", buildingStoreySt);
-
-                                break;
-
-                            case "사용자 지정":
-
-                                b.SetUserProperty("USER_FIELD_1", buildingSt);
-                                b.SetUserProperty("USER_FIELD_2", D.S_Building_S);
-
-                                break;
-                        }
-
-                        CopyX(b, listsa3);
-
-                        var c = bar4;
-                        c.Insert();
+                        var c = InsertUserProperty(bar4, buildingSt, buildingStoreySt);
                         MoveX(c, size, rebar);
                         MoveZ(c, D.S_SpacingZ / 2 + Convert.ToDouble(bar4.Spacings[0]) / 2);
                         MoveZ(c, (hMainBar / 2) + (sBar / 2));
-
                         MoveX(c, spacing / 3);
-
-                        switch (D.S_UDA)
-                        {
-                            case "부재 UDA 정보 사용":
-
-                                c.SetUserProperty("USER_FIELD_1", buildingSt);
-                                c.SetUserProperty("USER_FIELD_2", buildingStoreySt);
-
-                                break;
-
-                            case "사용자 지정":
-
-                                c.SetUserProperty("USER_FIELD_1", buildingSt);
-                                c.SetUserProperty("USER_FIELD_2", D.S_Building_S);
-
-                                break;
-                        }
-
-                        CopyX(c, listfa2);
+                        //CopyX(c, listfa2);
+                        CopyXUerProperty(c, listfa2, buildingSt, buildingStoreySt);
 
                     }
                     else if (D.S_Type == "아니오")
@@ -8427,154 +7178,53 @@ namespace YT.WallVerticalRebar
 
                 else if (D.S_RangeType == "상")
                 {
-                    bar4.Insert();
-                    MoveX(bar4, size, rebar);
-                    //MoveZ(bar4, Convert.ToDouble(bar4.Spacings[0]) / 2 + (length - D.S_RangeTop - D.S_BeamDepth - te2 + D.S_SpacingZ));
-                    //MoveZ(bar4, Convert.ToDouble(bar4.Spacings[0]) / 2 + (length - D.S_RangeTop - te2 + D.S_SpacingZ));
-                    MoveZ(bar4, Convert.ToDouble(bar4.Spacings[0]) / 2 + (length - D.S_RangeTop - te2 + tee));
-
-                    switch (D.S_UDA)
-                    {
-                        case "부재 UDA 정보 사용":
-
-                            bar4.SetUserProperty("USER_FIELD_1", buildingSt);
-                            bar4.SetUserProperty("USER_FIELD_2", buildingStoreySt);
-
-                            break;
-
-                        case "사용자 지정":
-
-                            bar4.SetUserProperty("USER_FIELD_1", buildingSt);
-                            bar4.SetUserProperty("USER_FIELD_2", D.S_Building_S);
-
-                            break;
-                    }
-
-                    MoveZ(bar4, (hMainBar / 2) + (sBar / 2));
 
                     if (D.S_Type == "수직근")
                     {
-                        switch (D.S_UDA)
-                        {
-                            case "부재 UDA 정보 사용":
-
-                                bar4.SetUserProperty("USER_FIELD_1", buildingSt);
-                                bar4.SetUserProperty("USER_FIELD_2", buildingStoreySt);
-
-                                break;
-
-                            case "사용자 지정":
-
-                                bar4.SetUserProperty("USER_FIELD_1", buildingSt);
-                                bar4.SetUserProperty("USER_FIELD_2", D.S_Building_S);
-
-                                break;
-                        }
-                        MoveX(bar4, spacing);
-                        CopyX(bar4, listsm);
+                        var bar4a = InsertUserProperty(bar4, buildingSt, buildingStoreySt);
+                        MoveX(bar4a, size, rebar);
+                        MoveZ(bar4a, Convert.ToDouble(bar4.Spacings[0]) / 2 + (length - D.S_RangeTop - te2 + tee));
+                        MoveZ(bar4a, (hMainBar / 2) + (sBar / 2));
+                        MoveX(bar4a, spacing);
+                        //CopyX(bar4a, listsm);
+                        CopyXUerProperty(bar4a, listsm, buildingSt, buildingStoreySt);
                     }
                     else if (D.S_Type == "수직근+보강근1단")
                     {
-                        switch (D.S_UDA)
-                        {
-                            case "부재 UDA 정보 사용":
-
-                                bar4.SetUserProperty("USER_FIELD_1", buildingSt);
-                                bar4.SetUserProperty("USER_FIELD_2", buildingStoreySt);
-
-                                break;
-
-                            case "사용자 지정":
-
-                                bar4.SetUserProperty("USER_FIELD_1", buildingSt);
-                                bar4.SetUserProperty("USER_FIELD_2", D.S_Building_S);
-
-                                break;
-                        }
-                        MoveX(bar4, spacing / 2);
-                        CopyX(bar4, listA);
+                        var bar4a = InsertUserProperty(bar4, buildingSt, buildingStoreySt);
+                        MoveX(bar4a, size, rebar);
+                        MoveZ(bar4a, Convert.ToDouble(bar4.Spacings[0]) / 2 + (length - D.S_RangeTop - te2 + tee));
+                        MoveZ(bar4a, (hMainBar / 2) + (sBar / 2));
+                        MoveX(bar4a, spacing / 2);
+                        //CopyX(bar4, listA);
+                        CopyXUerProperty(bar4a, listA, buildingSt, buildingStoreySt);
                     }
                     else if (D.S_Type == "수직근+보강근2단")
                     {
-                        switch (D.S_UDA)
-                        {
-                            case "부재 UDA 정보 사용":
+                        var a = InsertUserProperty(bar4, buildingSt, buildingStoreySt);
+                        MoveX(a, size, rebar);
+                        MoveZ(a, Convert.ToDouble(bar4.Spacings[0]) / 2 + (length - D.S_RangeTop - te2 + tee));
+                        MoveZ(a, (hMainBar / 2) + (sBar / 2));
+                        MoveX(a, spacing);
+                        //CopyX(bar4, listsm);
+                        CopyXUerProperty(a, listsm, buildingSt, buildingStoreySt);
 
-                                bar4.SetUserProperty("USER_FIELD_1", buildingSt);
-                                bar4.SetUserProperty("USER_FIELD_2", buildingStoreySt);
 
-                                break;
-
-                            case "사용자 지정":
-
-                                bar4.SetUserProperty("USER_FIELD_1", buildingSt);
-                                bar4.SetUserProperty("USER_FIELD_2", D.S_Building_S);
-
-                                break;
-                        }
-
-                        MoveX(bar4, spacing);
-                        CopyX(bar4, listsm);
-
-                        var b = bar4;
-                        b.Insert();
-
+                        var b = InsertUserProperty(bar4, buildingSt, buildingStoreySt);
                         MoveX(b, size, rebar);
-                        //MoveZ(b, Convert.ToDouble(bar4.Spacings[0]) / 2 + (length - D.S_RangeTop - D.S_BeamDepth - te2 + D.S_SpacingZ));
-                        //MoveZ(b, Convert.ToDouble(bar4.Spacings[0]) / 2 + (length - D.S_RangeTop - te2 + D.S_SpacingZ));
                         MoveZ(b, Convert.ToDouble(bar4.Spacings[0]) / 2 + (length - D.S_RangeTop - te2 + tee));
                         MoveZ(b, (hMainBar / 2) + (sBar / 2));
-
                         MoveX(b, spacing / 3 * 2 + spacing);
+                        //CopyX(b, listsa3);
+                        CopyXUerProperty(b, listsa3, buildingSt, buildingStoreySt);
 
-                        switch (D.S_UDA)
-                        {
-                            case "부재 UDA 정보 사용":
-
-                                b.SetUserProperty("USER_FIELD_1", buildingSt);
-                                b.SetUserProperty("USER_FIELD_2", buildingStoreySt);
-
-                                break;
-
-                            case "사용자 지정":
-
-                                b.SetUserProperty("USER_FIELD_1", buildingSt);
-                                b.SetUserProperty("USER_FIELD_2", D.S_Building_S);
-
-                                break;
-                        }
-
-                        CopyX(b, listsa3);
-
-                        var c = bar4;
-                        c.Insert();
+                        var c = InsertUserProperty(bar4, buildingSt, buildingStoreySt);
                         MoveX(c, size, rebar);
-                        //MoveZ(c, Convert.ToDouble(bar4.Spacings[0]) / 2 + (length - D.S_RangeTop - D.S_BeamDepth - te2 + D.S_SpacingZ));
-                        //MoveZ(c, Convert.ToDouble(bar4.Spacings[0]) / 2 + (length - D.S_RangeTop - te2 + D.S_SpacingZ));
                         MoveZ(c, Convert.ToDouble(bar4.Spacings[0]) / 2 + (length - D.S_RangeTop - te2 + tee));
                         MoveZ(c, (hMainBar / 2) + (sBar / 2));
-
                         MoveX(c, spacing / 3);
-
-                        switch (D.S_UDA)
-                        {
-                            case "부재 UDA 정보 사용":
-
-                                c.SetUserProperty("USER_FIELD_1", buildingSt);
-                                c.SetUserProperty("USER_FIELD_2", buildingStoreySt);
-
-                                break;
-
-                            case "사용자 지정":
-
-                                c.SetUserProperty("USER_FIELD_1", buildingSt);
-                                c.SetUserProperty("USER_FIELD_2", D.S_Building_S);
-
-                                break;
-                        }
-
-                        CopyX(c, listfa2);
-
+                        //CopyX(c, listfa2);
+                        CopyXUerProperty(c, listfa2, buildingSt, buildingStoreySt);
 
                     }
                     else if (D.S_Type == "아니오")
@@ -8585,146 +7235,54 @@ namespace YT.WallVerticalRebar
 
                 else if (D.S_RangeType == "하")
                 {
-                    bar4.Insert();
-                    MoveX(bar4, size, rebar);
-                    MoveZ(bar4, D.S_SpacingZ / 2 + Convert.ToDouble(bar4.Spacings[0]) / 2);
-                    MoveZ(bar4, (hMainBar / 2) + (sBar / 2));
+                    
 
-                    switch (D.S_UDA)
-                    {
-                        case "부재 UDA 정보 사용":
-
-                            bar4.SetUserProperty("USER_FIELD_1", buildingSt);
-                            bar4.SetUserProperty("USER_FIELD_2", buildingStoreySt);
-
-                            break;
-
-                        case "사용자 지정":
-
-                            bar4.SetUserProperty("USER_FIELD_1", buildingSt);
-                            bar4.SetUserProperty("USER_FIELD_2", D.S_Building_S);
-
-                            break;
-                    }
-
+                
                     if (D.S_Type == "수직근")
                     {
-                        switch (D.S_UDA)
-                        {
-                            case "부재 UDA 정보 사용":
-
-                                bar4.SetUserProperty("USER_FIELD_1", buildingSt);
-                                bar4.SetUserProperty("USER_FIELD_2", buildingStoreySt);
-
-                                break;
-
-                            case "사용자 지정":
-
-                                bar4.SetUserProperty("USER_FIELD_1", buildingSt);
-                                bar4.SetUserProperty("USER_FIELD_2", D.S_Building_S);
-
-                                break;
-                        }
-                        MoveX(bar4, spacing);
-                        CopyX(bar4, listsm);
+                        var bar4a = InsertUserProperty(bar4, buildingSt, buildingStoreySt);
+                        MoveX(bar4a, size, rebar);
+                        MoveZ(bar4a, D.S_SpacingZ / 2 + Convert.ToDouble(bar4.Spacings[0]) / 2);
+                        MoveZ(bar4a, (hMainBar / 2) + (sBar / 2));
+                        MoveX(bar4a, spacing);
+                        //CopyX(bar4, listsm);
+                        CopyXUerProperty(bar4a, listsm, buildingSt, buildingStoreySt);
                     }
                     else if (D.S_Type == "수직근+보강근1단")
                     {
-                        switch (D.S_UDA)
-                        {
-                            case "부재 UDA 정보 사용":
-
-                                bar4.SetUserProperty("USER_FIELD_1", buildingSt);
-                                bar4.SetUserProperty("USER_FIELD_2", buildingStoreySt);
-
-                                break;
-
-                            case "사용자 지정":
-
-                                bar4.SetUserProperty("USER_FIELD_1", buildingSt);
-                                bar4.SetUserProperty("USER_FIELD_2", D.S_Building_S);
-
-                                break;
-                        }
-                        MoveX(bar4, spacing / 2);
-                        CopyX(bar4, listA);
+                        var bar4a = InsertUserProperty(bar4, buildingSt, buildingStoreySt);
+                        MoveX(bar4a, size, rebar);
+                        MoveZ(bar4a, D.S_SpacingZ / 2 + Convert.ToDouble(bar4.Spacings[0]) / 2);
+                        MoveZ(bar4a, (hMainBar / 2) + (sBar / 2));
+                        MoveX(bar4a, spacing / 2);
+                        //CopyX(bar4, listA);
+                        CopyXUerProperty(bar4a, listA, buildingSt, buildingStoreySt);
                     }
                     else if (D.S_Type == "수직근+보강근2단")
                     {
-                        switch (D.S_UDA)
-                        {
-                            case "부재 UDA 정보 사용":
+                        var a = InsertUserProperty(bar4, buildingSt, buildingStoreySt);
+                        MoveX(a, size, rebar);
+                        MoveZ(a, D.S_SpacingZ / 2 + Convert.ToDouble(bar4.Spacings[0]) / 2);
+                        MoveZ(a, (hMainBar / 2) + (sBar / 2));
+                        MoveX(a, spacing);
+                        //CopyX(a, listsm);
+                        CopyXUerProperty(a, listsm, buildingSt, buildingStoreySt);
 
-                                bar4.SetUserProperty("USER_FIELD_1", buildingSt);
-                                bar4.SetUserProperty("USER_FIELD_2", buildingStoreySt);
-
-                                break;
-
-                            case "사용자 지정":
-
-                                bar4.SetUserProperty("USER_FIELD_1", buildingSt);
-                                bar4.SetUserProperty("USER_FIELD_2", D.S_Building_S);
-
-                                break;
-                        }
-                        MoveX(bar4, spacing);
-                        CopyX(bar4, listsm);
-
-                        var b = bar4;
-                        b.Insert();
+                        var b = InsertUserProperty(bar4, buildingSt, buildingStoreySt);
                         MoveX(b, size, rebar);
                         MoveZ(b, D.S_SpacingZ / 2 + Convert.ToDouble(bar4.Spacings[0]) / 2);
                         MoveZ(b, (hMainBar / 2) + (sBar / 2));
-
                         MoveX(b, spacing / 3 * 2 + spacing);
+                        // CopyX(b, listsa3);
+                        CopyXUerProperty(b, listsa3, buildingSt, buildingStoreySt);
 
-                        switch (D.S_UDA)
-                        {
-                            case "부재 UDA 정보 사용":
-
-                                b.SetUserProperty("USER_FIELD_1", buildingSt);
-                                b.SetUserProperty("USER_FIELD_2", buildingStoreySt);
-
-                                break;
-
-                            case "사용자 지정":
-
-                                b.SetUserProperty("USER_FIELD_1", buildingSt);
-                                b.SetUserProperty("USER_FIELD_2", D.S_Building_S);
-
-                                break;
-                        }
-
-                        CopyX(b, listsa3);
-
-                        var c = bar4;
-                        c.Insert();
+                        var c = InsertUserProperty(bar4, buildingSt, buildingStoreySt);
                         MoveX(c, size, rebar);
                         MoveZ(c, D.S_SpacingZ / 2 + Convert.ToDouble(bar4.Spacings[0]) / 2);
                         MoveZ(c, (hMainBar / 2) + (sBar / 2));
-
                         MoveX(c, spacing / 3);
-
-                        switch (D.S_UDA)
-                        {
-                            case "부재 UDA 정보 사용":
-
-                                c.SetUserProperty("USER_FIELD_1", buildingSt);
-                                c.SetUserProperty("USER_FIELD_2", buildingStoreySt);
-
-                                break;
-
-                            case "사용자 지정":
-
-                                c.SetUserProperty("USER_FIELD_1", buildingSt);
-                                c.SetUserProperty("USER_FIELD_2", D.S_Building_S);
-
-                                break;
-                        }
-
-                        CopyX(c, listfa2);
-
-
+                        //CopyX(c, listfa2);
+                        CopyXUerProperty(c, listfa2, buildingSt, buildingStoreySt);
 
                     }
                     else if (D.S_Type == "아니오")
@@ -8735,147 +7293,52 @@ namespace YT.WallVerticalRebar
 
                 else if (D.S_RangeType == "상,하")
                 {
-                    bar4.Insert();
-                    MoveX(bar4, size, rebar);
-                    MoveZ(bar4, D.S_SpacingZ / 2 + Convert.ToDouble(bar4.Spacings[0]) / 2);
-                    MoveZ(bar4, (hMainBar / 2) + (sBar / 2));
-
-                    switch (D.S_UDA)
-                    {
-                        case "부재 UDA 정보 사용":
-
-                            bar4.SetUserProperty("USER_FIELD_1", buildingSt);
-                            bar4.SetUserProperty("USER_FIELD_2", buildingStoreySt);
-
-                            break;
-
-                        case "사용자 지정":
-
-                            bar4.SetUserProperty("USER_FIELD_1", buildingSt);
-                            bar4.SetUserProperty("USER_FIELD_2", D.S_Building_S);
-
-                            break;
-                    }
 
                     if (D.S_Type == "수직근")
                     {
-                        switch (D.S_UDA)
-                        {
-                            case "부재 UDA 정보 사용":
-
-                                bar4.SetUserProperty("USER_FIELD_1", buildingSt);
-                                bar4.SetUserProperty("USER_FIELD_2", buildingStoreySt);
-
-                                break;
-
-                            case "사용자 지정":
-
-                                bar4.SetUserProperty("USER_FIELD_1", buildingSt);
-                                bar4.SetUserProperty("USER_FIELD_2", D.S_Building_S);
-
-                                break;
-                        }
-                        MoveX(bar4, spacing);
-                        CopyX(bar4, listsm);
+                        var bar4a = InsertUserProperty(bar4, buildingSt, buildingStoreySt);
+                        MoveX(bar4a, size, rebar);
+                        MoveZ(bar4a, D.S_SpacingZ / 2 + Convert.ToDouble(bar4.Spacings[0]) / 2);
+                        MoveZ(bar4a, (hMainBar / 2) + (sBar / 2));
+                        MoveX(bar4a, spacing);
+                        //CopyX(bar4, listsm);
+                        CopyXUerProperty(bar4a, listsm, buildingSt, buildingStoreySt);
                     }
                     else if (D.S_Type == "수직근+보강근1단")
                     {
-                        switch (D.S_UDA)
-                        {
-                            case "부재 UDA 정보 사용":
-
-                                bar4.SetUserProperty("USER_FIELD_1", buildingSt);
-                                bar4.SetUserProperty("USER_FIELD_2", buildingStoreySt);
-
-                                break;
-
-                            case "사용자 지정":
-
-                                bar4.SetUserProperty("USER_FIELD_1", buildingSt);
-                                bar4.SetUserProperty("USER_FIELD_2", D.S_Building_S);
-
-                                break;
-                        }
-                        MoveX(bar4, spacing / 2);
-                        CopyX(bar4, listA);
+                        var bar4a = InsertUserProperty(bar4, buildingSt, buildingStoreySt);
+                        MoveX(bar4a, size, rebar);
+                        MoveZ(bar4a, D.S_SpacingZ / 2 + Convert.ToDouble(bar4.Spacings[0]) / 2);
+                        MoveZ(bar4a, (hMainBar / 2) + (sBar / 2));
+                        MoveX(bar4a, spacing / 2);
+                        //CopyX(bar4, listA);
+                        CopyXUerProperty(bar4, listA, buildingSt, buildingStoreySt);
                     }
                     else if (D.S_Type == "수직근+보강근2단")
                     {
-                        switch (D.S_UDA)
-                        {
-                            case "부재 UDA 정보 사용":
+                        var a = InsertUserProperty(bar4, buildingSt, buildingStoreySt);
+                        MoveX(a, size, rebar);
+                        MoveZ(a, D.S_SpacingZ / 2 + Convert.ToDouble(bar4.Spacings[0]) / 2);
+                        MoveZ(a, (hMainBar / 2) + (sBar / 2));
+                        MoveX(a, spacing);
+                        //CopyX(bar4, listsm);
+                        CopyXUerProperty(a, listsm, buildingSt, buildingStoreySt);
 
-                                bar4.SetUserProperty("USER_FIELD_1", buildingSt);
-                                bar4.SetUserProperty("USER_FIELD_2", buildingStoreySt);
-
-                                break;
-
-                            case "사용자 지정":
-
-                                bar4.SetUserProperty("USER_FIELD_1", buildingSt);
-                                bar4.SetUserProperty("USER_FIELD_2", D.S_Building_S);
-
-                                break;
-                        }
-                        MoveX(bar4, spacing);
-                        CopyX(bar4, listsm);
-
-                        var b = bar4;
-                        b.Insert();
+                        var b = InsertUserProperty(bar4, buildingSt, buildingStoreySt);
                         MoveX(b, size, rebar);
                         MoveZ(b, D.S_SpacingZ / 2 + Convert.ToDouble(bar4.Spacings[0]) / 2);
                         MoveZ(b, (hMainBar / 2) + (sBar / 2));
-
                         MoveX(b, spacing / 3 * 2 + spacing);
+                        //CopyX(b, listsa3);
+                        CopyXUerProperty(b, listsa3, buildingSt, buildingStoreySt);
 
-                        switch (D.S_UDA)
-                        {
-                            case "부재 UDA 정보 사용":
-
-                                b.SetUserProperty("USER_FIELD_1", buildingSt);
-                                b.SetUserProperty("USER_FIELD_2", buildingStoreySt);
-
-                                break;
-
-                            case "사용자 지정":
-
-                                b.SetUserProperty("USER_FIELD_1", buildingSt);
-                                b.SetUserProperty("USER_FIELD_2", D.S_Building_S);
-
-                                break;
-                        }
-
-                        CopyX(b, listsa3);
-
-                        var c = bar4;
-                        c.Insert();
+                        var c = InsertUserProperty(bar4, buildingSt, buildingStoreySt);
                         MoveX(c, size, rebar);
                         MoveZ(c, D.S_SpacingZ / 2 + Convert.ToDouble(bar4.Spacings[0]) / 2);
                         MoveZ(c, (hMainBar / 2) + (sBar / 2));
-
                         MoveX(c, spacing / 3);
-
-                        switch (D.S_UDA)
-                        {
-                            case "부재 UDA 정보 사용":
-
-                                c.SetUserProperty("USER_FIELD_1", buildingSt);
-                                c.SetUserProperty("USER_FIELD_2", buildingStoreySt);
-
-                                break;
-
-                            case "사용자 지정":
-
-                                c.SetUserProperty("USER_FIELD_1", buildingSt);
-                                c.SetUserProperty("USER_FIELD_2", D.S_Building_S);
-
-                                break;
-                        }
-
-                        CopyX(c, listfa2);
-
-
-
+                        //CopyX(c, listfa2);
+                        CopyXUerProperty(c, listfa2, buildingSt, buildingStoreySt);
 
                     }
                     else if (D.S_Type == "아니오")
@@ -8887,46 +7350,7 @@ namespace YT.WallVerticalRebar
             }
             #endregion
 
-            //switch (D.S_UDA)
-            //{
-            //    case "부재 UDA 정보 사용":
-
-            //        bar1.SetUserProperty("USER_FIELD_1", buildingSt);
-            //        bar1.SetUserProperty("USER_FIELD_2", buildingStoreySt);
-
-            //        bar2.SetUserProperty("USER_FIELD_1", buildingSt);
-            //        bar2.SetUserProperty("USER_FIELD_2", buildingStoreySt);
-
-            //        bar3.SetUserProperty("USER_FIELD_1", buildingSt);
-            //        bar3.SetUserProperty("USER_FIELD_2", buildingStoreySt);
-
-            //        bar4.SetUserProperty("USER_FIELD_1", buildingSt);
-            //        bar4.SetUserProperty("USER_FIELD_2", buildingStoreySt);
-
-            //        break;
-
-            //    case "사용자 지정":
-
-            //        //bar1.SetUserProperty("USER_FIELD_1", D.S_Building);
-            //        bar1.SetUserProperty("USER_FIELD_1", buildingSt);
-            //        bar1.SetUserProperty("USER_FIELD_2", D.S_Building_S);
-
-            //        //bar2.SetUserProperty("USER_FIELD_1", D.S_Building);
-            //        bar2.SetUserProperty("USER_FIELD_1", buildingSt);
-            //        bar2.SetUserProperty("USER_FIELD_2", D.S_Building_S);
-
-            //        //bar3.SetUserProperty("USER_FIELD_1", D.S_Building);
-            //        bar3.SetUserProperty("USER_FIELD_1", buildingSt);
-            //        bar3.SetUserProperty("USER_FIELD_2", D.S_Building_S);
-
-            //        //bar4.SetUserProperty("USER_FIELD_1", D.S_Building);
-            //        bar4.SetUserProperty("USER_FIELD_1", buildingSt);
-            //        bar4.SetUserProperty("USER_FIELD_2", D.S_Building_S);
-
-            //        break;
-            //}
-
-
+     
             /*-----------------------------------------------------------------------------------------*/
 
             #region 상부전용
@@ -8951,8 +7375,6 @@ namespace YT.WallVerticalRebar
             }
             else if (D.S_RangeType == "상,하")
             {
-                //var el = length - D.S_RangeTop - D.S_BeamDepth - te2 + D.S_SpacingZ;
-                //var el = length - D.S_RangeTop - te2 + D.S_SpacingZ;
                 var el = length - D.S_RangeTop - te2 + tee;
                 bar5.Spacings = CopyArrayB(length - el - D.S_BeamDepth - (D.S_SpacingZ / 2), D.S_SpacingZ);
 
@@ -9078,144 +7500,43 @@ namespace YT.WallVerticalRebar
                 }
                 else if (D.S_RangeType == "상,하")
                 {
-                    bar5.Insert();
-                    MoveX(bar5, -size, -rebar);
-                    //MoveZ(bar5, (length - D.S_RangeTop - D.S_BeamDepth - te2 + D.S_SpacingZ));
-                    MoveZ(bar5, (length - D.S_RangeTop - te2 + tee));
-                    MoveZ(bar5, (hMainBar / 2) + (sBar / 2));
-
-                    switch (D.S_UDA)
-                    {
-                        case "부재 UDA 정보 사용":
-
-                            bar5.SetUserProperty("USER_FIELD_1", buildingSt);
-                            bar5.SetUserProperty("USER_FIELD_2", buildingStoreySt);
-
-                            break;
-
-                        case "사용자 지정":
-
-                            bar5.SetUserProperty("USER_FIELD_1", buildingSt);
-                            bar5.SetUserProperty("USER_FIELD_2", D.S_Building_S);
-
-                            break;
-                    }
-
                     if (D.S_Type == "수직근")
                     {
-                        switch (D.S_UDA)
-                        {
-                            case "부재 UDA 정보 사용":
-
-                                bar5.SetUserProperty("USER_FIELD_1", buildingSt);
-                                bar5.SetUserProperty("USER_FIELD_2", buildingStoreySt);
-
-                                break;
-
-                            case "사용자 지정":
-
-                                bar5.SetUserProperty("USER_FIELD_1", buildingSt);
-                                bar5.SetUserProperty("USER_FIELD_2", D.S_Building_S);
-
-                                break;
-                        }
-                        CopyX(bar5, listfm);
+                        var bar5a = InsertUserProperty(bar5, buildingSt, buildingStoreySt);
+                        MoveX(bar5a, -size, -rebar);
+                        MoveZ(bar5a, (length - D.S_RangeTop - te2 + tee));
+                        MoveZ(bar5a, (hMainBar / 2) + (sBar / 2));
+                        CopyXUerProperty(bar5a, listfm,buildingSt, buildingStoreySt);
                     }
                     else if (D.S_Type == "수직근+보강근1단")
                     {
-                        switch (D.S_UDA)
-                        {
-                            case "부재 UDA 정보 사용":
-
-                                bar5.SetUserProperty("USER_FIELD_1", buildingSt);
-                                bar5.SetUserProperty("USER_FIELD_2", buildingStoreySt);
-
-                                break;
-
-                            case "사용자 지정":
-
-                                bar5.SetUserProperty("USER_FIELD_1", buildingSt);
-                                bar5.SetUserProperty("USER_FIELD_2", D.S_Building_S);
-
-                                break;
-                        }
-                        CopyX(bar5, listV);
+                        var bar5a = InsertUserProperty(bar5, buildingSt, buildingStoreySt);
+                        MoveX(bar5a, -size, -rebar);
+                        MoveZ(bar5a, (length - D.S_RangeTop - te2 + tee));
+                        MoveZ(bar5a, (hMainBar / 2) + (sBar / 2));
+                        CopyXUerProperty(bar5a, listV, buildingSt, buildingStoreySt);
                     }
                     else if (D.S_Type == "수직근+보강근2단")
                     {
-                        switch (D.S_UDA)
-                        {
-                            case "부재 UDA 정보 사용":
+                        var a = InsertUserProperty(bar5, buildingSt, buildingStoreySt);
+                        MoveX(a, -size, -rebar);
+                        MoveZ(a, (length - D.S_RangeTop - te2 + tee));
+                        MoveZ(a, (hMainBar / 2) + (sBar / 2));
+                        CopyXUerProperty(a, listfm, buildingSt, buildingStoreySt);
 
-                                bar5.SetUserProperty("USER_FIELD_1", buildingSt);
-                                bar5.SetUserProperty("USER_FIELD_2", buildingStoreySt);
-
-                                break;
-
-                            case "사용자 지정":
-
-                                bar5.SetUserProperty("USER_FIELD_1", buildingSt);
-                                bar5.SetUserProperty("USER_FIELD_2", D.S_Building_S);
-
-                                break;
-                        }
-
-                        CopyX(bar5, listfm);
-
-                        var b = bar5;
-                        b.Insert();
+                        var b = InsertUserProperty(bar5, buildingSt, buildingStoreySt);
                         MoveX(b, -size, -rebar);
-                        //MoveZ(b, (length - D.S_RangeTop - D.S_BeamDepth - te2 + D.S_SpacingZ));
                         MoveZ(b, (length - D.S_RangeTop - te2 + tee));
                         MoveZ(b, (hMainBar / 2) + (sBar / 2));
-
                         MoveX(b, spacing / 3 * 2);
-                        switch (D.S_UDA)
-                        {
-                            case "부재 UDA 정보 사용":
+                        CopyXUerProperty(b, listfa3, buildingSt, buildingStoreySt);
 
-                                b.SetUserProperty("USER_FIELD_1", buildingSt);
-                                b.SetUserProperty("USER_FIELD_2", buildingStoreySt);
-
-                                break;
-
-                            case "사용자 지정":
-
-                                b.SetUserProperty("USER_FIELD_1", buildingSt);
-                                b.SetUserProperty("USER_FIELD_2", D.S_Building_S);
-
-                                break;
-                        }
-                        CopyX(b, listfa3);
-
-                        var c = bar5;
-                        c.Insert();
+                        var c = InsertUserProperty(bar5, buildingSt, buildingStoreySt);
                         MoveX(c, -size, -rebar);
-                        //MoveZ(c, (length - D.S_RangeTop - D.S_BeamDepth - te2 + D.S_SpacingZ));
                         MoveZ(c, (length - D.S_RangeTop - te2 + tee));
                         MoveZ(c, (hMainBar / 2) + (sBar / 2));
-
                         MoveX(c, spacing / 3 + spacing);
-                        switch (D.S_UDA)
-                        {
-                            case "부재 UDA 정보 사용":
-
-                                c.SetUserProperty("USER_FIELD_1", buildingSt);
-                                c.SetUserProperty("USER_FIELD_2", buildingStoreySt);
-
-                                break;
-
-                            case "사용자 지정":
-
-                                c.SetUserProperty("USER_FIELD_1", buildingSt);
-                                c.SetUserProperty("USER_FIELD_2", D.S_Building_S);
-
-                                break;
-                        }
-                        CopyX(c, listsa2);
-
-
-
+                        CopyXUerProperty(c, listsa2, buildingSt, buildingStoreySt);
                     }
                     else if (D.S_Type == "아니오")
                     {
@@ -9248,8 +7569,6 @@ namespace YT.WallVerticalRebar
             }
             else if (D.S_RangeType == "상,하")
             {
-                //var el = length - D.S_RangeTop - D.S_BeamDepth - te2 + D.S_SpacingZ;
-                //var el = length - D.S_RangeTop - te2 + D.S_SpacingZ;
                 var el = length - D.S_RangeTop - te2 + tee;
                 bar6.Spacings = CopyArrayB(length - el - D.S_BeamDepth - (D.S_SpacingZ / 2), D.S_SpacingZ);
 
@@ -9369,148 +7688,46 @@ namespace YT.WallVerticalRebar
                 }
                 else if (D.S_RangeType == "상,하")
                 {
-                    bar6.Insert();
-                    MoveX(bar6, size, rebar);
-                    //MoveZ(bar6, (length - D.S_RangeTop - D.S_BeamDepth - te2 + D.S_SpacingZ));
-                    MoveZ(bar6, (length - D.S_RangeTop - te2 + tee));
-                    MoveZ(bar6, (hMainBar / 2) + (sBar / 2));
-
-                    switch (D.S_UDA)
-                    {
-                        case "부재 UDA 정보 사용":
-
-                            bar6.SetUserProperty("USER_FIELD_1", buildingSt);
-                            bar6.SetUserProperty("USER_FIELD_2", buildingStoreySt);
-
-                            break;
-
-                        case "사용자 지정":
-
-                            bar6.SetUserProperty("USER_FIELD_1", buildingSt);
-                            bar6.SetUserProperty("USER_FIELD_2", D.S_Building_S);
-
-                            break;
-                    }
-
                     if (D.S_Type == "수직근")
                     {
-                        switch (D.S_UDA)
-                        {
-                            case "부재 UDA 정보 사용":
-
-                                bar6.SetUserProperty("USER_FIELD_1", buildingSt);
-                                bar6.SetUserProperty("USER_FIELD_2", buildingStoreySt);
-
-                                break;
-
-                            case "사용자 지정":
-
-                                bar6.SetUserProperty("USER_FIELD_1", buildingSt);
-                                bar6.SetUserProperty("USER_FIELD_2", D.S_Building_S);
-
-                                break;
-                        }
-                        MoveX(bar6, spacing);
-                        CopyX(bar6, listsm);
+                        var bar6a = InsertUserProperty(bar6, buildingSt, buildingStoreySt);
+                        MoveX(bar6a, size, rebar);
+                        MoveZ(bar6a, (length - D.S_RangeTop - te2 + tee));
+                        MoveZ(bar6a, (hMainBar / 2) + (sBar / 2));
+                        MoveX(bar6a, spacing);
+                        CopyXUerProperty(bar6a, listsm, buildingSt, buildingStoreySt);
                     }
                     else if (D.S_Type == "수직근+보강근1단")
                     {
-                        switch (D.S_UDA)
-                        {
-                            case "부재 UDA 정보 사용":
-
-                                bar6.SetUserProperty("USER_FIELD_1", buildingSt);
-                                bar6.SetUserProperty("USER_FIELD_2", buildingStoreySt);
-
-                                break;
-
-                            case "사용자 지정":
-
-                                bar6.SetUserProperty("USER_FIELD_1", buildingSt);
-                                bar6.SetUserProperty("USER_FIELD_2", D.S_Building_S);
-
-                                break;
-                        }
-                        MoveX(bar6, spacing / 2);
-                        CopyX(bar6, listA);
+                        var bar6a = InsertUserProperty(bar6, buildingSt, buildingStoreySt);
+                        MoveX(bar6a, size, rebar);
+                        MoveZ(bar6a, (length - D.S_RangeTop - te2 + tee));
+                        MoveZ(bar6a, (hMainBar / 2) + (sBar / 2));
+                        MoveX(bar6a, spacing / 2);
+                        CopyXUerProperty(bar6a, listA, buildingSt, buildingStoreySt);
                     }
                     else if (D.S_Type == "수직근+보강근2단")
                     {
-                        switch (D.S_UDA)
-                        {
-                            case "부재 UDA 정보 사용":
+                        var a = InsertUserProperty(bar6, buildingSt, buildingStoreySt);
+                        MoveX(a, size, rebar);
+                        MoveZ(a, (length - D.S_RangeTop - te2 + tee));
+                        MoveZ(a, (hMainBar / 2) + (sBar / 2));
+                        MoveX(a, spacing);
+                        CopyXUerProperty(a, listsm, buildingSt, buildingStoreySt);
 
-                                bar6.SetUserProperty("USER_FIELD_1", buildingSt);
-                                bar6.SetUserProperty("USER_FIELD_2", buildingStoreySt);
-
-                                break;
-
-                            case "사용자 지정":
-
-                                bar6.SetUserProperty("USER_FIELD_1", buildingSt);
-                                bar6.SetUserProperty("USER_FIELD_2", D.S_Building_S);
-
-                                break;
-                        }
-
-                        MoveX(bar6, spacing);
-                        CopyX(bar6, listsm);
-
-                        var b = bar6;
-                        b.Insert();
+                        var b = InsertUserProperty(bar6, buildingSt, buildingStoreySt);
                         MoveX(b, size, rebar);
-                        //MoveZ(b, (length - D.S_RangeTop - D.S_BeamDepth - te2 + D.S_SpacingZ));
                         MoveZ(b, (length - D.S_RangeTop - te2 + tee));
                         MoveZ(b, (hMainBar / 2) + (sBar / 2));
-
                         MoveX(b, spacing / 3 * 2 + spacing);
-                        switch (D.S_UDA)
-                        {
-                            case "부재 UDA 정보 사용":
+                        CopyXUerProperty(b, listsa3, buildingSt, buildingStoreySt);
 
-                                b.SetUserProperty("USER_FIELD_1", buildingSt);
-                                b.SetUserProperty("USER_FIELD_2", buildingStoreySt);
-
-                                break;
-
-                            case "사용자 지정":
-
-                                b.SetUserProperty("USER_FIELD_1", buildingSt);
-                                b.SetUserProperty("USER_FIELD_2", D.S_Building_S);
-
-                                break;
-                        }
-                        CopyX(b, listsa3);
-                        //b.Delete();
-
-                        var c = bar6;
-                        c.Insert();
+                        var c = InsertUserProperty(bar6, buildingSt, buildingStoreySt);
                         MoveX(c, size, rebar);
-                        //MoveZ(c, (length - D.S_RangeTop - D.S_BeamDepth - te2 + D.S_SpacingZ));
                         MoveZ(c, (length - D.S_RangeTop - te2 + tee));
                         MoveZ(c, (hMainBar / 2) + (sBar / 2));
-
                         MoveX(c, spacing / 3);
-                        switch (D.S_UDA)
-                        {
-                            case "부재 UDA 정보 사용":
-
-                                c.SetUserProperty("USER_FIELD_1", buildingSt);
-                                c.SetUserProperty("USER_FIELD_2", buildingStoreySt);
-
-                                break;
-
-                            case "사용자 지정":
-
-                                c.SetUserProperty("USER_FIELD_1", buildingSt);
-                                c.SetUserProperty("USER_FIELD_2", D.S_Building_S);
-
-                                break;
-                        }
-                        CopyX(c, listfa2);
-
-
-
+                        CopyXUerProperty(c, listfa2, buildingSt, buildingStoreySt);
                     }
                     else if (D.S_Type == "아니오")
                     {
@@ -9541,8 +7758,6 @@ namespace YT.WallVerticalRebar
             }
             else if (D.S_RangeType == "상,하")
             {
-                //var el = length - D.S_RangeTop - D.S_BeamDepth - te2 + D.S_SpacingZ;
-                //var el = length - D.S_RangeTop - te2 + D.S_SpacingZ;
                 var el = length - D.S_RangeTop - te2 + tee;
                 bar7.Spacings = CopyArrayB(length - el - D.S_BeamDepth - (D.S_SpacingZ / 2) - D.S_SpacingZ, D.S_SpacingZ);
 
@@ -9662,143 +7877,45 @@ namespace YT.WallVerticalRebar
                 }
                 else if (D.S_RangeType == "상,하")
                 {
-                    bar7.Insert();
-                    MoveX(bar7, -size, -rebar);
-                    //MoveZ(bar7, Convert.ToDouble(bar7.Spacings[0]) / 2 + (length - D.S_RangeTop - D.S_BeamDepth - te2 + D.S_SpacingZ));
-                    MoveZ(bar7, Convert.ToDouble(bar7.Spacings[0]) / 2 + (length - D.S_RangeTop - te2 + tee));
-                    MoveZ(bar7, (hMainBar / 2) + (sBar / 2));
-
-                    switch (D.S_UDA)
-                    {
-                        case "부재 UDA 정보 사용":
-
-                            bar7.SetUserProperty("USER_FIELD_1", buildingSt);
-                            bar7.SetUserProperty("USER_FIELD_2", buildingStoreySt);
-
-                            break;
-
-                        case "사용자 지정":
-
-                            bar7.SetUserProperty("USER_FIELD_1", buildingSt);
-                            bar7.SetUserProperty("USER_FIELD_2", D.S_Building_S);
-
-                            break;
-                    }
-
 
                     if (D.S_Type == "수직근")
                     {
-                        switch (D.S_UDA)
-                        {
-                            case "부재 UDA 정보 사용":
-
-                                bar7.SetUserProperty("USER_FIELD_1", buildingSt);
-                                bar7.SetUserProperty("USER_FIELD_2", buildingStoreySt);
-
-                                break;
-
-                            case "사용자 지정":
-
-                                bar7.SetUserProperty("USER_FIELD_1", buildingSt);
-                                bar7.SetUserProperty("USER_FIELD_2", D.S_Building_S);
-
-                                break;
-                        }
-                        CopyX(bar7, listfm);
+                        var bar7a = InsertUserProperty(bar7, buildingSt, buildingStoreySt);
+                        MoveX(bar7a, -size, -rebar);
+                        MoveZ(bar7a, Convert.ToDouble(bar7.Spacings[0]) / 2 + (length - D.S_RangeTop - te2 + tee));
+                        MoveZ(bar7a, (hMainBar / 2) + (sBar / 2));
+                        CopyXUerProperty(bar7a, listfm, buildingSt, buildingStoreySt);
+                        
                     }
                     else if (D.S_Type == "수직근+보강근1단")
                     {
-                        switch (D.S_UDA)
-                        {
-                            case "부재 UDA 정보 사용":
-
-                                bar7.SetUserProperty("USER_FIELD_1", buildingSt);
-                                bar7.SetUserProperty("USER_FIELD_2", buildingStoreySt);
-
-                                break;
-
-                            case "사용자 지정":
-
-                                bar7.SetUserProperty("USER_FIELD_1", buildingSt);
-                                bar7.SetUserProperty("USER_FIELD_2", D.S_Building_S);
-
-                                break;
-                        }
-                        CopyX(bar7, listV);
+                        var bar7a = InsertUserProperty(bar7, buildingSt, buildingStoreySt);
+                        MoveX(bar7a, -size, -rebar);
+                        MoveZ(bar7a, Convert.ToDouble(bar7.Spacings[0]) / 2 + (length - D.S_RangeTop - te2 + tee));
+                        MoveZ(bar7a, (hMainBar / 2) + (sBar / 2));
+                        CopyXUerProperty(bar7a, listV, buildingSt, buildingStoreySt);
                     }
                     else if (D.S_Type == "수직근+보강근2단")
                     {
-                        switch (D.S_UDA)
-                        {
-                            case "부재 UDA 정보 사용":
+                        var a = InsertUserProperty(bar7, buildingSt, buildingStoreySt);
+                        MoveX(a, -size, -rebar);
+                        MoveZ(a, Convert.ToDouble(bar7.Spacings[0]) / 2 + (length - D.S_RangeTop - te2 + tee));
+                        MoveZ(a, (hMainBar / 2) + (sBar / 2));
+                        CopyXUerProperty(a, listfm, buildingSt, buildingStoreySt);
 
-                                bar7.SetUserProperty("USER_FIELD_1", buildingSt);
-                                bar7.SetUserProperty("USER_FIELD_2", buildingStoreySt);
-
-                                break;
-
-                            case "사용자 지정":
-
-                                bar7.SetUserProperty("USER_FIELD_1", buildingSt);
-                                bar7.SetUserProperty("USER_FIELD_2", D.S_Building_S);
-
-                                break;
-                        }
-
-                        CopyX(bar7, listfm);
-
-                        var b = bar7;
-                        b.Insert();
+                        var b = InsertUserProperty(bar7, buildingSt, buildingStoreySt);
                         MoveX(b, -size, -rebar);
-                        //MoveZ(b, Convert.ToDouble(bar7.Spacings[0]) / 2 + (length - D.S_RangeTop - D.S_BeamDepth - te2 + D.S_SpacingZ));
                         MoveZ(b, Convert.ToDouble(bar7.Spacings[0]) / 2 + (length - D.S_RangeTop - te2 + tee));
                         MoveZ(b, (hMainBar / 2) + (sBar / 2));
-
                         MoveX(b, spacing / 3 * 2);
-                        switch (D.S_UDA)
-                        {
-                            case "부재 UDA 정보 사용":
+                        CopyXUerProperty(b, listfa3, buildingSt, buildingStoreySt);
 
-                                b.SetUserProperty("USER_FIELD_1", buildingSt);
-                                b.SetUserProperty("USER_FIELD_2", buildingStoreySt);
-
-                                break;
-
-                            case "사용자 지정":
-
-                                b.SetUserProperty("USER_FIELD_1", buildingSt);
-                                b.SetUserProperty("USER_FIELD_2", D.S_Building_S);
-
-                                break;
-                        }
-                        CopyX(b, listfa3);
-
-                        var c = bar7;
-                        c.Insert();
+                        var c = InsertUserProperty(bar7, buildingSt, buildingStoreySt);
                         MoveX(c, -size, -rebar);
-                        //MoveZ(c, Convert.ToDouble(bar7.Spacings[0]) / 2 + (length - D.S_RangeTop - D.S_BeamDepth - te2 + D.S_SpacingZ));
                         MoveZ(c, Convert.ToDouble(bar7.Spacings[0]) / 2 + (length - D.S_RangeTop - te2 + tee));
                         MoveZ(c, (hMainBar / 2) + (sBar / 2));
-
                         MoveX(c, spacing / 3 + spacing);
-                        switch (D.S_UDA)
-                        {
-                            case "부재 UDA 정보 사용":
-
-                                c.SetUserProperty("USER_FIELD_1", buildingSt);
-                                c.SetUserProperty("USER_FIELD_2", buildingStoreySt);
-
-                                break;
-
-                            case "사용자 지정":
-
-                                c.SetUserProperty("USER_FIELD_1", buildingSt);
-                                c.SetUserProperty("USER_FIELD_2", D.S_Building_S);
-
-                                break;
-                        }
-                        CopyX(c, listsa2);
-
+                        CopyXUerProperty(c, listsa2, buildingSt, buildingStoreySt);
 
                     }
                     else if (D.S_Type == "아니오")
@@ -9831,8 +7948,6 @@ namespace YT.WallVerticalRebar
             }
             else if (D.S_RangeType == "상,하")
             {
-                //var el = length - D.S_RangeTop - D.S_BeamDepth - te2 + D.S_SpacingZ;
-                //var el = length - D.S_RangeTop - te2 + D.S_SpacingZ;
                 var el = length - D.S_RangeTop - te2 + tee;
                 bar8.Spacings = CopyArrayB(length - el - D.S_BeamDepth - (D.S_SpacingZ / 2) - D.S_SpacingZ, D.S_SpacingZ);
 
@@ -9953,150 +8068,48 @@ namespace YT.WallVerticalRebar
                 }
                 else if (D.S_RangeType == "상,하")
                 {
-                    bar8.Insert();
-
-                    MoveX(bar8, size, rebar);
-                    //MoveZ(bar8, Convert.ToDouble(bar8.Spacings[0]) / 2 + (length - D.S_RangeTop - D.S_BeamDepth - te2 + D.S_SpacingZ));
-                    MoveZ(bar8, Convert.ToDouble(bar8.Spacings[0]) / 2 + (length - D.S_RangeTop - te2 + tee));
-                    MoveZ(bar8, (hMainBar / 2) + (sBar / 2));
-
-                    switch (D.S_UDA)
-                    {
-                        case "부재 UDA 정보 사용":
-
-                            bar8.SetUserProperty("USER_FIELD_1", buildingSt);
-                            bar8.SetUserProperty("USER_FIELD_2", buildingStoreySt);
-
-                            break;
-
-                        case "사용자 지정":
-
-                            bar8.SetUserProperty("USER_FIELD_1", buildingSt);
-                            bar8.SetUserProperty("USER_FIELD_2", D.S_Building_S);
-
-                            break;
-                    }
 
                     if (D.S_Type == "수직근")
                     {
-                        switch (D.S_UDA)
-                        {
-                            case "부재 UDA 정보 사용":
-
-                                bar8.SetUserProperty("USER_FIELD_1", buildingSt);
-                                bar8.SetUserProperty("USER_FIELD_2", buildingStoreySt);
-
-                                break;
-
-                            case "사용자 지정":
-
-                                bar8.SetUserProperty("USER_FIELD_1", buildingSt);
-                                bar8.SetUserProperty("USER_FIELD_2", D.S_Building_S);
-
-                                break;
-                        }
-                        MoveX(bar8, spacing);
-                        CopyX(bar8, listsm);
+                        var bar8a = InsertUserProperty(bar8, buildingSt, buildingStoreySt);
+                        MoveX(bar8a, size, rebar);
+                        MoveZ(bar8a, Convert.ToDouble(bar8.Spacings[0]) / 2 + (length - D.S_RangeTop - te2 + tee));
+                        MoveZ(bar8a, (hMainBar / 2) + (sBar / 2));
+                        MoveX(bar8a, spacing);
+                        CopyXUerProperty(bar8a, listsm, buildingSt, buildingStoreySt);
                     }
                     else if (D.S_Type == "수직근+보강근1단")
                     {
-                        switch (D.S_UDA)
-                        {
-                            case "부재 UDA 정보 사용":
-
-                                bar8.SetUserProperty("USER_FIELD_1", buildingSt);
-                                bar8.SetUserProperty("USER_FIELD_2", buildingStoreySt);
-
-                                break;
-
-                            case "사용자 지정":
-
-                                bar8.SetUserProperty("USER_FIELD_1", buildingSt);
-                                bar8.SetUserProperty("USER_FIELD_2", D.S_Building_S);
-
-                                break;
-                        }
-                        MoveX(bar8, spacing / 2);
-                        CopyX(bar8, listA);
+                        var bar8a = InsertUserProperty(bar8, buildingSt, buildingStoreySt);
+                        MoveX(bar8a, size, rebar);
+                        MoveZ(bar8a, Convert.ToDouble(bar8.Spacings[0]) / 2 + (length - D.S_RangeTop - te2 + tee));
+                        MoveZ(bar8a, (hMainBar / 2) + (sBar / 2));
+                        MoveX(bar8a, spacing / 2);
+                        CopyXUerProperty(bar8a, listA, buildingSt, buildingStoreySt);
                     }
+
                     else if (D.S_Type == "수직근+보강근2단")
                     {
-                        switch (D.S_UDA)
-                        {
-                            case "부재 UDA 정보 사용":
+                        var a = InsertUserProperty(bar8, buildingSt, buildingStoreySt);
+                        MoveX(a, size, rebar);
+                        MoveZ(a, Convert.ToDouble(bar8.Spacings[0]) / 2 + (length - D.S_RangeTop - te2 + tee));
+                        MoveZ(a, (hMainBar / 2) + (sBar / 2));
+                        MoveX(a, spacing);
+                        CopyXUerProperty(a, listsm, buildingSt, buildingStoreySt);
 
-                                bar8.SetUserProperty("USER_FIELD_1", buildingSt);
-                                bar8.SetUserProperty("USER_FIELD_2", buildingStoreySt);
-
-                                break;
-
-                            case "사용자 지정":
-
-                                bar8.SetUserProperty("USER_FIELD_1", buildingSt);
-                                bar8.SetUserProperty("USER_FIELD_2", D.S_Building_S);
-
-                                break;
-                        }
-                        MoveX(bar8, spacing);
-                        CopyX(bar8, listsm);
-
-
-                        var b = bar8;
-                        b.Insert();
-
+                        var b = InsertUserProperty(bar8, buildingSt, buildingStoreySt);
                         MoveX(b, size, rebar);
                         MoveZ(b, Convert.ToDouble(bar8.Spacings[0]) / 2 + (length - D.S_RangeTop - te2 + tee));
                         MoveZ(b, (hMainBar / 2) + (sBar / 2));
-
                         MoveX(b, spacing / 3 * 2 + spacing);
+                        CopyXUerProperty(b, listsa3, buildingSt, buildingStoreySt);
 
-                        switch (D.S_UDA)
-                        {
-                            case "부재 UDA 정보 사용":
-
-                                b.SetUserProperty("USER_FIELD_1", buildingSt);
-                                b.SetUserProperty("USER_FIELD_2", buildingStoreySt);
-
-                                break;
-
-                            case "사용자 지정":
-
-                                b.SetUserProperty("USER_FIELD_1", buildingSt);
-                                b.SetUserProperty("USER_FIELD_2", D.S_Building_S);
-
-                                break;
-                        }
-
-                        CopyX(b, listsa3);
-
-                        var c = bar8;
-                        c.Insert();
-
+                        var c = InsertUserProperty(bar8, buildingSt, buildingStoreySt);
                         MoveX(c, size, rebar);
                         MoveZ(c, Convert.ToDouble(bar8.Spacings[0]) / 2 + (length - D.S_RangeTop - te2 + tee));
                         MoveZ(c, (hMainBar / 2) + (sBar / 2));
-
                         MoveX(c, spacing / 3);
-
-                        switch (D.S_UDA)
-                        {
-                            case "부재 UDA 정보 사용":
-
-                                c.SetUserProperty("USER_FIELD_1", buildingSt);
-                                c.SetUserProperty("USER_FIELD_2", buildingStoreySt);
-
-                                break;
-
-                            case "사용자 지정":
-
-                                c.SetUserProperty("USER_FIELD_1", buildingSt);
-                                c.SetUserProperty("USER_FIELD_2", D.S_Building_S);
-
-                                break;
-                        }
-
-                        CopyX(c, listfa2);
-
+                        CopyXUerProperty(c, listfa2, buildingSt, buildingStoreySt);
 
                     }
                     else if (D.S_Type == "아니오")
@@ -10397,7 +8410,8 @@ namespace YT.WallVerticalRebar
 
             return list;
         }
-        private void CopyXUerPropery(TSM.RebarGroup bar, ArrayList list, string Building, string BuildingSt)
+
+        private void CopyXUerProperty(TSM.RebarGroup bar, ArrayList list, string Building, string BuildingSt)
         {
             //var ob = bar as TSM.ModelObject;
 
@@ -10411,13 +8425,39 @@ namespace YT.WallVerticalRebar
 
                 var mo = TSM.Operations.Operation.CopyObject(bar, new TSG.Vector(aaa, 0, 0)) as TSM.RebarGroup;
 
-                mo.SetUserProperty("USER_FIELD_1", Building);
-                mo.SetUserProperty("USER_FIELD_2", BuildingSt);
+                if (D.S_UDA =="부재 UDA 정보 사용")
+                {
+                    mo.SetUserProperty("USER_FIELD_1", Building);
+                    mo.SetUserProperty("USER_FIELD_2", BuildingSt);
+                }
+                else
+                {
+                    mo.SetUserProperty("USER_FIELD_1", Building);
+                    mo.SetUserProperty("USER_FIELD_2", D.S_Building_S);
+                }
+                
 
             }
         }
 
+        private TSM.RebarGroup InsertUserProperty(TSM.RebarGroup bar, string Building, string BuildingSt)
+        {
+            bar.Insert();
 
+            if (D.S_UDA =="부재 UDA 정보 사용")
+            {
+                bar.SetUserProperty("USER_FIELD_1", Building);
+                bar.SetUserProperty("USER_FIELD_2", BuildingSt);
+            }
+            else
+            {
+                bar.SetUserProperty("USER_FIELD_1", Building);
+                bar.SetUserProperty("USER_FIELD_2", D.S_Building_S);
+            }
+            
+
+            return bar;
+        }
 
         private void CopyX(TSM.RebarGroup bar, ArrayList list)
         {

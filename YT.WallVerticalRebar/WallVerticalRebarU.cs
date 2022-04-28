@@ -219,7 +219,7 @@ namespace YT.WallVerticalRebar
             this.SetAttributeValue(this.DW_Operation, "일반");
 
             this.SetAttributeValue(this.W_UDA, "부재 UDA 정보 사용");
-            this.SetAttributeValue(this.W_Building, "");
+            //this.SetAttributeValue(this.W_Building, "");
             this.SetAttributeValue(this.W_Building_Storey, "");
 
             this.SetAttributeValue(this.MoveXS, 0.0);
@@ -286,7 +286,7 @@ namespace YT.WallVerticalRebar
 
             #region 다월공통
             this.SetAttributeValue(this.DW_UDA, "부재 UDA 정보 사용");
-            this.SetAttributeValue(this.DW_Building, "");
+            //this.SetAttributeValue(this.DW_Building, "");
             this.SetAttributeValue(this.DW_Building_Storey, "");
 
             this.SetAttributeValue(this.DW_FootingDepth, 1000.0);
@@ -332,7 +332,7 @@ namespace YT.WallVerticalRebar
 
             #region 하부 보강근공통
             this.SetAttributeValue(this.R_B_UDA, "부재 UDA 정보 사용");
-            this.SetAttributeValue(this.R_B_Building, "");
+            //this.SetAttributeValue(this.R_B_Building, "");
             this.SetAttributeValue(this.R_B_Building_Storey, "");
             #endregion
 
@@ -420,7 +420,7 @@ namespace YT.WallVerticalRebar
 
             #region 중앙부 보강근공통
             this.SetAttributeValue(this.R_M_UDA, "부재 UDA 정보 사용");
-            this.SetAttributeValue(this.R_M_Building, "");
+            //this.SetAttributeValue(this.R_M_Building, "");
             this.SetAttributeValue(this.R_M_Building_Storey, "");
             #endregion
 
@@ -510,7 +510,7 @@ namespace YT.WallVerticalRebar
 
             #region 상부 보강근공통
             this.SetAttributeValue(this.R_T_UDA, "부재 UDA 정보 사용");
-            this.SetAttributeValue(this.R_T_Building, "");
+            //this.SetAttributeValue(this.R_T_Building, "");
             this.SetAttributeValue(this.R_T_Building_Storey, "");
             #endregion
 
@@ -603,7 +603,7 @@ namespace YT.WallVerticalRebar
 
             #region 보강근 다월 공통
             this.SetAttributeValue(this.R_DW_UDA, "부재 UDA 정보 사용");
-            this.SetAttributeValue(this.R_DW_Building, "");
+            //this.SetAttributeValue(this.R_DW_Building, "");
             this.SetAttributeValue(this.R_DW_Building_S, "");
            
             #endregion
@@ -675,7 +675,7 @@ namespace YT.WallVerticalRebar
 
 
             this.SetAttributeValue(this.S_UDA, "부재 UDA 정보 사용");
-            this.SetAttributeValue(this.S_Building, "");
+            //this.SetAttributeValue(this.S_Building, "");
             this.SetAttributeValue(this.S_Building_S, "");
 
             this.SetAttributeValue(this.S_YesOrNO, "아니오");
@@ -847,12 +847,12 @@ namespace YT.WallVerticalRebar
             switch (W_UDA.Text)
             {
                 case "부재 UDA 정보 사용":
-                    W_Building.Enabled = false;
+                    //W_Building.Enabled = false;
                     W_Building_Storey.Enabled = false;
                     break;
 
                 case "사용자 지정":
-                    W_Building.Enabled = true;
+                    //W_Building.Enabled = true;
                     W_Building_Storey.Enabled = true;
                     break;
             }
@@ -865,12 +865,12 @@ namespace YT.WallVerticalRebar
             switch (DW_UDA.Text)
             {
                 case "부재 UDA 정보 사용":
-                    DW_Building.Enabled = false;
+                    //DW_Building.Enabled = false;
                     DW_Building_Storey.Enabled = false;
                     break;
 
                 case "사용자 지정":
-                    DW_Building.Enabled = true;
+                    //DW_Building.Enabled = true;
                     DW_Building_Storey.Enabled = true;
                     break;
             }
@@ -976,12 +976,12 @@ namespace YT.WallVerticalRebar
             switch (R_B_UDA.Text)
             {
                 case "부재 UDA 정보 사용":
-                    R_B_Building.Enabled = false;
+                    //R_B_Building.Enabled = false;
                     R_B_Building_Storey.Enabled = false;
                     break;
 
                 case "사용자 지정":
-                    R_B_Building.Enabled = true;
+                    //R_B_Building.Enabled = true;
                     R_B_Building_Storey.Enabled = true;
                     break;
             }
@@ -1142,12 +1142,12 @@ namespace YT.WallVerticalRebar
             switch (R_M_UDA.Text)
             {
                 case "부재 UDA 정보 사용":
-                    R_M_Building.Enabled = false;
+                    //R_M_Building.Enabled = false;
                     R_M_Building_Storey.Enabled = false;
                     break;
 
                 case "사용자 지정":
-                    R_M_Building.Enabled = true;
+                    //R_M_Building.Enabled = true;
                     R_M_Building_Storey.Enabled = true;
                     break;
             }
@@ -1271,12 +1271,12 @@ namespace YT.WallVerticalRebar
             switch (R_DW_UDA.Text)
             {
                 case "부재 UDA 정보 사용":
-                    R_DW_Building.Enabled = false;
+                    //R_DW_Building.Enabled = false;
                     R_DW_Building_S.Enabled = false;
                     break;
 
                 case "사용자 지정":
-                    R_DW_Building.Enabled = true;
+                    //R_DW_Building.Enabled = true;
                     R_DW_Building_S.Enabled = true;
                     break;
             }
@@ -1347,12 +1347,12 @@ namespace YT.WallVerticalRebar
             switch (R_T_UDA.Text)
             {
                 case "부재 UDA 정보 사용":
-                    R_T_Building.Enabled = false;
+                    //R_T_Building.Enabled = false;
                     R_T_Building_Storey.Enabled = false;
                     break;
 
                 case "사용자 지정":
-                    R_T_Building.Enabled = true;
+                    //R_T_Building.Enabled = true;
                     R_T_Building_Storey.Enabled = true;
                     break;
             }
@@ -1476,12 +1476,12 @@ namespace YT.WallVerticalRebar
             switch (S_UDA.Text)
             {
                 case "부재 UDA 정보 사용":
-                    S_Building.Enabled = false;
+                    //S_Building.Enabled = false;
                     S_Building_S.Enabled = false;
                     break;
 
                 case "사용자 지정":
-                    S_Building.Enabled = true;
+                    //S_Building.Enabled = true;
                     S_Building_S.Enabled = true;
                     break;
             }
