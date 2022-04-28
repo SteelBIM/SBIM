@@ -37,9 +37,139 @@ namespace TEST
             button1.Click += Button1_Click;
             SingleSlab.Click += SingleSlab_Click;
             btnOpen.Click += BtnOpen_Click;
+            btnSlab.Click += BtnSlab_Click;
+            btngetob.Click += Btngetob_Click;
         }
 
-     
+        private void Btngetob_Click(object sender, EventArgs e)
+        {
+            var pickob = new TSM.UI.Picker().PickObject(TSM.UI.Picker.PickObjectEnum.PICK_ONE_OBJECT);
+            var a = pickob;
+        }
+
+        private void BtnSlab_Click(object sender, EventArgs e)
+        {
+            var dx = 50;
+            var dy = 100;
+            var dz = 200;
+
+            var m = new TSM.Model();
+
+            var pickslab = new TSM.UI.Picker().PickObject(TSM.UI.Picker.PickObjectEnum.PICK_ONE_OBJECT);
+
+            var shape = new TSM.UI.Picker().PickPoints(TSM.UI.Picker.PickPointEnum.PICK_TWO_POINTS);
+            var shapestartpoint = shape[0] as TSG.Point;
+            var shapeendpoint = shape[1] as TSG.Point;
+
+            var range = new TSM.UI.Picker().PickPoints(TSM.UI.Picker.PickPointEnum.PICK_TWO_POINTS);
+            var rangestartpoint = range[0] as TSG.Point;
+            var rangeendpoint = range[1] as TSG.Point;
+
+            //SlabRebar bar = new SlabRebar();
+
+            ////TSM.Polygon poly2 = new TSM.Polygon();
+            ////poly2.Points.Add(new TSG.Point(shapestartpoint.X + dx, shapestartpoint.Y + dy, shapestartpoint.Z - dz));
+            ////poly2.Points.Add(new TSG.Point(shapestartpoint.X + dx, rangeendpoint.Y - dy, shapestartpoint.Z - dz));
+
+
+            ////bar.StartPoint = new TSG.Point(shapestartpoint.X + dx, shapestartpoint.Y + dy, shapestartpoint.Z - dz);//rangestartpoint;
+            ////bar.EndPoint = new TSG.Point(shapestartpoint.X + dx, rangeendpoint.Y-dy, shapestartpoint.Z - dz); //rangeendpoint; 
+
+
+            ////TSM.Polygon poly = new TSM.Polygon();
+            ////poly.Points.Add(new TSG.Point(shapestartpoint.X + dx, shapestartpoint.Y + dy, shapestartpoint.Z - dz));
+            ////poly.Points.Add(new TSG.Point(shapeendpoint.X - dx, shapeendpoint.Y + dy, shapeendpoint.Z - dz));
+
+            //TSM.Polygon poly = new TSM.Polygon();
+            //poly.Points.Add(shapestartpoint);
+            //poly.Points.Add(shapeendpoint);
+
+            //TSM.Polygon poly2 = new TSM.Polygon();
+            //poly2.Points.Add(rangestartpoint);
+            //poly2.Points.Add(rangeendpoint);
+
+            //bar.StartPoint = new TSG.Point(0, 0, 0);
+            //bar.EndPoint = new TSG.Point(0, 0, 0);
+
+            //bar.Father = pickslab;
+
+            //bar.Name = "revar";
+            //bar.Grade = "SD500";
+            //bar.Size = "13";
+            //bar.Radius = 50.0;
+            //bar.Class = 2;
+
+            //bar.Polygon.Add(poly);
+            //bar.Polygon.Add(poly2);
+
+            //bar.Insert();
+
+
+            var b = new TSM.RebarGroup();
+
+            var poly1 = new TSM.Polygon();
+            poly1.Points.Add(shapestartpoint);
+            poly1.Points.Add(shapeendpoint);
+
+            var poly2 = new TSM.Polygon();
+            poly2.Points.Add(rangestartpoint);
+            poly2.Points.Add(rangeendpoint);
+
+            b.Father = pickslab;
+
+            //b.Name = "revar";
+            //b.Grade = "SD500";
+            //b.Size = "13";
+            //b.RadiusValues.Add(50.0);
+            //b.Class = 2;
+
+            b.Polygons.Add(poly1);
+            b.Polygons.Add(poly2);
+
+            b.RadiusValues.Add(40.0);
+            b.SpacingType = TSM.RebarGroup.RebarGroupSpacingTypeEnum.SPACING_TYPE_TARGET_SPACE;
+            b.Spacings.Add(30.0);
+            b.ExcludeType = TSM.RebarGroup.ExcludeTypeEnum.EXCLUDE_TYPE_BOTH;
+            b.Father = pickslab;
+            b.Name = "RebarGroup";
+            b.Class = 3;
+            b.Size = "12";
+            b.NumberingSeries.StartNumber = 0;
+            b.NumberingSeries.Prefix = "Group";
+            b.Grade = "A500HW";
+            b.StartHook.Shape = TSM.RebarHookData.RebarHookShapeEnum.CUSTOM_HOOK;
+            b.StartHook.Angle = -90;
+            b.StartHook.Length = 3;
+            b.StartHook.Radius = 20;
+            b.EndHook.Shape = TSM.RebarHookData.RebarHookShapeEnum.CUSTOM_HOOK;
+            b.EndHook.Angle = -90;
+            b.EndHook.Length = 3;
+            b.EndHook.Radius = 20;
+            b.OnPlaneOffsets.Add(25.0);
+            b.OnPlaneOffsets.Add(10.0);
+            b.OnPlaneOffsets.Add(25.0);
+            b.StartPointOffsetType = TSM.Reinforcement.RebarOffsetTypeEnum.OFFSET_TYPE_COVER_THICKNESS;
+            b.StartPointOffsetValue = 20;
+            b.EndPointOffsetType = TSM.Reinforcement.RebarOffsetTypeEnum.OFFSET_TYPE_COVER_THICKNESS;
+            b.EndPointOffsetValue = 60;
+            b.FromPlaneOffset = 40;
+
+
+            
+            b.Insert();
+            b.SetUserProperty("USER_FIELD_1", "2");
+
+            //b.SetUserProperty("USER_FIELD_1", "2");
+
+            //var c = b;
+            //c.Class = 2;
+            //c.Insert();
+            //c.SetUserProperty("USER_FIELD_1", "3");
+
+            m.CommitChanges();
+
+        }
+
 
         private void BtnOpen_Click(object sender, EventArgs e)
         {
@@ -117,7 +247,7 @@ namespace TEST
 
             if (folderview != DialogResult.OK) return;
 
-           tboxOpen.Text = folder.SafeFileName;
+            tboxOpen.Text = folder.SafeFileName;
 
             var a = tboxOpen.Text;
             string[] b = a.Split('.');

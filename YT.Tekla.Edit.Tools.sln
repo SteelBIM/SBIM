@@ -17,6 +17,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YT.WallVerticalRebar.Multip
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YT.WallVerticalRebar.DM", "YT.WallVerticalRebar.DM\YT.WallVerticalRebar.DM.csproj", "{7E994809-E972-42EF-A230-0022A43B7B47}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YT.Slab", "YT.Slab\YT.Slab.csproj", "{E6BA1A4B-72CA-4ADC-8497-8B08C20BD43D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -51,6 +53,10 @@ Global
 		{7E994809-E972-42EF-A230-0022A43B7B47}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7E994809-E972-42EF-A230-0022A43B7B47}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7E994809-E972-42EF-A230-0022A43B7B47}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E6BA1A4B-72CA-4ADC-8497-8B08C20BD43D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E6BA1A4B-72CA-4ADC-8497-8B08C20BD43D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E6BA1A4B-72CA-4ADC-8497-8B08C20BD43D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E6BA1A4B-72CA-4ADC-8497-8B08C20BD43D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

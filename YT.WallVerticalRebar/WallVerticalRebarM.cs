@@ -436,7 +436,8 @@ namespace YT.WallVerticalRebar
                     barR.BuildingStorey = buildingStoreySt;
                     break;
                 case "사용자 지정":
-                    barR.Building = D.W_Building;
+                    //barR.Building = D.W_Building;
+                    barR.Building = buildingSt;
                     barR.BuildingStorey = D.W_Building_Storey;
                     break;
             }
@@ -569,7 +570,8 @@ namespace YT.WallVerticalRebar
                     barL.BuildingStorey = buildingStoreySt;
                     break;
                 case "사용자 지정":
-                    barL.Building = D.W_Building;
+                    //barL.Building = D.W_Building;
+                    barL.Building = buildingSt;
                     barL.BuildingStorey = D.W_Building_Storey;
                     break;
             }
@@ -797,15 +799,15 @@ namespace YT.WallVerticalRebar
                 }
                 else if (te > 300 && te <= 500)
                 {
-                    Rplus = 500 - te ;
+                    Rplus = 500 - te;
                 }
                 else if (te > 500 && te <= 700)
                 {
-                    Rplus = 700 - te ;
+                    Rplus = 700 - te;
                 }
                 else if (te > 700)
                 {
-                    Rplus = 1000 - te ;
+                    Rplus = 1000 - te;
                 }
                 else if (te == 0)
                 {
@@ -817,8 +819,6 @@ namespace YT.WallVerticalRebar
                 Rplus = 0;
             }
 
-
-
             var shapeR = new TSM.Polygon();
 
             shapeR.Points.Add(new TSG.Point(rs.X + ksR, rs.Y, minZ));
@@ -829,7 +829,15 @@ namespace YT.WallVerticalRebar
             barRD.StartPoint = new TSG.Point(rs.X + ksR, rs.Y, rs.Z);
             barRD.EndPoint = new TSG.Point(re.X + ksR, re.Y, re.Z);
 
-            barRD.StartHookShape = TSM.RebarHookData.RebarHookShapeEnum.CUSTOM_HOOK;
+            if (D.DR_HookLength == 0)
+            {
+                barRD.StartHookShape = TSM.RebarHookData.RebarHookShapeEnum.NO_HOOK;
+            }
+            else
+            {
+                barRD.StartHookShape = TSM.RebarHookData.RebarHookShapeEnum.CUSTOM_HOOK;
+            }
+
             barRD.StartHookRadius = barRD.Radius;
             barRD.StartHookLength = Rhooklength;
 
@@ -868,7 +876,8 @@ namespace YT.WallVerticalRebar
                     barRD.BuildingStorey = buildingStoreySt;
                     break;
                 case "사용자 지정":
-                    barRD.Building = D.DW_Building;
+                    //barRD.Building = D.DW_Building;
+                    barRD.Building = buildingSt;
                     barRD.BuildingStorey = D.DW_Building_Storey;
                     break;
             }
@@ -965,19 +974,19 @@ namespace YT.WallVerticalRebar
 
                 if (te > 0 && te <= 300)
                 {
-                    Lplus = 300 - te ;
+                    Lplus = 300 - te;
                 }
                 else if (te > 300 && te <= 500)
                 {
-                    Lplus = 500 - te ;
+                    Lplus = 500 - te;
                 }
                 else if (te > 500 && te <= 700)
                 {
-                    Lplus = 700 - te ;
+                    Lplus = 700 - te;
                 }
                 else if (te > 700)
                 {
-                    Lplus = 1000 - te ;
+                    Lplus = 1000 - te;
                 }
                 else if (te == 0)
                 {
@@ -998,7 +1007,15 @@ namespace YT.WallVerticalRebar
             barLD.StartPoint = new TSG.Point(ls.X + ksL, ls.Y, ls.Z);
             barLD.EndPoint = new TSG.Point(le.X + ksL, le.Y, le.Z);
 
-            barLD.StartHookShape = TSM.RebarHookData.RebarHookShapeEnum.CUSTOM_HOOK;
+            if (D.DL_HookLength == 0)
+            {
+                barLD.StartHookShape = TSM.RebarHookData.RebarHookShapeEnum.NO_HOOK;
+            }
+            else
+            {
+                barLD.StartHookShape = TSM.RebarHookData.RebarHookShapeEnum.CUSTOM_HOOK;
+            }
+
             barLD.StartHookRadius = barLD.Radius;
             barLD.StartHookLength = Lhooklength;
 
@@ -1037,7 +1054,8 @@ namespace YT.WallVerticalRebar
                     barLD.BuildingStorey = buildingStoreySt;
                     break;
                 case "사용자 지정":
-                    barLD.Building = D.DW_Building;
+                    // barLD.Building = D.DW_Building;
+                    barLD.Building = buildingSt;
                     barLD.BuildingStorey = D.DW_Building_Storey;
                     break;
             }
@@ -1454,7 +1472,7 @@ namespace YT.WallVerticalRebar
 
             barRRB.Polygon.Add(shapeRB);
 
-            barRRB.StartOffsetValue = -(D.R_RB_Splice2);
+            //barRRB.StartOffsetValue = -(D.R_RB_Splice2);
 
             double rightSpacing = D.R_Spacing;
 
@@ -1514,7 +1532,8 @@ namespace YT.WallVerticalRebar
                     barRRB.BuildingStorey = buildingStoreySt;
                     break;
                 case "사용자 지정":
-                    barRRB.Building = D.R_B_Building;
+                    //barRRB.Building = D.R_B_Building;
+                    barRRB.Building = buildingSt;
                     barRRB.BuildingStorey = D.R_B_Building_Storey;
                     break;
             }
@@ -1541,12 +1560,24 @@ namespace YT.WallVerticalRebar
             if (D.R_RB_Type == "일반")
             {
                 barRRB.StartHookShape = TSM.RebarHookData.RebarHookShapeEnum.NO_HOOK;
+                barRRB.StartOffsetValue = -(D.R_RB_Splice2);
             }
             else if (D.R_RB_Type == "후크")
             {
                 barRRB.StartHookShape = TSM.RebarHookData.RebarHookShapeEnum.CUSTOM_HOOK;
                 barRRB.StartHookRadius = barRRB.Radius;
-                barRRB.StartHookLength = D.R_RB_HookLength - barRRB.Radius - KS.GetDiameter(Convert.ToDouble(barRRB.Size));
+
+                if (D.DW_FootingSpacing + D.DW_FootingSplice > D.R_RB_HookLength)
+                {
+                    barRRB.StartHookLength = D.DW_FootingSpacing + D.DW_FootingSplice - barRRB.Radius - KS.GetDiameter(Convert.ToDouble(barRRB.Size));
+                }
+                else
+                {
+                    barRRB.StartHookLength = D.R_RB_HookLength - barRRB.Radius - KS.GetDiameter(Convert.ToDouble(barRRB.Size));
+
+                }
+
+                barRRB.StartOffsetValue = -D.DW_FootingDepth + D.DR_HookCorver;
 
                 if (D.R_RB_HookInOut == "내")
                 {
@@ -1592,7 +1623,7 @@ namespace YT.WallVerticalRebar
 
             barRLB.Polygon.Add(shapeLB);
 
-            barRLB.StartOffsetValue = -(D.R_LB_Splice2);
+            //barRLB.StartOffsetValue = -(D.R_LB_Splice2);
 
             double leftSpacing = D.L_Spacing;
 
@@ -1652,7 +1683,8 @@ namespace YT.WallVerticalRebar
                     barRLB.BuildingStorey = buildingStoreySt;
                     break;
                 case "사용자 지정":
-                    barRLB.Building = D.R_B_Building;
+                    //barRLB.Building = D.R_B_Building;
+                    barRLB.Building = buildingSt;
                     barRLB.BuildingStorey = D.R_B_Building_Storey;
                     break;
             }
@@ -1679,12 +1711,23 @@ namespace YT.WallVerticalRebar
             if (D.R_LB_Type == "일반")
             {
                 barRLB.StartHookShape = TSM.RebarHookData.RebarHookShapeEnum.NO_HOOK;
+                barRLB.StartOffsetValue = -(D.R_LB_Splice2);
             }
             else if (D.R_LB_Type == "후크")
             {
                 barRLB.StartHookShape = TSM.RebarHookData.RebarHookShapeEnum.CUSTOM_HOOK;
                 barRLB.StartHookRadius = barRLB.Radius;
-                barRLB.StartHookLength = D.R_LB_HookLength - barRLB.Radius - KS.GetDiameter(Convert.ToDouble(barRLB.Size));
+
+                if (D.DW_FootingSpacing + D.DW_FootingSplice > D.R_LB_HookLength)
+                {
+                    barRLB.StartHookLength = D.DW_FootingSpacing + D.DW_FootingSplice - barRLB.Radius - KS.GetDiameter(Convert.ToDouble(barRLB.Size));
+                }
+                else
+                {
+                    barRLB.StartHookLength = D.R_LB_HookLength - barRLB.Radius - KS.GetDiameter(Convert.ToDouble(barRLB.Size));
+                }
+
+                barRLB.StartOffsetValue = -D.DW_FootingDepth + D.DL_HookCorver;
 
                 if (D.R_LB_HookInOut == "내")
                 {
@@ -1825,7 +1868,8 @@ namespace YT.WallVerticalRebar
                     barRRM.BuildingStorey = buildingStoreySt;
                     break;
                 case "사용자 지정":
-                    barRRM.Building = D.R_M_Building;
+                    //barRRM.Building = D.R_M_Building;
+                    barRRM.Building = buildingSt;
                     barRRM.BuildingStorey = D.R_M_Building_Storey;
                     break;
             }
@@ -1974,7 +2018,8 @@ namespace YT.WallVerticalRebar
                     barRLM.BuildingStorey = buildingStoreySt;
                     break;
                 case "사용자 지정":
-                    barRLM.Building = D.R_M_Building;
+                    //barRLM.Building = D.R_M_Building;
+                    barRLM.Building = buildingSt;
                     barRLM.BuildingStorey = D.R_M_Building_Storey;
                     break;
             }
@@ -2105,7 +2150,8 @@ namespace YT.WallVerticalRebar
                     barRRT.BuildingStorey = buildingStoreySt;
                     break;
                 case "사용자 지정":
-                    barRRT.Building = D.R_T_Building;
+                    //barRRT.Building = D.R_T_Building;
+                    barRRT.Building = buildingSt;
                     barRRT.BuildingStorey = D.R_T_Building_Storey;
                     break;
             }
@@ -2233,7 +2279,8 @@ namespace YT.WallVerticalRebar
                     barRLT.BuildingStorey = buildingStoreySt;
                     break;
                 case "사용자 지정":
-                    barRLT.Building = D.R_T_Building;
+                    //barRLT.Building = D.R_T_Building;
+                    barRLT.Building = buildingSt;
                     barRLT.BuildingStorey = D.R_T_Building_Storey;
                     break;
             }
@@ -2284,10 +2331,23 @@ namespace YT.WallVerticalRebar
 
             barRRD.Prefix = D.R_DR_Prefix;
             barRRD.StartNumber = D.R_DR_StartNumber;
-            barRRD.StartOffsetValue = -D.DW_FootingDepth + D.R_DR_HookCorver;
+            //barRRD.StartOffsetValue = -D.DW_FootingDepth + D.R_DR_HookCorver;
+            barRRD.StartOffsetValue = -D.DW_FootingDepth + D.DR_HookCorver;
 
-            barRRD.StartHookLength = D.R_DR_HookLength - barRRD.Radius - KS.GetDiameter(Convert.ToDouble(barRRD.Size));
-            var Rlength = Math.Abs(barRRD.StartOffsetValue) + D.R_DR_Splice1 + D.R_DR_Splice2 + D.R_DR_HookLength;
+            var Rlength = 0.0;
+
+            if (D.DW_FootingSpacing + D.DW_FootingSplice > D.R_DR_HookLength)
+            {
+                barRRD.StartHookLength = D.DW_FootingSpacing + D.DW_FootingSplice - barRRD.Radius - KS.GetDiameter(Convert.ToDouble(barRRD.Size));
+                Rlength = Math.Abs(barRRD.StartOffsetValue) + D.R_DR_Splice1 + D.R_DR_Splice2 + D.DW_FootingSpacing + D.DW_FootingSplice;
+            }
+            else
+            {
+                barRRD.StartHookLength = D.R_DR_HookLength - barRRD.Radius - KS.GetDiameter(Convert.ToDouble(barRRD.Size));
+                Rlength = Math.Abs(barRRD.StartOffsetValue) + D.R_DR_Splice1 + D.R_DR_Splice2 + D.R_DR_HookLength;
+            }
+
+            //
 
             var Rplus = 0.0;
 
@@ -2303,19 +2363,19 @@ namespace YT.WallVerticalRebar
 
                 if (te > 0 && te <= 300)
                 {
-                    Rplus = 300 - te ;
+                    Rplus = 300 - te;
                 }
                 else if (te > 300 && te <= 500)
                 {
-                    Rplus = 500 - te ;
+                    Rplus = 500 - te;
                 }
                 else if (te > 500 && te <= 700)
                 {
-                    Rplus = 700 - te ;
+                    Rplus = 700 - te;
                 }
                 else if (te > 700)
                 {
-                    Rplus = 1000 - te ;
+                    Rplus = 1000 - te;
                 }
                 else if (te == 0)
                 {
@@ -2377,7 +2437,8 @@ namespace YT.WallVerticalRebar
                     barRRD.BuildingStorey = buildingStoreySt;
                     break;
                 case "사용자 지정":
-                    barRRD.Building = D.R_DW_Building;
+                    //barRRD.Building = D.R_DW_Building;
+                    barRRD.Building = buildingSt;
                     barRRD.BuildingStorey = D.R_DW_Building_S;
                     break;
             }
@@ -2438,10 +2499,22 @@ namespace YT.WallVerticalRebar
 
             barRLD.Prefix = D.R_DL_Prefix;
             barRLD.StartNumber = D.R_DL_StartNumber;
-            barRLD.StartOffsetValue = -D.DW_FootingDepth + D.R_DL_HookCorver;
+            //barRLD.StartOffsetValue = -D.DW_FootingDepth + D.R_DL_HookCorver;
+            barRLD.StartOffsetValue = -D.DW_FootingDepth + D.DL_HookCorver;
 
-            barRLD.StartHookLength = D.R_DL_HookLength - barRLD.Radius - KS.GetDiameter(Convert.ToDouble(barRLD.Size));
-            var Llength = Math.Abs(barRLD.StartOffsetValue) + D.R_DL_Splice1 + D.R_DL_Splice2 + D.R_DL_HookLength;
+            var Llength = 0.0;
+            if (D.DW_FootingSpacing + D.DW_FootingSplice > D.R_DL_HookLength)
+            {
+                barRLD.StartHookLength = D.DW_FootingSpacing + D.DW_FootingSplice - barRLD.Radius - KS.GetDiameter(Convert.ToDouble(barRLD.Size));
+                Llength = Math.Abs(barRLD.StartOffsetValue) + D.R_DL_Splice1 + D.R_DL_Splice2 + D.DW_FootingSpacing + D.DW_FootingSplice;
+            }
+            else
+            {
+                barRLD.StartHookLength = D.R_DL_HookLength - barRLD.Radius - KS.GetDiameter(Convert.ToDouble(barRLD.Size));
+                Llength = Math.Abs(barRLD.StartOffsetValue) + D.R_DL_Splice1 + D.R_DL_Splice2 + D.R_DL_HookLength;
+            }
+
+            //var Llength = Math.Abs(barRLD.StartOffsetValue) + D.R_DL_Splice1 + D.R_DL_Splice2 + D.R_DL_HookLength;
 
             var Lplus = 0.0;
 
@@ -2457,15 +2530,15 @@ namespace YT.WallVerticalRebar
 
                 if (te > 0 && te <= 300)
                 {
-                    Lplus = 300 - te ;
+                    Lplus = 300 - te;
                 }
                 else if (te > 300 && te <= 500)
                 {
-                    Lplus = 500 - te ;
+                    Lplus = 500 - te;
                 }
                 else if (te > 500 && te <= 700)
                 {
-                    Lplus = 700 - te ;
+                    Lplus = 700 - te;
                 }
                 else if (te > 700)
                 {
@@ -2532,7 +2605,8 @@ namespace YT.WallVerticalRebar
                     barRLD.BuildingStorey = buildingStoreySt;
                     break;
                 case "사용자 지정":
-                    barRLD.Building = D.R_DW_Building;
+                    //barRLD.Building = D.R_DW_Building;
+                    barRLD.Building = buildingSt;
                     barRLD.BuildingStorey = D.R_DW_Building_S;
                     break;
             }
@@ -2946,7 +3020,7 @@ namespace YT.WallVerticalRebar
 
             barRRB.Polygon.Add(shapeRB);
 
-            barRRB.StartOffsetValue = -(D.R_RB_Splice2);
+            //barRRB.StartOffsetValue = -(D.R_RB_Splice2);
 
             double rightSpacing = D.R_Spacing;
 
@@ -3007,7 +3081,8 @@ namespace YT.WallVerticalRebar
                     barRRB.BuildingStorey = buildingStoreySt;
                     break;
                 case "사용자 지정":
-                    barRRB.Building = D.R_B_Building;
+                    //barRRB.Building = D.R_B_Building;
+                    barRRB.Building = buildingSt;
                     barRRB.BuildingStorey = D.R_B_Building_Storey;
                     break;
             }
@@ -3034,12 +3109,25 @@ namespace YT.WallVerticalRebar
             if (D.R_RB_Type == "일반")
             {
                 barRRB.StartHookShape = TSM.RebarHookData.RebarHookShapeEnum.NO_HOOK;
+                barRRB.StartOffsetValue = -(D.R_RB_Splice2);
             }
             else if (D.R_RB_Type == "후크")
             {
                 barRRB.StartHookShape = TSM.RebarHookData.RebarHookShapeEnum.CUSTOM_HOOK;
                 barRRB.StartHookRadius = barRRB.Radius;
-                barRRB.StartHookLength = D.R_RB_HookLength - barRRB.Radius - KS.GetDiameter(Convert.ToDouble(barRRB.Size));
+
+
+                if (D.DW_FootingSpacing + D.DW_FootingSplice > D.R_RB_HookLength)
+                {
+                    barRRB.StartHookLength = D.DW_FootingSpacing + D.DW_FootingSplice - barRRB.Radius - KS.GetDiameter(Convert.ToDouble(barRRB.Size));
+                }
+                else
+                {
+                    barRRB.StartHookLength = D.R_RB_HookLength - barRRB.Radius - KS.GetDiameter(Convert.ToDouble(barRRB.Size));
+                }
+
+                barRRB.StartOffsetValue = -D.DW_FootingDepth + D.DR_HookCorver;
+
 
                 if (D.R_RB_HookInOut == "내")
                 {
@@ -3085,7 +3173,7 @@ namespace YT.WallVerticalRebar
 
             barRLB.Polygon.Add(shapeLB);
 
-            barRLB.StartOffsetValue = -(D.R_LB_Splice2);
+            //barRLB.StartOffsetValue = -(D.R_LB_Splice2);
 
             double leftSpacing = D.L_Spacing;
 
@@ -3145,7 +3233,8 @@ namespace YT.WallVerticalRebar
                     barRLB.BuildingStorey = buildingStoreySt;
                     break;
                 case "사용자 지정":
-                    barRLB.Building = D.R_B_Building;
+                    //barRLB.Building = D.R_B_Building;
+                    barRLB.Building = buildingSt;
                     barRLB.BuildingStorey = D.R_B_Building_Storey;
                     break;
             }
@@ -3172,12 +3261,23 @@ namespace YT.WallVerticalRebar
             if (D.R_LB_Type == "일반")
             {
                 barRLB.StartHookShape = TSM.RebarHookData.RebarHookShapeEnum.NO_HOOK;
+                barRLB.StartOffsetValue = -(D.R_LB_Splice2);
             }
             else if (D.R_LB_Type == "후크")
             {
                 barRLB.StartHookShape = TSM.RebarHookData.RebarHookShapeEnum.CUSTOM_HOOK;
                 barRLB.StartHookRadius = barRLB.Radius;
-                barRLB.StartHookLength = D.R_LB_HookLength - barRLB.Radius - KS.GetDiameter(Convert.ToDouble(barRLB.Size));
+
+                if (D.DW_FootingSpacing + D.DW_FootingSplice > D.R_LB_HookLength)
+                {
+                    barRLB.StartHookLength = D.DW_FootingSpacing + D.DW_FootingSplice - barRLB.Radius - KS.GetDiameter(Convert.ToDouble(barRLB.Size));
+                }
+                else
+                {
+                    barRLB.StartHookLength = D.R_LB_HookLength - barRLB.Radius - KS.GetDiameter(Convert.ToDouble(barRLB.Size));
+                }
+
+                barRLB.StartOffsetValue = -D.DW_FootingDepth + D.DL_HookCorver;
 
                 if (D.R_LB_HookInOut == "내")
                 {
@@ -3318,7 +3418,8 @@ namespace YT.WallVerticalRebar
                     barRRM.BuildingStorey = buildingStoreySt;
                     break;
                 case "사용자 지정":
-                    barRRM.Building = D.R_M_Building;
+                    //barRRM.Building = D.R_M_Building;
+                    barRRM.Building = buildingSt;
                     barRRM.BuildingStorey = D.R_M_Building_Storey;
                     break;
             }
@@ -3467,7 +3568,8 @@ namespace YT.WallVerticalRebar
                     barRLM.BuildingStorey = buildingStoreySt;
                     break;
                 case "사용자 지정":
-                    barRLM.Building = D.R_M_Building;
+                    //barRLM.Building = D.R_M_Building;
+                    barRLM.Building = buildingSt;
                     barRLM.BuildingStorey = D.R_M_Building_Storey;
                     break;
             }
@@ -3598,7 +3700,8 @@ namespace YT.WallVerticalRebar
                     barRRT.BuildingStorey = buildingStoreySt;
                     break;
                 case "사용자 지정":
-                    barRRT.Building = D.R_T_Building;
+                    //barRRT.Building = D.R_T_Building;
+                    barRRT.Building = buildingSt;
                     barRRT.BuildingStorey = D.R_T_Building_Storey;
                     break;
             }
@@ -3727,7 +3830,8 @@ namespace YT.WallVerticalRebar
                     barRLT.BuildingStorey = buildingStoreySt;
                     break;
                 case "사용자 지정":
-                    barRLT.Building = D.R_T_Building;
+                    //barRLT.Building = D.R_T_Building;
+                    barRLT.Building = buildingSt;
                     barRLT.BuildingStorey = D.R_T_Building_Storey;
                     break;
             }
@@ -3778,10 +3882,23 @@ namespace YT.WallVerticalRebar
 
             barRRD.Prefix = D.R_DR_Prefix;
             barRRD.StartNumber = D.R_DR_StartNumber;
-            barRRD.StartOffsetValue = -D.DW_FootingDepth + D.R_DR_HookCorver;
+            //barRRD.StartOffsetValue = -D.DW_FootingDepth + D.R_DR_HookCorver;
+            barRRD.StartOffsetValue = -D.DW_FootingDepth + D.DR_HookCorver;
 
-            barRRD.StartHookLength = D.R_DR_HookLength - barRRD.Radius - KS.GetDiameter(Convert.ToDouble(barRRD.Size));
-            var Rlength = Math.Abs(barRRD.StartOffsetValue) + D.R_DR_Splice1 + D.R_DR_Splice2 + D.R_DR_HookLength;
+            var Rlength = 0.0;
+
+            if (D.DW_FootingSplice + D.DW_FootingSplice > D.R_DR_HookLength)
+            {
+                barRRD.StartHookLength = D.DW_FootingSplice + D.DW_FootingSplice - barRRD.Radius - KS.GetDiameter(Convert.ToDouble(barRRD.Size));
+                Rlength = Math.Abs(barRRD.StartOffsetValue) + D.R_DR_Splice1 + D.R_DR_Splice2 + D.DW_FootingSplice + D.DW_FootingSplice;
+            }
+            else
+            {
+                barRRD.StartHookLength = D.R_DR_HookLength - barRRD.Radius - KS.GetDiameter(Convert.ToDouble(barRRD.Size));
+                Rlength = Math.Abs(barRRD.StartOffsetValue) + D.R_DR_Splice1 + D.R_DR_Splice2 + D.R_DR_HookLength;
+            }
+
+            //var Rlength = Math.Abs(barRRD.StartOffsetValue) + D.R_DR_Splice1 + D.R_DR_Splice2 + D.R_DR_HookLength;
 
             var Rplus = 0.0;
 
@@ -3801,15 +3918,15 @@ namespace YT.WallVerticalRebar
                 }
                 else if (te > 300 && te <= 500)
                 {
-                    Rplus = 500 - te ;
+                    Rplus = 500 - te;
                 }
                 else if (te > 500 && te <= 700)
                 {
-                    Rplus = 700 - te ;
+                    Rplus = 700 - te;
                 }
                 else if (te > 700)
                 {
-                    Rplus = 1000 - te ;
+                    Rplus = 1000 - te;
                 }
                 else if (te == 0)
                 {
@@ -3873,7 +3990,8 @@ namespace YT.WallVerticalRebar
                     barRRD.BuildingStorey = buildingStoreySt;
                     break;
                 case "사용자 지정":
-                    barRRD.Building = D.R_DW_Building;
+                    //barRRD.Building = D.R_DW_Building;
+                    barRRD.Building = buildingSt;
                     barRRD.BuildingStorey = D.R_DW_Building_S;
                     break;
             }
@@ -3934,10 +4052,23 @@ namespace YT.WallVerticalRebar
 
             barRLD.Prefix = D.R_DL_Prefix;
             barRLD.StartNumber = D.R_DL_StartNumber;
-            barRLD.StartOffsetValue = -D.DW_FootingDepth + D.R_DL_HookCorver;
+            //barRLD.StartOffsetValue = -D.DW_FootingDepth + D.R_DL_HookCorver;
+            barRLD.StartOffsetValue = -D.DW_FootingDepth + D.DL_HookCorver;
 
-            barRLD.StartHookLength = D.R_DL_HookLength - barRLD.Radius - KS.GetDiameter(Convert.ToDouble(barRLD.Size));
-            var Llength = Math.Abs(barRLD.StartOffsetValue) + D.R_DL_Splice1 + D.R_DL_Splice2 + D.R_DL_HookLength;
+            var Llength = 0.0;
+
+            if (D.DW_FootingSpacing + D.DW_FootingSplice > D.R_DL_HookLength)
+            {
+                barRLD.StartHookLength = D.DW_FootingSpacing + D.DW_FootingSplice - barRLD.Radius - KS.GetDiameter(Convert.ToDouble(barRLD.Size));
+                Llength = Math.Abs(barRLD.StartOffsetValue) + D.R_DL_Splice1 + D.R_DL_Splice2 + D.DW_FootingSpacing + D.DW_FootingSplice;
+            }
+            else
+            {
+                barRLD.StartHookLength = D.R_DL_HookLength - barRLD.Radius - KS.GetDiameter(Convert.ToDouble(barRLD.Size));
+                Llength = Math.Abs(barRLD.StartOffsetValue) + D.R_DL_Splice1 + D.R_DL_Splice2 + D.R_DL_HookLength;
+            }
+
+            //var Llength = Math.Abs(barRLD.StartOffsetValue) + D.R_DL_Splice1 + D.R_DL_Splice2 + D.R_DL_HookLength;
 
             var Lplus = 0.0;
 
@@ -3953,19 +4084,19 @@ namespace YT.WallVerticalRebar
 
                 if (te > 0 && te <= 300)
                 {
-                    Lplus = 300 - te ;
+                    Lplus = 300 - te;
                 }
                 else if (te > 300 && te <= 500)
                 {
-                    Lplus = 500 - te ;
+                    Lplus = 500 - te;
                 }
                 else if (te > 500 && te <= 700)
                 {
-                    Lplus = 700 - te ;
+                    Lplus = 700 - te;
                 }
                 else if (te > 700)
                 {
-                    Lplus = 1000 - te ;
+                    Lplus = 1000 - te;
                 }
                 else if (te == 0)
                 {
@@ -4030,7 +4161,8 @@ namespace YT.WallVerticalRebar
                     barRLD.BuildingStorey = buildingStoreySt;
                     break;
                 case "사용자 지정":
-                    barRLD.Building = D.R_DW_Building;
+                    //barRLD.Building = D.R_DW_Building;
+                    barRLD.Building = buildingSt;
                     barRLD.BuildingStorey = D.R_DW_Building_S;
                     break;
             }
@@ -4440,7 +4572,7 @@ namespace YT.WallVerticalRebar
 
             barRRB.Polygon.Add(shapeRB);
 
-            barRRB.StartOffsetValue = -(D.R_RB_Splice2);
+            //barRRB.StartOffsetValue = -(D.R_RB_Splice2);
 
             double rightSpacing = D.R_Spacing;
 
@@ -4501,7 +4633,8 @@ namespace YT.WallVerticalRebar
                     barRRB.BuildingStorey = buildingStoreySt;
                     break;
                 case "사용자 지정":
-                    barRRB.Building = D.R_B_Building;
+                    //barRRB.Building = D.R_B_Building;
+                    barRRB.Building = buildingSt;
                     barRRB.BuildingStorey = D.R_B_Building_Storey;
                     break;
             }
@@ -4528,12 +4661,24 @@ namespace YT.WallVerticalRebar
             if (D.R_RB_Type == "일반")
             {
                 barRRB.StartHookShape = TSM.RebarHookData.RebarHookShapeEnum.NO_HOOK;
+                barRRB.StartOffsetValue = -(D.R_RB_Splice2);
             }
             else if (D.R_RB_Type == "후크")
             {
                 barRRB.StartHookShape = TSM.RebarHookData.RebarHookShapeEnum.CUSTOM_HOOK;
                 barRRB.StartHookRadius = barRRB.Radius;
-                barRRB.StartHookLength = D.R_RB_HookLength - barRRB.Radius - KS.GetDiameter(Convert.ToDouble(barRRB.Size));
+
+                if (D.DW_FootingSpacing + D.DW_FootingSplice > D.R_RB_HookLength)
+                {
+                    barRRB.StartHookLength = D.DW_FootingSpacing + D.DW_FootingSplice - barRRB.Radius - KS.GetDiameter(Convert.ToDouble(barRRB.Size));
+                }
+                else
+                {
+                    barRRB.StartHookLength = D.R_RB_HookLength - barRRB.Radius - KS.GetDiameter(Convert.ToDouble(barRRB.Size));
+                }
+
+
+                barRRB.StartOffsetValue = -D.DW_FootingDepth + D.DR_HookCorver;
 
                 if (D.R_RB_HookInOut == "내")
                 {
@@ -4579,7 +4724,7 @@ namespace YT.WallVerticalRebar
 
             barRLB.Polygon.Add(shapeLB);
 
-            barRLB.StartOffsetValue = -(D.R_LB_Splice2);
+            //barRLB.StartOffsetValue = -(D.R_LB_Splice2);
 
             double leftSpacing = D.L_Spacing;
 
@@ -4639,7 +4784,8 @@ namespace YT.WallVerticalRebar
                     barRLB.BuildingStorey = buildingStoreySt;
                     break;
                 case "사용자 지정":
-                    barRLB.Building = D.R_B_Building;
+                    //barRLB.Building = D.R_B_Building;
+                    barRLB.Building = buildingSt;
                     barRLB.BuildingStorey = D.R_B_Building_Storey;
                     break;
             }
@@ -4666,12 +4812,24 @@ namespace YT.WallVerticalRebar
             if (D.R_LB_Type == "일반")
             {
                 barRLB.StartHookShape = TSM.RebarHookData.RebarHookShapeEnum.NO_HOOK;
+                barRLB.StartOffsetValue = -(D.R_LB_Splice2);
             }
             else if (D.R_LB_Type == "후크")
             {
                 barRLB.StartHookShape = TSM.RebarHookData.RebarHookShapeEnum.CUSTOM_HOOK;
                 barRLB.StartHookRadius = barRLB.Radius;
-                barRLB.StartHookLength = D.R_LB_HookLength - barRLB.Radius - KS.GetDiameter(Convert.ToDouble(barRLB.Size));
+
+                if (D.DW_FootingSpacing + D.DW_FootingSplice > D.R_LB_HookLength)
+                {
+                    barRLB.StartHookLength = D.DW_FootingSpacing + D.DW_FootingSplice - barRLB.Radius - KS.GetDiameter(Convert.ToDouble(barRLB.Size));
+                }
+                else
+                {
+                    barRLB.StartHookLength = D.R_LB_HookLength - barRLB.Radius - KS.GetDiameter(Convert.ToDouble(barRLB.Size));
+                }
+
+
+                barRLB.StartOffsetValue = -D.DW_FootingDepth + D.DL_HookCorver;
 
                 if (D.R_LB_HookInOut == "내")
                 {
@@ -4811,7 +4969,8 @@ namespace YT.WallVerticalRebar
                     barRRM.BuildingStorey = buildingStoreySt;
                     break;
                 case "사용자 지정":
-                    barRRM.Building = D.R_M_Building;
+                    //barRRM.Building = D.R_M_Building;
+                    barRRM.Building = buildingSt;
                     barRRM.BuildingStorey = D.R_M_Building_Storey;
                     break;
             }
@@ -4958,7 +5117,8 @@ namespace YT.WallVerticalRebar
                     barRLM.BuildingStorey = buildingStoreySt;
                     break;
                 case "사용자 지정":
-                    barRLM.Building = D.R_M_Building;
+                    //barRLM.Building = D.R_M_Building;
+                    barRLM.Building = buildingSt;
                     barRLM.BuildingStorey = D.R_M_Building_Storey;
                     break;
             }
@@ -5089,7 +5249,8 @@ namespace YT.WallVerticalRebar
                     barRRT.BuildingStorey = buildingStoreySt;
                     break;
                 case "사용자 지정":
-                    barRRT.Building = D.R_T_Building;
+                    //barRRT.Building = D.R_T_Building;
+                    barRRT.Building = buildingSt;
                     barRRT.BuildingStorey = D.R_T_Building_Storey;
                     break;
             }
@@ -5217,7 +5378,8 @@ namespace YT.WallVerticalRebar
                     barRLT.BuildingStorey = buildingStoreySt;
                     break;
                 case "사용자 지정":
-                    barRLT.Building = D.R_T_Building;
+                    //barRLT.Building = D.R_T_Building;
+                    barRLT.Building = buildingSt;
                     barRLT.BuildingStorey = D.R_T_Building_Storey;
                     break;
             }
@@ -5268,10 +5430,23 @@ namespace YT.WallVerticalRebar
 
             barRRD.Prefix = D.R_DR_Prefix2;
             barRRD.StartNumber = D.R_DR_StartNumber2;
-            barRRD.StartOffsetValue = -D.DW_FootingDepth + D.R_DR_HookCorver;
+            //barRRD.StartOffsetValue = -D.DW_FootingDepth + D.R_DR_HookCorver;
+            barRRD.StartOffsetValue = -D.DW_FootingDepth + D.DR_HookCorver;
 
-            barRRD.StartHookLength = D.R_DR_HookLength - barRRD.Radius - KS.GetDiameter(Convert.ToDouble(barRRD.Size));
-            var Rlength = Math.Abs(barRRD.StartOffsetValue) + D.R_DR_Splice1 + D.R_DR_Splice2 + D.R_DR_HookLength;
+            var Rlength = 0.0;
+
+            if (D.DW_FootingSpacing + D.DW_FootingSplice > D.R_DR_HookLength)
+            {
+                barRRD.StartHookLength = D.DW_FootingSpacing + D.DW_FootingSplice - barRRD.Radius - KS.GetDiameter(Convert.ToDouble(barRRD.Size));
+                Rlength = Math.Abs(barRRD.StartOffsetValue) + D.R_DR_Splice1 + D.R_DR_Splice2 + D.DW_FootingSpacing + D.DW_FootingSplice;
+            }
+            else
+            {
+                barRRD.StartHookLength = D.R_DR_HookLength - barRRD.Radius - KS.GetDiameter(Convert.ToDouble(barRRD.Size));
+                Rlength = Math.Abs(barRRD.StartOffsetValue) + D.R_DR_Splice1 + D.R_DR_Splice2 + D.R_DR_HookLength;
+            }
+
+            //var Rlength = Math.Abs(barRRD.StartOffsetValue) + D.R_DR_Splice1 + D.R_DR_Splice2 + D.R_DR_HookLength;
 
             var Rplus = 0.0;
 
@@ -5287,19 +5462,19 @@ namespace YT.WallVerticalRebar
 
                 if (te > 0 && te <= 300)
                 {
-                    Rplus = 300 - te ;
+                    Rplus = 300 - te;
                 }
                 else if (te > 300 && te <= 500)
                 {
-                    Rplus = 500 - te ;
+                    Rplus = 500 - te;
                 }
                 else if (te > 500 && te <= 700)
                 {
-                    Rplus = 700 - te ;
+                    Rplus = 700 - te;
                 }
                 else if (te > 700)
                 {
-                    Rplus = 1000 - te ;
+                    Rplus = 1000 - te;
                 }
                 else if (te == 0)
                 {
@@ -5363,7 +5538,8 @@ namespace YT.WallVerticalRebar
                     barRRD.BuildingStorey = buildingStoreySt;
                     break;
                 case "사용자 지정":
-                    barRRD.Building = D.R_DW_Building;
+                    //barRRD.Building = D.R_DW_Building;
+                    barRRD.Building = buildingSt;
                     barRRD.BuildingStorey = D.R_DW_Building_S;
                     break;
             }
@@ -5423,10 +5599,23 @@ namespace YT.WallVerticalRebar
 
             barRLD.Prefix = D.R_DL_Prefix2;
             barRLD.StartNumber = D.R_DL_StartNumber2;
-            barRLD.StartOffsetValue = -D.DW_FootingDepth + D.R_DL_HookCorver;
+            //barRLD.StartOffsetValue = -D.DW_FootingDepth + D.R_DL_HookCorver;
+            barRLD.StartOffsetValue = -D.DW_FootingDepth + D.DL_HookCorver;
 
-            barRLD.StartHookLength = D.R_DL_HookLength - barRLD.Radius - KS.GetDiameter(Convert.ToDouble(barRLD.Size));
-            var Llength = Math.Abs(barRLD.StartOffsetValue) + D.R_DL_Splice1 + D.R_DL_Splice2 + D.R_DL_HookLength;
+            var Llength = 0.0;
+
+            if (D.DW_FootingSpacing + D.DW_FootingSplice > D.R_DL_HookLength)
+            {
+                barRLD.StartHookLength = D.DW_FootingSpacing + D.DW_FootingSplice - barRLD.Radius - KS.GetDiameter(Convert.ToDouble(barRLD.Size));
+                Llength = Math.Abs(barRLD.StartOffsetValue) + D.R_DL_Splice1 + D.R_DL_Splice2 + D.DW_FootingSpacing + D.DW_FootingSplice;
+            }
+            else
+            {
+                barRLD.StartHookLength = D.R_DL_HookLength - barRLD.Radius - KS.GetDiameter(Convert.ToDouble(barRLD.Size));
+                Llength = Math.Abs(barRLD.StartOffsetValue) + D.R_DL_Splice1 + D.R_DL_Splice2 + D.R_DL_HookLength;
+            }
+
+            //var Llength = Math.Abs(barRLD.StartOffsetValue) + D.R_DL_Splice1 + D.R_DL_Splice2 + D.R_DL_HookLength;
 
             var Lplus = 0.0;
 
@@ -5442,19 +5631,19 @@ namespace YT.WallVerticalRebar
 
                 if (te > 0 && te <= 300)
                 {
-                    Lplus = 300 - te ;
+                    Lplus = 300 - te;
                 }
                 else if (te > 300 && te <= 500)
                 {
-                    Lplus = 500 - te ;
+                    Lplus = 500 - te;
                 }
                 else if (te > 500 && te <= 700)
                 {
-                    Lplus = 700 - te ;
+                    Lplus = 700 - te;
                 }
                 else if (te > 700)
                 {
-                    Lplus = 1000 - te ;
+                    Lplus = 1000 - te;
                 }
                 else if (te == 0)
                 {
@@ -5518,7 +5707,8 @@ namespace YT.WallVerticalRebar
                     barRLD.BuildingStorey = buildingStoreySt;
                     break;
                 case "사용자 지정":
-                    barRLD.Building = D.R_DW_Building;
+                    //barRLD.Building = D.R_DW_Building;
+                    barRLD.Building = buildingSt;
                     barRLD.BuildingStorey = D.R_DW_Building_S;
                     break;
             }
@@ -5756,6 +5946,7 @@ namespace YT.WallVerticalRebar
             var te2 = ((int)length2 - ((int)D.S_SpacingZ / 2)) % (int)D.S_SpacingZ;
 
             var tee = D.S_SpacingZ;
+
             if (te2 == 0)
             {
                 tee = 0;
@@ -5763,6 +5954,8 @@ namespace YT.WallVerticalRebar
 
             var length3 = D.S_RangeBottom - (D.S_SpacingZ / 2);
             var te3 = ((int)length3 % (int)D.S_SpacingZ);
+
+            #region rebar1
 
             var bar1 = new TSM.RebarGroup();
             bar1.Polygons.Add(poly);
@@ -5900,25 +6093,109 @@ namespace YT.WallVerticalRebar
                     MoveZ(bar1, D.S_SpacingZ / 2);
                     MoveZ(bar1, (hMainBar / 2) + (sBar / 2));
 
+                    switch (D.S_UDA)
+                    {
+                        case "부재 UDA 정보 사용":
+
+                            bar1.SetUserProperty("USER_FIELD_1", buildingSt);
+                            bar1.SetUserProperty("USER_FIELD_2", buildingStoreySt);
+
+                            break;
+
+                        case "사용자 지정":
+
+                            bar1.SetUserProperty("USER_FIELD_1", buildingSt);
+                            bar1.SetUserProperty("USER_FIELD_2", D.S_Building_S);
+
+                            break;
+                    }
+
                     if (D.S_Type == "수직근")
                     {
+                        switch (D.S_UDA)
+                        {
+                            case "부재 UDA 정보 사용":
+
+                                bar1.SetUserProperty("USER_FIELD_1", buildingSt);
+                                bar1.SetUserProperty("USER_FIELD_2", buildingStoreySt);
+
+                                break;
+
+                            case "사용자 지정":
+
+                                bar1.SetUserProperty("USER_FIELD_1", buildingSt);
+                                bar1.SetUserProperty("USER_FIELD_2", D.S_Building_S);
+
+                                break;
+                        }
                         CopyX(bar1, listfm);
                     }
                     else if (D.S_Type == "수직근+보강근1단")
                     {
+                        switch (D.S_UDA)
+                        {
+                            case "부재 UDA 정보 사용":
+
+                                bar1.SetUserProperty("USER_FIELD_1", buildingSt);
+                                bar1.SetUserProperty("USER_FIELD_2", buildingStoreySt);
+
+                                break;
+
+                            case "사용자 지정":
+
+                                bar1.SetUserProperty("USER_FIELD_1", buildingSt);
+                                bar1.SetUserProperty("USER_FIELD_2", D.S_Building_S);
+
+                                break;
+                        }
                         CopyX(bar1, listV);
                     }
                     else if (D.S_Type == "수직근+보강근2단")
                     {
+                        switch (D.S_UDA)
+                        {
+                            case "부재 UDA 정보 사용":
+
+                                bar1.SetUserProperty("USER_FIELD_1", buildingSt);
+                                bar1.SetUserProperty("USER_FIELD_2", buildingStoreySt);
+
+                                break;
+
+                            case "사용자 지정":
+
+                                bar1.SetUserProperty("USER_FIELD_1", buildingSt);
+                                bar1.SetUserProperty("USER_FIELD_2", D.S_Building_S);
+
+                                break;
+                        }
                         CopyX(bar1, listfm);
 
                         var b = bar1;
                         b.Insert();
+
                         MoveX(b, -size, -rebar);
                         MoveZ(b, D.S_SpacingZ / 2);
                         MoveZ(b, (hMainBar / 2) + (sBar / 2));
 
                         MoveX(b, spacing / 3 * 2);
+
+                        switch (D.S_UDA)
+                        {
+                            case "부재 UDA 정보 사용":
+
+                                b.SetUserProperty("USER_FIELD_1", buildingSt);
+                                b.SetUserProperty("USER_FIELD_2", buildingStoreySt);
+
+                                break;
+
+                            case "사용자 지정":
+
+                                b.SetUserProperty("USER_FIELD_1", buildingSt);
+                                b.SetUserProperty("USER_FIELD_2", D.S_Building_S);
+
+                                break;
+                        }
+
                         CopyX(b, listfa3);
 
                         var c = bar1;
@@ -5928,7 +6205,26 @@ namespace YT.WallVerticalRebar
                         MoveZ(c, (hMainBar / 2) + (sBar / 2));
 
                         MoveX(c, spacing / 3 + spacing);
+
+                        switch (D.S_UDA)
+                        {
+                            case "부재 UDA 정보 사용":
+
+                                c.SetUserProperty("USER_FIELD_1", buildingSt);
+                                c.SetUserProperty("USER_FIELD_2", buildingStoreySt);
+
+                                break;
+
+                            case "사용자 지정":
+
+                                c.SetUserProperty("USER_FIELD_1", buildingSt);
+                                c.SetUserProperty("USER_FIELD_2", D.S_Building_S);
+
+                                break;
+                        }
+
                         CopyX(c, listsa2);
+
 
                     }
                     else if (D.S_Type == "아니오")
@@ -5948,20 +6244,86 @@ namespace YT.WallVerticalRebar
                     MoveZ(bar1, (length - D.S_RangeTop - te2 + tee));
                     MoveZ(bar1, (hMainBar / 2) + (sBar / 2));
 
+                    switch (D.S_UDA)
+                    {
+                        case "부재 UDA 정보 사용":
+
+                            bar1.SetUserProperty("USER_FIELD_1", buildingSt);
+                            bar1.SetUserProperty("USER_FIELD_2", buildingStoreySt);
+
+                            break;
+
+                        case "사용자 지정":
+
+                            bar1.SetUserProperty("USER_FIELD_1", buildingSt);
+                            bar1.SetUserProperty("USER_FIELD_2", D.S_Building_S);
+
+                            break;
+                    }
+
                     if (D.S_Type == "수직근")
                     {
+                        switch (D.S_UDA)
+                        {
+                            case "부재 UDA 정보 사용":
+
+                                bar1.SetUserProperty("USER_FIELD_1", buildingSt);
+                                bar1.SetUserProperty("USER_FIELD_2", buildingStoreySt);
+
+                                break;
+
+                            case "사용자 지정":
+
+                                bar1.SetUserProperty("USER_FIELD_1", buildingSt);
+                                bar1.SetUserProperty("USER_FIELD_2", D.S_Building_S);
+
+                                break;
+                        }
                         CopyX(bar1, listfm);
                     }
                     else if (D.S_Type == "수직근+보강근1단")
                     {
+                        switch (D.S_UDA)
+                        {
+                            case "부재 UDA 정보 사용":
+
+                                bar1.SetUserProperty("USER_FIELD_1", buildingSt);
+                                bar1.SetUserProperty("USER_FIELD_2", buildingStoreySt);
+
+                                break;
+
+                            case "사용자 지정":
+
+                                bar1.SetUserProperty("USER_FIELD_1", buildingSt);
+                                bar1.SetUserProperty("USER_FIELD_2", D.S_Building_S);
+
+                                break;
+                        }
                         CopyX(bar1, listV);
                     }
                     else if (D.S_Type == "수직근+보강근2단")
                     {
+                        switch (D.S_UDA)
+                        {
+                            case "부재 UDA 정보 사용":
+
+                                bar1.SetUserProperty("USER_FIELD_1", buildingSt);
+                                bar1.SetUserProperty("USER_FIELD_2", buildingStoreySt);
+
+                                break;
+
+                            case "사용자 지정":
+
+                                bar1.SetUserProperty("USER_FIELD_1", buildingSt);
+                                bar1.SetUserProperty("USER_FIELD_2", D.S_Building_S);
+
+                                break;
+                        }
                         CopyX(bar1, listfm);
 
                         var b = bar1;
                         b.Insert();
+
                         MoveX(b, -size, -rebar);
                         //MoveZ(b, (length - D.S_RangeTop - D.S_BeamDepth - te2 + D.S_SpacingZ));
                         //MoveZ(b, (length - D.S_RangeTop - te2 + D.S_SpacingZ));
@@ -5969,6 +6331,24 @@ namespace YT.WallVerticalRebar
                         MoveZ(b, (hMainBar / 2) + (sBar / 2));
 
                         MoveX(b, spacing / 3 * 2);
+
+                        switch (D.S_UDA)
+                        {
+                            case "부재 UDA 정보 사용":
+
+                                b.SetUserProperty("USER_FIELD_1", buildingSt);
+                                b.SetUserProperty("USER_FIELD_2", buildingStoreySt);
+
+                                break;
+
+                            case "사용자 지정":
+
+                                b.SetUserProperty("USER_FIELD_1", buildingSt);
+                                b.SetUserProperty("USER_FIELD_2", D.S_Building_S);
+
+                                break;
+                        }
+
                         CopyX(b, listfa3);
 
                         var c = bar1;
@@ -5980,7 +6360,27 @@ namespace YT.WallVerticalRebar
                         MoveZ(c, (hMainBar / 2) + (sBar / 2));
 
                         MoveX(c, spacing / 3 + spacing);
+
+                        switch (D.S_UDA)
+                        {
+                            case "부재 UDA 정보 사용":
+
+                                c.SetUserProperty("USER_FIELD_1", buildingSt);
+                                c.SetUserProperty("USER_FIELD_2", buildingStoreySt);
+
+                                break;
+
+                            case "사용자 지정":
+
+                                c.SetUserProperty("USER_FIELD_1", buildingSt);
+                                c.SetUserProperty("USER_FIELD_2", D.S_Building_S);
+
+                                break;
+                        }
+
                         CopyX(c, listsa2);
+
+
                     }
                     else if (D.S_Type == "아니오")
                     {
@@ -5996,25 +6396,109 @@ namespace YT.WallVerticalRebar
                     MoveZ(bar1, D.S_SpacingZ / 2);
                     MoveZ(bar1, (hMainBar / 2) + (sBar / 2));
 
+                    switch (D.S_UDA)
+                    {
+                        case "부재 UDA 정보 사용":
+
+                            bar1.SetUserProperty("USER_FIELD_1", buildingSt);
+                            bar1.SetUserProperty("USER_FIELD_2", buildingStoreySt);
+
+                            break;
+
+                        case "사용자 지정":
+
+                            bar1.SetUserProperty("USER_FIELD_1", buildingSt);
+                            bar1.SetUserProperty("USER_FIELD_2", D.S_Building_S);
+
+                            break;
+                    }
+
                     if (D.S_Type == "수직근")
                     {
+                        switch (D.S_UDA)
+                        {
+                            case "부재 UDA 정보 사용":
+
+                                bar1.SetUserProperty("USER_FIELD_1", buildingSt);
+                                bar1.SetUserProperty("USER_FIELD_2", buildingStoreySt);
+
+                                break;
+
+                            case "사용자 지정":
+
+                                bar1.SetUserProperty("USER_FIELD_1", buildingSt);
+                                bar1.SetUserProperty("USER_FIELD_2", D.S_Building_S);
+
+                                break;
+                        }
                         CopyX(bar1, listfm);
                     }
                     else if (D.S_Type == "수직근+보강근1단")
                     {
+                        switch (D.S_UDA)
+                        {
+                            case "부재 UDA 정보 사용":
+
+                                bar1.SetUserProperty("USER_FIELD_1", buildingSt);
+                                bar1.SetUserProperty("USER_FIELD_2", buildingStoreySt);
+
+                                break;
+
+                            case "사용자 지정":
+
+                                bar1.SetUserProperty("USER_FIELD_1", buildingSt);
+                                bar1.SetUserProperty("USER_FIELD_2", D.S_Building_S);
+
+                                break;
+                        }
                         CopyX(bar1, listV);
                     }
                     else if (D.S_Type == "수직근+보강근2단")
                     {
+                        switch (D.S_UDA)
+                        {
+                            case "부재 UDA 정보 사용":
+
+                                bar1.SetUserProperty("USER_FIELD_1", buildingSt);
+                                bar1.SetUserProperty("USER_FIELD_2", buildingStoreySt);
+
+                                break;
+
+                            case "사용자 지정":
+
+                                bar1.SetUserProperty("USER_FIELD_1", buildingSt);
+                                bar1.SetUserProperty("USER_FIELD_2", D.S_Building_S);
+
+                                break;
+                        }
                         CopyX(bar1, listfm);
 
                         var b = bar1;
                         b.Insert();
+
                         MoveX(b, -size, -rebar);
                         MoveZ(b, D.S_SpacingZ / 2);
                         MoveZ(b, (hMainBar / 2) + (sBar / 2));
 
                         MoveX(b, spacing / 3 * 2);
+
+                        switch (D.S_UDA)
+                        {
+                            case "부재 UDA 정보 사용":
+
+                                b.SetUserProperty("USER_FIELD_1", buildingSt);
+                                b.SetUserProperty("USER_FIELD_2", buildingStoreySt);
+
+                                break;
+
+                            case "사용자 지정":
+
+                                b.SetUserProperty("USER_FIELD_1", buildingSt);
+                                b.SetUserProperty("USER_FIELD_2", D.S_Building_S);
+
+                                break;
+                        }
+
                         CopyX(b, listfa3);
 
                         var c = bar1;
@@ -6024,7 +6508,26 @@ namespace YT.WallVerticalRebar
                         MoveZ(c, (hMainBar / 2) + (sBar / 2));
 
                         MoveX(c, spacing / 3 + spacing);
+
+                        switch (D.S_UDA)
+                        {
+                            case "부재 UDA 정보 사용":
+
+                                c.SetUserProperty("USER_FIELD_1", buildingSt);
+                                c.SetUserProperty("USER_FIELD_2", buildingStoreySt);
+
+                                break;
+
+                            case "사용자 지정":
+
+                                c.SetUserProperty("USER_FIELD_1", buildingSt);
+                                c.SetUserProperty("USER_FIELD_2", D.S_Building_S);
+
+                                break;
+                        }
+
                         CopyX(c, listsa2);
+
 
                     }
                     else if (D.S_Type == "아니오")
@@ -6040,25 +6543,109 @@ namespace YT.WallVerticalRebar
                     MoveZ(bar1, D.S_SpacingZ / 2);
                     MoveZ(bar1, (hMainBar / 2) + (sBar / 2));
 
+                    switch (D.S_UDA)
+                    {
+                        case "부재 UDA 정보 사용":
+
+                            bar1.SetUserProperty("USER_FIELD_1", buildingSt);
+                            bar1.SetUserProperty("USER_FIELD_2", buildingStoreySt);
+
+                            break;
+
+                        case "사용자 지정":
+
+                            bar1.SetUserProperty("USER_FIELD_1", buildingSt);
+                            bar1.SetUserProperty("USER_FIELD_2", D.S_Building_S);
+
+                            break;
+                    }
+
                     if (D.S_Type == "수직근")
                     {
+                        switch (D.S_UDA)
+                        {
+                            case "부재 UDA 정보 사용":
+
+                                bar1.SetUserProperty("USER_FIELD_1", buildingSt);
+                                bar1.SetUserProperty("USER_FIELD_2", buildingStoreySt);
+
+                                break;
+
+                            case "사용자 지정":
+
+                                bar1.SetUserProperty("USER_FIELD_1", buildingSt);
+                                bar1.SetUserProperty("USER_FIELD_2", D.S_Building_S);
+
+                                break;
+                        }
                         CopyX(bar1, listfm);
                     }
                     else if (D.S_Type == "수직근+보강근1단")
                     {
+                        switch (D.S_UDA)
+                        {
+                            case "부재 UDA 정보 사용":
+
+                                bar1.SetUserProperty("USER_FIELD_1", buildingSt);
+                                bar1.SetUserProperty("USER_FIELD_2", buildingStoreySt);
+
+                                break;
+
+                            case "사용자 지정":
+
+                                bar1.SetUserProperty("USER_FIELD_1", buildingSt);
+                                bar1.SetUserProperty("USER_FIELD_2", D.S_Building_S);
+
+                                break;
+                        }
                         CopyX(bar1, listV);
                     }
                     else if (D.S_Type == "수직근+보강근2단")
                     {
+                        switch (D.S_UDA)
+                        {
+                            case "부재 UDA 정보 사용":
+
+                                bar1.SetUserProperty("USER_FIELD_1", buildingSt);
+                                bar1.SetUserProperty("USER_FIELD_2", buildingStoreySt);
+
+                                break;
+
+                            case "사용자 지정":
+
+                                bar1.SetUserProperty("USER_FIELD_1", buildingSt);
+                                bar1.SetUserProperty("USER_FIELD_2", D.S_Building_S);
+
+                                break;
+                        }
                         CopyX(bar1, listfm);
 
                         var b = bar1;
                         b.Insert();
+
                         MoveX(b, -size, -rebar);
                         MoveZ(b, D.S_SpacingZ / 2);
                         MoveZ(b, (hMainBar / 2) + (sBar / 2));
 
                         MoveX(b, spacing / 3 * 2);
+
+                        switch (D.S_UDA)
+                        {
+                            case "부재 UDA 정보 사용":
+
+                                b.SetUserProperty("USER_FIELD_1", buildingSt);
+                                b.SetUserProperty("USER_FIELD_2", buildingStoreySt);
+
+                                break;
+
+                            case "사용자 지정":
+
+                                b.SetUserProperty("USER_FIELD_1", buildingSt);
+                                b.SetUserProperty("USER_FIELD_2", D.S_Building_S);
+
+                                break;
+                        }
+
                         CopyX(b, listfa3);
 
                         var c = bar1;
@@ -6068,19 +6655,40 @@ namespace YT.WallVerticalRebar
                         MoveZ(c, (hMainBar / 2) + (sBar / 2));
 
                         MoveX(c, spacing / 3 + spacing);
+
+                        switch (D.S_UDA)
+                        {
+                            case "부재 UDA 정보 사용":
+
+                                c.SetUserProperty("USER_FIELD_1", buildingSt);
+                                c.SetUserProperty("USER_FIELD_2", buildingStoreySt);
+
+                                break;
+
+                            case "사용자 지정":
+
+                                c.SetUserProperty("USER_FIELD_1", buildingSt);
+                                c.SetUserProperty("USER_FIELD_2", D.S_Building_S);
+
+                                break;
+                        }
+
                         CopyX(c, listsa2);
                     }
                     else if (D.S_Type == "아니오")
                     {
 
                     }
+
+
                 }
 
             }
+            #endregion
 
             /*-------------------------------*/
 
-
+            #region rebar2
             var bar2 = new TSM.RebarGroup();
             bar2.Polygons.Add(poly2);
             bar2.SpacingType = TSM.RebarGroup.RebarGroupSpacingTypeEnum.SPACING_TYPE_EXACT_SPACINGS;
@@ -6216,18 +6824,83 @@ namespace YT.WallVerticalRebar
                     MoveZ(bar2, D.S_SpacingZ / 2);
                     MoveZ(bar2, (hMainBar / 2) + (sBar / 2));
 
+                    switch (D.S_UDA)
+                    {
+                        case "부재 UDA 정보 사용":
+
+                            bar2.SetUserProperty("USER_FIELD_1", buildingSt);
+                            bar2.SetUserProperty("USER_FIELD_2", buildingStoreySt);
+
+                            break;
+
+                        case "사용자 지정":
+
+                            bar2.SetUserProperty("USER_FIELD_1", buildingSt);
+                            bar2.SetUserProperty("USER_FIELD_2", D.S_Building_S);
+
+                            break;
+                    }
+
                     if (D.S_Type == "수직근")
                     {
+                        switch (D.S_UDA)
+                        {
+                            case "부재 UDA 정보 사용":
+
+                                bar2.SetUserProperty("USER_FIELD_1", buildingSt);
+                                bar2.SetUserProperty("USER_FIELD_2", buildingStoreySt);
+
+                                break;
+
+                            case "사용자 지정":
+
+                                bar2.SetUserProperty("USER_FIELD_1", buildingSt);
+                                bar2.SetUserProperty("USER_FIELD_2", D.S_Building_S);
+
+                                break;
+                        }
                         MoveX(bar2, spacing);
                         CopyX(bar2, listsm);
                     }
                     else if (D.S_Type == "수직근+보강근1단")
                     {
+                        switch (D.S_UDA)
+                        {
+                            case "부재 UDA 정보 사용":
+
+                                bar2.SetUserProperty("USER_FIELD_1", buildingSt);
+                                bar2.SetUserProperty("USER_FIELD_2", buildingStoreySt);
+
+                                break;
+
+                            case "사용자 지정":
+
+                                bar2.SetUserProperty("USER_FIELD_1", buildingSt);
+                                bar2.SetUserProperty("USER_FIELD_2", D.S_Building_S);
+
+                                break;
+                        }
                         MoveX(bar2, spacing / 2);
                         CopyX(bar2, listA);
                     }
                     else if (D.S_Type == "수직근+보강근2단")
                     {
+                        switch (D.S_UDA)
+                        {
+                            case "부재 UDA 정보 사용":
+
+                                bar2.SetUserProperty("USER_FIELD_1", buildingSt);
+                                bar2.SetUserProperty("USER_FIELD_2", buildingStoreySt);
+
+                                break;
+
+                            case "사용자 지정":
+
+                                bar2.SetUserProperty("USER_FIELD_1", buildingSt);
+                                bar2.SetUserProperty("USER_FIELD_2", D.S_Building_S);
+
+                                break;
+                        }
                         MoveX(bar2, spacing);
                         CopyX(bar2, listsm);
 
@@ -6238,6 +6911,24 @@ namespace YT.WallVerticalRebar
                         MoveZ(b, (hMainBar / 2) + (sBar / 2));
 
                         MoveX(b, spacing / 3 * 2 + spacing);
+
+                        switch (D.S_UDA)
+                        {
+                            case "부재 UDA 정보 사용":
+
+                                b.SetUserProperty("USER_FIELD_1", buildingSt);
+                                b.SetUserProperty("USER_FIELD_2", buildingStoreySt);
+
+                                break;
+
+                            case "사용자 지정":
+
+                                b.SetUserProperty("USER_FIELD_1", buildingSt);
+                                b.SetUserProperty("USER_FIELD_2", D.S_Building_S);
+
+                                break;
+                        }
+
                         CopyX(b, listsa3);
 
                         var c = bar2;
@@ -6247,7 +6938,26 @@ namespace YT.WallVerticalRebar
                         MoveZ(c, (hMainBar / 2) + (sBar / 2));
 
                         MoveX(c, spacing / 3);
+
+                        switch (D.S_UDA)
+                        {
+                            case "부재 UDA 정보 사용":
+
+                                c.SetUserProperty("USER_FIELD_1", buildingSt);
+                                c.SetUserProperty("USER_FIELD_2", buildingStoreySt);
+
+                                break;
+
+                            case "사용자 지정":
+
+                                c.SetUserProperty("USER_FIELD_1", buildingSt);
+                                c.SetUserProperty("USER_FIELD_2", D.S_Building_S);
+
+                                break;
+                        }
+
                         CopyX(c, listfa2);
+
 
                     }
                     else if (D.S_Type == "아니오")
@@ -6266,18 +6976,83 @@ namespace YT.WallVerticalRebar
                     MoveZ(bar2, (length - D.S_RangeTop - te2 + tee));
                     MoveZ(bar2, (hMainBar / 2) + (sBar / 2));
 
+                    switch (D.S_UDA)
+                    {
+                        case "부재 UDA 정보 사용":
+
+                            bar2.SetUserProperty("USER_FIELD_1", buildingSt);
+                            bar2.SetUserProperty("USER_FIELD_2", buildingStoreySt);
+
+                            break;
+
+                        case "사용자 지정":
+
+                            bar2.SetUserProperty("USER_FIELD_1", buildingSt);
+                            bar2.SetUserProperty("USER_FIELD_2", D.S_Building_S);
+
+                            break;
+                    }
+
                     if (D.S_Type == "수직근")
                     {
+                        switch (D.S_UDA)
+                        {
+                            case "부재 UDA 정보 사용":
+
+                                bar2.SetUserProperty("USER_FIELD_1", buildingSt);
+                                bar2.SetUserProperty("USER_FIELD_2", buildingStoreySt);
+
+                                break;
+
+                            case "사용자 지정":
+
+                                bar2.SetUserProperty("USER_FIELD_1", buildingSt);
+                                bar2.SetUserProperty("USER_FIELD_2", D.S_Building_S);
+
+                                break;
+                        }
                         MoveX(bar2, spacing);
                         CopyX(bar2, listsm);
                     }
                     else if (D.S_Type == "수직근+보강근1단")
                     {
+                        switch (D.S_UDA)
+                        {
+                            case "부재 UDA 정보 사용":
+
+                                bar2.SetUserProperty("USER_FIELD_1", buildingSt);
+                                bar2.SetUserProperty("USER_FIELD_2", buildingStoreySt);
+
+                                break;
+
+                            case "사용자 지정":
+
+                                bar2.SetUserProperty("USER_FIELD_1", buildingSt);
+                                bar2.SetUserProperty("USER_FIELD_2", D.S_Building_S);
+
+                                break;
+                        }
                         MoveX(bar2, spacing / 2);
                         CopyX(bar2, listA);
                     }
                     else if (D.S_Type == "수직근+보강근2단")
                     {
+                        switch (D.S_UDA)
+                        {
+                            case "부재 UDA 정보 사용":
+
+                                bar2.SetUserProperty("USER_FIELD_1", buildingSt);
+                                bar2.SetUserProperty("USER_FIELD_2", buildingStoreySt);
+
+                                break;
+
+                            case "사용자 지정":
+
+                                bar2.SetUserProperty("USER_FIELD_1", buildingSt);
+                                bar2.SetUserProperty("USER_FIELD_2", D.S_Building_S);
+
+                                break;
+                        }
                         MoveX(bar2, spacing);
                         CopyX(bar2, listsm);
 
@@ -6290,6 +7065,24 @@ namespace YT.WallVerticalRebar
                         MoveZ(b, (hMainBar / 2) + (sBar / 2));
 
                         MoveX(b, spacing / 3 * 2 + spacing);
+
+                        switch (D.S_UDA)
+                        {
+                            case "부재 UDA 정보 사용":
+
+                                b.SetUserProperty("USER_FIELD_1", buildingSt);
+                                b.SetUserProperty("USER_FIELD_2", buildingStoreySt);
+
+                                break;
+
+                            case "사용자 지정":
+
+                                b.SetUserProperty("USER_FIELD_1", buildingSt);
+                                b.SetUserProperty("USER_FIELD_2", D.S_Building_S);
+
+                                break;
+                        }
+
                         CopyX(b, listsa3);
 
                         var c = bar2;
@@ -6301,8 +7094,25 @@ namespace YT.WallVerticalRebar
                         MoveZ(c, (hMainBar / 2) + (sBar / 2));
 
                         MoveX(c, spacing / 3);
-                        CopyX(c, listfa2);
 
+                        switch (D.S_UDA)
+                        {
+                            case "부재 UDA 정보 사용":
+
+                                c.SetUserProperty("USER_FIELD_1", buildingSt);
+                                c.SetUserProperty("USER_FIELD_2", buildingStoreySt);
+
+                                break;
+
+                            case "사용자 지정":
+
+                                c.SetUserProperty("USER_FIELD_1", buildingSt);
+                                c.SetUserProperty("USER_FIELD_2", D.S_Building_S);
+
+                                break;
+                        }
+
+                        CopyX(c, listfa2);
 
                     }
                     else if (D.S_Type == "아니오")
@@ -6318,18 +7128,83 @@ namespace YT.WallVerticalRebar
                     MoveZ(bar2, D.S_SpacingZ / 2);
                     MoveZ(bar2, (hMainBar / 2) + (sBar / 2));
 
+                    switch (D.S_UDA)
+                    {
+                        case "부재 UDA 정보 사용":
+
+                            bar2.SetUserProperty("USER_FIELD_1", buildingSt);
+                            bar2.SetUserProperty("USER_FIELD_2", buildingStoreySt);
+
+                            break;
+
+                        case "사용자 지정":
+
+                            bar2.SetUserProperty("USER_FIELD_1", buildingSt);
+                            bar2.SetUserProperty("USER_FIELD_2", D.S_Building_S);
+
+                            break;
+                    }
+
                     if (D.S_Type == "수직근")
                     {
+                        switch (D.S_UDA)
+                        {
+                            case "부재 UDA 정보 사용":
+
+                                bar2.SetUserProperty("USER_FIELD_1", buildingSt);
+                                bar2.SetUserProperty("USER_FIELD_2", buildingStoreySt);
+
+                                break;
+
+                            case "사용자 지정":
+
+                                bar2.SetUserProperty("USER_FIELD_1", buildingSt);
+                                bar2.SetUserProperty("USER_FIELD_2", D.S_Building_S);
+
+                                break;
+                        }
                         MoveX(bar2, spacing);
                         CopyX(bar2, listsm);
                     }
                     else if (D.S_Type == "수직근+보강근1단")
                     {
+                        switch (D.S_UDA)
+                        {
+                            case "부재 UDA 정보 사용":
+
+                                bar2.SetUserProperty("USER_FIELD_1", buildingSt);
+                                bar2.SetUserProperty("USER_FIELD_2", buildingStoreySt);
+
+                                break;
+
+                            case "사용자 지정":
+
+                                bar2.SetUserProperty("USER_FIELD_1", buildingSt);
+                                bar2.SetUserProperty("USER_FIELD_2", D.S_Building_S);
+
+                                break;
+                        }
                         MoveX(bar2, spacing / 2);
                         CopyX(bar2, listA);
                     }
                     else if (D.S_Type == "수직근+보강근2단")
                     {
+                        switch (D.S_UDA)
+                        {
+                            case "부재 UDA 정보 사용":
+
+                                bar2.SetUserProperty("USER_FIELD_1", buildingSt);
+                                bar2.SetUserProperty("USER_FIELD_2", buildingStoreySt);
+
+                                break;
+
+                            case "사용자 지정":
+
+                                bar2.SetUserProperty("USER_FIELD_1", buildingSt);
+                                bar2.SetUserProperty("USER_FIELD_2", D.S_Building_S);
+
+                                break;
+                        }
                         MoveX(bar2, spacing);
                         CopyX(bar2, listsm);
 
@@ -6340,6 +7215,24 @@ namespace YT.WallVerticalRebar
                         MoveZ(b, (hMainBar / 2) + (sBar / 2));
 
                         MoveX(b, spacing / 3 * 2 + spacing);
+
+                        switch (D.S_UDA)
+                        {
+                            case "부재 UDA 정보 사용":
+
+                                b.SetUserProperty("USER_FIELD_1", buildingSt);
+                                b.SetUserProperty("USER_FIELD_2", buildingStoreySt);
+
+                                break;
+
+                            case "사용자 지정":
+
+                                b.SetUserProperty("USER_FIELD_1", buildingSt);
+                                b.SetUserProperty("USER_FIELD_2", D.S_Building_S);
+
+                                break;
+                        }
+
                         CopyX(b, listsa3);
 
                         var c = bar2;
@@ -6349,7 +7242,26 @@ namespace YT.WallVerticalRebar
                         MoveZ(c, (hMainBar / 2) + (sBar / 2));
 
                         MoveX(c, spacing / 3);
+
+                        switch (D.S_UDA)
+                        {
+                            case "부재 UDA 정보 사용":
+
+                                c.SetUserProperty("USER_FIELD_1", buildingSt);
+                                c.SetUserProperty("USER_FIELD_2", buildingStoreySt);
+
+                                break;
+
+                            case "사용자 지정":
+
+                                c.SetUserProperty("USER_FIELD_1", buildingSt);
+                                c.SetUserProperty("USER_FIELD_2", D.S_Building_S);
+
+                                break;
+                        }
+
                         CopyX(c, listfa2);
+
 
 
                     }
@@ -6366,18 +7278,83 @@ namespace YT.WallVerticalRebar
                     MoveZ(bar2, D.S_SpacingZ / 2);
                     MoveZ(bar2, (hMainBar / 2) + (sBar / 2));
 
+                    switch (D.S_UDA)
+                    {
+                        case "부재 UDA 정보 사용":
+
+                            bar2.SetUserProperty("USER_FIELD_1", buildingSt);
+                            bar2.SetUserProperty("USER_FIELD_2", buildingStoreySt);
+
+                            break;
+
+                        case "사용자 지정":
+
+                            bar2.SetUserProperty("USER_FIELD_1", buildingSt);
+                            bar2.SetUserProperty("USER_FIELD_2", D.S_Building_S);
+
+                            break;
+                    }
+
                     if (D.S_Type == "수직근")
                     {
+                        switch (D.S_UDA)
+                        {
+                            case "부재 UDA 정보 사용":
+
+                                bar2.SetUserProperty("USER_FIELD_1", buildingSt);
+                                bar2.SetUserProperty("USER_FIELD_2", buildingStoreySt);
+
+                                break;
+
+                            case "사용자 지정":
+
+                                bar2.SetUserProperty("USER_FIELD_1", buildingSt);
+                                bar2.SetUserProperty("USER_FIELD_2", D.S_Building_S);
+
+                                break;
+                        }
                         MoveX(bar2, spacing);
                         CopyX(bar2, listsm);
                     }
                     else if (D.S_Type == "수직근+보강근1단")
                     {
+                        switch (D.S_UDA)
+                        {
+                            case "부재 UDA 정보 사용":
+
+                                bar2.SetUserProperty("USER_FIELD_1", buildingSt);
+                                bar2.SetUserProperty("USER_FIELD_2", buildingStoreySt);
+
+                                break;
+
+                            case "사용자 지정":
+
+                                bar2.SetUserProperty("USER_FIELD_1", buildingSt);
+                                bar2.SetUserProperty("USER_FIELD_2", D.S_Building_S);
+
+                                break;
+                        }
                         MoveX(bar2, spacing / 2);
                         CopyX(bar2, listA);
                     }
                     else if (D.S_Type == "수직근+보강근2단")
                     {
+                        switch (D.S_UDA)
+                        {
+                            case "부재 UDA 정보 사용":
+
+                                bar2.SetUserProperty("USER_FIELD_1", buildingSt);
+                                bar2.SetUserProperty("USER_FIELD_2", buildingStoreySt);
+
+                                break;
+
+                            case "사용자 지정":
+
+                                bar2.SetUserProperty("USER_FIELD_1", buildingSt);
+                                bar2.SetUserProperty("USER_FIELD_2", D.S_Building_S);
+
+                                break;
+                        }
                         MoveX(bar2, spacing);
                         CopyX(bar2, listsm);
 
@@ -6388,6 +7365,24 @@ namespace YT.WallVerticalRebar
                         MoveZ(b, (hMainBar / 2) + (sBar / 2));
 
                         MoveX(b, spacing / 3 * 2 + spacing);
+
+                        switch (D.S_UDA)
+                        {
+                            case "부재 UDA 정보 사용":
+
+                                b.SetUserProperty("USER_FIELD_1", buildingSt);
+                                b.SetUserProperty("USER_FIELD_2", buildingStoreySt);
+
+                                break;
+
+                            case "사용자 지정":
+
+                                b.SetUserProperty("USER_FIELD_1", buildingSt);
+                                b.SetUserProperty("USER_FIELD_2", D.S_Building_S);
+
+                                break;
+                        }
+
                         CopyX(b, listsa3);
 
                         var c = bar2;
@@ -6397,6 +7392,24 @@ namespace YT.WallVerticalRebar
                         MoveZ(c, (hMainBar / 2) + (sBar / 2));
 
                         MoveX(c, spacing / 3);
+
+                        switch (D.S_UDA)
+                        {
+                            case "부재 UDA 정보 사용":
+
+                                c.SetUserProperty("USER_FIELD_1", buildingSt);
+                                c.SetUserProperty("USER_FIELD_2", buildingStoreySt);
+
+                                break;
+
+                            case "사용자 지정":
+
+                                c.SetUserProperty("USER_FIELD_1", buildingSt);
+                                c.SetUserProperty("USER_FIELD_2", D.S_Building_S);
+
+                                break;
+                        }
+
                         CopyX(c, listfa2);
 
 
@@ -6407,8 +7420,11 @@ namespace YT.WallVerticalRebar
                     }
                 }
             }
+            #endregion
 
             /*-------------------------------*/
+
+            #region rebar3
 
             var bar3 = new TSM.RebarGroup();
             bar3.Polygons.Add(poly);
@@ -6544,16 +7560,81 @@ namespace YT.WallVerticalRebar
                     MoveZ(bar3, D.S_SpacingZ / 2 + Convert.ToDouble(bar3.Spacings[0]) / 2);
                     MoveZ(bar3, (hMainBar / 2) + (sBar / 2));
 
+                    switch (D.S_UDA)
+                    {
+                        case "부재 UDA 정보 사용":
+
+                            bar3.SetUserProperty("USER_FIELD_1", buildingSt);
+                            bar3.SetUserProperty("USER_FIELD_2", buildingStoreySt);
+
+                            break;
+
+                        case "사용자 지정":
+
+                            bar3.SetUserProperty("USER_FIELD_1", buildingSt);
+                            bar3.SetUserProperty("USER_FIELD_2", D.S_Building_S);
+
+                            break;
+                    }
+
                     if (D.S_Type == "수직근")
                     {
+                        switch (D.S_UDA)
+                        {
+                            case "부재 UDA 정보 사용":
+
+                                bar3.SetUserProperty("USER_FIELD_1", buildingSt);
+                                bar3.SetUserProperty("USER_FIELD_2", buildingStoreySt);
+
+                                break;
+
+                            case "사용자 지정":
+
+                                bar3.SetUserProperty("USER_FIELD_1", buildingSt);
+                                bar3.SetUserProperty("USER_FIELD_2", D.S_Building_S);
+
+                                break;
+                        }
                         CopyX(bar3, listfm);
                     }
                     else if (D.S_Type == "수직근+보강근1단")
                     {
+                        switch (D.S_UDA)
+                        {
+                            case "부재 UDA 정보 사용":
+
+                                bar3.SetUserProperty("USER_FIELD_1", buildingSt);
+                                bar3.SetUserProperty("USER_FIELD_2", buildingStoreySt);
+
+                                break;
+
+                            case "사용자 지정":
+
+                                bar3.SetUserProperty("USER_FIELD_1", buildingSt);
+                                bar3.SetUserProperty("USER_FIELD_2", D.S_Building_S);
+
+                                break;
+                        }
                         CopyX(bar3, listV);
                     }
                     else if (D.S_Type == "수직근+보강근2단")
                     {
+                        switch (D.S_UDA)
+                        {
+                            case "부재 UDA 정보 사용":
+
+                                bar3.SetUserProperty("USER_FIELD_1", buildingSt);
+                                bar3.SetUserProperty("USER_FIELD_2", buildingStoreySt);
+
+                                break;
+
+                            case "사용자 지정":
+
+                                bar3.SetUserProperty("USER_FIELD_1", buildingSt);
+                                bar3.SetUserProperty("USER_FIELD_2", D.S_Building_S);
+
+                                break;
+                        }
                         CopyX(bar3, listfm);
 
                         var b = bar3;
@@ -6563,6 +7644,24 @@ namespace YT.WallVerticalRebar
                         MoveZ(b, (hMainBar / 2) + (sBar / 2));
 
                         MoveX(b, spacing / 3 * 2);
+
+                        switch (D.S_UDA)
+                        {
+                            case "부재 UDA 정보 사용":
+
+                                b.SetUserProperty("USER_FIELD_1", buildingSt);
+                                b.SetUserProperty("USER_FIELD_2", buildingStoreySt);
+
+                                break;
+
+                            case "사용자 지정":
+
+                                b.SetUserProperty("USER_FIELD_1", buildingSt);
+                                b.SetUserProperty("USER_FIELD_2", D.S_Building_S);
+
+                                break;
+                        }
+
                         CopyX(b, listfa3);
 
                         var c = bar3;
@@ -6572,7 +7671,26 @@ namespace YT.WallVerticalRebar
                         MoveZ(c, (hMainBar / 2) + (sBar / 2));
 
                         MoveX(c, spacing / 3 + spacing);
+
+                        switch (D.S_UDA)
+                        {
+                            case "부재 UDA 정보 사용":
+
+                                c.SetUserProperty("USER_FIELD_1", buildingSt);
+                                c.SetUserProperty("USER_FIELD_2", buildingStoreySt);
+
+                                break;
+
+                            case "사용자 지정":
+
+                                c.SetUserProperty("USER_FIELD_1", buildingSt);
+                                c.SetUserProperty("USER_FIELD_2", D.S_Building_S);
+
+                                break;
+                        }
+
                         CopyX(c, listsa2);
+
 
                     }
                     else if (D.S_Type == "아니오")
@@ -6590,16 +7708,81 @@ namespace YT.WallVerticalRebar
                     MoveZ(bar3, Convert.ToDouble(bar3.Spacings[0]) / 2 + (length - D.S_RangeTop - te2 + tee));
                     MoveZ(bar3, (hMainBar / 2) + (sBar / 2));
 
+                    switch (D.S_UDA)
+                    {
+                        case "부재 UDA 정보 사용":
+
+                            bar3.SetUserProperty("USER_FIELD_1", buildingSt);
+                            bar3.SetUserProperty("USER_FIELD_2", buildingStoreySt);
+
+                            break;
+
+                        case "사용자 지정":
+
+                            bar3.SetUserProperty("USER_FIELD_1", buildingSt);
+                            bar3.SetUserProperty("USER_FIELD_2", D.S_Building_S);
+
+                            break;
+                    }
+
                     if (D.S_Type == "수직근")
                     {
+                        switch (D.S_UDA)
+                        {
+                            case "부재 UDA 정보 사용":
+
+                                bar3.SetUserProperty("USER_FIELD_1", buildingSt);
+                                bar3.SetUserProperty("USER_FIELD_2", buildingStoreySt);
+
+                                break;
+
+                            case "사용자 지정":
+
+                                bar3.SetUserProperty("USER_FIELD_1", buildingSt);
+                                bar3.SetUserProperty("USER_FIELD_2", D.S_Building_S);
+
+                                break;
+                        }
                         CopyX(bar3, listfm);
                     }
                     else if (D.S_Type == "수직근+보강근1단")
                     {
+                        switch (D.S_UDA)
+                        {
+                            case "부재 UDA 정보 사용":
+
+                                bar3.SetUserProperty("USER_FIELD_1", buildingSt);
+                                bar3.SetUserProperty("USER_FIELD_2", buildingStoreySt);
+
+                                break;
+
+                            case "사용자 지정":
+
+                                bar3.SetUserProperty("USER_FIELD_1", buildingSt);
+                                bar3.SetUserProperty("USER_FIELD_2", D.S_Building_S);
+
+                                break;
+                        }
                         CopyX(bar3, listV);
                     }
                     else if (D.S_Type == "수직근+보강근2단")
                     {
+                        switch (D.S_UDA)
+                        {
+                            case "부재 UDA 정보 사용":
+
+                                bar3.SetUserProperty("USER_FIELD_1", buildingSt);
+                                bar3.SetUserProperty("USER_FIELD_2", buildingStoreySt);
+
+                                break;
+
+                            case "사용자 지정":
+
+                                bar3.SetUserProperty("USER_FIELD_1", buildingSt);
+                                bar3.SetUserProperty("USER_FIELD_2", D.S_Building_S);
+
+                                break;
+                        }
                         CopyX(bar3, listfm);
 
                         var b = bar3;
@@ -6610,6 +7793,24 @@ namespace YT.WallVerticalRebar
                         MoveZ(b, (hMainBar / 2) + (sBar / 2));
 
                         MoveX(b, spacing / 3 * 2);
+
+                        switch (D.S_UDA)
+                        {
+                            case "부재 UDA 정보 사용":
+
+                                b.SetUserProperty("USER_FIELD_1", buildingSt);
+                                b.SetUserProperty("USER_FIELD_2", buildingStoreySt);
+
+                                break;
+
+                            case "사용자 지정":
+
+                                b.SetUserProperty("USER_FIELD_1", buildingSt);
+                                b.SetUserProperty("USER_FIELD_2", D.S_Building_S);
+
+                                break;
+                        }
+
                         CopyX(b, listfa3);
 
                         var c = bar3;
@@ -6621,7 +7822,27 @@ namespace YT.WallVerticalRebar
                         MoveZ(c, (hMainBar / 2) + (sBar / 2));
 
                         MoveX(c, spacing / 3 + spacing);
+
+                        switch (D.S_UDA)
+                        {
+                            case "부재 UDA 정보 사용":
+
+                                c.SetUserProperty("USER_FIELD_1", buildingSt);
+                                c.SetUserProperty("USER_FIELD_2", buildingStoreySt);
+
+                                break;
+
+                            case "사용자 지정":
+
+                                c.SetUserProperty("USER_FIELD_1", buildingSt);
+                                c.SetUserProperty("USER_FIELD_2", D.S_Building_S);
+
+                                break;
+                        }
+
                         CopyX(c, listsa2);
+
+
                     }
                     else if (D.S_Type == "아니오")
                     {
@@ -6635,16 +7856,81 @@ namespace YT.WallVerticalRebar
                     MoveZ(bar3, D.S_SpacingZ / 2 + Convert.ToDouble(bar3.Spacings[0]) / 2);
                     MoveZ(bar3, (hMainBar / 2) + (sBar / 2));
 
+                    switch (D.S_UDA)
+                    {
+                        case "부재 UDA 정보 사용":
+
+                            bar3.SetUserProperty("USER_FIELD_1", buildingSt);
+                            bar3.SetUserProperty("USER_FIELD_2", buildingStoreySt);
+
+                            break;
+
+                        case "사용자 지정":
+
+                            bar3.SetUserProperty("USER_FIELD_1", buildingSt);
+                            bar3.SetUserProperty("USER_FIELD_2", D.S_Building_S);
+
+                            break;
+                    }
+
                     if (D.S_Type == "수직근")
                     {
+                        switch (D.S_UDA)
+                        {
+                            case "부재 UDA 정보 사용":
+
+                                bar3.SetUserProperty("USER_FIELD_1", buildingSt);
+                                bar3.SetUserProperty("USER_FIELD_2", buildingStoreySt);
+
+                                break;
+
+                            case "사용자 지정":
+
+                                bar3.SetUserProperty("USER_FIELD_1", buildingSt);
+                                bar3.SetUserProperty("USER_FIELD_2", D.S_Building_S);
+
+                                break;
+                        }
                         CopyX(bar3, listfm);
                     }
                     else if (D.S_Type == "수직근+보강근1단")
                     {
+                        switch (D.S_UDA)
+                        {
+                            case "부재 UDA 정보 사용":
+
+                                bar3.SetUserProperty("USER_FIELD_1", buildingSt);
+                                bar3.SetUserProperty("USER_FIELD_2", buildingStoreySt);
+
+                                break;
+
+                            case "사용자 지정":
+
+                                bar3.SetUserProperty("USER_FIELD_1", buildingSt);
+                                bar3.SetUserProperty("USER_FIELD_2", D.S_Building_S);
+
+                                break;
+                        }
                         CopyX(bar3, listV);
                     }
                     else if (D.S_Type == "수직근+보강근2단")
                     {
+                        switch (D.S_UDA)
+                        {
+                            case "부재 UDA 정보 사용":
+
+                                bar3.SetUserProperty("USER_FIELD_1", buildingSt);
+                                bar3.SetUserProperty("USER_FIELD_2", buildingStoreySt);
+
+                                break;
+
+                            case "사용자 지정":
+
+                                bar3.SetUserProperty("USER_FIELD_1", buildingSt);
+                                bar3.SetUserProperty("USER_FIELD_2", D.S_Building_S);
+
+                                break;
+                        }
                         CopyX(bar3, listfm);
 
                         var b = bar3;
@@ -6654,6 +7940,24 @@ namespace YT.WallVerticalRebar
                         MoveZ(b, (hMainBar / 2) + (sBar / 2));
 
                         MoveX(b, spacing / 3 * 2);
+
+                        switch (D.S_UDA)
+                        {
+                            case "부재 UDA 정보 사용":
+
+                                b.SetUserProperty("USER_FIELD_1", buildingSt);
+                                b.SetUserProperty("USER_FIELD_2", buildingStoreySt);
+
+                                break;
+
+                            case "사용자 지정":
+
+                                b.SetUserProperty("USER_FIELD_1", buildingSt);
+                                b.SetUserProperty("USER_FIELD_2", D.S_Building_S);
+
+                                break;
+                        }
+
                         CopyX(b, listfa3);
 
                         var c = bar3;
@@ -6663,7 +7967,27 @@ namespace YT.WallVerticalRebar
                         MoveZ(c, (hMainBar / 2) + (sBar / 2));
 
                         MoveX(c, spacing / 3 + spacing);
+
+                        switch (D.S_UDA)
+                        {
+                            case "부재 UDA 정보 사용":
+
+                                c.SetUserProperty("USER_FIELD_1", buildingSt);
+                                c.SetUserProperty("USER_FIELD_2", buildingStoreySt);
+
+                                break;
+
+                            case "사용자 지정":
+
+                                c.SetUserProperty("USER_FIELD_1", buildingSt);
+                                c.SetUserProperty("USER_FIELD_2", D.S_Building_S);
+
+                                break;
+                        }
+
                         CopyX(c, listsa2);
+
+
                     }
                     else if (D.S_Type == "아니오")
                     {
@@ -6678,16 +8002,81 @@ namespace YT.WallVerticalRebar
                     MoveZ(bar3, D.S_SpacingZ / 2 + Convert.ToDouble(bar3.Spacings[0]) / 2);
                     MoveZ(bar3, (hMainBar / 2) + (sBar / 2));
 
+                    switch (D.S_UDA)
+                    {
+                        case "부재 UDA 정보 사용":
+
+                            bar3.SetUserProperty("USER_FIELD_1", buildingSt);
+                            bar3.SetUserProperty("USER_FIELD_2", buildingStoreySt);
+
+                            break;
+
+                        case "사용자 지정":
+
+                            bar3.SetUserProperty("USER_FIELD_1", buildingSt);
+                            bar3.SetUserProperty("USER_FIELD_2", D.S_Building_S);
+
+                            break;
+                    }
+
                     if (D.S_Type == "수직근")
                     {
+                        switch (D.S_UDA)
+                        {
+                            case "부재 UDA 정보 사용":
+
+                                bar3.SetUserProperty("USER_FIELD_1", buildingSt);
+                                bar3.SetUserProperty("USER_FIELD_2", buildingStoreySt);
+
+                                break;
+
+                            case "사용자 지정":
+
+                                bar3.SetUserProperty("USER_FIELD_1", buildingSt);
+                                bar3.SetUserProperty("USER_FIELD_2", D.S_Building_S);
+
+                                break;
+                        }
                         CopyX(bar3, listfm);
                     }
                     else if (D.S_Type == "수직근+보강근1단")
                     {
+                        switch (D.S_UDA)
+                        {
+                            case "부재 UDA 정보 사용":
+
+                                bar3.SetUserProperty("USER_FIELD_1", buildingSt);
+                                bar3.SetUserProperty("USER_FIELD_2", buildingStoreySt);
+
+                                break;
+
+                            case "사용자 지정":
+
+                                bar3.SetUserProperty("USER_FIELD_1", buildingSt);
+                                bar3.SetUserProperty("USER_FIELD_2", D.S_Building_S);
+
+                                break;
+                        }
                         CopyX(bar3, listV);
                     }
                     else if (D.S_Type == "수직근+보강근2단")
                     {
+                        switch (D.S_UDA)
+                        {
+                            case "부재 UDA 정보 사용":
+
+                                bar3.SetUserProperty("USER_FIELD_1", buildingSt);
+                                bar3.SetUserProperty("USER_FIELD_2", buildingStoreySt);
+
+                                break;
+
+                            case "사용자 지정":
+
+                                bar3.SetUserProperty("USER_FIELD_1", buildingSt);
+                                bar3.SetUserProperty("USER_FIELD_2", D.S_Building_S);
+
+                                break;
+                        }
                         CopyX(bar3, listfm);
 
                         var b = bar3;
@@ -6697,6 +8086,24 @@ namespace YT.WallVerticalRebar
                         MoveZ(b, (hMainBar / 2) + (sBar / 2));
 
                         MoveX(b, spacing / 3 * 2);
+
+                        switch (D.S_UDA)
+                        {
+                            case "부재 UDA 정보 사용":
+
+                                b.SetUserProperty("USER_FIELD_1", buildingSt);
+                                b.SetUserProperty("USER_FIELD_2", buildingStoreySt);
+
+                                break;
+
+                            case "사용자 지정":
+
+                                b.SetUserProperty("USER_FIELD_1", buildingSt);
+                                b.SetUserProperty("USER_FIELD_2", D.S_Building_S);
+
+                                break;
+                        }
+
                         CopyX(b, listfa3);
 
                         var c = bar3;
@@ -6706,7 +8113,27 @@ namespace YT.WallVerticalRebar
                         MoveZ(c, (hMainBar / 2) + (sBar / 2));
 
                         MoveX(c, spacing / 3 + spacing);
+
+                        switch (D.S_UDA)
+                        {
+                            case "부재 UDA 정보 사용":
+
+                                c.SetUserProperty("USER_FIELD_1", buildingSt);
+                                c.SetUserProperty("USER_FIELD_2", buildingStoreySt);
+
+                                break;
+
+                            case "사용자 지정":
+
+                                c.SetUserProperty("USER_FIELD_1", buildingSt);
+                                c.SetUserProperty("USER_FIELD_2", D.S_Building_S);
+
+                                break;
+                        }
+
                         CopyX(c, listsa2);
+
+
                     }
                     else if (D.S_Type == "아니오")
                     {
@@ -6715,8 +8142,11 @@ namespace YT.WallVerticalRebar
                 }
 
             }
+            #endregion
 
             /*-------------------------------*/
+
+            #region rebar4
 
             var bar4 = new TSM.RebarGroup();
             bar4.Polygons.Add(poly2);
@@ -6853,18 +8283,83 @@ namespace YT.WallVerticalRebar
                     MoveZ(bar4, D.S_SpacingZ / 2 + Convert.ToDouble(bar4.Spacings[0]) / 2);
                     MoveZ(bar4, (hMainBar / 2) + (sBar / 2));
 
+                    switch (D.S_UDA)
+                    {
+                        case "부재 UDA 정보 사용":
+
+                            bar4.SetUserProperty("USER_FIELD_1", buildingSt);
+                            bar4.SetUserProperty("USER_FIELD_2", buildingStoreySt);
+
+                            break;
+
+                        case "사용자 지정":
+
+                            bar4.SetUserProperty("USER_FIELD_1", buildingSt);
+                            bar4.SetUserProperty("USER_FIELD_2", D.S_Building_S);
+
+                            break;
+                    }
+
                     if (D.S_Type == "수직근")
                     {
+                        switch (D.S_UDA)
+                        {
+                            case "부재 UDA 정보 사용":
+
+                                bar4.SetUserProperty("USER_FIELD_1", buildingSt);
+                                bar4.SetUserProperty("USER_FIELD_2", buildingStoreySt);
+
+                                break;
+
+                            case "사용자 지정":
+
+                                bar4.SetUserProperty("USER_FIELD_1", buildingSt);
+                                bar4.SetUserProperty("USER_FIELD_2", D.S_Building_S);
+
+                                break;
+                        }
                         MoveX(bar4, spacing);
                         CopyX(bar4, listsm);
                     }
                     else if (D.S_Type == "수직근+보강근1단")
                     {
+                        switch (D.S_UDA)
+                        {
+                            case "부재 UDA 정보 사용":
+
+                                bar4.SetUserProperty("USER_FIELD_1", buildingSt);
+                                bar4.SetUserProperty("USER_FIELD_2", buildingStoreySt);
+
+                                break;
+
+                            case "사용자 지정":
+
+                                bar4.SetUserProperty("USER_FIELD_1", buildingSt);
+                                bar4.SetUserProperty("USER_FIELD_2", D.S_Building_S);
+
+                                break;
+                        }
                         MoveX(bar4, spacing / 2);
                         CopyX(bar4, listA);
                     }
                     else if (D.S_Type == "수직근+보강근2단")
                     {
+                        switch (D.S_UDA)
+                        {
+                            case "부재 UDA 정보 사용":
+
+                                bar4.SetUserProperty("USER_FIELD_1", buildingSt);
+                                bar4.SetUserProperty("USER_FIELD_2", buildingStoreySt);
+
+                                break;
+
+                            case "사용자 지정":
+
+                                bar4.SetUserProperty("USER_FIELD_1", buildingSt);
+                                bar4.SetUserProperty("USER_FIELD_2", D.S_Building_S);
+
+                                break;
+                        }
                         MoveX(bar4, spacing);
                         CopyX(bar4, listsm);
 
@@ -6876,6 +8371,24 @@ namespace YT.WallVerticalRebar
                         MoveZ(b, (hMainBar / 2) + (sBar / 2));
 
                         MoveX(b, spacing / 3 * 2 + spacing);
+
+                        switch (D.S_UDA)
+                        {
+                            case "부재 UDA 정보 사용":
+
+                                b.SetUserProperty("USER_FIELD_1", buildingSt);
+                                b.SetUserProperty("USER_FIELD_2", buildingStoreySt);
+
+                                break;
+
+                            case "사용자 지정":
+
+                                b.SetUserProperty("USER_FIELD_1", buildingSt);
+                                b.SetUserProperty("USER_FIELD_2", D.S_Building_S);
+
+                                break;
+                        }
+
                         CopyX(b, listsa3);
 
                         var c = bar4;
@@ -6885,8 +8398,25 @@ namespace YT.WallVerticalRebar
                         MoveZ(c, (hMainBar / 2) + (sBar / 2));
 
                         MoveX(c, spacing / 3);
-                        CopyX(c, listfa2);
 
+                        switch (D.S_UDA)
+                        {
+                            case "부재 UDA 정보 사용":
+
+                                c.SetUserProperty("USER_FIELD_1", buildingSt);
+                                c.SetUserProperty("USER_FIELD_2", buildingStoreySt);
+
+                                break;
+
+                            case "사용자 지정":
+
+                                c.SetUserProperty("USER_FIELD_1", buildingSt);
+                                c.SetUserProperty("USER_FIELD_2", D.S_Building_S);
+
+                                break;
+                        }
+
+                        CopyX(c, listfa2);
 
                     }
                     else if (D.S_Type == "아니오")
@@ -6902,20 +8432,86 @@ namespace YT.WallVerticalRebar
                     //MoveZ(bar4, Convert.ToDouble(bar4.Spacings[0]) / 2 + (length - D.S_RangeTop - D.S_BeamDepth - te2 + D.S_SpacingZ));
                     //MoveZ(bar4, Convert.ToDouble(bar4.Spacings[0]) / 2 + (length - D.S_RangeTop - te2 + D.S_SpacingZ));
                     MoveZ(bar4, Convert.ToDouble(bar4.Spacings[0]) / 2 + (length - D.S_RangeTop - te2 + tee));
+
+                    switch (D.S_UDA)
+                    {
+                        case "부재 UDA 정보 사용":
+
+                            bar4.SetUserProperty("USER_FIELD_1", buildingSt);
+                            bar4.SetUserProperty("USER_FIELD_2", buildingStoreySt);
+
+                            break;
+
+                        case "사용자 지정":
+
+                            bar4.SetUserProperty("USER_FIELD_1", buildingSt);
+                            bar4.SetUserProperty("USER_FIELD_2", D.S_Building_S);
+
+                            break;
+                    }
+
                     MoveZ(bar4, (hMainBar / 2) + (sBar / 2));
 
                     if (D.S_Type == "수직근")
                     {
+                        switch (D.S_UDA)
+                        {
+                            case "부재 UDA 정보 사용":
+
+                                bar4.SetUserProperty("USER_FIELD_1", buildingSt);
+                                bar4.SetUserProperty("USER_FIELD_2", buildingStoreySt);
+
+                                break;
+
+                            case "사용자 지정":
+
+                                bar4.SetUserProperty("USER_FIELD_1", buildingSt);
+                                bar4.SetUserProperty("USER_FIELD_2", D.S_Building_S);
+
+                                break;
+                        }
                         MoveX(bar4, spacing);
                         CopyX(bar4, listsm);
                     }
                     else if (D.S_Type == "수직근+보강근1단")
                     {
+                        switch (D.S_UDA)
+                        {
+                            case "부재 UDA 정보 사용":
+
+                                bar4.SetUserProperty("USER_FIELD_1", buildingSt);
+                                bar4.SetUserProperty("USER_FIELD_2", buildingStoreySt);
+
+                                break;
+
+                            case "사용자 지정":
+
+                                bar4.SetUserProperty("USER_FIELD_1", buildingSt);
+                                bar4.SetUserProperty("USER_FIELD_2", D.S_Building_S);
+
+                                break;
+                        }
                         MoveX(bar4, spacing / 2);
                         CopyX(bar4, listA);
                     }
                     else if (D.S_Type == "수직근+보강근2단")
                     {
+                        switch (D.S_UDA)
+                        {
+                            case "부재 UDA 정보 사용":
+
+                                bar4.SetUserProperty("USER_FIELD_1", buildingSt);
+                                bar4.SetUserProperty("USER_FIELD_2", buildingStoreySt);
+
+                                break;
+
+                            case "사용자 지정":
+
+                                bar4.SetUserProperty("USER_FIELD_1", buildingSt);
+                                bar4.SetUserProperty("USER_FIELD_2", D.S_Building_S);
+
+                                break;
+                        }
 
                         MoveX(bar4, spacing);
                         CopyX(bar4, listsm);
@@ -6930,6 +8526,24 @@ namespace YT.WallVerticalRebar
                         MoveZ(b, (hMainBar / 2) + (sBar / 2));
 
                         MoveX(b, spacing / 3 * 2 + spacing);
+
+                        switch (D.S_UDA)
+                        {
+                            case "부재 UDA 정보 사용":
+
+                                b.SetUserProperty("USER_FIELD_1", buildingSt);
+                                b.SetUserProperty("USER_FIELD_2", buildingStoreySt);
+
+                                break;
+
+                            case "사용자 지정":
+
+                                b.SetUserProperty("USER_FIELD_1", buildingSt);
+                                b.SetUserProperty("USER_FIELD_2", D.S_Building_S);
+
+                                break;
+                        }
+
                         CopyX(b, listsa3);
 
                         var c = bar4;
@@ -6941,6 +8555,24 @@ namespace YT.WallVerticalRebar
                         MoveZ(c, (hMainBar / 2) + (sBar / 2));
 
                         MoveX(c, spacing / 3);
+
+                        switch (D.S_UDA)
+                        {
+                            case "부재 UDA 정보 사용":
+
+                                c.SetUserProperty("USER_FIELD_1", buildingSt);
+                                c.SetUserProperty("USER_FIELD_2", buildingStoreySt);
+
+                                break;
+
+                            case "사용자 지정":
+
+                                c.SetUserProperty("USER_FIELD_1", buildingSt);
+                                c.SetUserProperty("USER_FIELD_2", D.S_Building_S);
+
+                                break;
+                        }
+
                         CopyX(c, listfa2);
 
 
@@ -6958,19 +8590,83 @@ namespace YT.WallVerticalRebar
                     MoveZ(bar4, D.S_SpacingZ / 2 + Convert.ToDouble(bar4.Spacings[0]) / 2);
                     MoveZ(bar4, (hMainBar / 2) + (sBar / 2));
 
+                    switch (D.S_UDA)
+                    {
+                        case "부재 UDA 정보 사용":
+
+                            bar4.SetUserProperty("USER_FIELD_1", buildingSt);
+                            bar4.SetUserProperty("USER_FIELD_2", buildingStoreySt);
+
+                            break;
+
+                        case "사용자 지정":
+
+                            bar4.SetUserProperty("USER_FIELD_1", buildingSt);
+                            bar4.SetUserProperty("USER_FIELD_2", D.S_Building_S);
+
+                            break;
+                    }
+
                     if (D.S_Type == "수직근")
                     {
+                        switch (D.S_UDA)
+                        {
+                            case "부재 UDA 정보 사용":
+
+                                bar4.SetUserProperty("USER_FIELD_1", buildingSt);
+                                bar4.SetUserProperty("USER_FIELD_2", buildingStoreySt);
+
+                                break;
+
+                            case "사용자 지정":
+
+                                bar4.SetUserProperty("USER_FIELD_1", buildingSt);
+                                bar4.SetUserProperty("USER_FIELD_2", D.S_Building_S);
+
+                                break;
+                        }
                         MoveX(bar4, spacing);
                         CopyX(bar4, listsm);
                     }
                     else if (D.S_Type == "수직근+보강근1단")
                     {
+                        switch (D.S_UDA)
+                        {
+                            case "부재 UDA 정보 사용":
+
+                                bar4.SetUserProperty("USER_FIELD_1", buildingSt);
+                                bar4.SetUserProperty("USER_FIELD_2", buildingStoreySt);
+
+                                break;
+
+                            case "사용자 지정":
+
+                                bar4.SetUserProperty("USER_FIELD_1", buildingSt);
+                                bar4.SetUserProperty("USER_FIELD_2", D.S_Building_S);
+
+                                break;
+                        }
                         MoveX(bar4, spacing / 2);
                         CopyX(bar4, listA);
                     }
                     else if (D.S_Type == "수직근+보강근2단")
                     {
+                        switch (D.S_UDA)
+                        {
+                            case "부재 UDA 정보 사용":
 
+                                bar4.SetUserProperty("USER_FIELD_1", buildingSt);
+                                bar4.SetUserProperty("USER_FIELD_2", buildingStoreySt);
+
+                                break;
+
+                            case "사용자 지정":
+
+                                bar4.SetUserProperty("USER_FIELD_1", buildingSt);
+                                bar4.SetUserProperty("USER_FIELD_2", D.S_Building_S);
+
+                                break;
+                        }
                         MoveX(bar4, spacing);
                         CopyX(bar4, listsm);
 
@@ -6981,6 +8677,24 @@ namespace YT.WallVerticalRebar
                         MoveZ(b, (hMainBar / 2) + (sBar / 2));
 
                         MoveX(b, spacing / 3 * 2 + spacing);
+
+                        switch (D.S_UDA)
+                        {
+                            case "부재 UDA 정보 사용":
+
+                                b.SetUserProperty("USER_FIELD_1", buildingSt);
+                                b.SetUserProperty("USER_FIELD_2", buildingStoreySt);
+
+                                break;
+
+                            case "사용자 지정":
+
+                                b.SetUserProperty("USER_FIELD_1", buildingSt);
+                                b.SetUserProperty("USER_FIELD_2", D.S_Building_S);
+
+                                break;
+                        }
+
                         CopyX(b, listsa3);
 
                         var c = bar4;
@@ -6990,7 +8704,27 @@ namespace YT.WallVerticalRebar
                         MoveZ(c, (hMainBar / 2) + (sBar / 2));
 
                         MoveX(c, spacing / 3);
+
+                        switch (D.S_UDA)
+                        {
+                            case "부재 UDA 정보 사용":
+
+                                c.SetUserProperty("USER_FIELD_1", buildingSt);
+                                c.SetUserProperty("USER_FIELD_2", buildingStoreySt);
+
+                                break;
+
+                            case "사용자 지정":
+
+                                c.SetUserProperty("USER_FIELD_1", buildingSt);
+                                c.SetUserProperty("USER_FIELD_2", D.S_Building_S);
+
+                                break;
+                        }
+
                         CopyX(c, listfa2);
+
+
 
                     }
                     else if (D.S_Type == "아니오")
@@ -7006,18 +8740,83 @@ namespace YT.WallVerticalRebar
                     MoveZ(bar4, D.S_SpacingZ / 2 + Convert.ToDouble(bar4.Spacings[0]) / 2);
                     MoveZ(bar4, (hMainBar / 2) + (sBar / 2));
 
+                    switch (D.S_UDA)
+                    {
+                        case "부재 UDA 정보 사용":
+
+                            bar4.SetUserProperty("USER_FIELD_1", buildingSt);
+                            bar4.SetUserProperty("USER_FIELD_2", buildingStoreySt);
+
+                            break;
+
+                        case "사용자 지정":
+
+                            bar4.SetUserProperty("USER_FIELD_1", buildingSt);
+                            bar4.SetUserProperty("USER_FIELD_2", D.S_Building_S);
+
+                            break;
+                    }
+
                     if (D.S_Type == "수직근")
                     {
+                        switch (D.S_UDA)
+                        {
+                            case "부재 UDA 정보 사용":
+
+                                bar4.SetUserProperty("USER_FIELD_1", buildingSt);
+                                bar4.SetUserProperty("USER_FIELD_2", buildingStoreySt);
+
+                                break;
+
+                            case "사용자 지정":
+
+                                bar4.SetUserProperty("USER_FIELD_1", buildingSt);
+                                bar4.SetUserProperty("USER_FIELD_2", D.S_Building_S);
+
+                                break;
+                        }
                         MoveX(bar4, spacing);
                         CopyX(bar4, listsm);
                     }
                     else if (D.S_Type == "수직근+보강근1단")
                     {
+                        switch (D.S_UDA)
+                        {
+                            case "부재 UDA 정보 사용":
+
+                                bar4.SetUserProperty("USER_FIELD_1", buildingSt);
+                                bar4.SetUserProperty("USER_FIELD_2", buildingStoreySt);
+
+                                break;
+
+                            case "사용자 지정":
+
+                                bar4.SetUserProperty("USER_FIELD_1", buildingSt);
+                                bar4.SetUserProperty("USER_FIELD_2", D.S_Building_S);
+
+                                break;
+                        }
                         MoveX(bar4, spacing / 2);
                         CopyX(bar4, listA);
                     }
                     else if (D.S_Type == "수직근+보강근2단")
                     {
+                        switch (D.S_UDA)
+                        {
+                            case "부재 UDA 정보 사용":
+
+                                bar4.SetUserProperty("USER_FIELD_1", buildingSt);
+                                bar4.SetUserProperty("USER_FIELD_2", buildingStoreySt);
+
+                                break;
+
+                            case "사용자 지정":
+
+                                bar4.SetUserProperty("USER_FIELD_1", buildingSt);
+                                bar4.SetUserProperty("USER_FIELD_2", D.S_Building_S);
+
+                                break;
+                        }
                         MoveX(bar4, spacing);
                         CopyX(bar4, listsm);
 
@@ -7028,6 +8827,24 @@ namespace YT.WallVerticalRebar
                         MoveZ(b, (hMainBar / 2) + (sBar / 2));
 
                         MoveX(b, spacing / 3 * 2 + spacing);
+
+                        switch (D.S_UDA)
+                        {
+                            case "부재 UDA 정보 사용":
+
+                                b.SetUserProperty("USER_FIELD_1", buildingSt);
+                                b.SetUserProperty("USER_FIELD_2", buildingStoreySt);
+
+                                break;
+
+                            case "사용자 지정":
+
+                                b.SetUserProperty("USER_FIELD_1", buildingSt);
+                                b.SetUserProperty("USER_FIELD_2", D.S_Building_S);
+
+                                break;
+                        }
+
                         CopyX(b, listsa3);
 
                         var c = bar4;
@@ -7037,7 +8854,28 @@ namespace YT.WallVerticalRebar
                         MoveZ(c, (hMainBar / 2) + (sBar / 2));
 
                         MoveX(c, spacing / 3);
+
+                        switch (D.S_UDA)
+                        {
+                            case "부재 UDA 정보 사용":
+
+                                c.SetUserProperty("USER_FIELD_1", buildingSt);
+                                c.SetUserProperty("USER_FIELD_2", buildingStoreySt);
+
+                                break;
+
+                            case "사용자 지정":
+
+                                c.SetUserProperty("USER_FIELD_1", buildingSt);
+                                c.SetUserProperty("USER_FIELD_2", D.S_Building_S);
+
+                                break;
+                        }
+
                         CopyX(c, listfa2);
+
+
+
 
                     }
                     else if (D.S_Type == "아니오")
@@ -7047,46 +8885,53 @@ namespace YT.WallVerticalRebar
                 }
 
             }
+            #endregion
 
-            switch (D.S_UDA)
-            {
-                case "부재 UDA 정보 사용":
+            //switch (D.S_UDA)
+            //{
+            //    case "부재 UDA 정보 사용":
 
-                    bar1.SetUserProperty("USER_FIELD_1", buildingSt);
-                    bar1.SetUserProperty("USER_FIELD_2", buildingStoreySt);
+            //        bar1.SetUserProperty("USER_FIELD_1", buildingSt);
+            //        bar1.SetUserProperty("USER_FIELD_2", buildingStoreySt);
 
-                    bar2.SetUserProperty("USER_FIELD_1", buildingSt);
-                    bar2.SetUserProperty("USER_FIELD_2", buildingStoreySt);
+            //        bar2.SetUserProperty("USER_FIELD_1", buildingSt);
+            //        bar2.SetUserProperty("USER_FIELD_2", buildingStoreySt);
 
-                    bar3.SetUserProperty("USER_FIELD_1", buildingSt);
-                    bar3.SetUserProperty("USER_FIELD_2", buildingStoreySt);
+            //        bar3.SetUserProperty("USER_FIELD_1", buildingSt);
+            //        bar3.SetUserProperty("USER_FIELD_2", buildingStoreySt);
 
-                    bar4.SetUserProperty("USER_FIELD_1", buildingSt);
-                    bar4.SetUserProperty("USER_FIELD_2", buildingStoreySt);
+            //        bar4.SetUserProperty("USER_FIELD_1", buildingSt);
+            //        bar4.SetUserProperty("USER_FIELD_2", buildingStoreySt);
 
-                    break;
+            //        break;
 
-                case "사용자 지정":
+            //    case "사용자 지정":
 
-                    bar1.SetUserProperty("USER_FIELD_1", D.S_Building);
-                    bar1.SetUserProperty("USER_FIELD_2", D.S_Building_S);
+            //        //bar1.SetUserProperty("USER_FIELD_1", D.S_Building);
+            //        bar1.SetUserProperty("USER_FIELD_1", buildingSt);
+            //        bar1.SetUserProperty("USER_FIELD_2", D.S_Building_S);
 
-                    bar2.SetUserProperty("USER_FIELD_1", D.S_Building);
-                    bar2.SetUserProperty("USER_FIELD_2", D.S_Building_S);
+            //        //bar2.SetUserProperty("USER_FIELD_1", D.S_Building);
+            //        bar2.SetUserProperty("USER_FIELD_1", buildingSt);
+            //        bar2.SetUserProperty("USER_FIELD_2", D.S_Building_S);
 
-                    bar3.SetUserProperty("USER_FIELD_1", D.S_Building);
-                    bar3.SetUserProperty("USER_FIELD_2", D.S_Building_S);
+            //        //bar3.SetUserProperty("USER_FIELD_1", D.S_Building);
+            //        bar3.SetUserProperty("USER_FIELD_1", buildingSt);
+            //        bar3.SetUserProperty("USER_FIELD_2", D.S_Building_S);
 
-                    bar4.SetUserProperty("USER_FIELD_1", D.S_Building);
-                    bar4.SetUserProperty("USER_FIELD_2", D.S_Building_S);
+            //        //bar4.SetUserProperty("USER_FIELD_1", D.S_Building);
+            //        bar4.SetUserProperty("USER_FIELD_1", buildingSt);
+            //        bar4.SetUserProperty("USER_FIELD_2", D.S_Building_S);
 
-                    break;
-            }
+            //        break;
+            //}
 
 
             /*-----------------------------------------------------------------------------------------*/
 
             #region 상부전용
+
+            #region rebar5
 
             var bar5 = new TSM.RebarGroup();
             bar5.Polygons.Add(poly);
@@ -7239,16 +9084,82 @@ namespace YT.WallVerticalRebar
                     MoveZ(bar5, (length - D.S_RangeTop - te2 + tee));
                     MoveZ(bar5, (hMainBar / 2) + (sBar / 2));
 
+                    switch (D.S_UDA)
+                    {
+                        case "부재 UDA 정보 사용":
+
+                            bar5.SetUserProperty("USER_FIELD_1", buildingSt);
+                            bar5.SetUserProperty("USER_FIELD_2", buildingStoreySt);
+
+                            break;
+
+                        case "사용자 지정":
+
+                            bar5.SetUserProperty("USER_FIELD_1", buildingSt);
+                            bar5.SetUserProperty("USER_FIELD_2", D.S_Building_S);
+
+                            break;
+                    }
+
                     if (D.S_Type == "수직근")
                     {
+                        switch (D.S_UDA)
+                        {
+                            case "부재 UDA 정보 사용":
+
+                                bar5.SetUserProperty("USER_FIELD_1", buildingSt);
+                                bar5.SetUserProperty("USER_FIELD_2", buildingStoreySt);
+
+                                break;
+
+                            case "사용자 지정":
+
+                                bar5.SetUserProperty("USER_FIELD_1", buildingSt);
+                                bar5.SetUserProperty("USER_FIELD_2", D.S_Building_S);
+
+                                break;
+                        }
                         CopyX(bar5, listfm);
                     }
                     else if (D.S_Type == "수직근+보강근1단")
                     {
+                        switch (D.S_UDA)
+                        {
+                            case "부재 UDA 정보 사용":
+
+                                bar5.SetUserProperty("USER_FIELD_1", buildingSt);
+                                bar5.SetUserProperty("USER_FIELD_2", buildingStoreySt);
+
+                                break;
+
+                            case "사용자 지정":
+
+                                bar5.SetUserProperty("USER_FIELD_1", buildingSt);
+                                bar5.SetUserProperty("USER_FIELD_2", D.S_Building_S);
+
+                                break;
+                        }
                         CopyX(bar5, listV);
                     }
                     else if (D.S_Type == "수직근+보강근2단")
                     {
+                        switch (D.S_UDA)
+                        {
+                            case "부재 UDA 정보 사용":
+
+                                bar5.SetUserProperty("USER_FIELD_1", buildingSt);
+                                bar5.SetUserProperty("USER_FIELD_2", buildingStoreySt);
+
+                                break;
+
+                            case "사용자 지정":
+
+                                bar5.SetUserProperty("USER_FIELD_1", buildingSt);
+                                bar5.SetUserProperty("USER_FIELD_2", D.S_Building_S);
+
+                                break;
+                        }
+
                         CopyX(bar5, listfm);
 
                         var b = bar5;
@@ -7259,6 +9170,22 @@ namespace YT.WallVerticalRebar
                         MoveZ(b, (hMainBar / 2) + (sBar / 2));
 
                         MoveX(b, spacing / 3 * 2);
+                        switch (D.S_UDA)
+                        {
+                            case "부재 UDA 정보 사용":
+
+                                b.SetUserProperty("USER_FIELD_1", buildingSt);
+                                b.SetUserProperty("USER_FIELD_2", buildingStoreySt);
+
+                                break;
+
+                            case "사용자 지정":
+
+                                b.SetUserProperty("USER_FIELD_1", buildingSt);
+                                b.SetUserProperty("USER_FIELD_2", D.S_Building_S);
+
+                                break;
+                        }
                         CopyX(b, listfa3);
 
                         var c = bar5;
@@ -7269,7 +9196,25 @@ namespace YT.WallVerticalRebar
                         MoveZ(c, (hMainBar / 2) + (sBar / 2));
 
                         MoveX(c, spacing / 3 + spacing);
+                        switch (D.S_UDA)
+                        {
+                            case "부재 UDA 정보 사용":
+
+                                c.SetUserProperty("USER_FIELD_1", buildingSt);
+                                c.SetUserProperty("USER_FIELD_2", buildingStoreySt);
+
+                                break;
+
+                            case "사용자 지정":
+
+                                c.SetUserProperty("USER_FIELD_1", buildingSt);
+                                c.SetUserProperty("USER_FIELD_2", D.S_Building_S);
+
+                                break;
+                        }
                         CopyX(c, listsa2);
+
+
 
                     }
                     else if (D.S_Type == "아니오")
@@ -7280,8 +9225,12 @@ namespace YT.WallVerticalRebar
                 }
 
             }
+            #endregion
+
             /*-------------------------------*/
 
+
+            #region rebar6
 
             var bar6 = new TSM.RebarGroup();
             bar6.Polygons.Add(poly2);
@@ -7426,18 +9375,84 @@ namespace YT.WallVerticalRebar
                     MoveZ(bar6, (length - D.S_RangeTop - te2 + tee));
                     MoveZ(bar6, (hMainBar / 2) + (sBar / 2));
 
+                    switch (D.S_UDA)
+                    {
+                        case "부재 UDA 정보 사용":
+
+                            bar6.SetUserProperty("USER_FIELD_1", buildingSt);
+                            bar6.SetUserProperty("USER_FIELD_2", buildingStoreySt);
+
+                            break;
+
+                        case "사용자 지정":
+
+                            bar6.SetUserProperty("USER_FIELD_1", buildingSt);
+                            bar6.SetUserProperty("USER_FIELD_2", D.S_Building_S);
+
+                            break;
+                    }
+
                     if (D.S_Type == "수직근")
                     {
+                        switch (D.S_UDA)
+                        {
+                            case "부재 UDA 정보 사용":
+
+                                bar6.SetUserProperty("USER_FIELD_1", buildingSt);
+                                bar6.SetUserProperty("USER_FIELD_2", buildingStoreySt);
+
+                                break;
+
+                            case "사용자 지정":
+
+                                bar6.SetUserProperty("USER_FIELD_1", buildingSt);
+                                bar6.SetUserProperty("USER_FIELD_2", D.S_Building_S);
+
+                                break;
+                        }
                         MoveX(bar6, spacing);
                         CopyX(bar6, listsm);
                     }
                     else if (D.S_Type == "수직근+보강근1단")
                     {
+                        switch (D.S_UDA)
+                        {
+                            case "부재 UDA 정보 사용":
+
+                                bar6.SetUserProperty("USER_FIELD_1", buildingSt);
+                                bar6.SetUserProperty("USER_FIELD_2", buildingStoreySt);
+
+                                break;
+
+                            case "사용자 지정":
+
+                                bar6.SetUserProperty("USER_FIELD_1", buildingSt);
+                                bar6.SetUserProperty("USER_FIELD_2", D.S_Building_S);
+
+                                break;
+                        }
                         MoveX(bar6, spacing / 2);
                         CopyX(bar6, listA);
                     }
                     else if (D.S_Type == "수직근+보강근2단")
                     {
+                        switch (D.S_UDA)
+                        {
+                            case "부재 UDA 정보 사용":
+
+                                bar6.SetUserProperty("USER_FIELD_1", buildingSt);
+                                bar6.SetUserProperty("USER_FIELD_2", buildingStoreySt);
+
+                                break;
+
+                            case "사용자 지정":
+
+                                bar6.SetUserProperty("USER_FIELD_1", buildingSt);
+                                bar6.SetUserProperty("USER_FIELD_2", D.S_Building_S);
+
+                                break;
+                        }
+
                         MoveX(bar6, spacing);
                         CopyX(bar6, listsm);
 
@@ -7449,6 +9464,22 @@ namespace YT.WallVerticalRebar
                         MoveZ(b, (hMainBar / 2) + (sBar / 2));
 
                         MoveX(b, spacing / 3 * 2 + spacing);
+                        switch (D.S_UDA)
+                        {
+                            case "부재 UDA 정보 사용":
+
+                                b.SetUserProperty("USER_FIELD_1", buildingSt);
+                                b.SetUserProperty("USER_FIELD_2", buildingStoreySt);
+
+                                break;
+
+                            case "사용자 지정":
+
+                                b.SetUserProperty("USER_FIELD_1", buildingSt);
+                                b.SetUserProperty("USER_FIELD_2", D.S_Building_S);
+
+                                break;
+                        }
                         CopyX(b, listsa3);
                         //b.Delete();
 
@@ -7460,6 +9491,22 @@ namespace YT.WallVerticalRebar
                         MoveZ(c, (hMainBar / 2) + (sBar / 2));
 
                         MoveX(c, spacing / 3);
+                        switch (D.S_UDA)
+                        {
+                            case "부재 UDA 정보 사용":
+
+                                c.SetUserProperty("USER_FIELD_1", buildingSt);
+                                c.SetUserProperty("USER_FIELD_2", buildingStoreySt);
+
+                                break;
+
+                            case "사용자 지정":
+
+                                c.SetUserProperty("USER_FIELD_1", buildingSt);
+                                c.SetUserProperty("USER_FIELD_2", D.S_Building_S);
+
+                                break;
+                        }
                         CopyX(c, listfa2);
 
 
@@ -7472,8 +9519,11 @@ namespace YT.WallVerticalRebar
 
                 }
             }
+            #endregion
 
             /*-------------------------------*/
+
+            #region rebar7
 
             var bar7 = new TSM.RebarGroup();
             bar7.Polygons.Add(poly);
@@ -7618,16 +9668,83 @@ namespace YT.WallVerticalRebar
                     MoveZ(bar7, Convert.ToDouble(bar7.Spacings[0]) / 2 + (length - D.S_RangeTop - te2 + tee));
                     MoveZ(bar7, (hMainBar / 2) + (sBar / 2));
 
+                    switch (D.S_UDA)
+                    {
+                        case "부재 UDA 정보 사용":
+
+                            bar7.SetUserProperty("USER_FIELD_1", buildingSt);
+                            bar7.SetUserProperty("USER_FIELD_2", buildingStoreySt);
+
+                            break;
+
+                        case "사용자 지정":
+
+                            bar7.SetUserProperty("USER_FIELD_1", buildingSt);
+                            bar7.SetUserProperty("USER_FIELD_2", D.S_Building_S);
+
+                            break;
+                    }
+
+
                     if (D.S_Type == "수직근")
                     {
+                        switch (D.S_UDA)
+                        {
+                            case "부재 UDA 정보 사용":
+
+                                bar7.SetUserProperty("USER_FIELD_1", buildingSt);
+                                bar7.SetUserProperty("USER_FIELD_2", buildingStoreySt);
+
+                                break;
+
+                            case "사용자 지정":
+
+                                bar7.SetUserProperty("USER_FIELD_1", buildingSt);
+                                bar7.SetUserProperty("USER_FIELD_2", D.S_Building_S);
+
+                                break;
+                        }
                         CopyX(bar7, listfm);
                     }
                     else if (D.S_Type == "수직근+보강근1단")
                     {
+                        switch (D.S_UDA)
+                        {
+                            case "부재 UDA 정보 사용":
+
+                                bar7.SetUserProperty("USER_FIELD_1", buildingSt);
+                                bar7.SetUserProperty("USER_FIELD_2", buildingStoreySt);
+
+                                break;
+
+                            case "사용자 지정":
+
+                                bar7.SetUserProperty("USER_FIELD_1", buildingSt);
+                                bar7.SetUserProperty("USER_FIELD_2", D.S_Building_S);
+
+                                break;
+                        }
                         CopyX(bar7, listV);
                     }
                     else if (D.S_Type == "수직근+보강근2단")
                     {
+                        switch (D.S_UDA)
+                        {
+                            case "부재 UDA 정보 사용":
+
+                                bar7.SetUserProperty("USER_FIELD_1", buildingSt);
+                                bar7.SetUserProperty("USER_FIELD_2", buildingStoreySt);
+
+                                break;
+
+                            case "사용자 지정":
+
+                                bar7.SetUserProperty("USER_FIELD_1", buildingSt);
+                                bar7.SetUserProperty("USER_FIELD_2", D.S_Building_S);
+
+                                break;
+                        }
+
                         CopyX(bar7, listfm);
 
                         var b = bar7;
@@ -7638,6 +9755,22 @@ namespace YT.WallVerticalRebar
                         MoveZ(b, (hMainBar / 2) + (sBar / 2));
 
                         MoveX(b, spacing / 3 * 2);
+                        switch (D.S_UDA)
+                        {
+                            case "부재 UDA 정보 사용":
+
+                                b.SetUserProperty("USER_FIELD_1", buildingSt);
+                                b.SetUserProperty("USER_FIELD_2", buildingStoreySt);
+
+                                break;
+
+                            case "사용자 지정":
+
+                                b.SetUserProperty("USER_FIELD_1", buildingSt);
+                                b.SetUserProperty("USER_FIELD_2", D.S_Building_S);
+
+                                break;
+                        }
                         CopyX(b, listfa3);
 
                         var c = bar7;
@@ -7648,7 +9781,25 @@ namespace YT.WallVerticalRebar
                         MoveZ(c, (hMainBar / 2) + (sBar / 2));
 
                         MoveX(c, spacing / 3 + spacing);
+                        switch (D.S_UDA)
+                        {
+                            case "부재 UDA 정보 사용":
+
+                                c.SetUserProperty("USER_FIELD_1", buildingSt);
+                                c.SetUserProperty("USER_FIELD_2", buildingStoreySt);
+
+                                break;
+
+                            case "사용자 지정":
+
+                                c.SetUserProperty("USER_FIELD_1", buildingSt);
+                                c.SetUserProperty("USER_FIELD_2", D.S_Building_S);
+
+                                break;
+                        }
                         CopyX(c, listsa2);
+
+
                     }
                     else if (D.S_Type == "아니오")
                     {
@@ -7658,8 +9809,11 @@ namespace YT.WallVerticalRebar
                 }
 
             }
+            #endregion
 
             /*-------------------------------*/
+
+            #region rebar8
 
             var bar8 = new TSM.RebarGroup();
             bar8.Polygons.Add(poly2);
@@ -7683,7 +9837,6 @@ namespace YT.WallVerticalRebar
                 bar8.Spacings = CopyArrayB(length - el - D.S_BeamDepth - (D.S_SpacingZ / 2) - D.S_SpacingZ, D.S_SpacingZ);
 
             }
-
 
             bar8.ExcludeType = TSM.RebarGroup.ExcludeTypeEnum.EXCLUDE_TYPE_NONE;
             bar8.Father = beam;
@@ -7783,6 +9936,8 @@ namespace YT.WallVerticalRebar
             bar8.StartPoint = new TSG.Point(minX, minY, minZ);
             bar8.EndPoint = new TSG.Point(minX, minY, minZ + spacing);
 
+
+
             if (D.S_YesOrNO == "예")
             {
 
@@ -7799,44 +9954,147 @@ namespace YT.WallVerticalRebar
                 else if (D.S_RangeType == "상,하")
                 {
                     bar8.Insert();
+
                     MoveX(bar8, size, rebar);
                     //MoveZ(bar8, Convert.ToDouble(bar8.Spacings[0]) / 2 + (length - D.S_RangeTop - D.S_BeamDepth - te2 + D.S_SpacingZ));
                     MoveZ(bar8, Convert.ToDouble(bar8.Spacings[0]) / 2 + (length - D.S_RangeTop - te2 + tee));
                     MoveZ(bar8, (hMainBar / 2) + (sBar / 2));
 
+                    switch (D.S_UDA)
+                    {
+                        case "부재 UDA 정보 사용":
+
+                            bar8.SetUserProperty("USER_FIELD_1", buildingSt);
+                            bar8.SetUserProperty("USER_FIELD_2", buildingStoreySt);
+
+                            break;
+
+                        case "사용자 지정":
+
+                            bar8.SetUserProperty("USER_FIELD_1", buildingSt);
+                            bar8.SetUserProperty("USER_FIELD_2", D.S_Building_S);
+
+                            break;
+                    }
+
                     if (D.S_Type == "수직근")
                     {
+                        switch (D.S_UDA)
+                        {
+                            case "부재 UDA 정보 사용":
+
+                                bar8.SetUserProperty("USER_FIELD_1", buildingSt);
+                                bar8.SetUserProperty("USER_FIELD_2", buildingStoreySt);
+
+                                break;
+
+                            case "사용자 지정":
+
+                                bar8.SetUserProperty("USER_FIELD_1", buildingSt);
+                                bar8.SetUserProperty("USER_FIELD_2", D.S_Building_S);
+
+                                break;
+                        }
                         MoveX(bar8, spacing);
                         CopyX(bar8, listsm);
                     }
                     else if (D.S_Type == "수직근+보강근1단")
                     {
+                        switch (D.S_UDA)
+                        {
+                            case "부재 UDA 정보 사용":
+
+                                bar8.SetUserProperty("USER_FIELD_1", buildingSt);
+                                bar8.SetUserProperty("USER_FIELD_2", buildingStoreySt);
+
+                                break;
+
+                            case "사용자 지정":
+
+                                bar8.SetUserProperty("USER_FIELD_1", buildingSt);
+                                bar8.SetUserProperty("USER_FIELD_2", D.S_Building_S);
+
+                                break;
+                        }
                         MoveX(bar8, spacing / 2);
                         CopyX(bar8, listA);
                     }
                     else if (D.S_Type == "수직근+보강근2단")
                     {
+                        switch (D.S_UDA)
+                        {
+                            case "부재 UDA 정보 사용":
+
+                                bar8.SetUserProperty("USER_FIELD_1", buildingSt);
+                                bar8.SetUserProperty("USER_FIELD_2", buildingStoreySt);
+
+                                break;
+
+                            case "사용자 지정":
+
+                                bar8.SetUserProperty("USER_FIELD_1", buildingSt);
+                                bar8.SetUserProperty("USER_FIELD_2", D.S_Building_S);
+
+                                break;
+                        }
                         MoveX(bar8, spacing);
                         CopyX(bar8, listsm);
 
+
                         var b = bar8;
                         b.Insert();
+
                         MoveX(b, size, rebar);
-                        //MoveZ(b, Convert.ToDouble(bar8.Spacings[0]) / 2 + (length - D.S_RangeTop - D.S_BeamDepth - te2 + D.S_SpacingZ));
                         MoveZ(b, Convert.ToDouble(bar8.Spacings[0]) / 2 + (length - D.S_RangeTop - te2 + tee));
                         MoveZ(b, (hMainBar / 2) + (sBar / 2));
 
                         MoveX(b, spacing / 3 * 2 + spacing);
+
+                        switch (D.S_UDA)
+                        {
+                            case "부재 UDA 정보 사용":
+
+                                b.SetUserProperty("USER_FIELD_1", buildingSt);
+                                b.SetUserProperty("USER_FIELD_2", buildingStoreySt);
+
+                                break;
+
+                            case "사용자 지정":
+
+                                b.SetUserProperty("USER_FIELD_1", buildingSt);
+                                b.SetUserProperty("USER_FIELD_2", D.S_Building_S);
+
+                                break;
+                        }
+
                         CopyX(b, listsa3);
 
                         var c = bar8;
                         c.Insert();
+
                         MoveX(c, size, rebar);
-                        //MoveZ(c, Convert.ToDouble(bar8.Spacings[0]) / 2 + (length - D.S_RangeTop - D.S_BeamDepth - te2 + D.S_SpacingZ));
                         MoveZ(c, Convert.ToDouble(bar8.Spacings[0]) / 2 + (length - D.S_RangeTop - te2 + tee));
                         MoveZ(c, (hMainBar / 2) + (sBar / 2));
 
                         MoveX(c, spacing / 3);
+
+                        switch (D.S_UDA)
+                        {
+                            case "부재 UDA 정보 사용":
+
+                                c.SetUserProperty("USER_FIELD_1", buildingSt);
+                                c.SetUserProperty("USER_FIELD_2", buildingStoreySt);
+
+                                break;
+
+                            case "사용자 지정":
+
+                                c.SetUserProperty("USER_FIELD_1", buildingSt);
+                                c.SetUserProperty("USER_FIELD_2", D.S_Building_S);
+
+                                break;
+                        }
+
                         CopyX(c, listfa2);
 
 
@@ -7847,48 +10105,14 @@ namespace YT.WallVerticalRebar
                     }
 
                 }
-
-            }
-
-            switch (D.S_UDA)
-            {
-                case "부재 UDA 정보 사용":
-
-                    bar5.SetUserProperty("USER_FIELD_1", buildingSt);
-                    bar5.SetUserProperty("USER_FIELD_2", buildingStoreySt);
-
-                    bar6.SetUserProperty("USER_FIELD_1", buildingSt);
-                    bar6.SetUserProperty("USER_FIELD_2", buildingStoreySt);
-
-                    bar7.SetUserProperty("USER_FIELD_1", buildingSt);
-                    bar7.SetUserProperty("USER_FIELD_2", buildingStoreySt);
-
-                    bar8.SetUserProperty("USER_FIELD_1", buildingSt);
-                    bar8.SetUserProperty("USER_FIELD_2", buildingStoreySt);
-
-                    break;
-
-                case "사용자 지정":
-
-                    bar5.SetUserProperty("USER_FIELD_1", D.S_Building);
-                    bar5.SetUserProperty("USER_FIELD_2", D.S_Building_S);
-
-                    bar6.SetUserProperty("USER_FIELD_1", D.S_Building);
-                    bar6.SetUserProperty("USER_FIELD_2", D.S_Building_S);
-
-                    bar7.SetUserProperty("USER_FIELD_1", D.S_Building);
-                    bar7.SetUserProperty("USER_FIELD_2", D.S_Building_S);
-
-                    bar8.SetUserProperty("USER_FIELD_1", D.S_Building);
-                    bar8.SetUserProperty("USER_FIELD_2", D.S_Building_S);
-
-                    break;
             }
             #endregion
 
+            #endregion
 
             m.CommitChanges();
         }
+
 
         private ArrayList CopyArrayB(double length, double spacing)
         {
@@ -8104,9 +10328,9 @@ namespace YT.WallVerticalRebar
             }
             else
             {
-                    
+
             }
-           
+
 
             return list;
         }
@@ -8128,13 +10352,13 @@ namespace YT.WallVerticalRebar
                 list.Add(spacing * 2);
             }
 
-            if (ea1 % 2 == 0 && te1 != 0&&te1 > spacing) // 짝
+            if (ea1 % 2 == 0 && te1 != 0 && te1 > spacing) // 짝
             {
                 list.Add(spacing * 2);
                 list.Add(te1);
             }
 
-            else if (ea1 % 2 == 1 && te1 != 0&&te1 > spacing) // 홀
+            else if (ea1 % 2 == 1 && te1 != 0 && te1 > spacing) // 홀
             {
                 list.Add(spacing * 2);
                 list.Add(te1);
@@ -8149,11 +10373,11 @@ namespace YT.WallVerticalRebar
                 list.Add(spacing * 2);
             }
 
-            else if (ea1 % 2 == 0 && te1 == 0&&te1 > spacing) // 짝
+            else if (ea1 % 2 == 0 && te1 == 0 && te1 > spacing) // 짝
             {
 
             }
-            else if (ea1 % 2 == 1 && te1 == 0&&te1 > spacing) // 홀
+            else if (ea1 % 2 == 1 && te1 == 0 && te1 > spacing) // 홀
             {
             }
             else if (ea1 % 2 == 0 && te1 == 0 && te1 <= spacing) // 짝
@@ -8173,6 +10397,27 @@ namespace YT.WallVerticalRebar
 
             return list;
         }
+        private void CopyXUerPropery(TSM.RebarGroup bar, ArrayList list, string Building, string BuildingSt)
+        {
+            //var ob = bar as TSM.ModelObject;
+
+            double sum = 0.0;
+
+            for (int i = 0; i < list.Count; i++)
+            {
+                var a = Convert.ToDouble(list[i]);
+
+                var aaa = sum += a;
+
+                var mo = TSM.Operations.Operation.CopyObject(bar, new TSG.Vector(aaa, 0, 0)) as TSM.RebarGroup;
+
+                mo.SetUserProperty("USER_FIELD_1", Building);
+                mo.SetUserProperty("USER_FIELD_2", BuildingSt);
+
+            }
+        }
+
+
 
         private void CopyX(TSM.RebarGroup bar, ArrayList list)
         {

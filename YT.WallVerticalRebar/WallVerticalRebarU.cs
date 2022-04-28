@@ -629,7 +629,7 @@ namespace YT.WallVerticalRebar
             this.SetAttributeValue(this.R_DR_Splice1, 600.0);
             this.SetAttributeValue(this.R_DR_Splice2, 0.0);
 
-            this.SetAttributeValue(this.R_DR_HookCorver, 50.0);
+            //this.SetAttributeValue(this.R_DR_HookCorver, 50.0);
             this.SetAttributeValue(this.R_DR_HookLength, 260.0);
             this.SetAttributeValue(this.R_DR_HookInOut, "외");
 
@@ -656,7 +656,7 @@ namespace YT.WallVerticalRebar
             this.SetAttributeValue(this.R_DL_Splice1, 600.0);
             this.SetAttributeValue(this.R_DL_Splice2, 0.0);
 
-            this.SetAttributeValue(this.R_DL_HookCorver, 50.0);
+            //this.SetAttributeValue(this.R_DL_HookCorver, 50.0);
             this.SetAttributeValue(this.R_DL_HookLength, 260.0);
             this.SetAttributeValue(this.R_DL_HookInOut, "외");
 

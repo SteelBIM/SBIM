@@ -38,6 +38,8 @@ namespace TEST
             this.btnOpen = new System.Windows.Forms.Button();
             this.tboxOpen = new System.Windows.Forms.TextBox();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.btnSlab = new System.Windows.Forms.Button();
+            this.btngetob = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // WallVericalRebarTest
@@ -111,7 +113,7 @@ namespace TEST
             // 
             // tboxOpen
             // 
-            this.tboxOpen.Location = new System.Drawing.Point(404, 108);
+            this.tboxOpen.Location = new System.Drawing.Point(408, 33);
             this.tboxOpen.Name = "tboxOpen";
             this.tboxOpen.Size = new System.Drawing.Size(100, 21);
             this.tboxOpen.TabIndex = 12;
@@ -119,16 +121,36 @@ namespace TEST
             // comboBox1
             // 
             this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(363, 218);
+            this.comboBox1.Location = new System.Drawing.Point(247, 62);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(121, 20);
             this.comboBox1.TabIndex = 13;
+            // 
+            // btnSlab
+            // 
+            this.btnSlab.Location = new System.Drawing.Point(247, 138);
+            this.btnSlab.Name = "btnSlab";
+            this.btnSlab.Size = new System.Drawing.Size(155, 23);
+            this.btnSlab.TabIndex = 14;
+            this.btnSlab.Text = "slab";
+            this.btnSlab.UseVisualStyleBackColor = true;
+            // 
+            // btngetob
+            // 
+            this.btngetob.Location = new System.Drawing.Point(247, 167);
+            this.btngetob.Name = "btngetob";
+            this.btngetob.Size = new System.Drawing.Size(155, 23);
+            this.btngetob.TabIndex = 15;
+            this.btngetob.Text = "btngetob";
+            this.btngetob.UseVisualStyleBackColor = true;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.btngetob);
+            this.Controls.Add(this.btnSlab);
             this.Controls.Add(this.comboBox1);
             this.Controls.Add(this.tboxOpen);
             this.Controls.Add(this.btnOpen);
@@ -155,6 +177,8 @@ namespace TEST
         private System.Windows.Forms.Button btnOpen;
         private System.Windows.Forms.TextBox tboxOpen;
         private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.Button btnSlab;
+        private System.Windows.Forms.Button btngetob;
     }
 }
 

@@ -36,7 +36,7 @@ namespace YT.COM
 
         // 종속
         //public TSM.ModelObject Father { get; set; }b
-        public TSM.Beam Father { get; set; }
+        public TSM.ModelObject Father { get; set; }
 
         // 일반
         public string Name { get; set; }
