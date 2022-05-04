@@ -63,3 +63,4 @@ D:\000 SVN\YT.SBIM\TEST.EJU\obj\Debug\TEST.EJU.csproj.CopyComplete
 D:\000 SVN\YT.SBIM\TEST.EJU\obj\Debug\TEST.EJU.exe
 D:\000 SVN\YT.SBIM\TEST.EJU\obj\Debug\TEST.EJU.pdb
 D:\000 SVN\YT.SBIM\TEST.EJU\bin\Debug\clipper_library.dll
+D:\000 SVN\YT.SBIM\TEST.EJU\obj\Debug\TEST.EJU.Form2.resources

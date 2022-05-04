@@ -10,19 +10,4 @@ using TSG = Tekla.Structures.Geometry3d;
 
 namespace TEST.EJU
 {
-    public static class Contour_
-    {
-
-        public static List<TSG.Point> GetPoints(this TSM.Contour me)
-        {
-            var R = new List<TSG.Point>();
-
-            foreach (TSM.ContourPoint p in me.ContourPoints)
-            {
-                R.Add(p);
-            }
-
-            return R;
-        }
-    }
 }
