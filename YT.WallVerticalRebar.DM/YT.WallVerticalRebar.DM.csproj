@@ -81,8 +81,7 @@
       <HintPath>..\packages\TeklaOpenAPI.2020.0.3\lib\Tekla.Structures.Plugins.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="Tekla.Structures.Plugins.DirectManipulation, Version=2021.0.0.0, Culture=neutral, PublicKeyToken=2f04dbe497b71114, processorArchitecture=AMD64">
-      <SpecificVersion>False</SpecificVersion>
+    <Reference Include="Tekla.Structures.Plugins.DirectManipulation">
       <HintPath>..\..\..\..\TeklaStructures 2020\2020.0\nt\bin\plugins\Tekla.Structures.Plugins.DirectManipulation.dll</HintPath>
     </Reference>
   </ItemGroup>

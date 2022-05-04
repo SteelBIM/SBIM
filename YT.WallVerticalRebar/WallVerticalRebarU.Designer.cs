@@ -1078,6 +1078,18 @@ namespace YT.WallVerticalRebar
             this.label197 = new System.Windows.Forms.Label();
             this.checkBox147 = new System.Windows.Forms.CheckBox();
             this.S_Building_S = new System.Windows.Forms.TextBox();
+            this.R_DL_HookType = new System.Windows.Forms.ComboBox();
+            this.checkBox23 = new System.Windows.Forms.CheckBox();
+            this.checkBox35 = new System.Windows.Forms.CheckBox();
+            this.R_DR_HookType = new System.Windows.Forms.ComboBox();
+            this.R_DL_Splice3 = new System.Windows.Forms.TextBox();
+            this.checkBox39 = new System.Windows.Forms.CheckBox();
+            this.R_DR_Splice3 = new System.Windows.Forms.TextBox();
+            this.checkBox55 = new System.Windows.Forms.CheckBox();
+            this.label39 = new System.Windows.Forms.Label();
+            this.label68 = new System.Windows.Forms.Label();
+            this.label72 = new System.Windows.Forms.Label();
+            this.label114 = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.groupBox116.SuspendLayout();
@@ -10340,6 +10352,12 @@ namespace YT.WallVerticalRebar
             this.structuresExtender.SetAttributeName(this.groupBox74, null);
             this.structuresExtender.SetAttributeTypeName(this.groupBox74, null);
             this.structuresExtender.SetBindPropertyName(this.groupBox74, null);
+            this.groupBox74.Controls.Add(this.label68);
+            this.groupBox74.Controls.Add(this.label39);
+            this.groupBox74.Controls.Add(this.R_DL_Splice3);
+            this.groupBox74.Controls.Add(this.checkBox39);
+            this.groupBox74.Controls.Add(this.checkBox23);
+            this.groupBox74.Controls.Add(this.R_DL_HookType);
             this.groupBox74.Controls.Add(this.checkBox213);
             this.groupBox74.Controls.Add(this.checkBox19);
             this.groupBox74.Controls.Add(this.R_DL_HookLength);
@@ -10362,7 +10380,7 @@ namespace YT.WallVerticalRebar
             this.checkBox213.Checked = true;
             this.checkBox213.CheckState = System.Windows.Forms.CheckState.Checked;
             this.structuresExtender.SetIsFilter(this.checkBox213, true);
-            this.checkBox213.Location = new System.Drawing.Point(104, 41);
+            this.checkBox213.Location = new System.Drawing.Point(295, 41);
             this.checkBox213.Name = "checkBox213";
             this.checkBox213.Size = new System.Drawing.Size(15, 14);
             this.checkBox213.TabIndex = 61;
@@ -10377,7 +10395,7 @@ namespace YT.WallVerticalRebar
             this.checkBox19.Checked = true;
             this.checkBox19.CheckState = System.Windows.Forms.CheckState.Checked;
             this.structuresExtender.SetIsFilter(this.checkBox19, true);
-            this.checkBox19.Location = new System.Drawing.Point(9, 41);
+            this.checkBox19.Location = new System.Drawing.Point(200, 41);
             this.checkBox19.Name = "checkBox19";
             this.checkBox19.Size = new System.Drawing.Size(15, 14);
             this.checkBox19.TabIndex = 60;
@@ -10388,7 +10406,7 @@ namespace YT.WallVerticalRebar
             this.structuresExtender.SetAttributeName(this.R_DL_HookLength, "R_DL_HookLength");
             this.structuresExtender.SetAttributeTypeName(this.R_DL_HookLength, "Double");
             this.structuresExtender.SetBindPropertyName(this.R_DL_HookLength, "Text");
-            this.R_DL_HookLength.Location = new System.Drawing.Point(29, 38);
+            this.R_DL_HookLength.Location = new System.Drawing.Point(220, 38);
             this.R_DL_HookLength.Name = "R_DL_HookLength";
             this.R_DL_HookLength.Size = new System.Drawing.Size(65, 21);
             this.R_DL_HookLength.TabIndex = 59;
@@ -10403,7 +10421,7 @@ namespace YT.WallVerticalRebar
             this.R_DL_HookInOut.Items.AddRange(new object[] {
             "내",
             "외"});
-            this.R_DL_HookInOut.Location = new System.Drawing.Point(124, 38);
+            this.R_DL_HookInOut.Location = new System.Drawing.Point(315, 38);
             this.R_DL_HookInOut.Name = "R_DL_HookInOut";
             this.R_DL_HookInOut.Size = new System.Drawing.Size(64, 20);
             this.R_DL_HookInOut.TabIndex = 58;
@@ -10414,7 +10432,7 @@ namespace YT.WallVerticalRebar
             this.structuresExtender.SetAttributeTypeName(this.label184, null);
             this.label184.AutoSize = true;
             this.structuresExtender.SetBindPropertyName(this.label184, null);
-            this.label184.Location = new System.Drawing.Point(124, 18);
+            this.label184.Location = new System.Drawing.Point(315, 18);
             this.label184.Name = "label184";
             this.label184.Size = new System.Drawing.Size(53, 12);
             this.label184.TabIndex = 57;
@@ -10426,7 +10444,7 @@ namespace YT.WallVerticalRebar
             this.structuresExtender.SetAttributeTypeName(this.label185, null);
             this.label185.AutoSize = true;
             this.structuresExtender.SetBindPropertyName(this.label185, null);
-            this.label185.Location = new System.Drawing.Point(34, 18);
+            this.label185.Location = new System.Drawing.Point(225, 18);
             this.label185.Name = "label185";
             this.label185.Size = new System.Drawing.Size(53, 12);
             this.label185.TabIndex = 56;
@@ -11526,10 +11544,16 @@ namespace YT.WallVerticalRebar
             this.structuresExtender.SetAttributeName(this.groupBox80, null);
             this.structuresExtender.SetAttributeTypeName(this.groupBox80, null);
             this.structuresExtender.SetBindPropertyName(this.groupBox80, null);
+            this.groupBox80.Controls.Add(this.label72);
+            this.groupBox80.Controls.Add(this.R_DR_Splice3);
+            this.groupBox80.Controls.Add(this.label114);
+            this.groupBox80.Controls.Add(this.checkBox55);
+            this.groupBox80.Controls.Add(this.checkBox35);
             this.groupBox80.Controls.Add(this.checkBox214);
-            this.groupBox80.Controls.Add(this.checkBox151);
+            this.groupBox80.Controls.Add(this.R_DR_HookType);
             this.groupBox80.Controls.Add(this.R_DR_HookLength);
             this.groupBox80.Controls.Add(this.R_DR_HookInOut);
+            this.groupBox80.Controls.Add(this.checkBox151);
             this.groupBox80.Controls.Add(this.label200);
             this.groupBox80.Controls.Add(this.label201);
             this.groupBox80.Location = new System.Drawing.Point(212, 200);
@@ -11548,7 +11572,7 @@ namespace YT.WallVerticalRebar
             this.checkBox214.Checked = true;
             this.checkBox214.CheckState = System.Windows.Forms.CheckState.Checked;
             this.structuresExtender.SetIsFilter(this.checkBox214, true);
-            this.checkBox214.Location = new System.Drawing.Point(104, 41);
+            this.checkBox214.Location = new System.Drawing.Point(295, 41);
             this.checkBox214.Name = "checkBox214";
             this.checkBox214.Size = new System.Drawing.Size(15, 14);
             this.checkBox214.TabIndex = 62;
@@ -11563,7 +11587,7 @@ namespace YT.WallVerticalRebar
             this.checkBox151.Checked = true;
             this.checkBox151.CheckState = System.Windows.Forms.CheckState.Checked;
             this.structuresExtender.SetIsFilter(this.checkBox151, true);
-            this.checkBox151.Location = new System.Drawing.Point(9, 41);
+            this.checkBox151.Location = new System.Drawing.Point(200, 41);
             this.checkBox151.Name = "checkBox151";
             this.checkBox151.Size = new System.Drawing.Size(15, 14);
             this.checkBox151.TabIndex = 60;
@@ -11574,7 +11598,7 @@ namespace YT.WallVerticalRebar
             this.structuresExtender.SetAttributeName(this.R_DR_HookLength, "R_DR_HookLength");
             this.structuresExtender.SetAttributeTypeName(this.R_DR_HookLength, "Double");
             this.structuresExtender.SetBindPropertyName(this.R_DR_HookLength, "Text");
-            this.R_DR_HookLength.Location = new System.Drawing.Point(29, 38);
+            this.R_DR_HookLength.Location = new System.Drawing.Point(220, 38);
             this.R_DR_HookLength.Name = "R_DR_HookLength";
             this.R_DR_HookLength.Size = new System.Drawing.Size(65, 21);
             this.R_DR_HookLength.TabIndex = 59;
@@ -11589,7 +11613,7 @@ namespace YT.WallVerticalRebar
             this.R_DR_HookInOut.Items.AddRange(new object[] {
             "내",
             "외"});
-            this.R_DR_HookInOut.Location = new System.Drawing.Point(124, 38);
+            this.R_DR_HookInOut.Location = new System.Drawing.Point(315, 38);
             this.R_DR_HookInOut.Name = "R_DR_HookInOut";
             this.R_DR_HookInOut.Size = new System.Drawing.Size(64, 20);
             this.R_DR_HookInOut.TabIndex = 58;
@@ -11600,7 +11624,7 @@ namespace YT.WallVerticalRebar
             this.structuresExtender.SetAttributeTypeName(this.label200, null);
             this.label200.AutoSize = true;
             this.structuresExtender.SetBindPropertyName(this.label200, null);
-            this.label200.Location = new System.Drawing.Point(124, 18);
+            this.label200.Location = new System.Drawing.Point(315, 18);
             this.label200.Name = "label200";
             this.label200.Size = new System.Drawing.Size(53, 12);
             this.label200.TabIndex = 57;
@@ -11612,7 +11636,7 @@ namespace YT.WallVerticalRebar
             this.structuresExtender.SetAttributeTypeName(this.label201, null);
             this.label201.AutoSize = true;
             this.structuresExtender.SetBindPropertyName(this.label201, null);
-            this.label201.Location = new System.Drawing.Point(34, 18);
+            this.label201.Location = new System.Drawing.Point(225, 18);
             this.label201.Name = "label201";
             this.label201.Size = new System.Drawing.Size(53, 12);
             this.label201.TabIndex = 56;
@@ -15652,6 +15676,164 @@ namespace YT.WallVerticalRebar
             this.S_Building_S.Size = new System.Drawing.Size(55, 21);
             this.S_Building_S.TabIndex = 1;
             // 
+            // R_DL_HookType
+            // 
+            this.structuresExtender.SetAttributeName(this.R_DL_HookType, "R_DL_HookType");
+            this.structuresExtender.SetAttributeTypeName(this.R_DL_HookType, "String");
+            this.structuresExtender.SetBindPropertyName(this.R_DL_HookType, "Text");
+            this.R_DL_HookType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.R_DL_HookType.FormattingEnabled = true;
+            this.R_DL_HookType.Items.AddRange(new object[] {
+            "일반",
+            "후크"});
+            this.R_DL_HookType.Location = new System.Drawing.Point(29, 38);
+            this.R_DL_HookType.Name = "R_DL_HookType";
+            this.R_DL_HookType.Size = new System.Drawing.Size(64, 20);
+            this.R_DL_HookType.TabIndex = 62;
+            // 
+            // checkBox23
+            // 
+            this.structuresExtender.SetAttributeName(this.checkBox23, "R_DL_HookType");
+            this.structuresExtender.SetAttributeTypeName(this.checkBox23, null);
+            this.checkBox23.AutoSize = true;
+            this.structuresExtender.SetBindPropertyName(this.checkBox23, "Checked");
+            this.checkBox23.Checked = true;
+            this.checkBox23.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.structuresExtender.SetIsFilter(this.checkBox23, true);
+            this.checkBox23.Location = new System.Drawing.Point(8, 41);
+            this.checkBox23.Name = "checkBox23";
+            this.checkBox23.Size = new System.Drawing.Size(15, 14);
+            this.checkBox23.TabIndex = 63;
+            this.checkBox23.UseVisualStyleBackColor = true;
+            // 
+            // checkBox35
+            // 
+            this.structuresExtender.SetAttributeName(this.checkBox35, "R_DR_HookType");
+            this.structuresExtender.SetAttributeTypeName(this.checkBox35, null);
+            this.checkBox35.AutoSize = true;
+            this.structuresExtender.SetBindPropertyName(this.checkBox35, "Checked");
+            this.checkBox35.Checked = true;
+            this.checkBox35.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.structuresExtender.SetIsFilter(this.checkBox35, true);
+            this.checkBox35.Location = new System.Drawing.Point(9, 41);
+            this.checkBox35.Name = "checkBox35";
+            this.checkBox35.Size = new System.Drawing.Size(15, 14);
+            this.checkBox35.TabIndex = 65;
+            this.checkBox35.UseVisualStyleBackColor = true;
+            // 
+            // R_DR_HookType
+            // 
+            this.structuresExtender.SetAttributeName(this.R_DR_HookType, "R_DR_HookType");
+            this.structuresExtender.SetAttributeTypeName(this.R_DR_HookType, "String");
+            this.structuresExtender.SetBindPropertyName(this.R_DR_HookType, "Text");
+            this.R_DR_HookType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.R_DR_HookType.FormattingEnabled = true;
+            this.R_DR_HookType.Items.AddRange(new object[] {
+            "일반",
+            "후크"});
+            this.R_DR_HookType.Location = new System.Drawing.Point(30, 38);
+            this.R_DR_HookType.Name = "R_DR_HookType";
+            this.R_DR_HookType.Size = new System.Drawing.Size(64, 20);
+            this.R_DR_HookType.TabIndex = 64;
+            // 
+            // R_DL_Splice3
+            // 
+            this.structuresExtender.SetAttributeName(this.R_DL_Splice3, "R_DL_Splice3");
+            this.structuresExtender.SetAttributeTypeName(this.R_DL_Splice3, "Double");
+            this.structuresExtender.SetBindPropertyName(this.R_DL_Splice3, "Text");
+            this.R_DL_Splice3.Location = new System.Drawing.Point(123, 37);
+            this.R_DL_Splice3.Name = "R_DL_Splice3";
+            this.R_DL_Splice3.Size = new System.Drawing.Size(65, 21);
+            this.R_DL_Splice3.TabIndex = 48;
+            // 
+            // checkBox39
+            // 
+            this.structuresExtender.SetAttributeName(this.checkBox39, "R_DL_Splice3");
+            this.structuresExtender.SetAttributeTypeName(this.checkBox39, null);
+            this.checkBox39.AutoSize = true;
+            this.structuresExtender.SetBindPropertyName(this.checkBox39, "Checked");
+            this.checkBox39.Checked = true;
+            this.checkBox39.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.structuresExtender.SetIsFilter(this.checkBox39, true);
+            this.checkBox39.Location = new System.Drawing.Point(106, 40);
+            this.checkBox39.Name = "checkBox39";
+            this.checkBox39.Size = new System.Drawing.Size(15, 14);
+            this.checkBox39.TabIndex = 49;
+            this.checkBox39.UseVisualStyleBackColor = true;
+            // 
+            // R_DR_Splice3
+            // 
+            this.structuresExtender.SetAttributeName(this.R_DR_Splice3, "R_DR_Splice3");
+            this.structuresExtender.SetAttributeTypeName(this.R_DR_Splice3, "Double");
+            this.structuresExtender.SetBindPropertyName(this.R_DR_Splice3, "Text");
+            this.R_DR_Splice3.Location = new System.Drawing.Point(123, 38);
+            this.R_DR_Splice3.Name = "R_DR_Splice3";
+            this.R_DR_Splice3.Size = new System.Drawing.Size(65, 21);
+            this.R_DR_Splice3.TabIndex = 64;
+            // 
+            // checkBox55
+            // 
+            this.structuresExtender.SetAttributeName(this.checkBox55, "R_DR_Splice3");
+            this.structuresExtender.SetAttributeTypeName(this.checkBox55, null);
+            this.checkBox55.AutoSize = true;
+            this.structuresExtender.SetBindPropertyName(this.checkBox55, "Checked");
+            this.checkBox55.Checked = true;
+            this.checkBox55.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.structuresExtender.SetIsFilter(this.checkBox55, true);
+            this.checkBox55.Location = new System.Drawing.Point(106, 41);
+            this.checkBox55.Name = "checkBox55";
+            this.checkBox55.Size = new System.Drawing.Size(15, 14);
+            this.checkBox55.TabIndex = 65;
+            this.checkBox55.UseVisualStyleBackColor = true;
+            // 
+            // label39
+            // 
+            this.structuresExtender.SetAttributeName(this.label39, null);
+            this.structuresExtender.SetAttributeTypeName(this.label39, null);
+            this.label39.AutoSize = true;
+            this.structuresExtender.SetBindPropertyName(this.label39, null);
+            this.label39.Location = new System.Drawing.Point(37, 18);
+            this.label39.Name = "label39";
+            this.label39.Size = new System.Drawing.Size(57, 12);
+            this.label39.TabIndex = 76;
+            this.label39.Text = "타입 설정";
+            // 
+            // label68
+            // 
+            this.structuresExtender.SetAttributeName(this.label68, null);
+            this.structuresExtender.SetAttributeTypeName(this.label68, null);
+            this.label68.AutoSize = true;
+            this.structuresExtender.SetBindPropertyName(this.label68, null);
+            this.label68.Location = new System.Drawing.Point(124, 18);
+            this.label68.Name = "label68";
+            this.label68.Size = new System.Drawing.Size(53, 12);
+            this.label68.TabIndex = 75;
+            this.label68.Text = "하부길이";
+            // 
+            // label72
+            // 
+            this.structuresExtender.SetAttributeName(this.label72, null);
+            this.structuresExtender.SetAttributeTypeName(this.label72, null);
+            this.label72.AutoSize = true;
+            this.structuresExtender.SetBindPropertyName(this.label72, null);
+            this.label72.Location = new System.Drawing.Point(124, 18);
+            this.label72.Name = "label72";
+            this.label72.Size = new System.Drawing.Size(53, 12);
+            this.label72.TabIndex = 77;
+            this.label72.Text = "하부길이";
+            // 
+            // label114
+            // 
+            this.structuresExtender.SetAttributeName(this.label114, null);
+            this.structuresExtender.SetAttributeTypeName(this.label114, null);
+            this.label114.AutoSize = true;
+            this.structuresExtender.SetBindPropertyName(this.label114, null);
+            this.label114.Location = new System.Drawing.Point(37, 18);
+            this.label114.Name = "label114";
+            this.label114.Size = new System.Drawing.Size(57, 12);
+            this.label114.TabIndex = 78;
+            this.label114.Text = "타입 설정";
+            // 
             // WallVerticalRebarU
             // 
             this.structuresExtender.SetAttributeName(this, null);
@@ -16971,5 +17153,17 @@ namespace YT.WallVerticalRebar
         private System.Windows.Forms.Label label302;
         private System.Windows.Forms.ComboBox DW_Operation;
         private System.Windows.Forms.CheckBox checkBox304;
+        private System.Windows.Forms.ComboBox R_DL_HookType;
+        private System.Windows.Forms.CheckBox checkBox23;
+        private System.Windows.Forms.CheckBox checkBox35;
+        private System.Windows.Forms.ComboBox R_DR_HookType;
+        private System.Windows.Forms.TextBox R_DL_Splice3;
+        private System.Windows.Forms.CheckBox checkBox39;
+        private System.Windows.Forms.TextBox R_DR_Splice3;
+        private System.Windows.Forms.CheckBox checkBox55;
+        private System.Windows.Forms.Label label68;
+        private System.Windows.Forms.Label label39;
+        private System.Windows.Forms.Label label72;
+        private System.Windows.Forms.Label label114;
     }
 }

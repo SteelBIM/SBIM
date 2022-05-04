@@ -93,6 +93,11 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
     <Compile Include="WallVerticalRebarD.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="WallVerticalRebarM.cs" />
@@ -113,6 +118,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="WallVerticalRebarU.resx">
       <DependentUpon>WallVerticalRebarU.cs</DependentUpon>
     </EmbeddedResource>
