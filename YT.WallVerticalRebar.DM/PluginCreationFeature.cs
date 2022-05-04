@@ -43,6 +43,13 @@ namespace YT.WallVerticalRebar.DM
         // 기능이 활성화되면 직접 조작API가 이 메서드를 호출
         protected override void Initialize()
         {
+            this.DetachHandlers();
+            this.pickingTool?.Dispose();
+
+            this.pickingTool = this.CreatePickingTool(this.inputRange, InputTypes.Object);
+            this.AttachHandlers();
+
+            this.pickingTool.StartPickingSession("Pick Object");
 
         }
 
@@ -58,6 +65,11 @@ namespace YT.WallVerticalRebar.DM
         // PickingTool에 핸들러 부착
         private void AttachHandlers()
         {
+            if (this.pickingTool == null)
+            {
+                return;
+            }
+
             this.pickingTool.ObjectPicked += PickingTool_ObjectPicked;
             this.pickingTool.InputValidationRequested += PickingTool_InputValidationRequested;
             this.pickingTool.PickSessionEnded += PickingTool_PickSessionEnded;
@@ -70,6 +82,15 @@ namespace YT.WallVerticalRebar.DM
         // PickingTool에 핸들러 탈착
         private void DetachHandlers()
         {
+
+            if (this.pickingTool == null)
+            {
+                return;
+            }
+            this.pickingTool.ObjectPicked -= PickingTool_ObjectPicked;
+            this.pickingTool.InputValidationRequested -= PickingTool_InputValidationRequested;
+            this.pickingTool.PickSessionEnded -= PickingTool_PickSessionEnded;
+            this.pickingTool.PickUndone -= PickingTool_PickUndone;
         }
 
         /// <summary>

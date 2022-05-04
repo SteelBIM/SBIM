@@ -204,11 +204,14 @@ namespace YT.WallVerticalRebar
             #endregion
 
             #region Evnet : 모든 철근 On / Off
-            RebarAllYesOrNo.SelectedIndexChanged += RebarAllYesOrNo_SelectedIndexChanged; 
+            RebarAllYesOrNo.SelectedIndexChanged += RebarAllYesOrNo_SelectedIndexChanged;
             #endregion
 
+            #region Event : 중앙부 다월 후크
+            R_DL_HookType.TextChanged += R_DL_HookType_TextChanged;
+            R_DR_HookType.TextChanged += R_DR_HookType_TextChanged;
+            #endregion
         }
-
 
         #region UI 화면 표시
 
@@ -414,7 +417,7 @@ namespace YT.WallVerticalRebar
             this.SetAttributeValue(this.R_LB_HookLength, 260.0);
             this.SetAttributeValue(this.R_LB_HookInOut, "외");
 
-            
+
 
             #endregion
 
@@ -425,7 +428,7 @@ namespace YT.WallVerticalRebar
             #endregion
 
             #region 우측 중앙부 보강근
-             //1단
+            //1단
             this.SetAttributeValue(this.R_RM_Name, "W_ADD");
             this.SetAttributeValue(this.R_RM_Grade, "SD400");
             this.SetAttributeValue(this.R_RM_Size, "10");
@@ -605,7 +608,7 @@ namespace YT.WallVerticalRebar
             this.SetAttributeValue(this.R_DW_UDA, "부재 UDA 정보 사용");
             //this.SetAttributeValue(this.R_DW_Building, "");
             this.SetAttributeValue(this.R_DW_Building_S, "");
-           
+
             #endregion
 
             #region 우측 보강근 다월
@@ -633,6 +636,9 @@ namespace YT.WallVerticalRebar
             this.SetAttributeValue(this.R_DR_HookLength, 260.0);
             this.SetAttributeValue(this.R_DR_HookInOut, "외");
 
+            this.SetAttributeValue(this.R_DR_HookType, "후크");
+            this.SetAttributeValue(this.R_DR_Splice3, 500.0);
+
             #endregion
 
             #region 좌측 보강근 다월 
@@ -659,6 +665,9 @@ namespace YT.WallVerticalRebar
             //this.SetAttributeValue(this.R_DL_HookCorver, 50.0);
             this.SetAttributeValue(this.R_DL_HookLength, 260.0);
             this.SetAttributeValue(this.R_DL_HookInOut, "외");
+
+            this.SetAttributeValue(this.R_DL_HookType, "후크");
+            this.SetAttributeValue(this.R_DL_Splice3, 500.0);
 
             #endregion
 
@@ -756,7 +765,7 @@ namespace YT.WallVerticalRebar
             SetAttributeValue(R_Grade, reinforcementCatalogR.SelectedRebarGrade);
             SetAttributeValue(R_Size, reinforcementCatalogR.SelectedRebarSize);
             SetAttributeValue(R_Radius, reinforcementCatalogR.SelectedRebarBendingRadius);
-        } 
+        }
         #endregion
 
         #region reinforcementCatalogL
@@ -874,7 +883,7 @@ namespace YT.WallVerticalRebar
                     DW_Building_Storey.Enabled = true;
                     break;
             }
-        } 
+        }
         #endregion
 
         #region Event : 메인 철근간격
@@ -922,7 +931,7 @@ namespace YT.WallVerticalRebar
         private void ReinforcementCatalog1_SelectionDone(object sender, EventArgs e)
         {
             SetAttributeValue(R_RB_Grade, reinforcementCatalog1.SelectedRebarGrade);
-            SetAttributeValue(R_RB_Size,reinforcementCatalog1.SelectedRebarSize);
+            SetAttributeValue(R_RB_Size, reinforcementCatalog1.SelectedRebarSize);
             SetAttributeValue(R_RB_Radius, reinforcementCatalog1.SelectedRebarBendingRadius);
         }
         //2단
@@ -970,7 +979,7 @@ namespace YT.WallVerticalRebar
         }
         #endregion
 
-        #region Enet : 하부 보강근 UDA
+        #region Event : 하부 보강근 UDA
         private void R_B_UDA_TextChanged(object sender, EventArgs e)
         {
             switch (R_B_UDA.Text)
@@ -1220,7 +1229,7 @@ namespace YT.WallVerticalRebar
                     R_LM_Splice1.Enabled = true;
                     R_LM_Bent.Enabled = false;
                     R_LM_HookCorver.Enabled = false;
-                    R_LM_HookLength.Enabled =false;
+                    R_LM_HookLength.Enabled = false;
 
                     break;
                 case "벤트":
@@ -1470,7 +1479,7 @@ namespace YT.WallVerticalRebar
 
         #endregion
 
-        #region Evetn : 전단근 UDA
+        #region Event : 전단근 UDA
         private void S_UDA_TextChanged(object sender, EventArgs e)
         {
             switch (S_UDA.Text)
@@ -1606,7 +1615,7 @@ namespace YT.WallVerticalRebar
 
                 this.SetAttributeValue(this.S_YesOrNO, "아니오");
             }
-            
+
 
 
 
@@ -1631,6 +1640,42 @@ namespace YT.WallVerticalRebar
             //this.SetAttributeValue(this.S_YesOrNO, RebarAllYesOrNo.SelectedItem.ToString());
 
         }
+        #endregion
+
+        #region Event : 중앙부 다월 후크
+
+        private void R_DL_HookType_TextChanged(object sender, EventArgs e)
+        {
+            switch (R_DL_HookType.Text)
+            {
+
+                case "후크":
+                    R_DL_Splice3.Enabled = false;
+                    R_DL_HookLength.Enabled = true;
+                    break;
+                case "일반":
+                    R_DL_Splice3.Enabled = true;
+                    R_DL_HookLength.Enabled = false;
+                    break;
+            }
+        }
+
+        private void R_DR_HookType_TextChanged(object sender, EventArgs e)
+        {
+            switch (R_DR_HookType.Text)
+            {
+
+                case "후크":
+                    R_DR_Splice3.Enabled = false;
+                    R_DR_HookLength.Enabled = true;
+                    break;
+                case "일반":
+                    R_DR_Splice3.Enabled = true;
+                    R_DR_HookLength.Enabled = false;
+                    break;
+            }
+        }
+        
         #endregion
 
     }

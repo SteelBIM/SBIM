@@ -770,15 +770,25 @@ namespace YT.WallVerticalRebar
             var Rhooklength = 0.0;
             double Rlength = 0.0;
 
-            if (D.DW_FootingSpacing + D.DW_FootingSplice > D.DR_HookLength)
+            if (D.DR_HookLength == 0)
             {
-                Rhooklength = D.DW_FootingSpacing + D.DW_FootingSplice - barRD.Radius - KS.GetDiameter(Convert.ToDouble(barRD.Size));
-                Rlength = Math.Abs(barRD.StartOffsetValue) + D.DR_Splice1 + D.DR_Splice2 + D.DW_FootingSpacing + D.DW_FootingSplice;
+                barRD.StartHookShape = TSM.RebarHookData.RebarHookShapeEnum.NO_HOOK;
+                Rlength = Math.Abs(barRD.StartOffsetValue) + D.DR_Splice1 + D.DR_Splice2;
             }
             else
             {
-                Rhooklength = D.DR_HookLength - barRD.Radius - KS.GetDiameter(Convert.ToDouble(barRD.Size));
-                Rlength = Math.Abs(barRD.StartOffsetValue) + D.DR_Splice1 + D.DR_Splice2 + D.DR_HookLength;
+                barRD.StartHookShape = TSM.RebarHookData.RebarHookShapeEnum.CUSTOM_HOOK;
+
+                if (D.DW_FootingSpacing + D.DW_FootingSplice > D.DR_HookLength)
+                {
+                    Rhooklength = D.DW_FootingSpacing + D.DW_FootingSplice - barRD.Radius - KS.GetDiameter(Convert.ToDouble(barRD.Size));
+                    Rlength = Math.Abs(barRD.StartOffsetValue) + D.DR_Splice1 + D.DR_Splice2 + D.DW_FootingSpacing + D.DW_FootingSplice;
+                }
+                else
+                {
+                    Rhooklength = D.DR_HookLength - barRD.Radius - KS.GetDiameter(Convert.ToDouble(barRD.Size));
+                    Rlength = Math.Abs(barRD.StartOffsetValue) + D.DR_Splice1 + D.DR_Splice2 + D.DR_HookLength;
+                }
             }
 
             var Rplus = 0.0;
@@ -829,14 +839,7 @@ namespace YT.WallVerticalRebar
             barRD.StartPoint = new TSG.Point(rs.X + ksR, rs.Y, rs.Z);
             barRD.EndPoint = new TSG.Point(re.X + ksR, re.Y, re.Z);
 
-            if (D.DR_HookLength == 0)
-            {
-                barRD.StartHookShape = TSM.RebarHookData.RebarHookShapeEnum.NO_HOOK;
-            }
-            else
-            {
-                barRD.StartHookShape = TSM.RebarHookData.RebarHookShapeEnum.CUSTOM_HOOK;
-            }
+          
 
             barRD.StartHookRadius = barRD.Radius;
             barRD.StartHookLength = Rhooklength;
@@ -949,15 +952,26 @@ namespace YT.WallVerticalRebar
             var Lhooklength = 0.0;
             double Llength = 0.0;
 
-            if (D.DW_FootingSpacing + D.DW_FootingSplice > D.DL_HookLength)
+
+            if (D.DL_HookLength == 0)
             {
-                Lhooklength = D.DW_FootingSpacing + D.DW_FootingSplice - barLD.Radius - KS.GetDiameter(Convert.ToDouble(barLD.Size));
-                Llength = Math.Abs(barLD.StartOffsetValue) + D.DL_Splice1 + D.DL_Splice2 + D.DW_FootingSpacing + D.DW_FootingSplice;
+                barLD.StartHookShape = TSM.RebarHookData.RebarHookShapeEnum.NO_HOOK;
+                Llength = Math.Abs(barLD.StartOffsetValue) + D.DL_Splice1 + D.DL_Splice2;
             }
             else
             {
-                Lhooklength = D.DL_HookLength - barLD.Radius - KS.GetDiameter(Convert.ToDouble(barLD.Size));
-                Llength = Math.Abs(barLD.StartOffsetValue) + D.DL_Splice1 + D.DL_Splice2 + D.DL_HookLength;
+                barLD.StartHookShape = TSM.RebarHookData.RebarHookShapeEnum.CUSTOM_HOOK;
+
+                if (D.DW_FootingSpacing + D.DW_FootingSplice > D.DL_HookLength)
+                {
+                    Lhooklength = D.DW_FootingSpacing + D.DW_FootingSplice - barLD.Radius - KS.GetDiameter(Convert.ToDouble(barLD.Size));
+                    Llength = Math.Abs(barLD.StartOffsetValue) + D.DL_Splice1 + D.DL_Splice2 + D.DW_FootingSpacing + D.DW_FootingSplice;
+                }
+                else
+                {
+                    Lhooklength = D.DL_HookLength - barLD.Radius - KS.GetDiameter(Convert.ToDouble(barLD.Size));
+                    Llength = Math.Abs(barLD.StartOffsetValue) + D.DL_Splice1 + D.DL_Splice2 + D.DL_HookLength;
+                }
             }
 
             var Lplus = 0.0;
@@ -1007,15 +1021,7 @@ namespace YT.WallVerticalRebar
             barLD.StartPoint = new TSG.Point(ls.X + ksL, ls.Y, ls.Z);
             barLD.EndPoint = new TSG.Point(le.X + ksL, le.Y, le.Z);
 
-            if (D.DL_HookLength == 0)
-            {
-                barLD.StartHookShape = TSM.RebarHookData.RebarHookShapeEnum.NO_HOOK;
-            }
-            else
-            {
-                barLD.StartHookShape = TSM.RebarHookData.RebarHookShapeEnum.CUSTOM_HOOK;
-            }
-
+           
             barLD.StartHookRadius = barLD.Radius;
             barLD.StartHookLength = Lhooklength;
 
@@ -1399,6 +1405,59 @@ namespace YT.WallVerticalRebar
                 var hookinout = D.R_RT_HookInOut;
                 D.R_RT_HookInOut = D.R_LT_HookInOut;
                 D.R_LT_HookInOut = hookinout;
+
+            }
+
+            if (D.LR_Change == "좌우변경")
+            {
+                var name = D.R_DR_Name;
+                D.R_DR_Name = D.R_DL_Name;
+                D.R_DL_Name = name;
+
+                var clasS = D.R_DR_Class;
+                D.R_DR_Class = D.R_DL_Class;
+                D.R_DL_Class = clasS;
+
+                var prefix = D.R_DR_Prefix;
+                D.R_DR_Prefix = D.R_DL_Prefix;
+                D.R_DL_Prefix = prefix;
+
+                var startnumber = D.R_DR_StartNumber;
+                D.R_DR_StartNumber = D.R_DL_StartNumber;
+                D.R_DL_StartNumber = startnumber;
+
+                var hooktype = D.R_DR_HookType;
+                D.R_DR_HookType = D.R_DL_HookType;
+                D.R_DL_HookType = hooktype;
+
+                var yesorno = D.R_DR_YesOrNo;
+                D.R_DR_YesOrNo = D.R_DL_YesOrNo;
+                D.R_DL_YesOrNo = yesorno;
+
+                var splice1 = D.R_DR_Splice1;
+                D.R_DR_Splice1 = D.R_DL_Splice1;
+                D.R_DL_Splice1 = splice1;
+
+                var splice2 = D.R_DR_Splice2;
+                D.R_DR_Splice2 = D.R_DL_Splice2;
+                D.R_DL_Splice2 = splice2;
+
+                var splice3 = D.R_DR_Splice3;
+                D.R_DR_Splice3 = D.R_DL_Splice3;
+                D.R_DL_Splice3 = splice3;
+
+                var hookcorver = D.R_DR_HookCorver;
+                D.R_DR_HookCorver = D.R_DL_HookCorver;
+                D.R_DL_HookCorver = hookcorver;
+
+                var hooklength = D.R_DR_HookLength;
+                D.R_DR_HookLength = D.R_DL_HookLength;
+                D.R_DL_HookLength = hooklength;
+
+                var hookinout = D.R_DR_HookInOut;
+                D.R_DR_HookInOut = D.R_DL_HookInOut;
+                D.R_DL_HookInOut = hookinout;
+
 
             }
 
@@ -2332,22 +2391,32 @@ namespace YT.WallVerticalRebar
             barRRD.Prefix = D.R_DR_Prefix;
             barRRD.StartNumber = D.R_DR_StartNumber;
             //barRRD.StartOffsetValue = -D.DW_FootingDepth + D.R_DR_HookCorver;
-            barRRD.StartOffsetValue = -D.DW_FootingDepth + D.DR_HookCorver;
 
             var Rlength = 0.0;
 
-            if (D.DW_FootingSpacing + D.DW_FootingSplice > D.R_DR_HookLength)
+            if (D.R_DR_HookType == "후크")
             {
-                barRRD.StartHookLength = D.DW_FootingSpacing + D.DW_FootingSplice - barRRD.Radius - KS.GetDiameter(Convert.ToDouble(barRRD.Size));
-                Rlength = Math.Abs(barRRD.StartOffsetValue) + D.R_DR_Splice1 + D.R_DR_Splice2 + D.DW_FootingSpacing + D.DW_FootingSplice;
+                barRRD.StartOffsetValue = -D.DW_FootingDepth + D.DR_HookCorver;
+                barRRD.StartHookShape = TSM.RebarHookData.RebarHookShapeEnum.CUSTOM_HOOK;
+
+                if (D.DW_FootingSpacing + D.DW_FootingSplice > D.R_DR_HookLength)
+                {
+                    barRRD.StartHookLength = D.DW_FootingSpacing + D.DW_FootingSplice - barRRD.Radius - KS.GetDiameter(Convert.ToDouble(barRRD.Size));
+                    Rlength = Math.Abs(barRRD.StartOffsetValue) + D.R_DR_Splice1 + D.R_DR_Splice2 + D.DW_FootingSpacing + D.DW_FootingSplice;
+                }
+                else
+                {
+                    barRRD.StartHookLength = D.R_DR_HookLength - barRRD.Radius - KS.GetDiameter(Convert.ToDouble(barRRD.Size));
+                    Rlength = Math.Abs(barRRD.StartOffsetValue) + D.R_DR_Splice1 + D.R_DR_Splice2 + D.R_DR_HookLength;
+                }
             }
             else
             {
-                barRRD.StartHookLength = D.R_DR_HookLength - barRRD.Radius - KS.GetDiameter(Convert.ToDouble(barRRD.Size));
-                Rlength = Math.Abs(barRRD.StartOffsetValue) + D.R_DR_Splice1 + D.R_DR_Splice2 + D.R_DR_HookLength;
+                barRRD.StartOffsetValue = -D.R_DR_Splice3;
+                barRRD.StartHookShape = TSM.RebarHookData.RebarHookShapeEnum.NO_HOOK;
+                Rlength = Math.Abs(barRRD.StartOffsetValue) + D.R_DR_Splice1 + D.R_DR_Splice2;
             }
 
-            //
 
             var Rplus = 0.0;
 
@@ -2397,7 +2466,7 @@ namespace YT.WallVerticalRebar
             barRRD.StartPoint = new TSG.Point(barRRM.StartPoint.X + KS.GetDiameter(Convert.ToDouble(D.R_RM_Size)), barRRM.StartPoint.Y, barRRM.StartPoint.Z);
             barRRD.EndPoint = new TSG.Point(barRRM.EndPoint.X + KS.GetDiameter(Convert.ToDouble(D.R_RM_Size)), barRRM.EndPoint.Y, barRRM.EndPoint.Z);
 
-            barRRD.StartHookShape = TSM.RebarHookData.RebarHookShapeEnum.CUSTOM_HOOK;
+            //barRRD.StartHookShape = TSM.RebarHookData.RebarHookShapeEnum.CUSTOM_HOOK;
             barRRD.StartHookRadius = barRRM.Radius;
 
 
@@ -2500,19 +2569,33 @@ namespace YT.WallVerticalRebar
             barRLD.Prefix = D.R_DL_Prefix;
             barRLD.StartNumber = D.R_DL_StartNumber;
             //barRLD.StartOffsetValue = -D.DW_FootingDepth + D.R_DL_HookCorver;
-            barRLD.StartOffsetValue = -D.DW_FootingDepth + D.DL_HookCorver;
+
 
             var Llength = 0.0;
-            if (D.DW_FootingSpacing + D.DW_FootingSplice > D.R_DL_HookLength)
+
+            if (D.R_DL_HookType == "후크")
             {
-                barRLD.StartHookLength = D.DW_FootingSpacing + D.DW_FootingSplice - barRLD.Radius - KS.GetDiameter(Convert.ToDouble(barRLD.Size));
-                Llength = Math.Abs(barRLD.StartOffsetValue) + D.R_DL_Splice1 + D.R_DL_Splice2 + D.DW_FootingSpacing + D.DW_FootingSplice;
+                barRLD.StartOffsetValue = -D.DW_FootingDepth + D.DL_HookCorver;
+                barRLD.StartHookShape = TSM.RebarHookData.RebarHookShapeEnum.CUSTOM_HOOK;
+
+                if (D.DW_FootingSpacing + D.DW_FootingSplice > D.R_DL_HookLength)
+                {
+                    barRLD.StartHookLength = D.DW_FootingSpacing + D.DW_FootingSplice - barRLD.Radius - KS.GetDiameter(Convert.ToDouble(barRLD.Size));
+                    Llength = Math.Abs(barRLD.StartOffsetValue) + D.R_DL_Splice1 + D.R_DL_Splice2 + D.DW_FootingSpacing + D.DW_FootingSplice;
+                }
+                else
+                {
+                    barRLD.StartHookLength = D.R_DL_HookLength - barRLD.Radius - KS.GetDiameter(Convert.ToDouble(barRLD.Size));
+                    Llength = Math.Abs(barRLD.StartOffsetValue) + D.R_DL_Splice1 + D.R_DL_Splice2 + D.R_DL_HookLength;
+                }
             }
             else
             {
-                barRLD.StartHookLength = D.R_DL_HookLength - barRLD.Radius - KS.GetDiameter(Convert.ToDouble(barRLD.Size));
-                Llength = Math.Abs(barRLD.StartOffsetValue) + D.R_DL_Splice1 + D.R_DL_Splice2 + D.R_DL_HookLength;
+                barRLD.StartOffsetValue = -D.R_DL_Splice3;
+                barRLD.StartHookShape = TSM.RebarHookData.RebarHookShapeEnum.NO_HOOK;
+                Llength = Math.Abs(barRLD.StartOffsetValue) + D.R_DL_Splice1 + D.R_DL_Splice2;
             }
+
 
             //var Llength = Math.Abs(barRLD.StartOffsetValue) + D.R_DL_Splice1 + D.R_DL_Splice2 + D.R_DL_HookLength;
 
@@ -2565,7 +2648,7 @@ namespace YT.WallVerticalRebar
             barRLD.StartPoint = new TSG.Point(barRLM.StartPoint.X + KS.GetDiameter(Convert.ToDouble(D.R_LM_Size)), barRLM.StartPoint.Y, barRLM.StartPoint.Z);
             barRLD.EndPoint = new TSG.Point(barRLM.EndPoint.X + KS.GetDiameter(Convert.ToDouble(D.R_LM_Size)), barRLM.EndPoint.Y, barRLM.EndPoint.Z);
 
-            barRLD.StartHookShape = TSM.RebarHookData.RebarHookShapeEnum.CUSTOM_HOOK;
+            //barRLD.StartHookShape = TSM.RebarHookData.RebarHookShapeEnum.CUSTOM_HOOK;
             barRLD.StartHookRadius = barRLM.Radius;
 
 
@@ -3883,20 +3966,32 @@ namespace YT.WallVerticalRebar
             barRRD.Prefix = D.R_DR_Prefix;
             barRRD.StartNumber = D.R_DR_StartNumber;
             //barRRD.StartOffsetValue = -D.DW_FootingDepth + D.R_DR_HookCorver;
-            barRRD.StartOffsetValue = -D.DW_FootingDepth + D.DR_HookCorver;
 
             var Rlength = 0.0;
 
-            if (D.DW_FootingSplice + D.DW_FootingSplice > D.R_DR_HookLength)
+            if (D.R_DR_HookType == "후크")
             {
-                barRRD.StartHookLength = D.DW_FootingSplice + D.DW_FootingSplice - barRRD.Radius - KS.GetDiameter(Convert.ToDouble(barRRD.Size));
-                Rlength = Math.Abs(barRRD.StartOffsetValue) + D.R_DR_Splice1 + D.R_DR_Splice2 + D.DW_FootingSplice + D.DW_FootingSplice;
+                barRRD.StartOffsetValue = -D.DW_FootingDepth + D.DR_HookCorver;
+                barRRD.StartHookShape = TSM.RebarHookData.RebarHookShapeEnum.CUSTOM_HOOK;
+
+                if (D.DW_FootingSpacing + D.DW_FootingSplice > D.R_DR_HookLength)
+                {
+                    barRRD.StartHookLength = D.DW_FootingSplice + D.DW_FootingSplice - barRRD.Radius - KS.GetDiameter(Convert.ToDouble(barRRD.Size));
+                    Rlength = Math.Abs(barRRD.StartOffsetValue) + D.R_DR_Splice1 + D.R_DR_Splice2 + D.DW_FootingSpacing + D.DW_FootingSplice;
+                }
+                else
+                {
+                    barRRD.StartHookLength = D.R_DR_HookLength - barRRD.Radius - KS.GetDiameter(Convert.ToDouble(barRRD.Size));
+                    Rlength = Math.Abs(barRRD.StartOffsetValue) + D.R_DR_Splice1 + D.R_DR_Splice2 + D.R_DR_HookLength;
+                }
             }
             else
             {
-                barRRD.StartHookLength = D.R_DR_HookLength - barRRD.Radius - KS.GetDiameter(Convert.ToDouble(barRRD.Size));
-                Rlength = Math.Abs(barRRD.StartOffsetValue) + D.R_DR_Splice1 + D.R_DR_Splice2 + D.R_DR_HookLength;
+                barRRD.StartOffsetValue = -D.R_DR_Splice3;
+                barRRD.StartHookShape = TSM.RebarHookData.RebarHookShapeEnum.NO_HOOK;
+                Rlength = Math.Abs(barRRD.StartOffsetValue) + D.R_DR_Splice1 + D.R_DR_Splice2;
             }
+
 
             //var Rlength = Math.Abs(barRRD.StartOffsetValue) + D.R_DR_Splice1 + D.R_DR_Splice2 + D.R_DR_HookLength;
 
@@ -3950,7 +4045,7 @@ namespace YT.WallVerticalRebar
             barRRD.StartPoint = new TSG.Point(barRRM.StartPoint.X + KS.GetDiameter(Convert.ToDouble(D.R_RM_Size)), barRRM.StartPoint.Y, barRRM.StartPoint.Z);
             barRRD.EndPoint = new TSG.Point(barRRM.EndPoint.X + KS.GetDiameter(Convert.ToDouble(D.R_RM_Size)), barRRM.EndPoint.Y, barRRM.EndPoint.Z);
 
-            barRRD.StartHookShape = TSM.RebarHookData.RebarHookShapeEnum.CUSTOM_HOOK;
+            //barRRD.StartHookShape = TSM.RebarHookData.RebarHookShapeEnum.CUSTOM_HOOK;
             barRRD.StartHookRadius = barRRM.Radius;
 
 
@@ -4053,20 +4148,34 @@ namespace YT.WallVerticalRebar
             barRLD.Prefix = D.R_DL_Prefix;
             barRLD.StartNumber = D.R_DL_StartNumber;
             //barRLD.StartOffsetValue = -D.DW_FootingDepth + D.R_DL_HookCorver;
-            barRLD.StartOffsetValue = -D.DW_FootingDepth + D.DL_HookCorver;
+            
 
             var Llength = 0.0;
 
-            if (D.DW_FootingSpacing + D.DW_FootingSplice > D.R_DL_HookLength)
+            if (D.R_DL_HookType == "후크")
             {
-                barRLD.StartHookLength = D.DW_FootingSpacing + D.DW_FootingSplice - barRLD.Radius - KS.GetDiameter(Convert.ToDouble(barRLD.Size));
-                Llength = Math.Abs(barRLD.StartOffsetValue) + D.R_DL_Splice1 + D.R_DL_Splice2 + D.DW_FootingSpacing + D.DW_FootingSplice;
+                barRLD.StartOffsetValue = -D.DW_FootingDepth + D.DL_HookCorver;
+                barRLD.StartHookShape = TSM.RebarHookData.RebarHookShapeEnum.CUSTOM_HOOK;
+
+                if (D.DW_FootingSpacing + D.DW_FootingSplice > D.R_DL_HookLength)
+                {
+                    barRLD.StartHookLength = D.DW_FootingSpacing + D.DW_FootingSplice - barRLD.Radius - KS.GetDiameter(Convert.ToDouble(barRLD.Size));
+                    Llength = Math.Abs(barRLD.StartOffsetValue) + D.R_DL_Splice1 + D.R_DL_Splice2 + D.DW_FootingSpacing + D.DW_FootingSplice;
+                }
+                else
+                {
+                    barRLD.StartHookLength = D.R_DL_HookLength - barRLD.Radius - KS.GetDiameter(Convert.ToDouble(barRLD.Size));
+                    Llength = Math.Abs(barRLD.StartOffsetValue) + D.R_DL_Splice1 + D.R_DL_Splice2 + D.R_DL_HookLength;
+                }
             }
             else
             {
-                barRLD.StartHookLength = D.R_DL_HookLength - barRLD.Radius - KS.GetDiameter(Convert.ToDouble(barRLD.Size));
-                Llength = Math.Abs(barRLD.StartOffsetValue) + D.R_DL_Splice1 + D.R_DL_Splice2 + D.R_DL_HookLength;
+                barRLD.StartOffsetValue = -D.R_DL_Splice3;
+                barRLD.StartHookShape = TSM.RebarHookData.RebarHookShapeEnum.NO_HOOK;
+                    Llength = Math.Abs(barRLD.StartOffsetValue) + D.R_DL_Splice1 + D.R_DL_Splice2;
             }
+
+         
 
             //var Llength = Math.Abs(barRLD.StartOffsetValue) + D.R_DL_Splice1 + D.R_DL_Splice2 + D.R_DL_HookLength;
 
@@ -4121,7 +4230,7 @@ namespace YT.WallVerticalRebar
             barRLD.StartPoint = new TSG.Point(barRLM.StartPoint.X + KS.GetDiameter(Convert.ToDouble(D.R_LM_Size)), barRLM.StartPoint.Y, barRLM.StartPoint.Z);
             barRLD.EndPoint = new TSG.Point(barRLM.EndPoint.X + KS.GetDiameter(Convert.ToDouble(D.R_LM_Size)), barRLM.EndPoint.Y, barRLM.EndPoint.Z);
 
-            barRLD.StartHookShape = TSM.RebarHookData.RebarHookShapeEnum.CUSTOM_HOOK;
+            //barRLD.StartHookShape = TSM.RebarHookData.RebarHookShapeEnum.CUSTOM_HOOK;
             barRLD.StartHookRadius = barRLM.Radius;
 
 
@@ -4500,6 +4609,26 @@ namespace YT.WallVerticalRebar
                 //var hookinout = D.R_RT_HookInOut;
                 //D.R_RT_HookInOut = D.R_LT_HookInOut;
                 //D.R_LT_HookInOut = hookinout;
+
+            }
+
+            if (D.LR_Change == "좌우변경")
+            {
+                var name = D.R_DR_Name2;
+                D.R_DR_Name2 = D.R_DL_Name2;
+                D.R_DL_Name2 = name;
+
+                var clasS = D.R_DR_Class2;
+                D.R_DR_Class2 = D.R_DL_Class2;
+                D.R_DL_Class2 = clasS;
+
+                var prefix = D.R_DR_Prefix2;
+                D.R_DR_Prefix2 = D.R_DL_Prefix2;
+                D.R_DL_Prefix2 = prefix;
+
+                var startnumber = D.R_DR_StartNumber2;
+                D.R_DR_StartNumber2 = D.R_DL_StartNumber2;
+                D.R_DL_StartNumber2 = startnumber;
 
             }
 
@@ -5431,20 +5560,36 @@ namespace YT.WallVerticalRebar
             barRRD.Prefix = D.R_DR_Prefix2;
             barRRD.StartNumber = D.R_DR_StartNumber2;
             //barRRD.StartOffsetValue = -D.DW_FootingDepth + D.R_DR_HookCorver;
-            barRRD.StartOffsetValue = -D.DW_FootingDepth + D.DR_HookCorver;
+            
 
             var Rlength = 0.0;
 
-            if (D.DW_FootingSpacing + D.DW_FootingSplice > D.R_DR_HookLength)
+            if (D.R_DR_HookType == "후크")
             {
-                barRRD.StartHookLength = D.DW_FootingSpacing + D.DW_FootingSplice - barRRD.Radius - KS.GetDiameter(Convert.ToDouble(barRRD.Size));
-                Rlength = Math.Abs(barRRD.StartOffsetValue) + D.R_DR_Splice1 + D.R_DR_Splice2 + D.DW_FootingSpacing + D.DW_FootingSplice;
+                barRRD.StartOffsetValue = -D.DW_FootingDepth + D.DR_HookCorver;
+                barRRD.StartHookShape = TSM.RebarHookData.RebarHookShapeEnum.CUSTOM_HOOK;
+
+
+                if (D.DW_FootingSpacing + D.DW_FootingSplice > D.R_DR_HookLength)
+                {
+                    barRRD.StartHookLength = D.DW_FootingSpacing + D.DW_FootingSplice - barRRD.Radius - KS.GetDiameter(Convert.ToDouble(barRRD.Size));
+                    Rlength = Math.Abs(barRRD.StartOffsetValue) + D.R_DR_Splice1 + D.R_DR_Splice2 + D.DW_FootingSpacing + D.DW_FootingSplice;
+                }
+                else
+                {
+                    barRRD.StartHookLength = D.R_DR_HookLength - barRRD.Radius - KS.GetDiameter(Convert.ToDouble(barRRD.Size));
+                    Rlength = Math.Abs(barRRD.StartOffsetValue) + D.R_DR_Splice1 + D.R_DR_Splice2 + D.R_DR_HookLength;
+                }
             }
             else
             {
-                barRRD.StartHookLength = D.R_DR_HookLength - barRRD.Radius - KS.GetDiameter(Convert.ToDouble(barRRD.Size));
-                Rlength = Math.Abs(barRRD.StartOffsetValue) + D.R_DR_Splice1 + D.R_DR_Splice2 + D.R_DR_HookLength;
+                barRRD.StartOffsetValue = -D.R_DR_Splice3;
+                barRRD.StartHookShape = TSM.RebarHookData.RebarHookShapeEnum.NO_HOOK;
+                Rlength = Math.Abs(barRRD.StartOffsetValue) + D.R_DR_Splice1 + D.R_DR_Splice2 ;
             }
+
+
+
 
             //var Rlength = Math.Abs(barRRD.StartOffsetValue) + D.R_DR_Splice1 + D.R_DR_Splice2 + D.R_DR_HookLength;
 
@@ -5498,7 +5643,7 @@ namespace YT.WallVerticalRebar
             barRRD.StartPoint = new TSG.Point(barRRM.StartPoint.X + KS.GetDiameter(Convert.ToDouble(D.R_RM_Size2)), barRRM.StartPoint.Y, barRRM.StartPoint.Z);
             barRRD.EndPoint = new TSG.Point(barRRM.EndPoint.X + KS.GetDiameter(Convert.ToDouble(D.R_RM_Size2)), barRRM.EndPoint.Y, barRRM.EndPoint.Z);
 
-            barRRD.StartHookShape = TSM.RebarHookData.RebarHookShapeEnum.CUSTOM_HOOK;
+            //barRRD.StartHookShape = TSM.RebarHookData.RebarHookShapeEnum.CUSTOM_HOOK;
             barRRD.StartHookRadius = barRRM.Radius;
 
 
@@ -5600,19 +5745,30 @@ namespace YT.WallVerticalRebar
             barRLD.Prefix = D.R_DL_Prefix2;
             barRLD.StartNumber = D.R_DL_StartNumber2;
             //barRLD.StartOffsetValue = -D.DW_FootingDepth + D.R_DL_HookCorver;
-            barRLD.StartOffsetValue = -D.DW_FootingDepth + D.DL_HookCorver;
 
             var Llength = 0.0;
 
-            if (D.DW_FootingSpacing + D.DW_FootingSplice > D.R_DL_HookLength)
+            if (D.R_DL_HookType == "후크")
             {
-                barRLD.StartHookLength = D.DW_FootingSpacing + D.DW_FootingSplice - barRLD.Radius - KS.GetDiameter(Convert.ToDouble(barRLD.Size));
-                Llength = Math.Abs(barRLD.StartOffsetValue) + D.R_DL_Splice1 + D.R_DL_Splice2 + D.DW_FootingSpacing + D.DW_FootingSplice;
+                barRLD.StartOffsetValue = -D.DW_FootingDepth + D.DL_HookCorver;
+                barRLD.StartHookShape = TSM.RebarHookData.RebarHookShapeEnum.CUSTOM_HOOK;
+
+                if (D.DW_FootingSpacing + D.DW_FootingSplice > D.R_DL_HookLength)
+                {
+                    barRLD.StartHookLength = D.DW_FootingSpacing + D.DW_FootingSplice - barRLD.Radius - KS.GetDiameter(Convert.ToDouble(barRLD.Size));
+                    Llength = Math.Abs(barRLD.StartOffsetValue) + D.R_DL_Splice1 + D.R_DL_Splice2 + D.DW_FootingSpacing + D.DW_FootingSplice;
+                }
+                else
+                {
+                    barRLD.StartHookLength = D.R_DL_HookLength - barRLD.Radius - KS.GetDiameter(Convert.ToDouble(barRLD.Size));
+                    Llength = Math.Abs(barRLD.StartOffsetValue) + D.R_DL_Splice1 + D.R_DL_Splice2 + D.R_DL_HookLength;
+                }
             }
             else
             {
-                barRLD.StartHookLength = D.R_DL_HookLength - barRLD.Radius - KS.GetDiameter(Convert.ToDouble(barRLD.Size));
-                Llength = Math.Abs(barRLD.StartOffsetValue) + D.R_DL_Splice1 + D.R_DL_Splice2 + D.R_DL_HookLength;
+                barRLD.StartOffsetValue = -D.R_DL_Splice3;
+                barRLD.StartHookShape = TSM.RebarHookData.RebarHookShapeEnum.NO_HOOK;
+                Llength = Math.Abs(barRLD.StartOffsetValue) + D.R_DL_Splice1 + D.R_DL_Splice2 ;
             }
 
             //var Llength = Math.Abs(barRLD.StartOffsetValue) + D.R_DL_Splice1 + D.R_DL_Splice2 + D.R_DL_HookLength;
@@ -5667,7 +5823,7 @@ namespace YT.WallVerticalRebar
             barRLD.StartPoint = new TSG.Point(barRLM.StartPoint.X + KS.GetDiameter(Convert.ToDouble(D.R_LM_Size2)), barRLM.StartPoint.Y, barRLM.StartPoint.Z);
             barRLD.EndPoint = new TSG.Point(barRLM.EndPoint.X + KS.GetDiameter(Convert.ToDouble(D.R_LM_Size2)), barRLM.EndPoint.Y, barRLM.EndPoint.Z);
 
-            barRLD.StartHookShape = TSM.RebarHookData.RebarHookShapeEnum.CUSTOM_HOOK;
+            //barRLD.StartHookShape = TSM.RebarHookData.RebarHookShapeEnum.CUSTOM_HOOK;
             barRLD.StartHookRadius = barRLM.Radius;
 
 
@@ -7235,9 +7391,9 @@ namespace YT.WallVerticalRebar
 
                 else if (D.S_RangeType == "하")
                 {
-                    
 
-                
+
+
                     if (D.S_Type == "수직근")
                     {
                         var bar4a = InsertUserProperty(bar4, buildingSt, buildingStoreySt);
@@ -7350,7 +7506,7 @@ namespace YT.WallVerticalRebar
             }
             #endregion
 
-     
+
             /*-----------------------------------------------------------------------------------------*/
 
             #region 상부전용
@@ -7506,7 +7662,7 @@ namespace YT.WallVerticalRebar
                         MoveX(bar5a, -size, -rebar);
                         MoveZ(bar5a, (length - D.S_RangeTop - te2 + tee));
                         MoveZ(bar5a, (hMainBar / 2) + (sBar / 2));
-                        CopyXUerProperty(bar5a, listfm,buildingSt, buildingStoreySt);
+                        CopyXUerProperty(bar5a, listfm, buildingSt, buildingStoreySt);
                     }
                     else if (D.S_Type == "수직근+보강근1단")
                     {
@@ -7885,7 +8041,7 @@ namespace YT.WallVerticalRebar
                         MoveZ(bar7a, Convert.ToDouble(bar7.Spacings[0]) / 2 + (length - D.S_RangeTop - te2 + tee));
                         MoveZ(bar7a, (hMainBar / 2) + (sBar / 2));
                         CopyXUerProperty(bar7a, listfm, buildingSt, buildingStoreySt);
-                        
+
                     }
                     else if (D.S_Type == "수직근+보강근1단")
                     {
@@ -8425,7 +8581,7 @@ namespace YT.WallVerticalRebar
 
                 var mo = TSM.Operations.Operation.CopyObject(bar, new TSG.Vector(aaa, 0, 0)) as TSM.RebarGroup;
 
-                if (D.S_UDA =="부재 UDA 정보 사용")
+                if (D.S_UDA == "부재 UDA 정보 사용")
                 {
                     mo.SetUserProperty("USER_FIELD_1", Building);
                     mo.SetUserProperty("USER_FIELD_2", BuildingSt);
@@ -8435,7 +8591,7 @@ namespace YT.WallVerticalRebar
                     mo.SetUserProperty("USER_FIELD_1", Building);
                     mo.SetUserProperty("USER_FIELD_2", D.S_Building_S);
                 }
-                
+
 
             }
         }
@@ -8444,7 +8600,7 @@ namespace YT.WallVerticalRebar
         {
             bar.Insert();
 
-            if (D.S_UDA =="부재 UDA 정보 사용")
+            if (D.S_UDA == "부재 UDA 정보 사용")
             {
                 bar.SetUserProperty("USER_FIELD_1", Building);
                 bar.SetUserProperty("USER_FIELD_2", BuildingSt);
@@ -8454,7 +8610,7 @@ namespace YT.WallVerticalRebar
                 bar.SetUserProperty("USER_FIELD_1", Building);
                 bar.SetUserProperty("USER_FIELD_2", D.S_Building_S);
             }
-            
+
 
             return bar;
         }

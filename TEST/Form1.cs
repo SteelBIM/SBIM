@@ -39,19 +39,249 @@ namespace TEST
             btnOpen.Click += BtnOpen_Click;
             btnSlab.Click += BtnSlab_Click;
             btngetob.Click += Btngetob_Click;
+
         }
 
         private void Btngetob_Click(object sender, EventArgs e)
         {
-            var pickob = new TSM.UI.Picker().PickObject(TSM.UI.Picker.PickObjectEnum.PICK_ONE_OBJECT);
-            var a = pickob;
+
+            var m = new TSM.Model();
+
+            //var pickeline1 = new TSM.UI.Picker().PickLine();
+            //var pickeline2 = new TSM.UI.Picker().PickLine();
+
+            //var sline1 = new TSG.LineSegment(pickeline1[0] as TSG.Point, pickeline1[1] as TSG.Point);
+            //var sline2 = new TSG.LineSegment(pickeline2[0] as TSG.Point, pickeline2[1] as TSG.Point);
+
+            //var line1 = new TSM.ControlLine();
+            //line1.Line = sline1;
+            //var line2 = new TSM.ControlLine();
+            //line2.Line = sline2;
+
+            //var a = TSG.Distance.PointToLineSegment(pickeline1[0] as TSG.Point, sline2);
+
+            //    var vertex = new[]
+            //{
+            //    new TSG.Vector(0.0, 0.0, 0.0), // 0
+            //    new TSG.Vector(300.0, 0.0, 0.0), // 1
+            //    new TSG.Vector(300.0, 700.0, 0.0), // 2
+            //    new TSG.Vector(0.0, 700.0, 0.0), // 3
+            //    new TSG.Vector(300.0, 700.0, 0.0), // 4
+            //    new TSG.Vector(300.0, 700.0, 2000.0), // 5
+            //    new TSG.Vector(0.0, 700.0, 2000.0), // 6
+            //    new TSG.Vector(100.0, 100.0, 0.0), // 7
+            //    new TSG.Vector(200.0, 100.0, 0.0), // 8
+            //    new TSG.Vector(200.0, 200.0, 0.0), // 9
+            //    new TSG.Vector(100.0, 200.0, 0.0) // 10
+            //};
+            //    var outerWires = new[]
+            //    {
+            //    new[] { 0, 1, 2, 3 },
+            //    new[] { 3, 4, 5, 6 }
+            //};
+            //    var innerWires = new Dictionary<int, int[][]>
+            //{
+            //    { 0, new[] { new[] { 10, 9, 8, 7 } } }
+            //};
+
+            //    var brep = new TSG.FacetedBrep(vertex, outerWires, innerWires);
+            //    Console.WriteLine("This BREP has {0} faces", brep.Faces.Count);
+
+            
+
+
+            var slab = new TSM.UI.Picker().PickObject(TSM.UI.Picker.PickObjectEnum.PICK_ONE_OBJECT) as TSM.ContourPlate;
+
+
+            //var boollist = new ArrayList();
+            //var boolpart = slab.GetBooleans();
+
+            //while (boolpart.MoveNext())
+            //{
+            //    var boolobjects = boolpart.Current;
+            //    var currentboolpart = ((Tekla.Structures.Model.BooleanPart)boolobjects).OperativePart;
+
+            //    //var solid = curretboolpart.GetSolid();
+
+            //    if (currentboolpart.GetType().FullName == "")
+            //    //{
+
+            //    //}
+
+            //    //ob.Add(a);
+
+
+
+            //}
+
+            //var cutpart = ob[0] as TSM.ModelObject;
+            //var a = ((Tekla.Structures.Model.BooleanPart)cutpart).OperativePart;
+
+
+            var pointlistX = new List<double>();
+            var pointlistY = new List<double>();
+            var pointlistZ = new List<double>();
+            var pointlist = new List<TSG.Point>();
+
+            if (slab == null)
+            {
+                return;
+            }
+            else
+            {
+                var edgeEnum = slab.GetSolid().GetEdgeEnumerator();
+
+
+                while (edgeEnum.MoveNext())
+                {
+
+                    var edge = edgeEnum.Current as TS.Solid.Edge;
+
+                    pointlistX.Add(Math.Round(edge.StartPoint.X, 2));
+                    pointlistY.Add(Math.Round(edge.StartPoint.Y, 2));
+                    pointlistZ.Add(Math.Round(edge.StartPoint.Z, 2));
+                    pointlist.Add(edge.StartPoint);
+
+                }
+            }
+
+
+            var list_x = pointlistX.Distinct().OrderBy(x => x).ToList();
+            var minvalue_x = list_x.Min();
+            var maxvalue_x = list_x.Max();
+            //var listcount_x = list_x.Count;
+
+            var list_y = pointlistY.Distinct().OrderBy(x => x).ToList();
+            var minvalue_y = list_y.Min();
+            var maxvalue_y = list_y.Max();
+            //var listcount_y = list_y.Count;
+
+            var list_z = pointlistZ.Distinct().OrderBy(x => x).ToList();
+            var minvalue_z = list_z.Min();
+            var maxvalue_z = list_z.Max();
+            //var listcount_z = list_z.Count;
+
+
+            var edgelist = pointlist.Distinct().Where(x => Math.Round(x.Z, 2) == maxvalue_z).ToList();
+
+            var contourlist = slab.Contour.ContourPoints;
+
+            var controulistcount = contourlist.Count;
+
+            var clist = new ArrayList();
+
+
+            // Round
+            //for (int i = 0; i < contourlist.Count; i++)
+            //{
+            //    var s = new TSG.LineSegment();
+
+            //    if (i == controulistcount - 1)
+            //    {
+
+            //        s.Point1 = contourlist[i] as TSG.Point;
+
+            //        s.Point2 = contourlist[0] as TSG.Point;
+            //    }
+            //    else
+            //    {
+            //        s.Point1 = contourlist[i] as TSG.Point;
+
+            //        s.Point2 = contourlist[i + 1] as TSG.Point;
+            //    }
+
+            //    var l = new TSM.ControlLine();
+            //    l.Line = s;
+            //    l.Color = TSM.ControlLine.ControlLineColorEnum.RED;
+            //    l.Extension = 300.0;
+            //    l.Insert();
+            //    m.CommitChanges();
+
+            //    var line = new TSG.Line(s);
+            //    clist.Add(line);
+
+
+            //}
+
+            var ylist = new ArrayList();
+
+            // Y line
+            for (int i = 0; i < list_y.Count; i++)
+            {
+                var lineseg = new TSG.LineSegment();
+                lineseg.Point1 = new TSG.Point(minvalue_x, list_y[i], maxvalue_z);
+                lineseg.Point2 = new TSG.Point(maxvalue_x, list_y[i], maxvalue_z);
+
+                var line = new TSM.ControlLine();
+                line.IsMagnetic = true;
+                line.Line = lineseg;
+                line.Insert();
+
+                var linee = new TSG.Line(lineseg);
+                ylist.Add(linee);
+                m.CommitChanges();
+
+            }
+
+            
+
+
+            //for (int i = 0; i < clist.Count; i++)
+            //{
+            //    for (int y = 0; y < llist.Count; y++)
+            //    {
+            //        //var a = TSG.Intersection.LineToLine(llist[i] as TSG.Line, clist[y] as TSG.Line);
+            //        var a = TSG.Intersection.LineToLine(llist[y] as TSG.Line, clist[i] as TSG.Line);
+
+            //        if (a != null)
+            //        {
+            //            var p = new TSM.ControlPoint(a.Point1);
+            //            p.Insert();
+            //        }
+            //        //var p = new TSM.ControlPoint(a.Point1);
+            //        //if (p != null) p.Insert();
+
+            //    }
+
+            //}
+
+            // 최소 X 포인트
+            //for (int i = 0; i < list_y.Count; i++)
+            //{
+            //    var point = new TSM.ControlPoint(new TSG.Point(minvalue_x, list_y[i], maxvalue_z));
+            //    point.Insert();
+            //}
+
+            // 최대 x 포인트
+            //for (int i = 0; i < list_y.Count; i++)
+            //{
+            //    var point = new TSM.ControlPoint(new TSG.Point(maxvalue_x, list_y[i], maxvalue_z));
+            //    point.Insert();
+            //}
+
+            //edge 포인트
+            //for (int i = 0; i < edgelist.Count; i++)
+            //{
+            //    var point = new TSM.ControlPoint(edgelist[i]);
+            //    point.Insert();
+
+            //}
+
+
+            m.CommitChanges();
+
+            //var resultlist = (list.Distinct().ToList()).Find(x => x.Z == 0);
+            //var resultlist = list.Distinct().Where(x => x.Z == 0).ToList();
+
+
         }
+
 
         private void BtnSlab_Click(object sender, EventArgs e)
         {
-            var dx = 50;
-            var dy = 100;
-            var dz = 200;
+            //var dx = 50;
+            //var dy = 100;
+            //var dz = 200;
 
             var m = new TSM.Model();
 
@@ -155,7 +385,7 @@ namespace TEST
             b.FromPlaneOffset = 40;
 
 
-            
+
             b.Insert();
             b.SetUserProperty("USER_FIELD_1", "2");
 

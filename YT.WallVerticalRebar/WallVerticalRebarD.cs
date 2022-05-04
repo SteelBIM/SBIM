@@ -482,10 +482,13 @@ namespace YT.WallVerticalRebar
         [TSP.StructuresField("R_DR_StartNumber2")] public int R_DR_StartNumber2;
 
         //공통
+        [TSP.StructuresField("R_DR_HookType")] public string R_DR_HookType;
+
         [TSP.StructuresField("R_DR_YesOrNo")] public string R_DR_YesOrNo;
 
         [TSP.StructuresField("R_DR_Splice1")] public double R_DR_Splice1;// 이음
         [TSP.StructuresField("R_DR_Splice2")] public double R_DR_Splice2;// 이음
+        [TSP.StructuresField("R_DR_Splice3")] public double R_DR_Splice3;// 하부 연결
 
         [TSP.StructuresField("R_DR_HookCorver")] public double R_DR_HookCorver;// 후크피복
         [TSP.StructuresField("R_DR_HookLength")] public double R_DR_HookLength;// 후크길이
@@ -508,10 +511,13 @@ namespace YT.WallVerticalRebar
         [TSP.StructuresField("R_DL_StartNumber2")] public int R_DL_StartNumber2;
 
         //공통
+        [TSP.StructuresField("R_DL_HookType")] public string R_DL_HookType;
+
         [TSP.StructuresField("R_DL_YesOrNo")] public string R_DL_YesOrNo;
 
         [TSP.StructuresField("R_DL_Splice1")] public double R_DL_Splice1;// 이음
         [TSP.StructuresField("R_DL_Splice2")] public double R_DL_Splice2;// 이음
+        [TSP.StructuresField("R_DL_Splice3")] public double R_DL_Splice3;// 하부 연결
 
         [TSP.StructuresField("R_DL_HookCorver")] public double R_DL_HookCorver;// 후크피복
         [TSP.StructuresField("R_DL_HookLength")] public double R_DL_HookLength;// 후크길이
