@@ -56,9 +56,6 @@
       <HintPath>..\packages\TeklaOpenAPI.2020.0.3\lib\Tekla.Application.Library.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="Tekla.BIM.DirectManipulation, Version=2021.0.0.0, Culture=neutral, PublicKeyToken=2f04dbe497b71114, processorArchitecture=AMD64">
-      <HintPath>..\packages\Tekla.BIM.DirectManipulation.2021.0.0\lib\net472\Tekla.BIM.DirectManipulation.dll</HintPath>
-    </Reference>
     <Reference Include="Tekla.Structures, Version=2020.0.0.0, Culture=neutral, PublicKeyToken=2f04dbe497b71114, processorArchitecture=MSIL">
       <HintPath>..\packages\TeklaOpenAPI.2020.0.3\lib\Tekla.Structures.dll</HintPath>
       <Private>False</Private>
@@ -110,12 +107,12 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
     <EmbeddedResource Include="WallVerticalRebarU.resx">
       <DependentUpon>WallVerticalRebarU.cs</DependentUpon>
     </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

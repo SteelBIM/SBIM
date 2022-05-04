@@ -49,3 +49,7 @@ D:\조한솔\00. 프로젝트\00. SBIM\YT.WallVerticalRebar\obj\Debug\YT.WallVer
 D:\조한솔\00. 프로젝트\00. SBIM\YT.WallVerticalRebar\obj\Debug\YT.WallVerticalRebar.csproj.CopyComplete
 D:\조한솔\00. 프로젝트\00. SBIM\YT.WallVerticalRebar\obj\Debug\YT.WallVerticalRebar.dll
 D:\조한솔\00. 프로젝트\00. SBIM\YT.WallVerticalRebar\obj\Debug\YT.WallVerticalRebar.pdb
+D:\000 SVN\YT.SBIM\YT.WallVerticalRebar\obj\Debug\YT.WallVerticalRebar.csproj.AssemblyReference.cache
+D:\000 SVN\YT.SBIM\YT.WallVerticalRebar\obj\Debug\YT.WallVerticalRebar.WallVerticalRebarU.resources
+D:\000 SVN\YT.SBIM\YT.WallVerticalRebar\obj\Debug\YT.WallVerticalRebar.csproj.GenerateResource.cache
+D:\000 SVN\YT.SBIM\YT.WallVerticalRebar\obj\Debug\YT.WallVerticalRebar.csproj.CoreCompileInputs.cache

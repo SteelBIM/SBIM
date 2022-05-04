@@ -92,9 +92,6 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
     <EmbeddedResource Include="YTAutoCouplerU.resx">
       <DependentUpon>YTAutoCouplerU.cs</DependentUpon>
     </EmbeddedResource>
@@ -104,6 +101,9 @@
       <Project>{1e6449a1-6bb2-4fcc-abf3-6a4d6b202f5c}</Project>
       <Name>YT.COM</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
